@@ -1,0 +1,71 @@
+// swiftlint:disable all
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+
+{% if families %}
+{% set accessModifier %}{% if param.publicAccess %}public{% else %}internal{% endif %}{% endset %}
+{% set fontType %}{{param.fontTypeName|default:"FontConvertible"}}{% endset %}
+import SwiftUI
+
+// MARK: - Fonts
+
+{% macro transformPath path %}{% filter removeNewlines %}
+  {% if param.preservePath %}
+    {{path}}
+  {% else %}
+    {{path|basename}}
+  {% endif %}
+{% endfilter %}{% endmacro %}
+{{accessModifier}} enum {{param.enumName|default:"FontFamily"}} {
+    {% for family in families %}
+    
+    {{accessModifier}} enum {{family.name|swiftIdentifier:"pretty"|escapeReservedKeywords}} {
+    {% for font in family.fonts %}
+        {{accessModifier}} static let {{font.style|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}} = {{fontType}}(name: "{{font.name}}", family: "{{family.name}}", path: "{% call transformPath font.path %}")
+    {% endfor %}
+    
+        {{accessModifier}} static let all: [{{fontType}}] = [{% for font in family.fonts %}{{font.style|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}{{ ", " if not forloop.last }}{% endfor %}]
+    }
+{% endfor %}
+}
+
+// MARK: - Implementation Details
+{{accessModifier}} struct {{fontType}} {
+    {{accessModifier}} let name: String
+    {{accessModifier}} let family: String
+    {{accessModifier}} let path: String
+}
+
+{{accessModifier}} extension Font {
+    static func custom(fontConvertible: FontConvertible, size: CGFloat, relativeTo textStyle: UIFont.TextStyle) -> Font {
+        custom(name: fontConvertible.name, size: size, relativeTo: textStyle)
+    }
+
+    static func custom(name: String, size: CGFloat, relativeTo textStyle: UIFont.TextStyle) -> Font {
+        if #available(iOS 14.0, *) {
+            return Font.custom(name, size: size, relativeTo: textStyle.swiftUITextStyle)
+        } else {
+            return Font.custom(name, size: UIFontMetrics(forTextStyle: textStyle).scaledValue(for: size))
+        }
+    }
+
+  {% for family in families %}
+      {% for font in family.fonts %}
+    static func {{family.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}{{font.style|swiftIdentifier:"pretty"|escapeReservedKeywords}}(_ size: CGFloat, relativeTo textStyle: UIFont.TextStyle) -> Font {
+        Font.custom(fontConvertible: FontFamily.{{family.name|swiftIdentifier:"pretty"|escapeReservedKeywords}}.{{font.style|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}, size: size, relativeTo: textStyle)
+    }
+      {% endfor %}
+  {% endfor %}
+}
+{% if not param.bundle and not param.lookupFunction %}
+
+private final class BundleToken {
+    static let bundle: Bundle = {
+        Bundle(for: BundleToken.self)
+    }()
+}
+
+{% endif %}
+{% else %}
+// No fonts found
+{% endif %}
+

@@ -1,0 +1,19 @@
+// swiftlint:disable all
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+
+{% macro imageBlock assets %}
+  {% for asset in assets %}
+  {% if asset.type == 'image' %}
+    static var {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: Image { return Image("{{ asset.value }}") }
+  {% elif asset.type == "group" %}
+    {% call imageBlock asset.items %}
+  {% endif %}
+  {% endfor %}
+{% endmacro %}
+import SwiftUI
+
+extension Image {
+{% for catalog in catalogs %}
+{% call imageBlock catalog.assets %}
+{% endfor %}
+}

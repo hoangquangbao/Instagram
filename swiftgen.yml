@@ -1,0 +1,13 @@
+xcassets:
+  - inputs: ${PROJECT_DIR}/Instagram/Assets.xcassets
+    outputs:
+      - templatePath: ${PROJECT_DIR}/Instagram/Resources/Tools/AssetsSwiftUI.stencil
+        output: ${PROJECT_DIR}/Instagram/Generated/XCAssets+Generated.swift
+      - templatePath: ${PROJECT_DIR}/Instagram/Resources/Tools/UIColor.stencil
+        output: ${PROJECT_DIR}/Instagram/Generated/UIColor+Generated.swift
+        
+fonts:
+  - inputs: ${PROJECT_DIR}/Instagram/Resources/Fonts
+    outputs:
+        templatePath: ${PROJECT_DIR}/Instagram/Resources/Tools/FontsSwiftUI.stencil
+        output: ${PROJECT_DIR}/Instagram/Generated/Fonts+Generated.swift

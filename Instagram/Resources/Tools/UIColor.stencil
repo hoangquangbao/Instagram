@@ -1,0 +1,19 @@
+// swiftlint:disable all
+// Generated using SwiftGen — https://github.com/SwiftGen/SwiftGen
+
+{% macro colorBlock assets %}
+  {% for asset in assets %}
+  {% if asset.type == "color" %}
+    static var {{asset.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: Color { return Color("{{ asset.value }}") }
+  {% elif asset.type == "group" %}
+    {% call colorBlock asset.items %}
+  {% endif %}
+  {% endfor %}
+{% endmacro %}
+import SwiftUI
+
+extension Color {
+{% for catalog in catalogs %}
+{% call colorBlock catalog.assets %}
+{% endfor %}
+}
