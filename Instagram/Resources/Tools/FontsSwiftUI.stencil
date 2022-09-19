@@ -37,15 +37,7 @@ import SwiftUI
 
 {{accessModifier}} extension Font {
     static func custom(fontConvertible: FontConvertible, size: CGFloat, relativeTo textStyle: UIFont.TextStyle) -> Font {
-        custom(name: fontConvertible.name, size: size, relativeTo: textStyle)
-    }
-
-    static func custom(name: String, size: CGFloat, relativeTo textStyle: UIFont.TextStyle) -> Font {
-        if #available(iOS 14.0, *) {
-            return Font.custom(name, size: size, relativeTo: textStyle.swiftUITextStyle)
-        } else {
-            return Font.custom(name, size: UIFontMetrics(forTextStyle: textStyle).scaledValue(for: size))
-        }
+        return Font.custom(fontConvertible.name, size: UIFontMetrics(forTextStyle: textStyle).scaledValue(for: size))
     }
 
   {% for family in families %}
