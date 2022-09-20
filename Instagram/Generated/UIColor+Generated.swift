@@ -5,7 +5,9 @@ import SwiftUI
 
 extension Color {
     static var accentColor: Color { return Color("AccentColor") }
+    static var _000000: Color { return Color("#000000") }
     static var _262626: Color { return Color("#262626") }
     static var _3797Ef: Color { return Color("#3797EF") }
+    static var fafafa: Color { return Color("#FAFAFA") }
     static var ffffff: Color { return Color("#FFFFFF") }
 }
