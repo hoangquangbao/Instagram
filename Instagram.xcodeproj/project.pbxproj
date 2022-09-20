@@ -10,7 +10,6 @@
 		0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453528D84F65003A2E4B /* UIColor+Generated.swift */; };
 		0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453628D84F65003A2E4B /* XCAssets+Generated.swift */; };
 		0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453728D84F65003A2E4B /* Fonts+Generated.swift */; };
-		06C874DB28D8234700A0DEEB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C874DA28D8234700A0DEEB /* LoginView.swift */; };
 		06E9397F28D952470028F981 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397E28D952380028F981 /* SF-Pro-Text-Light.otf */; };
 		06E9398028D952470028F981 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397328D952350028F981 /* SF-Pro-Text-Regular.otf */; };
 		06E9398128D952470028F981 /* SF-Pro-Text-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397A28D952370028F981 /* SF-Pro-Text-MediumItalic.otf */; };
@@ -27,7 +26,6 @@
 		06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398E28D96CD30028F981 /* FirebaseStorage */; };
 		06E9399128D972EB0028F981 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06E9399028D972EB0028F981 /* GoogleService-Info.plist */; };
 		06E9399328D973160028F981 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E9399228D973160028F981 /* FirebaseManager.swift */; };
-		06E9399728D99C8D0028F981 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E9399628D99C8D0028F981 /* LoginViewModel.swift */; };
 		06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F438B028D334E7009EA3E1 /* InstagramApp.swift */; };
 		06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F438B228D334E7009EA3E1 /* ContentView.swift */; };
 		06F438B528D334E9009EA3E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F438B428D334E9009EA3E1 /* Assets.xcassets */; };
@@ -42,7 +40,6 @@
 		0615453528D84F65003A2E4B /* UIColor+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Generated.swift"; sourceTree = "<group>"; };
 		0615453628D84F65003A2E4B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		0615453728D84F65003A2E4B /* Fonts+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
-		06C874DA28D8234700A0DEEB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		06E9397328D952350028F981 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		06E9397428D952360028F981 /* SF-Pro-Text-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-LightItalic.otf"; sourceTree = "<group>"; };
 		06E9397528D952360028F981 /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
@@ -57,7 +54,6 @@
 		06E9397E28D952380028F981 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		06E9399028D972EB0028F981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06E9399228D973160028F981 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		06E9399628D99C8D0028F981 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		06F438AD28D334E7009EA3E1 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F438B028D334E7009EA3E1 /* InstagramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramApp.swift; sourceTree = "<group>"; };
 		06F438B228D334E7009EA3E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,29 +91,12 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
-		06C874D828D8221300A0DEEB /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				06E9399828D9CB520028F981 /* Login */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		06C874D928D8225200A0DEEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				06E9399228D973160028F981 /* FirebaseManager.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		06E9399828D9CB520028F981 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				06C874DA28D8234700A0DEEB /* LoginView.swift */,
-				06E9399628D99C8D0028F981 /* LoginViewModel.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		06F438A428D334E7009EA3E1 = {
@@ -143,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				06C874D928D8225200A0DEEB /* Model */,
-				06C874D828D8221300A0DEEB /* UI */,
 				06F6ACAB28D450F3002095E5 /* Resources */,
 				0615453B28D85B7F003A2E4B /* Generated */,
 				06F438B028D334E7009EA3E1 /* InstagramApp.swift */,
@@ -358,8 +336,6 @@
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
 				06E9399328D973160028F981 /* FirebaseManager.swift in Sources */,
-				06C874DB28D8234700A0DEEB /* LoginView.swift in Sources */,
-				06E9399728D99C8D0028F981 /* LoginViewModel.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
