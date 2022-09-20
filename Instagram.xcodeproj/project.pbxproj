@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453528D84F65003A2E4B /* UIColor+Generated.swift */; };
+		0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453628D84F65003A2E4B /* XCAssets+Generated.swift */; };
+		0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453728D84F65003A2E4B /* Fonts+Generated.swift */; };
+		06C874DB28D8234700A0DEEB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C874DA28D8234700A0DEEB /* LoginView.swift */; };
+		06E9397F28D952470028F981 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397E28D952380028F981 /* SF-Pro-Text-Light.otf */; };
+		06E9398028D952470028F981 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397328D952350028F981 /* SF-Pro-Text-Regular.otf */; };
+		06E9398128D952470028F981 /* SF-Pro-Text-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397A28D952370028F981 /* SF-Pro-Text-MediumItalic.otf */; };
+		06E9398228D952470028F981 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397C28D952380028F981 /* SF-Pro-Text-HeavyItalic.otf */; };
+		06E9398328D952470028F981 /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397628D952360028F981 /* SF-Pro-Text-SemiboldItalic.otf */; };
+		06E9398428D952470028F981 /* SF-Pro-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397828D952360028F981 /* SF-Pro-Text-RegularItalic.otf */; };
+		06E9398528D952470028F981 /* SF-Pro-Text-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397428D952360028F981 /* SF-Pro-Text-LightItalic.otf */; };
+		06E9398628D952470028F981 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397728D952360028F981 /* SF-Pro-Text-Semibold.otf */; };
+		06E9398728D952470028F981 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397D28D952380028F981 /* SF-Pro-Text-Medium.otf */; };
+		06E9398828D952470028F981 /* SF-Pro-Text-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397928D952370028F981 /* SF-Pro-Text-BoldItalic.otf */; };
+		06E9398928D952470028F981 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397528D952360028F981 /* SF-Pro-Text-Heavy.otf */; };
+		06E9398A28D952470028F981 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06E9397B28D952380028F981 /* SF-Pro-Text-Bold.otf */; };
 		06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F438B028D334E7009EA3E1 /* InstagramApp.swift */; };
 		06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F438B228D334E7009EA3E1 /* ContentView.swift */; };
 		06F438B528D334E9009EA3E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06F438B428D334E9009EA3E1 /* Assets.xcassets */; };
@@ -14,11 +30,26 @@
 		06F6ACAE28D4512B002095E5 /* AssetsSwiftUI.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACAD28D4512B002095E5 /* AssetsSwiftUI.stencil */; };
 		06F6ACB328D45BB1002095E5 /* FontsSwiftUI.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACB228D45BB1002095E5 /* FontsSwiftUI.stencil */; };
 		06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC028D46818002095E5 /* UIColor.stencil */; };
-		06F6ACC328D4725A002095E5 /* Generated in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC228D4725A002095E5 /* Generated */; };
 		0FFCD04E5C9BCC65B9DAC070 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E84F294C7EF19A028157A31 /* libPods-Instagram.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0615453528D84F65003A2E4B /* UIColor+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Generated.swift"; sourceTree = "<group>"; };
+		0615453628D84F65003A2E4B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
+		0615453728D84F65003A2E4B /* Fonts+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
+		06C874DA28D8234700A0DEEB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		06E9397328D952350028F981 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		06E9397428D952360028F981 /* SF-Pro-Text-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-LightItalic.otf"; sourceTree = "<group>"; };
+		06E9397528D952360028F981 /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
+		06E9397628D952360028F981 /* SF-Pro-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		06E9397728D952360028F981 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		06E9397828D952360028F981 /* SF-Pro-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-RegularItalic.otf"; sourceTree = "<group>"; };
+		06E9397928D952370028F981 /* SF-Pro-Text-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BoldItalic.otf"; sourceTree = "<group>"; };
+		06E9397A28D952370028F981 /* SF-Pro-Text-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-MediumItalic.otf"; sourceTree = "<group>"; };
+		06E9397B28D952380028F981 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		06E9397C28D952380028F981 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
+		06E9397D28D952380028F981 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		06E9397E28D952380028F981 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
 		06F438AD28D334E7009EA3E1 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F438B028D334E7009EA3E1 /* InstagramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramApp.swift; sourceTree = "<group>"; };
 		06F438B228D334E7009EA3E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,7 +58,6 @@
 		06F6ACAD28D4512B002095E5 /* AssetsSwiftUI.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AssetsSwiftUI.stencil; sourceTree = "<group>"; };
 		06F6ACB228D45BB1002095E5 /* FontsSwiftUI.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontsSwiftUI.stencil; sourceTree = "<group>"; };
 		06F6ACC028D46818002095E5 /* UIColor.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = UIColor.stencil; sourceTree = "<group>"; };
-		06F6ACC228D4725A002095E5 /* Generated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Generated; sourceTree = "<group>"; };
 		6308D98B2E503DC3FA20A643 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		88DE318C9BF80CE209D99A14 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		8E84F294C7EF19A028157A31 /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +75,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0615453B28D85B7F003A2E4B /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				0615453528D84F65003A2E4B /* UIColor+Generated.swift */,
+				0615453628D84F65003A2E4B /* XCAssets+Generated.swift */,
+				0615453728D84F65003A2E4B /* Fonts+Generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		06C874D828D8221300A0DEEB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				06C874DA28D8234700A0DEEB /* LoginView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		06C874D928D8225200A0DEEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		06F438A428D334E7009EA3E1 = {
 			isa = PBXGroup;
 			children = (
@@ -66,8 +121,10 @@
 		06F438AF28D334E7009EA3E1 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				06C874D928D8225200A0DEEB /* Model */,
+				06C874D828D8221300A0DEEB /* UI */,
 				06F6ACAB28D450F3002095E5 /* Resources */,
-				06F6ACC228D4725A002095E5 /* Generated */,
+				0615453B28D85B7F003A2E4B /* Generated */,
 				06F438B028D334E7009EA3E1 /* InstagramApp.swift */,
 				06F438B228D334E7009EA3E1 /* ContentView.swift */,
 				06F438B428D334E9009EA3E1 /* Assets.xcassets */,
@@ -106,6 +163,18 @@
 		06F6ACB428D45C66002095E5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				06E9397B28D952380028F981 /* SF-Pro-Text-Bold.otf */,
+				06E9397928D952370028F981 /* SF-Pro-Text-BoldItalic.otf */,
+				06E9397528D952360028F981 /* SF-Pro-Text-Heavy.otf */,
+				06E9397C28D952380028F981 /* SF-Pro-Text-HeavyItalic.otf */,
+				06E9397E28D952380028F981 /* SF-Pro-Text-Light.otf */,
+				06E9397428D952360028F981 /* SF-Pro-Text-LightItalic.otf */,
+				06E9397D28D952380028F981 /* SF-Pro-Text-Medium.otf */,
+				06E9397A28D952370028F981 /* SF-Pro-Text-MediumItalic.otf */,
+				06E9397328D952350028F981 /* SF-Pro-Text-Regular.otf */,
+				06E9397828D952360028F981 /* SF-Pro-Text-RegularItalic.otf */,
+				06E9397728D952360028F981 /* SF-Pro-Text-Semibold.otf */,
+				06E9397628D952360028F981 /* SF-Pro-Text-SemiboldItalic.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -187,11 +256,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06E9398A28D952470028F981 /* SF-Pro-Text-Bold.otf in Resources */,
+				06E9398128D952470028F981 /* SF-Pro-Text-MediumItalic.otf in Resources */,
 				06F6ACB328D45BB1002095E5 /* FontsSwiftUI.stencil in Resources */,
+				06E9398528D952470028F981 /* SF-Pro-Text-LightItalic.otf in Resources */,
+				06E9398428D952470028F981 /* SF-Pro-Text-RegularItalic.otf in Resources */,
+				06E9398728D952470028F981 /* SF-Pro-Text-Medium.otf in Resources */,
 				06F438B828D334E9009EA3E1 /* Preview Assets.xcassets in Resources */,
-				06F6ACC328D4725A002095E5 /* Generated in Resources */,
+				06E9397F28D952470028F981 /* SF-Pro-Text-Light.otf in Resources */,
+				06E9398328D952470028F981 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
+				06E9398228D952470028F981 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
 				06F6ACAE28D4512B002095E5 /* AssetsSwiftUI.stencil in Resources */,
+				06E9398828D952470028F981 /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */,
+				06E9398928D952470028F981 /* SF-Pro-Text-Heavy.otf in Resources */,
+				06E9398028D952470028F981 /* SF-Pro-Text-Regular.otf in Resources */,
+				06E9398628D952470028F981 /* SF-Pro-Text-Semibold.otf in Resources */,
 				06F438B528D334E9009EA3E1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +326,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
+				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
+				06C874DB28D8234700A0DEEB /* LoginView.swift in Sources */,
+				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 			);
