@@ -4,5 +4,6 @@
 import SwiftUI
 
 extension Image {
+    static var iconFacebook: Image { return Image("icon_facebook") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
 }
