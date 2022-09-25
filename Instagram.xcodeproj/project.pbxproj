@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */; };
 		0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453528D84F65003A2E4B /* UIColor+Generated.swift */; };
 		0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453628D84F65003A2E4B /* XCAssets+Generated.swift */; };
 		0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453728D84F65003A2E4B /* Fonts+Generated.swift */; };
@@ -43,10 +44,12 @@
 		06F6ACB328D45BB1002095E5 /* FontsSwiftUI.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACB228D45BB1002095E5 /* FontsSwiftUI.stencil */; };
 		06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC028D46818002095E5 /* UIColor.stencil */; };
 		06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */; };
+		06FD5A1A28DF51BC007A5F3A /* LoginHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1928DF51BC007A5F3A /* LoginHelpView.swift */; };
 		0FFCD04E5C9BCC65B9DAC070 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E84F294C7EF19A028157A31 /* libPods-Instagram.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextButtonView.swift; sourceTree = "<group>"; };
 		0615453528D84F65003A2E4B /* UIColor+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Generated.swift"; sourceTree = "<group>"; };
 		0615453628D84F65003A2E4B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		0615453728D84F65003A2E4B /* Fonts+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 		06F6ACB228D45BB1002095E5 /* FontsSwiftUI.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontsSwiftUI.stencil; sourceTree = "<group>"; };
 		06F6ACC028D46818002095E5 /* UIColor.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = UIColor.stencil; sourceTree = "<group>"; };
 		06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTextButtonView.swift; sourceTree = "<group>"; };
+		06FD5A1928DF51BC007A5F3A /* LoginHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelpView.swift; sourceTree = "<group>"; };
 		6308D98B2E503DC3FA20A643 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		88DE318C9BF80CE209D99A14 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		8E84F294C7EF19A028157A31 /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				06FD5A1428DF087D007A5F3A /* Login */,
-				065B7EC028DC470800AA9166 /* Subview */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			children = (
 				065B7EC128DC473D00AA9166 /* DivideView.swift */,
 				06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */,
+				0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */,
 			);
 			path = Subview;
 			sourceTree = "<group>";
@@ -228,10 +232,28 @@
 		06FD5A1428DF087D007A5F3A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				064EE19C28DC20CE002B83EF /* LoginView.swift */,
-				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
+				06FD5A1B28DF5211007A5F3A /* ViewModels */,
+				06FD5A1C28DF521F007A5F3A /* Views */,
+				065B7EC028DC470800AA9166 /* Subview */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		06FD5A1B28DF5211007A5F3A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		06FD5A1C28DF521F007A5F3A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				064EE19C28DC20CE002B83EF /* LoginView.swift */,
+				06FD5A1928DF51BC007A5F3A /* LoginHelpView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7EBE4E7CEB505C7FE734F881 /* Frameworks */ = {
@@ -396,12 +418,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
+				06FD5A1A28DF51BC007A5F3A /* LoginHelpView.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
 				06E9399328D973160028F981 /* FirebaseManager.swift in Sources */,
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
+				0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */,
