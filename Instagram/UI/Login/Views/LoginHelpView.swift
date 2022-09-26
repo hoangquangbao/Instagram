@@ -89,8 +89,10 @@ extension LoginHelpView {
                 withAnimation {
                     vm.validateAccountExist(completion: { result in
                         if !result {
-                            isAccountExist = result
-                            alertText = "No users found"
+                            withAnimation {
+                                isAccountExist = result
+                                alertText = "No users found"
+                            }
                         }
                     })
                 }
