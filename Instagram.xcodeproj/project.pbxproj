@@ -46,6 +46,7 @@
 		06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */; };
 		06FD5A1A28DF51BC007A5F3A /* LoginHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1928DF51BC007A5F3A /* LoginHelpView.swift */; };
 		0FFCD04E5C9BCC65B9DAC070 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E84F294C7EF19A028157A31 /* libPods-Instagram.a */; };
+		8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055897928D99C7500D961E1 /* UIMainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTextButtonView.swift; sourceTree = "<group>"; };
 		06FD5A1928DF51BC007A5F3A /* LoginHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelpView.swift; sourceTree = "<group>"; };
 		6308D98B2E503DC3FA20A643 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
+		8055897928D99C7500D961E1 /* UIMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMainView.swift; sourceTree = "<group>"; };
 		88DE318C9BF80CE209D99A14 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		8E84F294C7EF19A028157A31 /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 		06FD5A1428DF087D007A5F3A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				80542E0E28E161F70060B978 /* MainView */,
 				06FD5A1B28DF5211007A5F3A /* ViewModels */,
 				06FD5A1C28DF521F007A5F3A /* Views */,
 				065B7EC028DC470800AA9166 /* Subview */,
@@ -262,6 +265,14 @@
 				8E84F294C7EF19A028157A31 /* libPods-Instagram.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80542E0E28E161F70060B978 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				8055897928D99C7500D961E1 /* UIMainView.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 		847C6951FC6543511F63A437 /* Pods */ = {
@@ -325,7 +336,7 @@
 			);
 			mainGroup = 06F438A428D334E7009EA3E1;
 			packageReferences = (
-				06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
+				06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 06F438AE28D334E7009EA3E1 /* Products */;
 			projectDirPath = "";
@@ -447,6 +458,7 @@
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */,
+				8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +598,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -618,6 +631,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -655,7 +669,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -668,12 +682,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		06E9398C28D96CD30028F981 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
 		06E9398E28D96CD30028F981 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = 06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
