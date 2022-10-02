@@ -43,9 +43,9 @@ class LoginViewModel: ObservableObject {
         return emailPredicate.evaluate(with: email)
     }
     
-    func validateAccountExist(completion: @escaping (Bool) -> Void) {
+    func validateAccountExist(completion: @escaping (Bool, Error?) -> Void) {
         FirebaseManager.shared.auth.fetchSignInMethods(forEmail: email) { array, error in
-            completion((array?.isEmpty) != nil)
+            completion((array?.isEmpty) != nil, error)
         }
     }
     
