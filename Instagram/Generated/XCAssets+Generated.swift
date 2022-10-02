@@ -4,27 +4,31 @@
 import SwiftUI
 
 extension Image {
-    static var add: Image { return Image("add") }
-    static var bookmark: Image { return Image("bookmark") }
-    static var comment: Image { return Image("comment") }
-    static var heart: Image { return Image("heart") }
-    static var home: Image { return Image("home") }
-    static var iconFacebook: Image { return Image("icon_facebook") }
-    static var logo: Image { return Image("logo") }
-    static var messenger: Image { return Image("messenger") }
-    static var more: Image { return Image("more") }
-    static var reels: Image { return Image("reels") }
-    static var search: Image { return Image("search") }
-    static var share: Image { return Image("share") }
-    static var shop: Image { return Image("shop") }
-    static var dog: Image { return Image("dog") }
+    static var icnAdd: Image { return Image("icn_add") }
+    static var icnBookmark: Image { return Image("icn_bookmark") }
+    static var icnBurger: Image { return Image("icn_burger") }
+    static var icnComment: Image { return Image("icn_comment") }
+    static var icnFacebook: Image { return Image("icn_facebook") }
+    static var icnGrid: Image { return Image("icn_grid") }
+    static var icnHeart: Image { return Image("icn_heart") }
+    static var icnHome: Image { return Image("icn_home") }
+    static var icnMentions: Image { return Image("icn_mentions") }
+    static var icnMessenger: Image { return Image("icn_messenger") }
+    static var icnMore: Image { return Image("icn_more") }
+    static var icnNotifiations: Image { return Image("icn_notifiations") }
+    static var icnReels: Image { return Image("icn_reels") }
+    static var icnSearch: Image { return Image("icn_search") }
+    static var icnSeries: Image { return Image("icn_series") }
+    static var icnShare: Image { return Image("icn_share") }
+    static var icnShop: Image { return Image("icn_shop") }
+    static var imgDog: Image { return Image("img_dog") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
-    static var profile: Image { return Image("profile") }
-    static var profile2: Image { return Image("profile2") }
-    static var profile3: Image { return Image("profile3") }
-    static var profile4: Image { return Image("profile4") }
-    static var profile5: Image { return Image("profile5") }
-    static var profile6: Image { return Image("profile6") }
-    static var profile7: Image { return Image("profile7") }
-    static var profile8: Image { return Image("profile8") }
+    static var imgProfile: Image { return Image("img_profile") }
+    static var imgProfile2: Image { return Image("img_profile2") }
+    static var imgProfile3: Image { return Image("img_profile3") }
+    static var imgProfile4: Image { return Image("img_profile4") }
+    static var imgProfile5: Image { return Image("img_profile5") }
+    static var imgProfile6: Image { return Image("img_profile6") }
+    static var imgProfile7: Image { return Image("img_profile7") }
+    static var imgProfile8: Image { return Image("img_profile8") }
 }

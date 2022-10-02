@@ -122,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				06FD5A1428DF087D007A5F3A /* Login */,
+				80542E0E28E161F70060B978 /* MainView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -234,7 +235,6 @@
 		06FD5A1428DF087D007A5F3A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				80542E0E28E161F70060B978 /* MainView */,
 				06FD5A1B28DF5211007A5F3A /* ViewModels */,
 				06FD5A1C28DF521F007A5F3A /* Views */,
 				065B7EC028DC470800AA9166 /* Subview */,
