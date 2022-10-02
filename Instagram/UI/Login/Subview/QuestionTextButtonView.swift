@@ -16,7 +16,7 @@ struct QuestionTextButtonView: View {
         HStack(alignment: .center, spacing: 4) {
             Text(questionText)
                 .font(.sfProTextRegular(12, relativeTo: .title1))
-                .foregroundColor(Color._000000.opacity(0.5))
+                .foregroundColor(Color.black.opacity(0.5))
             
             Button {
                 action()

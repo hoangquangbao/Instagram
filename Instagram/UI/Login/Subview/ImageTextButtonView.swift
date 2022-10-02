@@ -17,7 +17,7 @@ struct ImageTextButtonView: View {
         Button {
             action()
         } label: {
-            HStack(alignment: .center, spacing: 4) {
+            HStack(alignment: .center) {
                 icon
                     .resizable()
                     .frame(width: 20, height: 20)

@@ -5,32 +5,30 @@ struct LoginView: View {
     @StateObject var vm = LoginViewModel()
     @State var isHidePassword: Bool = true
     @State var isSignIn: Bool = true
-    @State var isShowHelpView: Bool = false
     
     var body: some View {
         
-        VStack(spacing: 18) {
-            
-            Group {
+        NavigationView {
+            VStack(spacing: 30) {
                 Spacer()
                 Image.imgInstagramLogo
                     .resizable()
                     .frame(width: 182, height: 49)
                     .padding(.bottom, 40)
                 
-                emailTextField()
-                passwordTextField()
+                VStack(spacing: 18) {
+                    emailTextField()
+                    passwordTextField()
+                    forgotPassword()
+                        .padding(.top,5)
+                }
                 signUpInButton()
-
+                optionLogin()
+                Spacer()
+                tabbar()
             }
-            optionLogin()
-            Spacer()
-            tabbar()
+            .padding(.horizontal, 15)
         }
-        .padding(.horizontal, 15)
-        .fullScreenCover(isPresented: $isShowHelpView, content: {
-            LoginHelpView()
-        })
         .environmentObject(vm)
     }
 }
@@ -50,12 +48,12 @@ extension LoginView {
         .foregroundColor(Color._262626)
         .padding(.leading)
         .frame(maxWidth: .infinity)
-        .frame(height: 50)
+        .frame(height: 45)
         .overlay {
-            RoundedRectangle(cornerRadius: 5).stroke(Color._000000.opacity(0.5), lineWidth: 0.5)
+            RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
         }
         .background {
-            Color.fafafa
+            Color.white
         }
         .textInputAutocapitalization(.never)
         .autocorrectionDisabled(true)
@@ -85,16 +83,29 @@ extension LoginView {
         .foregroundColor(Color._262626)
         .padding(.leading)
         .frame(maxWidth: .infinity)
-        .frame(height: 50)
+        .frame(height: 45)
         .overlay {
-            RoundedRectangle(cornerRadius: 5).stroke(Color._000000.opacity(0.5), lineWidth: 0.5)
+            RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
         }
         .background {
-            Color.fafafa
+            Color.white
         }
         .textInputAutocapitalization(.never)
         .autocorrectionDisabled(true)
         .submitLabel(.done)
+    }
+    
+    private func forgotPassword() -> some View {
+        
+        HStack {
+            Spacer()
+            
+            NavigationLink(destination: ResetPasswordView()) {
+                Text("Forgot password?")
+                    .font(.sfProTextSemibold(12, relativeTo: .caption1))
+                    .foregroundColor(Color.blue)
+            }
+        }
     }
     
     private func signUpInButton() -> some View {
@@ -107,13 +118,13 @@ extension LoginView {
             }
             
         } label: {
-            Text(isSignIn ? "Log in" : "Sign up")
+            Text("Log in")
                 .font(.sfProTextBold(16, relativeTo: .title1))
-                .foregroundColor(.ffffff)
-                .frame(height: 50)
+                .foregroundColor(.white)
+                .frame(height: 45)
                 .frame(maxWidth: .infinity)
                 .background(
-                    Color._3797Ef
+                    Color.blue
                         .cornerRadius(10)
                         .shadow(color: Color.gray.opacity(0.7), radius: 2, y: 2)
                 )
@@ -124,24 +135,16 @@ extension LoginView {
     
     private func optionLogin() -> some View {
         
-        VStack(spacing: 18) {
-            
-            if isSignIn {
-                QuestionTextButtonView(
-                    questionText: "Forgot your login details?",
-                    actionText: "Get help logging in.") {
-                        isShowHelpView = true
-                    }
-            }
+        VStack(spacing: 40) {
             
             DivideView()
             ImageTextButtonView(
                 icon: Image.icnFacebook,
                 text: "Log in with Facebook") {
-                    print("Connect Facebook")
+                    print("Not implemented yet!")
                 }
                 .font(.sfProTextSemibold(14, relativeTo: .title1))
-                .foregroundColor(Color._3797Ef)
+                .foregroundColor(Color.blue)
         }
     }
     
@@ -149,9 +152,8 @@ extension LoginView {
         VStack(spacing: 18) {
             Divider()
             QuestionTextButtonView(
-                questionText: isSignIn ? "Don't have an account?" : "Already have an account?",
-                actionText: isSignIn ? "Sign up." : "Log in.") {
-                    isSignIn.toggle()
+                questionText: "Don't have an account?",
+                actionText: "Sign up.") {
                     vm.resetTextField()
                 }
         }

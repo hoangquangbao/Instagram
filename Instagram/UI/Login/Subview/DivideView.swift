@@ -9,7 +9,7 @@ struct DivideView: View {
             
             Text("OR")
                 .font(.sfProTextSemibold(12, relativeTo: .title1))
-                .foregroundColor(Color._000000.opacity(0.5))
+                .foregroundColor(Color.black.opacity(0.5))
             
             VStack {
                 Divider()
