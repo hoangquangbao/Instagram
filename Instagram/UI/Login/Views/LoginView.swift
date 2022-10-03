@@ -136,7 +136,7 @@ extension LoginView {
             
             DivideView()
             ImageTextButtonView(
-                icon: Image.iconFacebook,
+                icon: Image.icnFb,
                 text: "Log in with Facebook") {
                     print("Connect Facebook")
                 }

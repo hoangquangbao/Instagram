@@ -117,7 +117,7 @@ extension LoginHelpView {
         VStack(spacing: 18) {
             DivideView()
             ImageTextButtonView(
-                icon: Image.iconFacebook,
+                icon: Image.icnFb,
                 text: "Log in with Facebook") {
                     print("Connect Facebook")
                 }

@@ -38,14 +38,14 @@ struct UIMainView_Previews: PreviewProvider {
 struct Header: View {
     var body: some View {
         HStack {
-            Image("logo")
+            Image.icnLogo
             
             Spacer()
             
             HStack(alignment: .center, spacing: 20.0) {
-                Image("add")
-                Image("heart")
-                Image("messenger")
+                Image.icnAdd
+                Image.icnHeart
+                Image.icnMessenger
             }
         }
         .padding(.horizontal, 15)
@@ -101,7 +101,7 @@ struct PostHeader: View {
     var body: some View {
         HStack {
             HStack(spacing: 9.0) {
-                Image("profile")
+                Image.profile
                     .resizable()
                     .frame(width: 30, height: 30)
                     .cornerRadius(50)
@@ -113,7 +113,7 @@ struct PostHeader: View {
             
             Spacer()
             
-            Image("more")
+            Image.icnMore
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
@@ -144,8 +144,8 @@ struct PostContent: View {
                                     Text(String(item+1)) + Text("/3")
                                 }
                                 .padding(7)
-                                    .background(Color(hex: 0x121212, alpha: 0.7))
-                                    .foregroundColor(Color(hex: 0xF9F9F9))
+                                .background(Color._121212.opacity(0.7))
+                                .foregroundColor(Color.f9F9F9)
                                     .cornerRadius(10)
                             }
                             .padding(15)
@@ -161,9 +161,9 @@ struct PostContent: View {
             
             HStack {
                 HStack(spacing: 10.0) {
-                    Image("heart")
-                    Image("comment")
-                    Image("share")
+                    Image.icnHeart
+                    Image.icnComment
+                    Image.icnShare
                 }
                 HStack() {
                     ForEach(0..<listImage.count, id: \.self) { item in
@@ -213,7 +213,7 @@ struct Post: View {
             
             HStack {
                 HStack(spacing: 7.0) {
-                    Image("profile")
+                    Image.profile
                         .resizable()
                         .frame(width: 24, height: 24)
                         .cornerRadius(50)
