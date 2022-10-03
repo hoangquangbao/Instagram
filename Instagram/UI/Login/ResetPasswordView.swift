@@ -3,10 +3,14 @@ import SwiftUI
 struct ResetPasswordView: View {
     
     @EnvironmentObject var vm: LoginViewModel
+    
     @State var isAccountExist: Bool = true
+    @State var phoneNumber: String = ""
     @State var alertText: String = ""
-    @State var selection: Bool = true
     @FocusState private var isFocusedKeyboard: Bool
+    
+    private let titles: [String] = ["Username", "Phone"]
+    @State var selectedIndex: Int = 0
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -14,46 +18,36 @@ struct ResetPasswordView: View {
         NavigationView {
             VStack(spacing: 20) {
                 
-                Image(systemName: "lock")
-                    .font(.system(size: 45))
-                    .padding(15)
-                    .background (
-                        Circle()
-                            .stroke(.black, lineWidth: 2)
-                    )
-                    .padding(.top, 30)
-                
-                Text("Trouble logging in?")
-                    .font(.sfProTextSemibold(20, relativeTo: .largeTitle))
-                
                 Group {
-                    if selection {
-                        Text("Enter your username or email and we'll send you a link to get back into your account.")
+                    Image(systemName: "lock")
+                        .font(.system(size: 45))
+                        .padding(15)
+                        .background (
+                            Circle()
+                                .stroke(.black, lineWidth: 2)
+                        )
+                        .padding(.top, 20)
+                    
+                    Text("Trouble logging in?")
+                        .font(.sfProTextSemibold(20, relativeTo: .largeTitle))
+                    
+                    pickerView()
+                    
+                    if selectedIndex == 0 {
+                        emailTextField()
                     } else {
-                        Text("Enter your phone number and we'll send you a login code to get back into your account.")
+                        phoneTextField()
                     }
+                    
+                    nextButton()
+                    optionLogin()
+                    Spacer()
                 }
-                .font(.sfProTextRegular(14, relativeTo: .caption1))
-                .foregroundColor(Color.black.opacity(0.8))
-                .lineSpacing(3)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 20)
                 
-                Picker("", selection: $selection) {
-                    Text("Username")
-                        .tag(true)
-                    Text("Phone")
-                        .tag(false)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                
-                emailTextField()
-                nextButton()
-                optionLogin()
-                Spacer()
                 tabbar()
             }
-            .padding(.horizontal, 15)
+            .edgesIgnoringSafeArea(.horizontal)
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -61,20 +55,40 @@ struct ResetPasswordView: View {
 
 extension ResetPasswordView {
     
+    private func pickerView() -> some View {
+        
+        VStack {
+            Group {
+                if selectedIndex == 0 {
+                    Text("Enter your username or email and we'll send you a link to get back into your account.")
+                } else {
+                    Text("Enter your phone number and we'll send you a login code to get back into your account.")
+                }
+            }
+            .font(.sfProTextRegular(14, relativeTo: .caption1))
+            .foregroundColor(Color.black.opacity(0.8))
+            .lineSpacing(3)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 30)
+            
+            SegmentedPickerView(titles: titles, selectedIndex: $selectedIndex)
+        }
+    }
+    
     private func emailTextField() -> some View {
         
         VStack(alignment: .leading, spacing: 12) {
             TextField("Username or email", text: $vm.email, onEditingChanged: { editing in
-                    if editing {
-                        withAnimation {
-                            isAccountExist = true
-                        }
+                if editing {
+                    withAnimation {
+                        isAccountExist = true
                     }
+                }
             })
             .keyboardType(.emailAddress)
             .focused($isFocusedKeyboard)
             .font(.sfProTextMedium(16, relativeTo: .caption2))
-            .foregroundColor(Color._262626)
+            .foregroundColor(Color.black)
             .padding(.leading)
             .frame(maxWidth: .infinity)
             .frame(height: 45)
@@ -93,6 +107,51 @@ extension ResetPasswordView {
                     .font(.sfProTextRegular(12, relativeTo: .title1))
                     .foregroundColor(Color.red)
             }
+        }
+    }
+    
+    private func phoneTextField() -> some View {
+        
+        VStack(alignment: .leading, spacing: 12) {
+            
+            HStack {
+                
+                Button {
+                    print("Not implemented yet!")
+                } label: {
+                    Text("VN +84 ")
+                }
+                
+                Divider()
+                    .frame(width: 15)
+                    .padding(.vertical, 5)
+                
+                TextField("Phone number", text: $phoneNumber, onEditingChanged: { editing in
+                    if editing {
+                        withAnimation {
+                            isAccountExist = true
+                        }
+                    }
+                })
+                .keyboardType(.numberPad)
+                .focused($isFocusedKeyboard)
+                .font(.sfProTextMedium(16, relativeTo: .caption2))
+                .foregroundColor(Color.black)
+                .submitLabel(.done)
+            }
+            .padding(.leading)
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .overlay {
+                RoundedRectangle(cornerRadius: 5).stroke(isAccountExist ? Color.black.opacity(0.5) : Color.red, lineWidth: 0.5)
+            }
+            .background {
+                Color.white
+            }
+            
+            Text("Phone number doesn't implemented yet!")
+                .font(.sfProTextRegular(12, relativeTo: .title1))
+                .foregroundColor(Color.red)
         }
     }
     
@@ -129,9 +188,9 @@ extension ResetPasswordView {
                         .cornerRadius(10)
                         .shadow(color: Color.gray.opacity(0.7), radius: 2, y: 3)
                 )
-                .opacity(vm.email.isEmpty ? 0.5 : 1)
+                .opacity((vm.email.isEmpty||selectedIndex == 1) ? 0.5 : 1)
         }
-        .disabled(vm.email.isEmpty)
+        .disabled(vm.email.isEmpty||selectedIndex == 1)
     }
     
     private func optionLogin() -> some View {
@@ -144,7 +203,7 @@ extension ResetPasswordView {
                 Text("Can't reset your password?")
                     .font(.sfProTextRegular(12, relativeTo: .caption1))
             }
-
+            
             DivideView()
             
             ImageTextButtonView(

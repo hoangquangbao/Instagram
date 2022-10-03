@@ -33,6 +33,9 @@
 		06862E8A28DBF386005A5544 /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7828DBF385005A5544 /* SF-Pro-Text-UltralightItalic.otf */; };
 		06862E8B28DBF386005A5544 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7928DBF385005A5544 /* SF-Pro-Text-Heavy.otf */; };
 		06862E8C28DBF386005A5544 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */; };
+		0689E16728EA799D00AFBB92 /* RectPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16628EA799D00AFBB92 /* RectPreference.swift */; };
+		0689E16928EA79E600AFBB92 /* UnderlineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16828EA79E600AFBB92 /* UnderlineModifier.swift */; };
+		0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */; };
 		06E9398D28D96CD30028F981 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398C28D96CD30028F981 /* FirebaseAuth */; };
 		06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398E28D96CD30028F981 /* FirebaseStorage */; };
 		06E9399128D972EB0028F981 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06E9399028D972EB0028F981 /* GoogleService-Info.plist */; };
@@ -77,6 +80,9 @@
 		06862E7928DBF385005A5544 /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
 		06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		06862E8D28DBF4CF005A5544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0689E16628EA799D00AFBB92 /* RectPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectPreference.swift; sourceTree = "<group>"; };
+		0689E16828EA79E600AFBB92 /* UnderlineModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineModifier.swift; sourceTree = "<group>"; };
+		0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
 		06E9399028D972EB0028F981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06E9399228D973160028F981 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		06F438AD28D334E7009EA3E1 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +127,7 @@
 		064EE19B28DC2097002B83EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0689E16A28EACC7900AFBB92 /* Generic */,
 				06FD5A1428DF087D007A5F3A /* Login */,
 				80542E0E28E161F70060B978 /* MainView */,
 			);
@@ -133,8 +140,18 @@
 				065B7EC128DC473D00AA9166 /* DivideView.swift */,
 				06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */,
 				0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */,
+				0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */,
 			);
 			path = Subview;
+			sourceTree = "<group>";
+		};
+		0689E16A28EACC7900AFBB92 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				0689E16628EA799D00AFBB92 /* RectPreference.swift */,
+				0689E16828EA79E600AFBB92 /* UnderlineModifier.swift */,
+			);
+			path = Generic;
 			sourceTree = "<group>";
 		};
 		06C874D928D8225200A0DEEB /* Utilities */ = {
@@ -235,28 +252,12 @@
 		06FD5A1428DF087D007A5F3A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				06FD5A1B28DF5211007A5F3A /* ViewModels */,
-				06FD5A1C28DF521F007A5F3A /* Views */,
 				065B7EC028DC470800AA9166 /* Subview */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		06FD5A1B28DF5211007A5F3A /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
 				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		06FD5A1C28DF521F007A5F3A /* Views */ = {
-			isa = PBXGroup;
-			children = (
 				064EE19C28DC20CE002B83EF /* LoginView.swift */,
 				062CD04D28E9E4370092387D /* ResetPasswordView.swift */,
 			);
-			path = Views;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		7EBE4E7CEB505C7FE734F881 /* Frameworks */ = {
@@ -446,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0689E16928EA79E600AFBB92 /* UnderlineModifier.swift in Sources */,
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */,
@@ -456,6 +458,8 @@
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
 				0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
+				0689E16728EA799D00AFBB92 /* RectPreference.swift in Sources */,
+				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */,
 				8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */,

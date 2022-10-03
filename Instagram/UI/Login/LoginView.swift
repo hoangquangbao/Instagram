@@ -10,24 +10,28 @@ struct LoginView: View {
         
         NavigationView {
             VStack(spacing: 30) {
-                Spacer()
-                Image.imgInstagramLogo
-                    .resizable()
-                    .frame(width: 182, height: 49)
-                    .padding(.bottom, 40)
-                
-                VStack(spacing: 18) {
-                    emailTextField()
-                    passwordTextField()
-                    forgotPassword()
-                        .padding(.top,5)
+                Group {
+                    Spacer()
+                    Image.imgInstagramLogo
+                        .resizable()
+                        .frame(width: 182, height: 49)
+                        .padding(.bottom, 40)
+                    
+                    VStack(spacing: 18) {
+                        emailTextField()
+                        passwordTextField()
+                        forgotPassword()
+                            .padding(.top,5)
+                    }
+                    signUpInButton()
+                    optionLogin()
+                    Spacer()
                 }
-                signUpInButton()
-                optionLogin()
-                Spacer()
+                .padding(.horizontal, 20)
+
                 tabbar()
             }
-            .padding(.horizontal, 15)
+            .edgesIgnoringSafeArea(.horizontal)
         }
         .environmentObject(vm)
     }

@@ -23,7 +23,7 @@ struct QuestionTextButtonView: View {
             } label: {
                 Text(actionText)
                     .font(.sfProTextBold(12, relativeTo: .title1))
-                    .foregroundColor(Color._262626)
+                    .foregroundColor(Color.blue)
             }
         }
     }
