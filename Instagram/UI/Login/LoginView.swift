@@ -4,7 +4,6 @@ struct LoginView: View {
     
     @StateObject var vm = LoginViewModel()
     @State var isHidePassword: Bool = true
-    @State var isSignIn: Bool = true
     
     var body: some View {
         
@@ -23,7 +22,7 @@ struct LoginView: View {
                         forgotPassword()
                             .padding(.top,5)
                     }
-                    signUpInButton()
+                    loginButton()
                     optionLogin()
                     Spacer()
                 }
@@ -47,31 +46,19 @@ extension LoginView {
                 }
             }
         })
-        .keyboardType(.emailAddress)
-        .font(.sfProTextMedium(16, relativeTo: .caption2))
-        .foregroundColor(Color._262626)
-        .padding(.leading)
-        .frame(maxWidth: .infinity)
-        .frame(height: 45)
-        .overlay {
-            RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
-        }
-        .background {
-            Color.white
-        }
-        .textInputAutocapitalization(.never)
-        .autocorrectionDisabled(true)
-        .submitLabel(.done)
+        .textFieldStyle(CustomTextFieldStyle())
     }
     
     private func passwordTextField() -> some View {
-        HStack {
+        ZStack {
             if isHidePassword {
                 SecureField("Password", text: $vm.password)
             } else {
                 TextField("Password", text: $vm.password)
             }
-            
+        }
+        .textFieldStyle(CustomTextFieldStyle())
+        .overlay (
             Button {
                 withAnimation {
                     isHidePassword.toggle()
@@ -82,28 +69,13 @@ extension LoginView {
                     .foregroundColor(.gray)
                     .padding(.trailing)
             }
-        }
-        .font(.sfProTextMedium(16, relativeTo: .caption2))
-        .foregroundColor(Color._262626)
-        .padding(.leading)
-        .frame(maxWidth: .infinity)
-        .frame(height: 45)
-        .overlay {
-            RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
-        }
-        .background {
-            Color.white
-        }
-        .textInputAutocapitalization(.never)
-        .autocorrectionDisabled(true)
-        .submitLabel(.done)
+            ,alignment: .trailing
+        )
     }
     
     private func forgotPassword() -> some View {
-        
         HStack {
             Spacer()
-            
             NavigationLink(destination: ResetPasswordView()) {
                 Text("Forgot password?")
                     .font(.sfProTextSemibold(12, relativeTo: .caption1))
@@ -112,35 +84,19 @@ extension LoginView {
         }
     }
     
-    private func signUpInButton() -> some View {
+    private func loginButton() -> some View {
         Button {
-            
-            if isSignIn {
-                vm.signIn()
-            } else {
-                vm.signUp()
-            }
-            
+            vm.handleLogin()
         } label: {
             Text("Log in")
-                .font(.sfProTextBold(16, relativeTo: .title1))
-                .foregroundColor(.white)
-                .frame(height: 45)
-                .frame(maxWidth: .infinity)
-                .background(
-                    Color.blue
-                        .cornerRadius(10)
-                        .shadow(color: Color.gray.opacity(0.7), radius: 2, y: 2)
-                )
-                .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
         }
+        .buttonStyle(CustomButtonStyle())
+        .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
         .disabled(vm.textFieldIsEmpty())
     }
     
     private func optionLogin() -> some View {
-        
         VStack(spacing: 40) {
-            
             DivideView()
             ImageTextButtonView(
                 icon: Image.icnFacebook,

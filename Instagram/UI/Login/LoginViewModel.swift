@@ -5,7 +5,7 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     
-    func signUp() {
+    func handleSignUp() {
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
             
             if let error = error {
@@ -16,14 +16,19 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    func signIn() {
+    func handleLogin() {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
-            
             if let error = error {
                 print("SignIn faild: \(error.localizedDescription)")
                 return
             }
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
+        }
+    }
+    
+    func handleResetPassword() {
+        FirebaseManager.shared.auth.sendPasswordReset(withEmail: email) { error in
+            print(error?.localizedDescription ?? "Email Link Sent. We sent an email to " + self.email + " with a link to get back into your account")
         }
     }
     
@@ -33,7 +38,6 @@ class LoginViewModel: ObservableObject {
     
     //MARK: Validate an email address
     func validateEmailFormat() -> Bool {
-        
         if email.count > 100 {
             return false
         }

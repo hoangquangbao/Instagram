@@ -85,22 +85,11 @@ extension ResetPasswordView {
                     }
                 }
             })
-            .keyboardType(.emailAddress)
+            .textFieldStyle(CustomTextFieldStyle())
             .focused($isFocusedKeyboard)
-            .font(.sfProTextMedium(16, relativeTo: .caption2))
-            .foregroundColor(Color.black)
-            .padding(.leading)
-            .frame(maxWidth: .infinity)
-            .frame(height: 45)
             .overlay {
                 RoundedRectangle(cornerRadius: 5).stroke(isAccountExist ? Color.black.opacity(0.5) : Color.red, lineWidth: 0.5)
             }
-            .background {
-                Color.white
-            }
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled(true)
-            .submitLabel(.done)
             
             if !isAccountExist {
                 Text(alertText)
@@ -111,15 +100,13 @@ extension ResetPasswordView {
     }
     
     private func phoneTextField() -> some View {
-        
         VStack(alignment: .leading, spacing: 12) {
-            
-            HStack {
-                
+            HStack(spacing: 0) {
                 Button {
                     print("Not implemented yet!")
                 } label: {
-                    Text("VN +84 ")
+                    Text(" VN +84 ")
+                        .font(.sfProTextRegular(16, relativeTo: .caption1))
                 }
                 
                 Divider()
@@ -133,20 +120,11 @@ extension ResetPasswordView {
                         }
                     }
                 })
-                .keyboardType(.numberPad)
-                .focused($isFocusedKeyboard)
-                .font(.sfProTextMedium(16, relativeTo: .caption2))
-                .foregroundColor(Color.black)
-                .submitLabel(.done)
             }
-            .padding(.leading)
-            .frame(maxWidth: .infinity)
+            .textFieldStyle(CustomPhoneTextFieldStyle())
             .frame(height: 45)
             .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(isAccountExist ? Color.black.opacity(0.5) : Color.red, lineWidth: 0.5)
-            }
-            .background {
-                Color.white
+                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
             }
             
             Text("Phone number doesn't implemented yet!")
@@ -156,7 +134,6 @@ extension ResetPasswordView {
     }
     
     private func nextButton() -> some View {
-        
         Button {
             isFocusedKeyboard = false
             vm.validateAccountExist(completion: { result, error  in
@@ -165,10 +142,7 @@ extension ResetPasswordView {
                     print("Error: \(error.localizedDescription)")
                 } else {
                     if result {
-                        FirebaseManager.shared.auth.sendPasswordReset(withEmail: vm.email) { error in
-                            
-                            print(error?.localizedDescription ?? "Email Link Sent. We sent an email to " + vm.email + " with a link to get back into your account")
-                        }
+                        vm.handleResetPassword()
                     } else {
                         withAnimation {
                             isAccountExist = result
@@ -179,24 +153,14 @@ extension ResetPasswordView {
             })
         } label: {
             Text("Next")
-                .font(.sfProTextSemibold(16, relativeTo: .title1))
-                .foregroundColor(.white)
-                .frame(height: 45)
-                .frame(maxWidth: .infinity)
-                .background(
-                    Color._3797Ef
-                        .cornerRadius(10)
-                        .shadow(color: Color.gray.opacity(0.7), radius: 2, y: 3)
-                )
-                .opacity((vm.email.isEmpty||selectedIndex == 1) ? 0.5 : 1)
         }
+        .buttonStyle(CustomButtonStyle())
+        .opacity((vm.email.isEmpty||selectedIndex == 1) ? 0.5 : 1)
         .disabled(vm.email.isEmpty||selectedIndex == 1)
     }
     
     private func optionLogin() -> some View {
-        
         VStack(spacing: 40) {
-            
             Button {
                 print("Not implemented yet!")
             } label: {
