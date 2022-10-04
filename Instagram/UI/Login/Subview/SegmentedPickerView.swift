@@ -18,14 +18,16 @@ struct SegmentedPickerView: View {
                 HStack(spacing: 0) {
                     ForEach(titles.indices, id: \.self) { index in
                         Button(action:{
-                            selectedIndex = index
+                            withAnimation {
+                                selectedIndex = index
+                            }
                         })
                         {
                             Text(titles[index])
                                 .font(.sfProTextSemibold(15, relativeTo: .title1))
                                 .frame(height: 40)
                                 .frame(width: geometry.size.width / CGFloat(titles.count))
-                                .foregroundColor(.black)
+                                .foregroundColor(selectedIndex == index ? .black : .gray)
                         }
                         .background(
                             GeometryReader { geoReader in

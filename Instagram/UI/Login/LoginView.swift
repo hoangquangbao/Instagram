@@ -6,7 +6,6 @@ struct LoginView: View {
     @State var isHidePassword: Bool = true
     
     var body: some View {
-        
         NavigationView {
             VStack(spacing: 30) {
                 Group {

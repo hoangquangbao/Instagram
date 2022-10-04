@@ -3,21 +3,18 @@ import SwiftUI
 struct ResetPasswordView: View {
     
     @EnvironmentObject var vm: LoginViewModel
+    @Environment(\.presentationMode) var presentationMode
     
+    private let titles: [String] = ["Username", "Phone"]
+    @State var selectedIndex: Int = 0
     @State var isAccountExist: Bool = true
     @State var phoneNumber: String = ""
     @State var alertText: String = ""
     @FocusState private var isFocusedKeyboard: Bool
     
-    private let titles: [String] = ["Username", "Phone"]
-    @State var selectedIndex: Int = 0
-    
-    @Environment(\.presentationMode) var presentationMode
-    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                
                 Group {
                     Image(systemName: "lock")
                         .font(.system(size: 45))
@@ -56,7 +53,6 @@ struct ResetPasswordView: View {
 extension ResetPasswordView {
     
     private func pickerView() -> some View {
-        
         VStack {
             Group {
                 if selectedIndex == 0 {
@@ -70,13 +66,13 @@ extension ResetPasswordView {
             .lineSpacing(3)
             .multilineTextAlignment(.center)
             .padding(.horizontal, 30)
+            .fixedSize(horizontal: false, vertical: true)
             
             SegmentedPickerView(titles: titles, selectedIndex: $selectedIndex)
         }
     }
     
     private func emailTextField() -> some View {
-        
         VStack(alignment: .leading, spacing: 12) {
             TextField("Username or email", text: $vm.email, onEditingChanged: { editing in
                 if editing {
@@ -115,21 +111,19 @@ extension ResetPasswordView {
                 
                 TextField("Phone number", text: $phoneNumber, onEditingChanged: { editing in
                     if editing {
-                        withAnimation {
-                            isAccountExist = true
-                        }
+                        isAccountExist = true
                     }
                 })
+                .textFieldStyle(CustomPhoneTextFieldStyle())
             }
-            .textFieldStyle(CustomPhoneTextFieldStyle())
             .frame(height: 45)
             .overlay {
                 RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
             }
-            
-            Text("Phone number doesn't implemented yet!")
-                .font(.sfProTextRegular(12, relativeTo: .title1))
-                .foregroundColor(Color.red)
+//
+//            Text("Phone number doesn't implemented yet!")
+//                .font(.sfProTextRegular(12, relativeTo: .title1))
+//                .foregroundColor(Color.red)
         }
     }
     
