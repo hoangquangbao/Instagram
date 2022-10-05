@@ -24,7 +24,7 @@ struct SegmentedPickerView: View {
                         })
                         {
                             Text(titles[index])
-                                .font(.sfProTextSemibold(15, relativeTo: .title1))
+                                .font(.sfProTextSemibold(20, relativeTo: .title1))
                                 .frame(height: 40)
                                 .frame(width: geometry.size.width / CGFloat(titles.count))
                                 .foregroundColor(selectedIndex == index ? .black : .gray)

@@ -8,7 +8,6 @@ struct ResetPasswordView: View {
     private let titles: [String] = ["Username", "Phone"]
     @State var selectedIndex: Int = 0
     @State var isAccountExist: Bool = true
-    @State var phoneNumber: String = ""
     @State var alertText: String = ""
     @FocusState private var isFocusedKeyboard: Bool
     
@@ -33,7 +32,7 @@ struct ResetPasswordView: View {
                     if selectedIndex == 0 {
                         emailTextField()
                     } else {
-                        phoneTextField()
+                        PhoneTextFieldView()
                     }
                     
                     nextButton()
@@ -95,38 +94,6 @@ extension ResetPasswordView {
         }
     }
     
-    private func phoneTextField() -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 0) {
-                Button {
-                    print("Not implemented yet!")
-                } label: {
-                    Text(" VN +84 ")
-                        .font(.sfProTextRegular(16, relativeTo: .caption1))
-                }
-                
-                Divider()
-                    .frame(width: 15)
-                    .padding(.vertical, 5)
-                
-                TextField("Phone number", text: $phoneNumber, onEditingChanged: { editing in
-                    if editing {
-                        isAccountExist = true
-                    }
-                })
-                .textFieldStyle(CustomPhoneTextFieldStyle())
-            }
-            .frame(height: 45)
-            .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
-            }
-//
-//            Text("Phone number doesn't implemented yet!")
-//                .font(.sfProTextRegular(12, relativeTo: .title1))
-//                .foregroundColor(Color.red)
-        }
-    }
-    
     private func nextButton() -> some View {
         Button {
             isFocusedKeyboard = false
@@ -177,12 +144,11 @@ extension ResetPasswordView {
     private func tabbar() -> some View {
         VStack(spacing: 18) {
             Divider()
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Back to log in")
-                    .font(.sfProTextSemibold(12, relativeTo: .title1))
-            }
+            QuestionTextButtonView(
+                questionText: "",
+                actionText: "Back to log in") {
+                    presentationMode.wrappedValue.dismiss()
+                }
         }
     }
 }

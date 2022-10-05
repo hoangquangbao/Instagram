@@ -39,6 +39,8 @@
 		068F041C28EBCEB000307AF7 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041B28EBCEB000307AF7 /* CustomButtonStyle.swift */; };
 		068F041E28EBD44A00307AF7 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */; };
 		068F042028EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */; };
+		068F042228EC80C300307AF7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F042128EC80C300307AF7 /* SignUpView.swift */; };
+		06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */; };
 		06E9398D28D96CD30028F981 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398C28D96CD30028F981 /* FirebaseAuth */; };
 		06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398E28D96CD30028F981 /* FirebaseStorage */; };
 		06E9399128D972EB0028F981 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06E9399028D972EB0028F981 /* GoogleService-Info.plist */; };
@@ -89,6 +91,8 @@
 		068F041B28EBCEB000307AF7 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
 		068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhoneTextFieldStyle.swift; sourceTree = "<group>"; };
+		068F042128EC80C300307AF7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldView.swift; sourceTree = "<group>"; };
 		06E9399028D972EB0028F981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06E9399228D973160028F981 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		06F438AD28D334E7009EA3E1 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +151,7 @@
 				06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */,
 				0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */,
 				0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */,
+				06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */,
 			);
 			path = Subview;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
 				064EE19C28DC20CE002B83EF /* LoginView.swift */,
 				062CD04D28E9E4370092387D /* ResetPasswordView.swift */,
+				068F042128EC80C300307AF7 /* SignUpView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -472,9 +478,11 @@
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				068F041E28EBD44A00307AF7 /* CustomTextFieldStyle.swift in Sources */,
 				068F042028EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift in Sources */,
+				068F042228EC80C300307AF7 /* SignUpView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */,
 				8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */,
+				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
