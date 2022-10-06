@@ -19,11 +19,16 @@ extension Image {
     static var icnLogo: Image { return Image("icn_logo") }
     static var icnMessenger: Image { return Image("icn_messenger") }
     static var icnMore: Image { return Image("icn_more") }
+    static var icnPfTabbar: Image { return Image("icn_pf_tabbar") }
     static var icnReels: Image { return Image("icn_reels") }
     static var icnSearch: Image { return Image("icn_search") }
     static var icnSetting: Image { return Image("icn_setting") }
     static var icnShare: Image { return Image("icn_share") }
     static var icnShop: Image { return Image("icn_shop") }
+    static var icnUnHeart: Image { return Image("icn_un_heart") }
+    static var icnUnHome: Image { return Image("icn_un_home") }
+    static var icnUnPlus: Image { return Image("icn_un_plus") }
+    static var icnUnSearch: Image { return Image("icn_un_search") }
     static var icnYoutube: Image { return Image("icn_youtube") }
     static var demo: Image { return Image("demo") }
     static var dog: Image { return Image("dog") }
