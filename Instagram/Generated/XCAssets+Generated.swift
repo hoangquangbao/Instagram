@@ -5,6 +5,7 @@ import SwiftUI
 
 extension Image {
     static var icnAdd: Image { return Image("icn_add") }
+    static var icnBack: Image { return Image("icn_back") }
     static var icnBookmark: Image { return Image("icn_bookmark") }
     static var icnBurger: Image { return Image("icn_burger") }
     static var icnComment: Image { return Image("icn_comment") }

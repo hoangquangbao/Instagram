@@ -3,21 +3,17 @@ import SwiftUI
 struct ResetPasswordView: View {
     
     @EnvironmentObject var vm: LoginViewModel
-    
-    @State var isAccountExist: Bool = true
-    @State var phoneNumber: String = ""
-    @State var alertText: String = ""
-    @FocusState private var isFocusedKeyboard: Bool
+    @Environment(\.presentationMode) var presentationMode
     
     private let titles: [String] = ["Username", "Phone"]
     @State var selectedIndex: Int = 0
-    
-    @Environment(\.presentationMode) var presentationMode
+    @State var isAccountExist: Bool = true
+    @State var alertText: String = ""
+    @FocusState private var isFocusedKeyboard: Bool
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                
                 Group {
                     Image(systemName: "lock")
                         .font(.system(size: 45))
@@ -36,7 +32,7 @@ struct ResetPasswordView: View {
                     if selectedIndex == 0 {
                         emailTextField()
                     } else {
-                        phoneTextField()
+                        PhoneTextFieldView()
                     }
                     
                     nextButton()
@@ -56,7 +52,6 @@ struct ResetPasswordView: View {
 extension ResetPasswordView {
     
     private func pickerView() -> some View {
-        
         VStack {
             Group {
                 if selectedIndex == 0 {
@@ -70,13 +65,13 @@ extension ResetPasswordView {
             .lineSpacing(3)
             .multilineTextAlignment(.center)
             .padding(.horizontal, 30)
+            .fixedSize(horizontal: false, vertical: true)
             
             SegmentedPickerView(titles: titles, selectedIndex: $selectedIndex)
         }
     }
     
     private func emailTextField() -> some View {
-        
         VStack(alignment: .leading, spacing: 12) {
             TextField("Username or email", text: $vm.email, onEditingChanged: { editing in
                 if editing {
@@ -96,40 +91,6 @@ extension ResetPasswordView {
                     .font(.sfProTextRegular(12, relativeTo: .title1))
                     .foregroundColor(Color.red)
             }
-        }
-    }
-    
-    private func phoneTextField() -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack(spacing: 0) {
-                Button {
-                    print("Not implemented yet!")
-                } label: {
-                    Text(" VN +84 ")
-                        .font(.sfProTextRegular(16, relativeTo: .caption1))
-                }
-                
-                Divider()
-                    .frame(width: 15)
-                    .padding(.vertical, 5)
-                
-                TextField("Phone number", text: $phoneNumber, onEditingChanged: { editing in
-                    if editing {
-                        withAnimation {
-                            isAccountExist = true
-                        }
-                    }
-                })
-            }
-            .textFieldStyle(CustomPhoneTextFieldStyle())
-            .frame(height: 45)
-            .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
-            }
-            
-            Text("Phone number doesn't implemented yet!")
-                .font(.sfProTextRegular(12, relativeTo: .title1))
-                .foregroundColor(Color.red)
         }
     }
     
@@ -183,12 +144,11 @@ extension ResetPasswordView {
     private func tabbar() -> some View {
         VStack(spacing: 18) {
             Divider()
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Back to log in")
-                    .font(.sfProTextSemibold(12, relativeTo: .title1))
-            }
+            QuestionTextButtonView(
+                questionText: "",
+                actionText: "Back to log in") {
+                    presentationMode.wrappedValue.dismiss()
+                }
         }
     }
 }

@@ -6,7 +6,6 @@ struct LoginView: View {
     @State var isHidePassword: Bool = true
     
     var body: some View {
-        
         NavigationView {
             VStack(spacing: 30) {
                 Group {
@@ -27,7 +26,7 @@ struct LoginView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 20)
-
+                
                 tabbar()
             }
             .edgesIgnoringSafeArea(.horizontal)
@@ -111,11 +110,17 @@ extension LoginView {
     private func tabbar() -> some View {
         VStack(spacing: 18) {
             Divider()
-            QuestionTextButtonView(
-                questionText: "Don't have an account?",
-                actionText: "Sign up.") {
-                    vm.resetTextField()
+            HStack(alignment: .center, spacing: 4) {
+                Text("Don't have an account?")
+                    .font(.sfProTextRegular(12, relativeTo: .title1))
+                    .foregroundColor(Color.black.opacity(0.5))
+                
+                NavigationLink(destination: SignUpView()) {
+                    Text("Sign up.")
+                        .font(.sfProTextBold(12, relativeTo: .title1))
+                        .foregroundColor(Color.blue)
                 }
+            }
         }
     }
 }
