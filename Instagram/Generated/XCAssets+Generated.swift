@@ -13,15 +13,20 @@ extension Image {
     static var icnGrid: Image { return Image("icn_grid") }
     static var icnHeart: Image { return Image("icn_heart") }
     static var icnHome: Image { return Image("icn_home") }
+    static var icnLogo: Image { return Image("icn_logo") }
     static var icnMentions: Image { return Image("icn_mentions") }
     static var icnMessenger: Image { return Image("icn_messenger") }
     static var icnMore: Image { return Image("icn_more") }
     static var icnNotifiations: Image { return Image("icn_notifiations") }
+    static var icnPfTabbar: Image { return Image("icn_pf_tabbar") }
     static var icnReels: Image { return Image("icn_reels") }
     static var icnSearch: Image { return Image("icn_search") }
     static var icnSeries: Image { return Image("icn_series") }
     static var icnShare: Image { return Image("icn_share") }
     static var icnShop: Image { return Image("icn_shop") }
+    static var icnUnHeart: Image { return Image("icn_un_heart") }
+    static var icnUnHome: Image { return Image("icn_un_home") }
+    static var icnUnSearch: Image { return Image("icn_un_search") }
     static var imgDog: Image { return Image("img_dog") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
     static var imgProfile: Image { return Image("img_profile") }
