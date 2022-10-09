@@ -3,33 +3,58 @@ import SwiftUI
 struct LoginView: View {
     
     @StateObject var vm = LoginViewModel()
-    @State var isHidePassword: Bool = true
+    @State private var _isHidePassword: Bool = true
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 30) {
-                Group {
-                    Spacer()
-                    Image.imgInstagramLogo
-                        .resizable()
-                        .frame(width: 182, height: 49)
-                        .padding(.bottom, 40)
-                    
-                    VStack(spacing: 18) {
-                        emailTextField()
-                        passwordTextField()
-                        forgotPassword()
-                            .padding(.top,5)
-                    }
-                    loginButton()
-                    optionLogin()
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
+        VStack(spacing: 30) {
+            Group {
+                Spacer()
+                Image.imgInstagramLogo
+                    .resizable()
+                    .frame(width: 182, height: 49)
+                    .padding(.bottom, 30)
                 
-                tabbar()
+                VStack(spacing: 18) {
+                    TextField(vm.emailTitle, text: $vm.email)
+                        .textFieldStyle(CustomTextFieldStyle())
+                    
+                    passwordTextField()
+                    forgotPassword()
+                        .padding(.top,5)
+                }
+                
+                Button {
+                    vm.handleLogin()
+                } label: {
+                    Text(vm.loginButtonTitle)
+                }
+                .buttonStyle(CustomButtonStyle())
+                .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
+                .disabled(vm.textFieldIsEmpty())
+                
+                optionLogin()
+                Spacer()
             }
-            .edgesIgnoringSafeArea(.horizontal)
+            .padding(.horizontal, 25)
+            
+            BottomBarView(
+                questionText: vm.questionText,
+                actionText: vm.actionText) {
+                    withAnimation {
+                        vm.isShowSignUpView = true
+                    }
+                }
+        }
+        .overlay {
+            if vm.isShowResetPasswordView {
+                ResetPasswordView()
+                    .transition(.move(edge: .trailing))
+            }
+
+            if vm.isShowSignUpView {
+                SignUpView()
+                    .transition(.move(edge: .trailing))
+            }
         }
         .environmentObject(vm)
     }
@@ -37,34 +62,22 @@ struct LoginView: View {
 
 extension LoginView {
     
-    private func emailTextField() -> some View {
-        TextField("Email Address", text: $vm.email, onEditingChanged: { editing in
-            if !editing {
-                if !vm.validateEmailFormat() && !vm.email.isEmpty {
-                    print("Email is incorrect format!")
-                }
-            }
-        })
-        .textFieldStyle(CustomTextFieldStyle())
-    }
-    
     private func passwordTextField() -> some View {
         ZStack {
-            if isHidePassword {
-                SecureField("Password", text: $vm.password)
+            if _isHidePassword {
+                SecureField(vm.passwordTitle, text: $vm.password)
             } else {
-                TextField("Password", text: $vm.password)
+                TextField(vm.passwordTitle, text: $vm.password)
             }
         }
         .textFieldStyle(CustomTextFieldStyle())
         .overlay (
             Button {
                 withAnimation {
-                    isHidePassword.toggle()
+                    _isHidePassword.toggle()
                 }
             } label: {
-                Image(systemName: self.isHidePassword ? "eye.slash.fill" : "eye")
-                    .accentColor(.gray)
+                Image(systemName: self._isHidePassword ? "eye.slash.fill" : "eye")
                     .foregroundColor(.gray)
                     .padding(.trailing)
             }
@@ -75,52 +88,21 @@ extension LoginView {
     private func forgotPassword() -> some View {
         HStack {
             Spacer()
-            NavigationLink(destination: ResetPasswordView()) {
-                Text("Forgot password?")
-                    .font(.sfProTextSemibold(12, relativeTo: .caption1))
-                    .foregroundColor(Color.blue)
-            }
+            Text(vm.forgotPasswordText)
+                .font(.sfProTextSemibold(13, relativeTo: .caption1))
+                .foregroundColor(Color.blue)
+                .onTapGesture {
+                    withAnimation {
+                        vm.isShowResetPasswordView = true
+                    }
+                }
         }
-    }
-    
-    private func loginButton() -> some View {
-        Button {
-            vm.handleLogin()
-        } label: {
-            Text("Log in")
-        }
-        .buttonStyle(CustomButtonStyle())
-        .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
-        .disabled(vm.textFieldIsEmpty())
     }
     
     private func optionLogin() -> some View {
         VStack(spacing: 40) {
             DivideView()
-            ImageTextButtonView(
-                icon: Image.icnFacebook,
-                text: "Log in with Facebook") {
-                    print("Not implemented yet!")
-                }
-                .font(.sfProTextSemibold(14, relativeTo: .title1))
-                .foregroundColor(Color.blue)
-        }
-    }
-    
-    private func tabbar() -> some View {
-        VStack(spacing: 18) {
-            Divider()
-            HStack(alignment: .center, spacing: 4) {
-                Text("Don't have an account?")
-                    .font(.sfProTextRegular(12, relativeTo: .title1))
-                    .foregroundColor(Color.black.opacity(0.5))
-                
-                NavigationLink(destination: SignUpView()) {
-                    Text("Sign up.")
-                        .font(.sfProTextBold(12, relativeTo: .title1))
-                        .foregroundColor(Color.blue)
-                }
-            }
+            FacebookLoginView()
         }
     }
 }

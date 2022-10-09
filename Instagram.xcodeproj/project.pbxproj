@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */; };
 		0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453528D84F65003A2E4B /* UIColor+Generated.swift */; };
 		0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453628D84F65003A2E4B /* XCAssets+Generated.swift */; };
 		0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453728D84F65003A2E4B /* Fonts+Generated.swift */; };
@@ -15,6 +14,8 @@
 		064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EE19C28DC20CE002B83EF /* LoginView.swift */; };
 		064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EE19E28DC20E5002B83EF /* LoginViewModel.swift */; };
 		065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B7EC128DC473D00AA9166 /* DivideView.swift */; };
+		06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9628EFB79300AABABC /* SignUpViewModel.swift */; };
+		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
 		06862E7C28DBF386005A5544 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */; };
 		06862E7D28DBF386005A5544 /* SF-Pro-Text-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6B28DBF381005A5544 /* SF-Pro-Text-Ultralight.otf */; };
@@ -40,6 +41,7 @@
 		068F041E28EBD44A00307AF7 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */; };
 		068F042028EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */; };
 		068F042228EC80C300307AF7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F042128EC80C300307AF7 /* SignUpView.swift */; };
+		06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3486028F2E47C00587B14 /* FacebookLoginView.swift */; };
 		06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */; };
 		06E9398D28D96CD30028F981 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398C28D96CD30028F981 /* FirebaseAuth */; };
 		06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398E28D96CD30028F981 /* FirebaseStorage */; };
@@ -52,13 +54,12 @@
 		06F6ACAE28D4512B002095E5 /* AssetsSwiftUI.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACAD28D4512B002095E5 /* AssetsSwiftUI.stencil */; };
 		06F6ACB328D45BB1002095E5 /* FontsSwiftUI.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACB228D45BB1002095E5 /* FontsSwiftUI.stencil */; };
 		06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC028D46818002095E5 /* UIColor.stencil */; };
-		06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */; };
+		06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1728DF2255007A5F3A /* BottomBarView.swift */; };
 		0FFCD04E5C9BCC65B9DAC070 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E84F294C7EF19A028157A31 /* libPods-Instagram.a */; };
 		8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055897928D99C7500D961E1 /* UIMainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextButtonView.swift; sourceTree = "<group>"; };
 		0615453528D84F65003A2E4B /* UIColor+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Generated.swift"; sourceTree = "<group>"; };
 		0615453628D84F65003A2E4B /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
 		0615453728D84F65003A2E4B /* Fonts+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
@@ -66,6 +67,8 @@
 		064EE19C28DC20CE002B83EF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		064EE19E28DC20E5002B83EF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		065B7EC128DC473D00AA9166 /* DivideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideView.swift; sourceTree = "<group>"; };
+		06786A9628EFB79300AABABC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
 		06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
 		06862E6B28DBF381005A5544 /* SF-Pro-Text-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Ultralight.otf"; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
 		068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhoneTextFieldStyle.swift; sourceTree = "<group>"; };
 		068F042128EC80C300307AF7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		06A3486028F2E47C00587B14 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldView.swift; sourceTree = "<group>"; };
 		06E9399028D972EB0028F981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06E9399228D973160028F981 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -103,7 +107,7 @@
 		06F6ACAD28D4512B002095E5 /* AssetsSwiftUI.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AssetsSwiftUI.stencil; sourceTree = "<group>"; };
 		06F6ACB228D45BB1002095E5 /* FontsSwiftUI.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = FontsSwiftUI.stencil; sourceTree = "<group>"; };
 		06F6ACC028D46818002095E5 /* UIColor.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = UIColor.stencil; sourceTree = "<group>"; };
-		06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTextButtonView.swift; sourceTree = "<group>"; };
+		06FD5A1728DF2255007A5F3A /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		6308D98B2E503DC3FA20A643 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		8055897928D99C7500D961E1 /* UIMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMainView.swift; sourceTree = "<group>"; };
 		88DE318C9BF80CE209D99A14 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,13 +151,23 @@
 		065B7EC028DC470800AA9166 /* Subview */ = {
 			isa = PBXGroup;
 			children = (
-				065B7EC128DC473D00AA9166 /* DivideView.swift */,
-				06FD5A1728DF2255007A5F3A /* QuestionTextButtonView.swift */,
-				0600FC3F28E005EE00F374C5 /* ImageTextButtonView.swift */,
+				06FD5A1728DF2255007A5F3A /* BottomBarView.swift */,
 				0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */,
 				06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */,
+				065B7EC128DC473D00AA9166 /* DivideView.swift */,
+				06A3486028F2E47C00587B14 /* FacebookLoginView.swift */,
 			);
 			path = Subview;
+			sourceTree = "<group>";
+		};
+		06786A9828F035E200AABABC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
+				06786A9628EFB79300AABABC /* SignUpViewModel.swift */,
+				06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0689E16A28EACC7900AFBB92 /* Generic */ = {
@@ -267,10 +281,10 @@
 			isa = PBXGroup;
 			children = (
 				065B7EC028DC470800AA9166 /* Subview */,
-				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
+				06786A9828F035E200AABABC /* ViewModel */,
 				064EE19C28DC20CE002B83EF /* LoginView.swift */,
-				062CD04D28E9E4370092387D /* ResetPasswordView.swift */,
 				068F042128EC80C300307AF7 /* SignUpView.swift */,
+				062CD04D28E9E4370092387D /* ResetPasswordView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -470,9 +484,10 @@
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
 				06E9399328D973160028F981 /* FirebaseManager.swift in Sources */,
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
+				06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
+				06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
-				0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
 				0689E16728EA799D00AFBB92 /* RectPreference.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
@@ -480,8 +495,9 @@
 				068F042028EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift in Sources */,
 				068F042228EC80C300307AF7 /* SignUpView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
-				06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */,
+				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
 				8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */,
+				06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

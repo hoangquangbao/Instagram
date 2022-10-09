@@ -9,9 +9,8 @@ struct CustomButtonStyle: ButtonStyle {
             .frame(height: 45)
             .frame(maxWidth: .infinity)
             .background(
-                Color.blue
-                    .cornerRadius(10)
-                    .shadow(color: Color.gray.opacity(0.7), radius: 2, y: 2)
+                configuration.isPressed ? Color.blue.opacity(0.8) : Color.blue
             )
+            .cornerRadius(10)
     }
 }

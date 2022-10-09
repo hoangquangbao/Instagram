@@ -5,7 +5,6 @@ struct ContentView: View {
         VStack {
             LoginView()
         }
-        .padding()
     }
 }
 
