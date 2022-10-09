@@ -11,18 +11,20 @@ struct PhoneTextFieldView: View {
                 Button {
                     print("Not implemented yet!")
                 } label: {
-                    Text(" " + areaCode + " ")
-                        .font(.sfProTextRegular(16, relativeTo: .caption1))
+                    Text(areaCode)
+                        .font(.sfProTextRegular(14, relativeTo: .caption1))
+                        .padding(.horizontal)
                 }
                 
                 Divider()
                     .frame(width: 15)
-                    .padding(.vertical, 5)
+                    .padding(.vertical, 8)
                 
                 TextField(title, text: $phoneNumber, onEditingChanged: { editing in
                     //On-hold
                 })
                 .textFieldStyle(CustomPhoneTextFieldStyle())
+                .padding(.horizontal)
             }
             .frame(height: 45)
             .overlay {

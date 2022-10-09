@@ -9,6 +9,8 @@ struct SignUpView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+        
+            backButton()
             Group {
                 Text(vm.headerTitle)
                     .font(.sfProTextBold(25, relativeTo: .largeTitle))
@@ -37,12 +39,13 @@ struct SignUpView: View {
                         .font(.sfProTextRegular(13, relativeTo: .title1))
                         .foregroundColor(Color.black.opacity(0.5))
                         .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 Spacer()
             }
-            .padding(.horizontal, 15)
+            .padding(.horizontal, 30)
             
             BottomBarView(questionText: vm.questionText,actionText: vm.actionText) {
                 withAnimation {
@@ -52,6 +55,25 @@ struct SignUpView: View {
         }
         .background()
         .environmentObject(vm)
+    }
+}
+
+extension SignUpView {
+    private func backButton() -> some View {
+        HStack {
+            Button {
+                withAnimation {
+                    vmLogin.isShowSignUpView = false
+                }
+            } label: {
+                Image.icnBack
+                    .resizable()
+                    .frame(width: 25, height: 25)
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 10)
+        .padding(.bottom, -20)
     }
 }
 

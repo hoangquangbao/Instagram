@@ -51,9 +51,9 @@ struct ResetPasswordView: View {
     }
 }
 
-private extension ResetPasswordView {
+extension ResetPasswordView {
     
-    func pickerView() -> some View {
+    private func pickerView() -> some View {
         VStack {
             Group {
                 if _selectedIndex == 0 {
@@ -73,7 +73,7 @@ private extension ResetPasswordView {
         }
     }
     
-    func emailTextField() -> some View {
+    private func emailTextField() -> some View {
         VStack(alignment: .leading, spacing: 12) {
             TextField(vm.emailTitle, text: $vmLogin.email, onEditingChanged: { editing in
                 if editing {
@@ -96,7 +96,7 @@ private extension ResetPasswordView {
         }
     }
     
-    func nextButton() -> some View {
+    private func nextButton() -> some View {
         Button {
             _isFocusedKeyboard = false
             vm.handleResetPassword(email: vmLogin.email) { result in
@@ -110,7 +110,7 @@ private extension ResetPasswordView {
         .disabled(vmLogin.email.isEmpty||_selectedIndex == 1)
     }
     
-    func optionLogin() -> some View {
+    private func optionLogin() -> some View {
         VStack(spacing: 40) {
             Button {
                 print("Not implemented yet!")
