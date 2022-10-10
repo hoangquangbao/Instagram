@@ -8,36 +8,26 @@
 import SwiftUI
 
 struct ImageGridLayout: View {
-    var images: [ImageItem]
+    let images: [ImageItem]
+    let columnCount: Int
     
-    private let threeColumns: [GridItem] = [GridItem(.flexible()),
-                                            GridItem(.flexible()),
-                                            GridItem(.flexible())]
-    private let spacing = 2.0
+    private let _spacing = 2.0
+    private var _gridColumns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
-    var body: some View {
-        VStack(spacing: self.spacing) {
-            if(images.count <= 2) {
-                _fullScreenMode
-            }
-            
-            else {
-                HStack(spacing: self.spacing) {
-                    VStack(spacing: self.spacing) {
-                        _imageItem(with: images[0].image, size: UIScreen.screenWidth / 3)
-                        _imageItem(with: images[2].image, size: UIScreen.screenWidth / 3)
-                    }
-                    _imageItem(with: images[1].image, size: UIScreen.screenWidth / 1.5)
-                }
-                _renderGrid(for: subImages, with: threeColumns)
-            }
-        }
+    init(images: [ImageItem], columnCount: Int? = 3) {
+        self.images = images
+        self.columnCount = columnCount!
+        initializeGridColumn(columnCount!)
     }
     
-    var subImages: [ImageItem] {
-        var subImages = images
-        subImages.removeSubrange(0...2)
-        return subImages
+    var body: some View {
+        VStack {
+            LazyVGrid(columns: _gridColumns, spacing: _spacing) {
+                ForEach(images) { item in
+                    _imageItem(with: item.image, size: UIScreen.screenWidth / CGFloat(columnCount))
+                }
+            }
+        }
     }
 }
 
@@ -48,20 +38,8 @@ private extension ImageGridLayout {
             .frame(width: size, height: size)
     }
     
-    func _renderGrid(for images: [ImageItem], with columns: [GridItem]) -> some View {
-        return LazyVGrid(columns: threeColumns, spacing: self.spacing) {
-            ForEach(images) { item in
-                _imageItem(with: item.image, size: UIScreen.screenWidth / 3)
-            }
-        }
-    }
-    
-    var _fullScreenMode: some View {
-        return VStack(spacing: self.spacing) {
-            ForEach(images) { item in
-                _imageItem(with: item.image, size: UIScreen.screenWidth)
-            }
-        }
+    mutating func initializeGridColumn(_ column: Int) {
+        _gridColumns = Array(repeating: GridItem(.flexible()), count: column)
     }
 }
 

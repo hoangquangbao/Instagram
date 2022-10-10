@@ -57,12 +57,12 @@ class SearchViewModel: ObservableObject {
     
 }
 
-var filteredItemsData: [SearchFilterItem] = [
-    SearchFilterItem(title: "IGTV", image: Image.icnTv),
-    SearchFilterItem(title: "Shop", image: Image.icnShop),
-    SearchFilterItem(title: "Style"),
-    SearchFilterItem(title: "Sports"),
-    SearchFilterItem(title: "Auto"),
+var filteredItemsData: [FilteredSearchItem] = [
+    FilteredSearchItem(title: "IGTV", image: Image.icnTv),
+    FilteredSearchItem(title: "Shop", image: Image.icnShop),
+    FilteredSearchItem(title: "Style"),
+    FilteredSearchItem(title: "Sports"),
+    FilteredSearchItem(title: "Auto"),
 ]
 
 var imagesData: [ImageItem] = [
@@ -75,7 +75,7 @@ var imagesData: [ImageItem] = [
     ImageItem(image: Image.imgProfile7, category: filteredItemsData[1].title),
 ]
 
-struct SearchFilterItem: Identifiable {
+struct FilteredSearchItem: Identifiable {
     let id = UUID()
     
     let title: String
