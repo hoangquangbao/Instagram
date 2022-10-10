@@ -17,35 +17,35 @@ struct TabbarBottomView: View {
                 HomeView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
-//                        selection == 0 ? Image.icnHome : Image.icnUnHome
+                        selection == 0 ? Image.icnHome : Image.icnUnHome
                     }
                     .tag(0)
-                HomeView()
+                ProfileView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
                         Image.icnSearch
-//                        selection == 1 ? Image.icnSearch : Image.icnUnSearch
+                        selection == 1 ? Image.icnSearch : Image.icnUnSearch
                     }
                     .tag(1)
-                HomeView()
+                ProfileView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
                         Image.icnAdd
                     }
                     .tag(2)
-                HomeView()
+                ProfileView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
-//                        selection == 3 ? Image.icnHeart : Image.icnUnHeart
+                        selection == 3 ? Image.icnHeart : Image.icnUnHeart
                     }
                     .tag(3)
-                HomeView()
+                ProfileView()
                     .font(.system(size: 40, weight: .bold, design: .default))
-                    .tabItem {    // 2
-//                        Image.icnPfTabbar
-//                            .resizable()
-//                            .frame(width: 21, height: 21)
-//                            .cornerRadius(50)
+                    .tabItem {    
+                        Image.icnPfTabbar
+                            .resizable()
+                            .frame(width: 21, height: 21)
+                            .cornerRadius(50)
                     }
                     .tag(4)
             }
