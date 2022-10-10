@@ -26,7 +26,7 @@ struct SearchBar: View {
         .overlay {
             HStack {
                 _searchIcon
-                
+                Spacer()
                 if(searchText.isNotEmpty) {
                    _clearIcon
                 }
@@ -52,6 +52,8 @@ private extension SearchBar {
     var _clearIcon: some View {
         Button(action: resetSearchText) {
             Image(systemName: "xmark.circle.fill")
+                .resizable()
+                .frame(width: 20, height: 20)
                 .foregroundColor(.gray)
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 10)
