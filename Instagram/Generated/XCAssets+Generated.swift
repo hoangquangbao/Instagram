@@ -7,6 +7,7 @@ extension Image {
     static var icnAdd: Image { return Image("icn_add") }
     static var icnBookmark: Image { return Image("icn_bookmark") }
     static var icnBurger: Image { return Image("icn_burger") }
+    static var icnCamera: Image { return Image("icn_camera") }
     static var icnComment: Image { return Image("icn_comment") }
     static var icnFacebook: Image { return Image("icn_facebook") }
     static var icnGrid: Image { return Image("icn_grid") }
@@ -21,6 +22,7 @@ extension Image {
     static var icnSeries: Image { return Image("icn_series") }
     static var icnShare: Image { return Image("icn_share") }
     static var icnShop: Image { return Image("icn_shop") }
+    static var icnTv: Image { return Image("icn_tv") }
     static var imgDog: Image { return Image("img_dog") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
     static var imgProfile: Image { return Image("img_profile") }
