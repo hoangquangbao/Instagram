@@ -14,8 +14,8 @@ class SearchViewModel: ObservableObject {
         initializeFilterSelectionState()
     }
     
-    var filteredItems = filteredItemsData
-    var images: [ImageItem] = imagesData
+    var filteredItems = SearchData.filteredItemsData
+    var images: [ImageItem] = SearchData.imagesData
     
     func initializeFilterSelectionState() {
         self.filteredItems.forEach { item in
@@ -36,7 +36,7 @@ class SearchViewModel: ObservableObject {
                 falseSize += 1
             }
             else {
-                imagesData.forEach({ imageItem in
+                SearchData.imagesData.forEach({ imageItem in
                     if(imageItem.category == category) {
                         filterImages.append(imageItem)
                     }
@@ -44,7 +44,7 @@ class SearchViewModel: ObservableObject {
             }
         }
         
-        images = falseSize == itemsSelectionState.count ? imagesData : filterImages
+        images = falseSize == itemsSelectionState.count ? SearchData.imagesData : filterImages
     }
     
     func binding(for key: String) -> Binding<Bool> {
@@ -54,39 +54,4 @@ class SearchViewModel: ObservableObject {
             self.itemsSelectionState[key] = $0
         })
     }
-    
-}
-
-var filteredItemsData: [FilteredSearchItem] = [
-    FilteredSearchItem(title: "IGTV", image: Image.icnTv),
-    FilteredSearchItem(title: "Shop", image: Image.icnShop),
-    FilteredSearchItem(title: "Style"),
-    FilteredSearchItem(title: "Sports"),
-    FilteredSearchItem(title: "Auto"),
-]
-
-var imagesData: [ImageItem] = [
-    ImageItem(image: Image.imgProfile, category: filteredItemsData[0].title),
-    ImageItem(image: Image.imgProfile2, category: filteredItemsData[1].title),
-    ImageItem(image: Image.imgProfile3, category: filteredItemsData[2].title),
-    ImageItem(image: Image.imgProfile4, category: filteredItemsData[3].title),
-    ImageItem(image: Image.imgProfile5, category: filteredItemsData[1].title),
-    ImageItem(image: Image.imgProfile6, category: filteredItemsData[1].title),
-    ImageItem(image: Image.imgProfile7, category: filteredItemsData[1].title),
-]
-
-struct FilteredSearchItem: Identifiable {
-    let id = UUID()
-    
-    let title: String
-    var image: Image?
-    var isSelected: Bool? = false
-    var onSelected: ((String) -> Void)?
-}
-
-struct ImageItem: Identifiable {
-    let id = UUID()
-    
-    let image: Image
-    let category: String
 }

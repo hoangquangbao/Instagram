@@ -45,6 +45,6 @@ private extension ImageGridLayout {
 
 struct ImageGridLayout_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGridLayout(images: imagesData)
+        ImageGridLayout(images: SearchData.imagesData)
     }
 }
