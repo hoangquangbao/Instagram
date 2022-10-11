@@ -9,6 +9,7 @@ extension Image {
     static var icnBack: Image { return Image("icn_back") }
     static var icnBookmark: Image { return Image("icn_bookmark") }
     static var icnBurger: Image { return Image("icn_burger") }
+    static var icnCamera: Image { return Image("icn_camera") }
     static var icnComment: Image { return Image("icn_comment") }
     static var icnFacebook: Image { return Image("icn_facebook") }
     static var icnFacebookBlack: Image { return Image("icn_facebook_black") }
@@ -33,6 +34,7 @@ extension Image {
     static var icnShare: Image { return Image("icn_share") }
     static var icnShop: Image { return Image("icn_shop") }
     static var icnStackOverflow: Image { return Image("icn_stackOverflow") }
+    static var icnTv: Image { return Image("icn_tv") }
     static var icnUnHeart: Image { return Image("icn_un_heart") }
     static var icnUnHome: Image { return Image("icn_un_home") }
     static var icnUnSearch: Image { return Image("icn_un_search") }

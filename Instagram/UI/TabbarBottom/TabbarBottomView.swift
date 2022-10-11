@@ -20,7 +20,7 @@ struct TabbarBottomView: View {
                         selection == 0 ? Image.icnHome : Image.icnUnHome
                     }
                     .tag(0)
-                ProfileView()
+                SearchView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
                         Image.icnSearch
