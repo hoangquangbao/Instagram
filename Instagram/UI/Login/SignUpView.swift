@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SignUpView: View {
-    
-    @StateObject var vm = SignUpViewModel()
+
+    @StateObject var vm: SignUpViewModel = Signup(onScreen: .add_email).signUpViewModel
     @EnvironmentObject var vmLogin: LoginViewModel
     
     @State private var _selectedIndex: Int = 1
@@ -14,20 +14,21 @@ struct SignUpView: View {
                 backButton()
                 Group {
                     Text(vm.headerTitle)
-                        .font(.sfProTextBold(25, relativeTo: .largeTitle))
+                        .font(.sfProTextBold(22, relativeTo: .largeTitle))
                     
                     SegmentedPickerView(
-                        titles: vm.pickerTitles,
+                        titles: vm.pickerTitles!,
                         selectedIndex: $_selectedIndex)
                     
                     if _selectedIndex == 0 {
                         PhoneTextFieldView()
                     } else {
-                        TextField(vm.emailTitle, text: $vm.email)
+                        TextField(vm.textFieldTitle, text: $vm.email)
                             .textFieldStyle(CustomTextFieldStyle())
                     }
                     
                     Button {
+                        vm.registerEmail()
                     } label: {
                         Text(vm.nextButtonTitle)
                     }
@@ -36,7 +37,7 @@ struct SignUpView: View {
                     .disabled(vm.email.isEmpty||_selectedIndex == 0)
                     
                     if _selectedIndex == 0 {
-                        Text(vm.phoneOptionDescription)
+                        Text(vm.description)
                             .font(.sfProTextRegular(13, relativeTo: .title1))
                             .foregroundColor(Color.black.opacity(0.5))
                             .multilineTextAlignment(.center)
@@ -48,13 +49,19 @@ struct SignUpView: View {
                 }
                 .padding(.horizontal, 30)
                 
-                BottomBarView(questionText: vm.questionText,actionText: vm.actionText) {
+                BottomBarView(questionText: vm.questionText,actionText: vm.actionText ?? "") {
                     withAnimation {
                         vmLogin.isShowSignUpView = false
                     }
                 }
             }
             .background()
+            .overlay(content: {
+                if vm.isShowConfirmationCodeView ?? false {
+                    ConfirmationCodeView()
+                        .transition(.move(edge: .trailing))
+                }
+            })
             .environmentObject(vm)
         }
     }

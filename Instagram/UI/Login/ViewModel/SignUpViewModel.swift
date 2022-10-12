@@ -3,36 +3,61 @@ import SwiftUI
 class SignUpViewModel: ObservableObject {
     
     @Published var email: String
+    @Published var code: String
+    @Published var fullName: String
     @Published var password: String
+    @Published var birthday: String
+    @Published var age: String
+    @Published var username: String
+
+    @Published var isShowConfirmationCodeView: Bool?
+    @Published var isShowAddYourNameView: Bool?
     
     var headerTitle: String
-    var pickerTitles: [String]
-    var emailTitle: String
+    var pickerTitles: [String]?
+    var textFieldTitle: String
     var nextButtonTitle: String
-    var phoneOptionDescription: String
-    var questionText: String
-    var actionText: String
+    var description: String
+    var questionText: String?
+    var actionText: String?
     
-    init() {
-        self.email = ""
-        self.password = ""
-        self.headerTitle = "Enter Phone or Email"
-        self.pickerTitles = ["Phone", "Email"]
-        self.emailTitle = "Email Address"
-        self.nextButtonTitle = "Next"
-        self.phoneOptionDescription = "You may receive SMS notification from us for security and login purposes."
-        self.questionText = "Already have an account?"
-        self.actionText = "Sign In."
+    init(email: String = "",
+         code: String = "",
+         fullName: String = "",
+         password: String = "",
+         birthday: String = "",
+         age: String = "",
+         username: String = "",
+         isShowConfirmationCodeView: Bool? = nil,
+         isShowAddYourNameView:Bool? = nil,
+         headerTitle: String,
+         pickerTitles: [String]? = nil,
+         textFieldTitle: String,
+         nextButtonTitle: String,
+         description: String,
+         questionText: String? = nil,
+         actionText: String? = nil) {
+        self.email = email
+        self.code = code
+        self.fullName = fullName
+        self.password = password
+        self.birthday = birthday
+        self.age = age
+        self.username = username
+        self.isShowConfirmationCodeView = isShowConfirmationCodeView
+        self.isShowAddYourNameView = isShowAddYourNameView
+        self.headerTitle = headerTitle
+        self.pickerTitles = pickerTitles
+        self.textFieldTitle = textFieldTitle
+        self.nextButtonTitle = nextButtonTitle
+        self.description = description
+        self.questionText = questionText
+        self.actionText = actionText
     }
     
-    func handleSignUp() {
-        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            print("Successfully create user: \(result?.user.uid ?? "")")
+    func registerEmail() {
+        withAnimation {
+            self.isShowConfirmationCodeView = true
         }
     }
 }
