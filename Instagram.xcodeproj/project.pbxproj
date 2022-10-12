@@ -34,18 +34,18 @@
 		06862E8A28DBF386005A5544 /* SF-Pro-Text-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7828DBF385005A5544 /* SF-Pro-Text-UltralightItalic.otf */; };
 		06862E8B28DBF386005A5544 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7928DBF385005A5544 /* SF-Pro-Text-Heavy.otf */; };
 		06862E8C28DBF386005A5544 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */; };
-		0689E16728EA799D00AFBB92 /* RectPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16628EA799D00AFBB92 /* RectPreference.swift */; };
-		0689E16928EA79E600AFBB92 /* UnderlineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16828EA79E600AFBB92 /* UnderlineModifier.swift */; };
 		0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */; };
-		068F041C28EBCEB000307AF7 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041B28EBCEB000307AF7 /* CustomButtonStyle.swift */; };
-		068F041E28EBD44A00307AF7 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */; };
-		068F042028EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */; };
 		068F042228EC80C300307AF7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F042128EC80C300307AF7 /* SignUpView.swift */; };
 		06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3486028F2E47C00587B14 /* FacebookLoginView.swift */; };
 		06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */; };
-		06BB2C0228F701BF003855D5 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0128F701BF003855D5 /* Enum.swift */; };
 		06BB2C0428F7026B003855D5 /* ConfirmationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0328F7026B003855D5 /* ConfirmationCodeView.swift */; };
 		06BB2C0628F70289003855D5 /* AddYourNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0528F70289003855D5 /* AddYourNameView.swift */; };
+		06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0828F70E12003855D5 /* CustomPhoneTextFieldStyle.swift */; };
+		06BB2C0F28F70E12003855D5 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0928F70E12003855D5 /* CustomTextFieldStyle.swift */; };
+		06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */; };
+		06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0B28F70E12003855D5 /* RectPreference.swift */; };
+		06BB2C1228F70E12003855D5 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0C28F70E12003855D5 /* Enum.swift */; };
+		06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0D28F70E12003855D5 /* UnderlineModifier.swift */; };
 		06E9398D28D96CD30028F981 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398C28D96CD30028F981 /* FirebaseAuth */; };
 		06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398E28D96CD30028F981 /* FirebaseStorage */; };
 		06E9399128D972EB0028F981 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06E9399028D972EB0028F981 /* GoogleService-Info.plist */; };
@@ -109,18 +109,18 @@
 		06862E7928DBF385005A5544 /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
 		06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		06862E8D28DBF4CF005A5544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0689E16628EA799D00AFBB92 /* RectPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectPreference.swift; sourceTree = "<group>"; };
-		0689E16828EA79E600AFBB92 /* UnderlineModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineModifier.swift; sourceTree = "<group>"; };
 		0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
-		068F041B28EBCEB000307AF7 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
-		068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
-		068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhoneTextFieldStyle.swift; sourceTree = "<group>"; };
 		068F042128EC80C300307AF7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		06A3486028F2E47C00587B14 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldView.swift; sourceTree = "<group>"; };
-		06BB2C0128F701BF003855D5 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		06BB2C0328F7026B003855D5 /* ConfirmationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeView.swift; sourceTree = "<group>"; };
 		06BB2C0528F70289003855D5 /* AddYourNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourNameView.swift; sourceTree = "<group>"; };
+		06BB2C0828F70E12003855D5 /* CustomPhoneTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPhoneTextFieldStyle.swift; sourceTree = "<group>"; };
+		06BB2C0928F70E12003855D5 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
+		06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
+		06BB2C0B28F70E12003855D5 /* RectPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectPreference.swift; sourceTree = "<group>"; };
+		06BB2C0C28F70E12003855D5 /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		06BB2C0D28F70E12003855D5 /* UnderlineModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineModifier.swift; sourceTree = "<group>"; };
 		06E9399028D972EB0028F981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06E9399228D973160028F981 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		06F438AD28D334E7009EA3E1 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +188,6 @@
 				80B55ED928F0035100BE341D /* ProfileView */,
 				801A567228EFC7700025D9C8 /* HomeView */,
 				801A566B28EFC6DD0025D9C8 /* TabbarBottom */,
-				0689E16A28EACC7900AFBB92 /* Generic */,
 				06FD5A1428DF087D007A5F3A /* Login */,
 			);
 			path = UI;
@@ -216,15 +215,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		0689E16A28EACC7900AFBB92 /* Generic */ = {
+		06BB2C0728F70E12003855D5 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				0689E16628EA799D00AFBB92 /* RectPreference.swift */,
-				0689E16828EA79E600AFBB92 /* UnderlineModifier.swift */,
-				068F041B28EBCEB000307AF7 /* CustomButtonStyle.swift */,
-				068F041D28EBD44A00307AF7 /* CustomTextFieldStyle.swift */,
-				068F041F28EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift */,
-				06BB2C0128F701BF003855D5 /* Enum.swift */,
+				06BB2C0828F70E12003855D5 /* CustomPhoneTextFieldStyle.swift */,
+				06BB2C0928F70E12003855D5 /* CustomTextFieldStyle.swift */,
+				06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */,
+				06BB2C0B28F70E12003855D5 /* RectPreference.swift */,
+				06BB2C0C28F70E12003855D5 /* Enum.swift */,
+				06BB2C0D28F70E12003855D5 /* UnderlineModifier.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -329,7 +328,7 @@
 		06FD5A1428DF087D007A5F3A /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0689E16A28EACC7900AFBB92 /* Generic */,
+				06BB2C0728F70E12003855D5 /* Generic */,
 				065B7EC028DC470800AA9166 /* Subview */,
 				06786A9828F035E200AABABC /* ViewModel */,
 				064EE19C28DC20CE002B83EF /* LoginView.swift */,
@@ -621,15 +620,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD41DB6D28ED16EB00870F55 /* SearchView.swift in Sources */,
-				0689E16928EA79E600AFBB92 /* UnderlineModifier.swift in Sources */,
 				80B55EE028F005B800BE341D /* ProfileViewExtension.swift in Sources */,
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
-				06BB2C0228F701BF003855D5 /* Enum.swift in Sources */,
 				CD51113128F01BD00090F2F4 /* ImageGridLayout.swift in Sources */,
+				06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */,
+				06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
 				80B55EEA28F0092300BE341D /* SettingListData.swift in Sources */,
-				068F041C28EBCEB000307AF7 /* CustomButtonStyle.swift in Sources */,
 				CD41DB7C28ED3F7800870F55 /* SearchBar.swift in Sources */,
 				062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */,
 				801A567128EFC7260025D9C8 /* HomeView.swift in Sources */,
@@ -643,17 +641,15 @@
 				CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */,
 				CD51112F28EFE4760090F2F4 /* UIScreen+Utilities.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
-				0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */,
 				CD51112D28EE853F0090F2F4 /* String+Utilities.swift in Sources */,
+				06BB2C1228F70E12003855D5 /* Enum.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
-				0689E16728EA799D00AFBB92 /* RectPreference.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				CD41DB7928ED380300870F55 /* AppStyle.swift in Sources */,
 				CD51112B28EE79E00090F2F4 /* ChoiceChip.swift in Sources */,
+				06BB2C0F28F70E12003855D5 /* CustomTextFieldStyle.swift in Sources */,
 				CD41DB6F28ED192E00870F55 /* SearchViewModel.swift in Sources */,
 				CD41DB7628ED232F00870F55 /* Color+Utilities.swift in Sources */,
-				068F041E28EBD44A00307AF7 /* CustomTextFieldStyle.swift in Sources */,
-				068F042028EBDB3200307AF7 /* CustomPhoneTextFieldStyle.swift in Sources */,
 				80B55EDB28F0036000BE341D /* ProfileView.swift in Sources */,
 				80B55EE528F0076A00BE341D /* ProfilePostModel.swift in Sources */,
 				80B55EE828F008D200BE341D /* BottomSheetView.swift in Sources */,
@@ -661,12 +657,13 @@
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06BB2C0628F70289003855D5 /* AddYourNameView.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
-				8055897A28D99C7500D961E1 /* UIMainView.swift in Sources */,
 				06BB2C0428F7026B003855D5 /* ConfirmationCodeView.swift in Sources */,
 				06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */,
 				801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */,
+				06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */,
+				06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */,
 				80B55EE328F006CF00BE341D /* HighlightDataModel.swift in Sources */,
-				06FD5A1828DF2255007A5F3A /* QuestionTextButtonView.swift in Sources */,
+				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
