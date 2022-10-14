@@ -4,6 +4,7 @@ struct SignupInputView: View {
     
     @ObservedObject var vm: SignupInputViewModel
     @State private var _selectedIndex: Int = 1
+    @State private var _isSavePassword: Bool = false
     
     @Binding var text: String
     @Binding var isNavigation: Bool
@@ -24,6 +25,7 @@ struct SignupInputView: View {
                 } else {
                     TextField(vm.textfieldTitle, text: $text)
                         .textFieldStyle(CustomTextFieldStyle())
+                        .keyboardType(.emailAddress)
                 }
                 
                 Button {
@@ -47,16 +49,34 @@ struct SignupInputView: View {
             //MARK: other screen
             else {
                 Text(vm.description)
-                    .font(.sfProTextRegular(14, relativeTo: .caption1))
-                    .foregroundColor(Color.black.opacity(0.8))
+                    .font(.sfProTextRegular(15, relativeTo: .caption1))
+                    .foregroundColor(Color.black.opacity(0.6))
                     .lineSpacing(3)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 30)
                     .fixedSize(horizontal: false, vertical: true)
                 
                 TextField(vm.textfieldTitle, text: $text)
                     .textFieldStyle(CustomTextFieldStyle())
+                    .keyboardType(vm.type == .add_confirmation_code ? .numberPad : .default)
                 
+                if vm.type == .add_password {
+                    HStack(alignment: .center, spacing: 5) {
+                        Button {
+                            self._isSavePassword.toggle()
+                        } label: {
+                            Image(systemName: _isSavePassword ? "checkmark.square.fill" : "square")
+                                .resizable()
+                                .frame(width: 20, height: 18)
+                        }
+                        
+                        Text(vm.saveTitle ?? "")
+                            .font(.sfProTextRegular(13, relativeTo: .title1))
+                            .foregroundColor(Color.black.opacity(0.6))
+        
+                        Spacer()
+                    }
+                }
+
                 Button {
                     isNavigation = vm.action()
                 } label: {

@@ -102,7 +102,7 @@ extension LoginView {
     }
     
     private func bottomBarView() -> some View {
-        VStack(spacing: 18) {
+        VStack(spacing: 30) {
             Divider()
             HStack(alignment: .center, spacing: 4) {
                 Text(vm.questionText)

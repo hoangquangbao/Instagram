@@ -38,6 +38,7 @@
 		06862E8B28DBF386005A5544 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7928DBF385005A5544 /* SF-Pro-Text-Heavy.otf */; };
 		06862E8C28DBF386005A5544 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */; };
 		0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */; };
+		06A1BE4E28F9AC58002DD172 /* AddAPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A1BE4D28F9AC58002DD172 /* AddAPasswordView.swift */; };
 		06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3486028F2E47C00587B14 /* FacebookLoginView.swift */; };
 		06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */; };
 		06BB2C0428F7026B003855D5 /* AddConfirmationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */; };
@@ -114,6 +115,7 @@
 		06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		06862E8D28DBF4CF005A5544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
+		06A1BE4D28F9AC58002DD172 /* AddAPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAPasswordView.swift; sourceTree = "<group>"; };
 		06A3486028F2E47C00587B14 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldView.swift; sourceTree = "<group>"; };
 		06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConfirmationCodeView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */,
 				06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */,
 				06BB2C0528F70289003855D5 /* AddYourNameView.swift */,
+				06A1BE4D28F9AC58002DD172 /* AddAPasswordView.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				CD41DB7928ED380300870F55 /* AppStyle.swift in Sources */,
+				06A1BE4E28F9AC58002DD172 /* AddAPasswordView.swift in Sources */,
 				CD51112B28EE79E00090F2F4 /* ChoiceChip.swift in Sources */,
 				06BB2C0F28F70E12003855D5 /* CustomTextFieldStyle.swift in Sources */,
 				CD41DB6F28ED192E00870F55 /* SearchViewModel.swift in Sources */,

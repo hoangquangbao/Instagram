@@ -1,7 +1,6 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
-struct AddYourNameView: View {
+struct AddAPasswordView: View {
     
     @EnvironmentObject var vm: SignUpViewModel
     @EnvironmentObject var perform: BackLoginView
@@ -10,8 +9,8 @@ struct AddYourNameView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                SignupInputView(vm: vm.addNameVM,
-                                text: $vm.fullName,
+                SignupInputView(vm: vm.addPasswordVM,
+                                text: $vm.password,
                                 isNavigation: $_isNavigation)
                 
                 BottomBarView(questionText: vm.addEmailVM.questionText,
@@ -19,16 +18,13 @@ struct AddYourNameView: View {
                     perform.isBackLoginView = false
                 }
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddAPasswordView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
-struct AddYourNameView_Previews: PreviewProvider {
+struct AddAPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        AddYourNameView()
+        AddAPasswordView()
     }
 }

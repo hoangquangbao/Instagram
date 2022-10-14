@@ -4,6 +4,7 @@ enum OnScreen {
     case add_email
     case add_confirmation_code
     case add_full_name
+    case add_password
 }
 
 class SignupInputViewModel: ObservableObject {
@@ -14,6 +15,7 @@ class SignupInputViewModel: ObservableObject {
     let pickerTitle: [String]?
     let textfieldTitle: String
     let buttonLable: String
+    let saveTitle: String?
     let description: String
     let questionText: String?
     let actionText: String?
@@ -25,6 +27,7 @@ class SignupInputViewModel: ObservableObject {
          pickerTitle: [String]? = nil,
          textfieldTitle: String,
          buttonLable: String,
+         saveTitle: String? = nil,
          description: String,
          questionText: String? = nil,
          actionText: String? = nil,
@@ -35,6 +38,7 @@ class SignupInputViewModel: ObservableObject {
         self.pickerTitle = pickerTitle
         self.textfieldTitle = textfieldTitle
         self.buttonLable = buttonLable
+        self.saveTitle = saveTitle
         self.description = description
         self.questionText = questionText
         self.actionText = actionText
