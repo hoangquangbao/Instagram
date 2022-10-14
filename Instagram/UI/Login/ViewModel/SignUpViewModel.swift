@@ -1,5 +1,9 @@
 import SwiftUI
 
+class BackLoginView: ObservableObject {
+    @Published var isBackLoginView: Bool = false
+}
+
 class SignUpViewModel: ObservableObject {
     
     @Published var email: String

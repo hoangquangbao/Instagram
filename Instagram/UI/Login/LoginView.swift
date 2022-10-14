@@ -4,6 +4,7 @@ import SwiftUI
 struct LoginView: View {
     
     @StateObject var vm = LoginViewModel()
+    @StateObject var perform = BackLoginView()
     @State private var _isHidePassword: Bool = true
     
     var body: some View {
@@ -49,6 +50,7 @@ struct LoginView: View {
             }
         }
         .environmentObject(vm)
+        .environmentObject(perform)
     }
 }
 
@@ -107,9 +109,8 @@ extension LoginView {
                     .font(.sfProTextRegular(13, relativeTo: .title1))
                     .foregroundColor(Color.black.opacity(0.5))
                 
-                NavigationLink {
-                    AddEmailView()
-                } label: {
+                NavigationLink(destination: EnterEmailView(),
+                               isActive: self.$perform.isBackLoginView) {
                     Text(vm.actionText)
                         .font(.sfProTextSemibold(13, relativeTo: .title1))
                         .foregroundColor(Color.blue)

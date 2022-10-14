@@ -1,19 +1,24 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct ConfirmationCodeView: View {
+struct EnterEmailView: View {
     
-    @EnvironmentObject var vm: SignUpViewModel
+    @StateObject var vm = SignUpViewModel()
     @Environment(\.dismiss) var dismiss
     @State private var _isNavigation: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 20) {
-                SignupInputView(vm: vm.addConfirmationCodeVM,
-                                text: $vm.code,
+                SignupInputView(vm: vm.addEmailVM,
+                                text: $vm.email,
                                 isNavigation: $_isNavigation)
+                
+                BottomBarView(questionText: vm.addEmailVM.questionText,
+                              actionText: vm.addEmailVM.actionText ?? "") { dismiss() }
             }
+            .navigationTitle(Text(""))
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -26,15 +31,17 @@ struct ConfirmationCodeView: View {
                 }
             }
             .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddYourNameView() })
+                                   destination: { EnterConfirmationCodeView() })
         }
         .navigationBarBackButtonHidden(true)
+        .environmentObject(vm)
     }
 }
 
 @available(iOS 16.0, *)
-struct ConfirmationCodeView_Previews: PreviewProvider {
+struct EnterEmailView_Previews: PreviewProvider {
+    static var vm = SignUpViewModel()
     static var previews: some View {
-        ConfirmationCodeView()
+        EnterEmailView(vm: vm)
     }
 }

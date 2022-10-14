@@ -67,9 +67,8 @@ extension ResetPasswordView {
             .padding(.horizontal, 30)
             .fixedSize(horizontal: false, vertical: true)
             
-            SegmentedPickerView(
-                titles: vm.pickerTitles,
-                selectedIndex: $_selectedIndex)
+            SegmentedPickerView(titles: vm.pickerTitles,
+                                selectedIndex: $_selectedIndex)
         }
     }
     

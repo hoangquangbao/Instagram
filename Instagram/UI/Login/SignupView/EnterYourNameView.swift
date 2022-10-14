@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct AddYourNameView: View {
+struct EnterYourNameView: View {
     
     @EnvironmentObject var vm: SignUpViewModel
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var perform: BackLoginView
     @State private var _isNavigation: Bool = false
     
     var body: some View {
@@ -14,16 +14,17 @@ struct AddYourNameView: View {
                                 isNavigation: $_isNavigation)
                 
                 BottomBarView(questionText: vm.addEmailVM.questionText,
-                              actionText: vm.addEmailVM.actionText ?? "") { dismiss() }
+                              actionText: vm.addEmailVM.actionText ?? "") {
+                    perform.isBackLoginView = false
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-struct AddYourNameView_Previews: PreviewProvider {
+struct EnterYourNameView_Previews: PreviewProvider {
     static var previews: some View {
-        AddYourNameView()
+        EnterYourNameView()
     }
 }
-
