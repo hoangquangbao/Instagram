@@ -10,7 +10,7 @@ class ResetPasswordViewModel: ObservableObject {
     let nextButtonTitle: String
     let resetQuestionText: String
     let actionText: String
-
+    
     init(headerTitle: String = "Trouble logging in?",
          pickerTitles: [String] = ["Username", "Phone"],
          phoneOptionDescription: String = "Enter your username or email and we'll send you a link to get back into your account.",
@@ -18,7 +18,8 @@ class ResetPasswordViewModel: ObservableObject {
          emailTitle: String = "Username or email",
          nextButtonTitle: String = "Next",
          resetQuestionText: String = "Can't reset your password?",
-         actionText: String = "Back to log in") {
+         actionText: String = "Back to log in")
+    {
         self.headerTitle = headerTitle
         self.pickerTitles = pickerTitles
         self.phoneOptionDescription = phoneOptionDescription

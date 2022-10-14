@@ -4,16 +4,17 @@ struct BottomBarView: View {
     
     private var questionText: String?
     private var actionText: String
-    private var action: ()->()
+    private var action: ()->Void
     
-    init(questionText: String? = nil, actionText: String, action: @escaping () -> Void) {
+    init(questionText: String? = nil,
+         actionText: String,
+         action: @escaping () -> Void) {
         self.questionText = questionText
         self.actionText = actionText
         self.action = action
     }
     
     var body: some View {
-        
         VStack(spacing: 18) {
             Divider()
             HStack(alignment: .center, spacing: 4) {

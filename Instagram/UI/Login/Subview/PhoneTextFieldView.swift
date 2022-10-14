@@ -28,7 +28,8 @@ struct PhoneTextFieldView: View {
             }
             .frame(height: 45)
             .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.black.opacity(0.5), lineWidth: 0.5)
             }
     }
 }

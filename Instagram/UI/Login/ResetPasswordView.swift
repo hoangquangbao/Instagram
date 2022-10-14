@@ -16,10 +16,8 @@ struct ResetPasswordView: View {
                 Image(systemName: "lock")
                     .font(.system(size: 45))
                     .padding(15)
-                    .background (
-                        Circle()
-                            .stroke(.black, lineWidth: 2)
-                    )
+                    .background (Circle()
+                        .stroke(.black, lineWidth: 2))
                     .padding(.top, 20)
                 
                 Text(vm.headerTitle)
@@ -69,7 +67,9 @@ extension ResetPasswordView {
             .padding(.horizontal, 30)
             .fixedSize(horizontal: false, vertical: true)
             
-            SegmentedPickerView(titles: vm.pickerTitles, selectedIndex: $_selectedIndex)
+            SegmentedPickerView(
+                titles: vm.pickerTitles,
+                selectedIndex: $_selectedIndex)
         }
     }
     
@@ -85,7 +85,8 @@ extension ResetPasswordView {
             .textFieldStyle(CustomTextFieldStyle())
             .focused($_isFocusedKeyboard)
             .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(_isAccountExist ? Color.black.opacity(0.5) : Color.red, lineWidth: 0.5)
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(_isAccountExist ? Color.black.opacity(0.5) : Color.red, lineWidth: 0.5)
             }
             
             if !_isAccountExist {
@@ -100,7 +101,9 @@ extension ResetPasswordView {
         Button {
             _isFocusedKeyboard = false
             vm.handleResetPassword(email: vmLogin.email) { result in
-                _isAccountExist = result
+                withAnimation {
+                    _isAccountExist = result
+                }
             }
         } label: {
             Text(vm.nextButtonTitle)

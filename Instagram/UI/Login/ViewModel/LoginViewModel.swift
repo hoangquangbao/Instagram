@@ -4,7 +4,6 @@ class LoginViewModel: ObservableObject {
     
     @Published var email: String
     @Published var password: String
-    @Published var isShowSignUpView: Bool
     @Published var isShowResetPasswordView: Bool
     
     let emailTitle: String
@@ -14,23 +13,18 @@ class LoginViewModel: ObservableObject {
     let questionText: String
     let actionText: String
     
-    // MARK: SubViewModel
-    var signUpVM: SignUpViewModel?
-    
     init(email: String = "",
          password: String = "",
-         isShowSignUpView: Bool = false,
          isShowResetPasswordView: Bool = false,
          emailTitle: String = "Email Address",
          passwordTitle: String = "Password",
          forgotPasswordText: String = "Forgot password",
          loginButtonTitle: String = "Log in",
          questionText: String = "Don't have an account?",
-         actionText: String = "Sign up.",
-         signUpVM: SignUpViewModel? = nil) {
+         actionText: String = "Sign up.")
+    {
         self.email = email
         self.password = password
-        self.isShowSignUpView = isShowSignUpView
         self.isShowResetPasswordView = isShowResetPasswordView
         self.emailTitle = emailTitle
         self.passwordTitle = passwordTitle
@@ -38,7 +32,6 @@ class LoginViewModel: ObservableObject {
         self.loginButtonTitle = loginButtonTitle
         self.questionText = questionText
         self.actionText = actionText
-        self.signUpVM = signUpVM
     }
     
     func handleLogin() {
@@ -53,10 +46,5 @@ class LoginViewModel: ObservableObject {
     
     func textFieldIsEmpty() -> Bool {
         return email.isEmpty || password.isEmpty
-    }
-    
-    func resetTextField() {
-        self.email = ""
-        self.password = ""
     }
 }

@@ -1,65 +1,58 @@
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct LoginView: View {
     
     @StateObject var vm = LoginViewModel()
     @State private var _isHidePassword: Bool = true
     
     var body: some View {
-        VStack(spacing: 30) {
-            Group {
-                Spacer()
-                Image.imgInstagramLogo
-                    .resizable()
-                    .frame(width: 182, height: 49)
-                    .padding(.bottom, 30)
-                
-                VStack(spacing: 18) {
-                    TextField(vm.emailTitle, text: $vm.email)
-                        .textFieldStyle(CustomTextFieldStyle())
+        NavigationView {
+            VStack(spacing: 30) {
+                Group {
+                    Spacer()
+                    Image.imgInstagramLogo
+                        .resizable()
+                        .frame(width: 182, height: 49)
+                        .padding(.bottom, 30)
                     
-                    passwordTextField()
-                    forgotPassword()
-                        .padding(.top,5)
-                }
-                
-                Button {
-                    vm.handleLogin()
-                } label: {
-                    Text(vm.loginButtonTitle)
-                }
-                .buttonStyle(CustomButtonStyle())
-                .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
-                .disabled(vm.textFieldIsEmpty())
-                
-                optionLogin()
-                Spacer()
-            }
-            .padding(.horizontal, 25)
-            
-            BottomBarView(
-                questionText: vm.questionText,
-                actionText: vm.actionText) {
-                    withAnimation {
-                        vm.isShowSignUpView = true
+                    VStack(spacing: 18) {
+                        TextField(vm.emailTitle, text: $vm.email)
+                            .textFieldStyle(CustomTextFieldStyle())
+                        
+                        passwordTextField()
+                        forgotPassword()
+                            .padding(.top,5)
                     }
+                    
+                    Button {
+                        vm.handleLogin()
+                    } label: {
+                        Text(vm.loginButtonTitle)
+                    }
+                    .buttonStyle(CustomButtonStyle())
+                    .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
+                    .disabled(vm.textFieldIsEmpty())
+                    
+                    optionLogin()
+                    Spacer()
                 }
-        }
-        .overlay {
-            if vm.isShowResetPasswordView {
-                ResetPasswordView()
-                    .transition(.move(edge: .trailing))
+                .padding(.horizontal, 25)
+                
+                bottomBarView()
             }
-
-            if vm.isShowSignUpView {
-                SignUpView()
-                    .transition(.move(edge: .trailing))
+            .overlay {
+                if vm.isShowResetPasswordView {
+                    ResetPasswordView()
+                        .transition(.move(edge: .trailing))
+                }
             }
         }
         .environmentObject(vm)
     }
 }
 
+@available(iOS 16.0, *)
 extension LoginView {
     
     private func passwordTextField() -> some View {
@@ -105,8 +98,28 @@ extension LoginView {
             FacebookLoginView()
         }
     }
+    
+    private func bottomBarView() -> some View {
+        VStack(spacing: 18) {
+            Divider()
+            HStack(alignment: .center, spacing: 4) {
+                Text(vm.questionText)
+                    .font(.sfProTextRegular(13, relativeTo: .title1))
+                    .foregroundColor(Color.black.opacity(0.5))
+                
+                NavigationLink {
+                    AddEmailView()
+                } label: {
+                    Text(vm.actionText)
+                        .font(.sfProTextSemibold(13, relativeTo: .title1))
+                        .foregroundColor(Color.blue)
+                }
+            }
+        }
+    }
 }
 
+@available(iOS 16.0, *)
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()

@@ -5,7 +5,8 @@ struct SegmentedPickerView: View {
     @Binding private var selectedIndex: Int
     @State private var frames: Array<CGRect>
     
-    init(titles: [String], selectedIndex: Binding<Int>)
+    init(titles: [String],
+         selectedIndex: Binding<Int>)
     {
         self.titles = titles
         self._selectedIndex = selectedIndex

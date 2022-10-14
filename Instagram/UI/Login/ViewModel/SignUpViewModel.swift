@@ -9,17 +9,10 @@ class SignUpViewModel: ObservableObject {
     @Published var birthday: String
     @Published var age: String
     @Published var username: String
-
-    @Published var isShowConfirmationCodeView: Bool?
-    @Published var isShowAddYourNameView: Bool?
     
-    var headerTitle: String
-    var pickerTitles: [String]?
-    var textFieldTitle: String
-    var nextButtonTitle: String
-    var description: String
-    var questionText: String?
-    var actionText: String?
+    var addEmailVM: SignupInputViewModel
+    var addConfirmationCodeVM: SignupInputViewModel
+    var addNameVM: SignupInputViewModel
     
     init(email: String = "",
          code: String = "",
@@ -27,16 +20,8 @@ class SignUpViewModel: ObservableObject {
          password: String = "",
          birthday: String = "",
          age: String = "",
-         username: String = "",
-         isShowConfirmationCodeView: Bool? = nil,
-         isShowAddYourNameView:Bool? = nil,
-         headerTitle: String,
-         pickerTitles: [String]? = nil,
-         textFieldTitle: String,
-         nextButtonTitle: String,
-         description: String,
-         questionText: String? = nil,
-         actionText: String? = nil) {
+         username: String = "")
+    {
         self.email = email
         self.code = code
         self.fullName = fullName
@@ -44,20 +29,38 @@ class SignUpViewModel: ObservableObject {
         self.birthday = birthday
         self.age = age
         self.username = username
-        self.isShowConfirmationCodeView = isShowConfirmationCodeView
-        self.isShowAddYourNameView = isShowAddYourNameView
-        self.headerTitle = headerTitle
-        self.pickerTitles = pickerTitles
-        self.textFieldTitle = textFieldTitle
-        self.nextButtonTitle = nextButtonTitle
-        self.description = description
-        self.questionText = questionText
-        self.actionText = actionText
-    }
-    
-    func registerEmail() {
-        withAnimation {
-            self.isShowConfirmationCodeView = true
-        }
+        self.addEmailVM = SignupInputViewModel(
+            type: .add_email,
+            headerTitle: "Enter Phone or Email",
+            pickerTitle: ["Phone", "Email"],
+            textfieldTitle: "Email Address",
+            buttonLable: "Next",
+            description: "You may receive SMS notification from us for security and login purpose.",
+            questionText: "Already have an account?",
+            actionText: "Sign In",
+            action: {
+                return email.isEmpty
+            })
+        self.addConfirmationCodeVM = SignupInputViewModel(
+            type: .add_confirmation_code,
+            headerTitle: "Enter confirmation code",
+            textfieldTitle: "Confirmation code",
+            buttonLable: "Next",
+            description: "Enter confirmation code we send",
+            actionText: "Resend confirmation code.",
+            action: {
+                return code.isEmpty
+            })
+        self.addNameVM = SignupInputViewModel(
+            type: .add_name,
+            headerTitle: "Add Your Name",
+            textfieldTitle: "Full name",
+            buttonLable: "Next",
+            description: "Add your name so friend can find you.",
+            questionText: "Already have an account?",
+            actionText: "Sign In",
+            action: {
+                return fullName.isEmpty
+            })
     }
 }

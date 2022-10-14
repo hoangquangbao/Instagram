@@ -14,6 +14,9 @@
 		064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EE19C28DC20CE002B83EF /* LoginView.swift */; };
 		064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EE19E28DC20E5002B83EF /* LoginViewModel.swift */; };
 		065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B7EC128DC473D00AA9166 /* DivideView.swift */; };
+		065E64DF28F7A52800C9EE28 /* SignupInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64DE28F7A52800C9EE28 /* SignupInputView.swift */; };
+		065E64E128F7A5C100C9EE28 /* SignupInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E028F7A5C100C9EE28 /* SignupInputViewModel.swift */; };
+		065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */; };
 		06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9628EFB79300AABABC /* SignUpViewModel.swift */; };
 		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
@@ -35,7 +38,6 @@
 		06862E8B28DBF386005A5544 /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7928DBF385005A5544 /* SF-Pro-Text-Heavy.otf */; };
 		06862E8C28DBF386005A5544 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */; };
 		0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */; };
-		068F042228EC80C300307AF7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F042128EC80C300307AF7 /* SignUpView.swift */; };
 		06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3486028F2E47C00587B14 /* FacebookLoginView.swift */; };
 		06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */; };
 		06BB2C0428F7026B003855D5 /* ConfirmationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0328F7026B003855D5 /* ConfirmationCodeView.swift */; };
@@ -88,6 +90,9 @@
 		064EE19C28DC20CE002B83EF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		064EE19E28DC20E5002B83EF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		065B7EC128DC473D00AA9166 /* DivideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideView.swift; sourceTree = "<group>"; };
+		065E64DE28F7A52800C9EE28 /* SignupInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInputView.swift; sourceTree = "<group>"; };
+		065E64E028F7A5C100C9EE28 /* SignupInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInputViewModel.swift; sourceTree = "<group>"; };
+		065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailView.swift; sourceTree = "<group>"; };
 		06786A9628EFB79300AABABC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -110,7 +115,6 @@
 		06862E7A28DBF386005A5544 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		06862E8D28DBF4CF005A5544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
-		068F042128EC80C300307AF7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		06A3486028F2E47C00587B14 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldView.swift; sourceTree = "<group>"; };
 		06BB2C0328F7026B003855D5 /* ConfirmationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCodeView.swift; sourceTree = "<group>"; };
@@ -209,8 +213,9 @@
 			isa = PBXGroup;
 			children = (
 				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
-				06786A9628EFB79300AABABC /* SignUpViewModel.swift */,
 				06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */,
+				065E64E028F7A5C100C9EE28 /* SignupInputViewModel.swift */,
+				06786A9628EFB79300AABABC /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -332,8 +337,9 @@
 				065B7EC028DC470800AA9166 /* Subview */,
 				06786A9828F035E200AABABC /* ViewModel */,
 				064EE19C28DC20CE002B83EF /* LoginView.swift */,
-				068F042128EC80C300307AF7 /* SignUpView.swift */,
 				062CD04D28E9E4370092387D /* ResetPasswordView.swift */,
+				065E64DE28F7A52800C9EE28 /* SignupInputView.swift */,
+				065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */,
 				06BB2C0328F7026B003855D5 /* ConfirmationCodeView.swift */,
 				06BB2C0528F70289003855D5 /* AddYourNameView.swift */,
 			);
@@ -622,6 +628,7 @@
 				CD41DB6D28ED16EB00870F55 /* SearchView.swift in Sources */,
 				80B55EE028F005B800BE341D /* ProfileViewExtension.swift in Sources */,
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
+				065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */,
 				CD51113128F01BD00090F2F4 /* ImageGridLayout.swift in Sources */,
 				06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */,
 				06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */,
@@ -653,13 +660,14 @@
 				80B55EDB28F0036000BE341D /* ProfileView.swift in Sources */,
 				80B55EE528F0076A00BE341D /* ProfilePostModel.swift in Sources */,
 				80B55EE828F008D200BE341D /* BottomSheetView.swift in Sources */,
-				068F042228EC80C300307AF7 /* SignUpView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06BB2C0628F70289003855D5 /* AddYourNameView.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
 				06BB2C0428F7026B003855D5 /* ConfirmationCodeView.swift in Sources */,
+				065E64E128F7A5C100C9EE28 /* SignupInputViewModel.swift in Sources */,
 				06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */,
 				801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */,
+				065E64DF28F7A52800C9EE28 /* SignupInputView.swift in Sources */,
 				06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */,
 				06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */,
 				80B55EE328F006CF00BE341D /* HighlightDataModel.swift in Sources */,
