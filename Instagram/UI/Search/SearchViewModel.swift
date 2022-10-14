@@ -9,13 +9,18 @@ import SwiftUI
 class SearchViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var itemsSelectionState = [String: Bool]()
+    @Published var isSearchingMode = false
+    
+    enum Mode { case postSuggestion, searching }
+    
+    let users: [User] = MockData.users
+    let filteredItems = SearchData.filteredItemsData
+    var images: [ImageItem] = SearchData.imagesData
+    var mode: Mode = .postSuggestion
     
     init() {
         initializeFilterSelectionState()
     }
-    
-    var filteredItems = SearchData.filteredItemsData
-    var images: [ImageItem] = SearchData.imagesData
     
     func initializeFilterSelectionState() {
         self.filteredItems.forEach { item in
@@ -48,10 +53,27 @@ class SearchViewModel: ObservableObject {
     }
     
     func binding(for key: String) -> Binding<Bool> {
-        return Binding(get: {
-            return self.itemsSelectionState[key] ?? false
-        }, set: {
-            self.itemsSelectionState[key] = $0
-        })
+        return Binding(
+            get: { return self.itemsSelectionState[key] ?? false },
+            set: { self.itemsSelectionState[key] = $0 }
+        )
+    }
+    
+    func openCamera() {
+        print("open camera")
+    }
+    
+    func switchMode(_ mode: Mode) {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            self.mode = mode
+        }
+    }
+    
+    var searchableUser: [User] {
+        if(searchText.isEmpty) { return users }
+        
+        return users.filter { user in
+            user.username.contains(searchText) || user.fullname.contains(searchText)
+        }
     }
 }
