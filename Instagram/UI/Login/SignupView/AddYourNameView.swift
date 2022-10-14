@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct EnterYourNameView: View {
+struct AddYourNameView: View {
     
     @EnvironmentObject var vm: SignUpViewModel
     @EnvironmentObject var perform: BackLoginView
@@ -23,8 +23,8 @@ struct EnterYourNameView: View {
     }
 }
 
-struct EnterYourNameView_Previews: PreviewProvider {
+struct AddYourNameView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterYourNameView()
+        AddYourNameView()
     }
 }

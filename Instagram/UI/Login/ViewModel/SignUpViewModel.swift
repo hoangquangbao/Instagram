@@ -56,7 +56,7 @@ class SignUpViewModel: ObservableObject {
                 return code.isEmpty
             })
         self.addNameVM = SignupInputViewModel(
-            type: .add_name,
+            type: .add_full_name,
             headerTitle: "Add Your Name",
             textfieldTitle: "Full name",
             buttonLable: "Next",

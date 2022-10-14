@@ -3,7 +3,7 @@ import SwiftUI
 enum OnScreen {
     case add_email
     case add_confirmation_code
-    case add_name
+    case add_full_name
 }
 
 class SignupInputViewModel: ObservableObject {

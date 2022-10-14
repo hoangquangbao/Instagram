@@ -109,7 +109,7 @@ extension LoginView {
                     .font(.sfProTextRegular(13, relativeTo: .title1))
                     .foregroundColor(Color.black.opacity(0.5))
                 
-                NavigationLink(destination: EnterEmailView(),
+                NavigationLink(destination: AddEmailView(),
                                isActive: self.$perform.isBackLoginView) {
                     Text(vm.actionText)
                         .font(.sfProTextSemibold(13, relativeTo: .title1))

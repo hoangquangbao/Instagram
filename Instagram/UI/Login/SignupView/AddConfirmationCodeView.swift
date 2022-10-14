@@ -1,7 +1,7 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct EnterConfirmationCodeView: View {
+struct AddConfirmationCodeView: View {
     
     @EnvironmentObject var vm: SignUpViewModel
     @Environment(\.dismiss) var dismiss
@@ -26,15 +26,15 @@ struct EnterConfirmationCodeView: View {
                 }
             }
             .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { EnterYourNameView() })
+                                   destination: { AddYourNameView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
 @available(iOS 16.0, *)
-struct EnterConfirmationCodeView_Previews: PreviewProvider {
+struct AddConfirmationCodeView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterConfirmationCodeView()
+        AddConfirmationCodeView()
     }
 }

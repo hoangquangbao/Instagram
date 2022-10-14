@@ -16,7 +16,7 @@
 		065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B7EC128DC473D00AA9166 /* DivideView.swift */; };
 		065E64DF28F7A52800C9EE28 /* SignupInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64DE28F7A52800C9EE28 /* SignupInputView.swift */; };
 		065E64E128F7A5C100C9EE28 /* SignupInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E028F7A5C100C9EE28 /* SignupInputViewModel.swift */; };
-		065E64E328F7B4ED00C9EE28 /* EnterEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E228F7B4ED00C9EE28 /* EnterEmailView.swift */; };
+		065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */; };
 		06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9628EFB79300AABABC /* SignUpViewModel.swift */; };
 		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
@@ -40,8 +40,8 @@
 		0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */; };
 		06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3486028F2E47C00587B14 /* FacebookLoginView.swift */; };
 		06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */; };
-		06BB2C0428F7026B003855D5 /* EnterConfirmationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0328F7026B003855D5 /* EnterConfirmationCodeView.swift */; };
-		06BB2C0628F70289003855D5 /* EnterYourNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0528F70289003855D5 /* EnterYourNameView.swift */; };
+		06BB2C0428F7026B003855D5 /* AddConfirmationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */; };
+		06BB2C0628F70289003855D5 /* AddYourNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0528F70289003855D5 /* AddYourNameView.swift */; };
 		06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0828F70E12003855D5 /* CustomPhoneTextFieldStyle.swift */; };
 		06BB2C0F28F70E12003855D5 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0928F70E12003855D5 /* CustomTextFieldStyle.swift */; };
 		06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */; };
@@ -91,7 +91,7 @@
 		065B7EC128DC473D00AA9166 /* DivideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivideView.swift; sourceTree = "<group>"; };
 		065E64DE28F7A52800C9EE28 /* SignupInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInputView.swift; sourceTree = "<group>"; };
 		065E64E028F7A5C100C9EE28 /* SignupInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupInputViewModel.swift; sourceTree = "<group>"; };
-		065E64E228F7B4ED00C9EE28 /* EnterEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterEmailView.swift; sourceTree = "<group>"; };
+		065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailView.swift; sourceTree = "<group>"; };
 		06786A9628EFB79300AABABC /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 		0689E16B28EAD55F00AFBB92 /* SegmentedPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPickerView.swift; sourceTree = "<group>"; };
 		06A3486028F2E47C00587B14 /* FacebookLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginView.swift; sourceTree = "<group>"; };
 		06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldView.swift; sourceTree = "<group>"; };
-		06BB2C0328F7026B003855D5 /* EnterConfirmationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterConfirmationCodeView.swift; sourceTree = "<group>"; };
-		06BB2C0528F70289003855D5 /* EnterYourNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterYourNameView.swift; sourceTree = "<group>"; };
+		06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddConfirmationCodeView.swift; sourceTree = "<group>"; };
+		06BB2C0528F70289003855D5 /* AddYourNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourNameView.swift; sourceTree = "<group>"; };
 		06BB2C0828F70E12003855D5 /* CustomPhoneTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPhoneTextFieldStyle.swift; sourceTree = "<group>"; };
 		06BB2C0928F70E12003855D5 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
 		06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
@@ -211,9 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				065E64DE28F7A52800C9EE28 /* SignupInputView.swift */,
-				065E64E228F7B4ED00C9EE28 /* EnterEmailView.swift */,
-				06BB2C0328F7026B003855D5 /* EnterConfirmationCodeView.swift */,
-				06BB2C0528F70289003855D5 /* EnterYourNameView.swift */,
+				065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */,
+				06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */,
+				06BB2C0528F70289003855D5 /* AddYourNameView.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -271,17 +271,17 @@
 		06F438AF28D334E7009EA3E1 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				06C874D928D8225200A0DEEB /* Utilities */,
 				064EE19B28DC2097002B83EF /* UI */,
-				06862E8D28DBF4CF005A5544 /* Info.plist */,
-				06F438B228D334E7009EA3E1 /* ContentView.swift */,
-				06F438B028D334E7009EA3E1 /* InstagramApp.swift */,
-				06F438B428D334E9009EA3E1 /* Assets.xcassets */,
 				CD41DB7728ED37B000870F55 /* Constants */,
 				CD41DB7328ED22D800870F55 /* Extensions */,
 				0615453B28D85B7F003A2E4B /* Generated */,
 				06F438B628D334E9009EA3E1 /* Preview Content */,
 				06F6ACAB28D450F3002095E5 /* Resources */,
-				06C874D928D8225200A0DEEB /* Utilities */,
+				06862E8D28DBF4CF005A5544 /* Info.plist */,
+				06F438B228D334E7009EA3E1 /* ContentView.swift */,
+				06F438B028D334E7009EA3E1 /* InstagramApp.swift */,
+				06F438B428D334E9009EA3E1 /* Assets.xcassets */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				CD41DB6D28ED16EB00870F55 /* SearchView.swift in Sources */,
 				80B55EE028F005B800BE341D /* ProfileViewExtension.swift in Sources */,
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
-				065E64E328F7B4ED00C9EE28 /* EnterEmailView.swift in Sources */,
+				065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */,
 				CD51113128F01BD00090F2F4 /* ImageGridLayout.swift in Sources */,
 				06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */,
 				06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */,
@@ -665,9 +665,9 @@
 				80B55EE528F0076A00BE341D /* ProfilePostModel.swift in Sources */,
 				80B55EE828F008D200BE341D /* BottomSheetView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
-				06BB2C0628F70289003855D5 /* EnterYourNameView.swift in Sources */,
+				06BB2C0628F70289003855D5 /* AddYourNameView.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
-				06BB2C0428F7026B003855D5 /* EnterConfirmationCodeView.swift in Sources */,
+				06BB2C0428F7026B003855D5 /* AddConfirmationCodeView.swift in Sources */,
 				065E64E128F7A5C100C9EE28 /* SignupInputViewModel.swift in Sources */,
 				06786A9728EFB79300AABABC /* SignUpViewModel.swift in Sources */,
 				801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */,

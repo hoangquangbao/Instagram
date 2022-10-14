@@ -1,7 +1,7 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct EnterEmailView: View {
+struct AddEmailView: View {
     
     @StateObject var vm = SignUpViewModel()
     @Environment(\.dismiss) var dismiss
@@ -31,7 +31,7 @@ struct EnterEmailView: View {
                 }
             }
             .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { EnterConfirmationCodeView() })
+                                   destination: { AddConfirmationCodeView() })
         }
         .navigationBarBackButtonHidden(true)
         .environmentObject(vm)
@@ -39,9 +39,9 @@ struct EnterEmailView: View {
 }
 
 @available(iOS 16.0, *)
-struct EnterEmailView_Previews: PreviewProvider {
+struct AddEmailView_Previews: PreviewProvider {
     static var vm = SignUpViewModel()
     static var previews: some View {
-        EnterEmailView(vm: vm)
+        AddEmailView(vm: vm)
     }
 }
