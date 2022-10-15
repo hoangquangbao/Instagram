@@ -3,14 +3,14 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct AddConfirmationCodeView: View {
     
-    @EnvironmentObject var vm: SignUpViewModel
+    @EnvironmentObject var vm: SignupViewModel
     @Environment(\.dismiss) var dismiss
     @State private var _isNavigation: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                SignupInputView(vm: vm.addConfirmationCodeVM,
+                SignupAddView(vm: vm.addConfirmationCodeVM,
                                 text: $vm.code,
                                 isNavigation: $_isNavigation)
             }

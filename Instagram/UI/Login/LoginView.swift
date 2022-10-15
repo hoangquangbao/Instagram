@@ -58,15 +58,17 @@ struct LoginView: View {
 extension LoginView {
     
     private func passwordTextField() -> some View {
-        ZStack {
-            if _isHidePassword {
-                SecureField(vm.passwordTitle, text: $vm.password)
-            } else {
-                TextField(vm.passwordTitle, text: $vm.password)
+        HStack {
+            ZStack {
+                if _isHidePassword {
+                    SecureField(vm.passwordTitle, text: $vm.password)
+                } else {
+                    TextField(vm.passwordTitle, text: $vm.password)
+                }
             }
-        }
-        .textFieldStyle(CustomTextFieldStyle())
-        .overlay (
+            
+            Spacer()
+            
             Button {
                 withAnimation {
                     _isHidePassword.toggle()
@@ -76,8 +78,22 @@ extension LoginView {
                     .foregroundColor(.gray)
                     .padding(.trailing)
             }
-            ,alignment: .trailing
-        )
+        }
+        .font(.sfProTextRegular(15, relativeTo: .caption1))
+        .foregroundColor(Color.black)
+        .padding(.leading)
+        .frame(maxWidth: .infinity)
+        .frame(height: 45)
+        .overlay {
+            RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
+        }
+        .background {
+            Color.white
+        }
+        .textInputAutocapitalization(.never)
+        .autocorrectionDisabled(true)
+        .submitLabel(.done)
+        .cornerRadius(5)
     }
     
     private func forgotPassword() -> some View {

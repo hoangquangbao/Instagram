@@ -17,5 +17,6 @@ struct CustomTextFieldStyle: TextFieldStyle {
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled(true)
             .submitLabel(.done)
+            .cornerRadius(5)
     }
 }

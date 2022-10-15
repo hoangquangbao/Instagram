@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct SignupInputView: View {
+struct SignupAddView: View {
     
-    @ObservedObject var vm: SignupInputViewModel
+    @ObservedObject var vm: SignupAddViewModel
     @State private var _selectedIndex: Int = 1
     @State private var _isSavePassword: Bool = false
     
@@ -25,7 +25,7 @@ struct SignupInputView: View {
     }
 }
 
-extension SignupInputView {
+extension SignupAddView {
     
     private func addEmailView() -> some View {
         VStack(spacing: 20) {

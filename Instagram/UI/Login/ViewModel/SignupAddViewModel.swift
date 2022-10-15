@@ -7,7 +7,7 @@ enum OnScreen {
     case add_password
 }
 
-class SignupInputViewModel: ObservableObject {
+class SignupAddViewModel: ObservableObject {
     
     let type: OnScreen
     

@@ -2,14 +2,14 @@ import SwiftUI
 
 struct AddAPasswordView: View {
     
-    @EnvironmentObject var vm: SignUpViewModel
+    @EnvironmentObject var vm: SignupViewModel
     @EnvironmentObject var perform: BackLoginView
     @State private var _isNavigation: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                SignupInputView(vm: vm.addPasswordVM,
+                SignupAddView(vm: vm.addPasswordVM,
                                 text: $vm.password,
                                 isNavigation: $_isNavigation)
                 

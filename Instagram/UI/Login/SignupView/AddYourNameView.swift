@@ -3,14 +3,14 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct AddYourNameView: View {
     
-    @EnvironmentObject var vm: SignUpViewModel
+    @EnvironmentObject var vm: SignupViewModel
     @EnvironmentObject var perform: BackLoginView
     @State private var _isNavigation: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                SignupInputView(vm: vm.addNameVM,
+                SignupAddView(vm: vm.addNameVM,
                                 text: $vm.fullName,
                                 isNavigation: $_isNavigation)
                 

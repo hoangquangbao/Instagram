@@ -3,14 +3,14 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct AddEmailView: View {
     
-    @StateObject var vm = SignUpViewModel()
+    @StateObject var vm = SignupViewModel()
     @Environment(\.dismiss) var dismiss
     @State private var _isNavigation: Bool = false
     
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                SignupInputView(vm: vm.addEmailVM,
+                SignupAddView(vm: vm.addEmailVM,
                                 text: $vm.email,
                                 isNavigation: $_isNavigation)
                 
@@ -40,7 +40,7 @@ struct AddEmailView: View {
 
 @available(iOS 16.0, *)
 struct AddEmailView_Previews: PreviewProvider {
-    static var vm = SignUpViewModel()
+    static var vm = SignupViewModel()
     static var previews: some View {
         AddEmailView(vm: vm)
     }

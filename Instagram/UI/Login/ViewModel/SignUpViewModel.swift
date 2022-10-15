@@ -4,7 +4,7 @@ class BackLoginView: ObservableObject {
     @Published var isBackLoginView: Bool = false
 }
 
-class SignUpViewModel: ObservableObject {
+class SignupViewModel: ObservableObject {
     
     @Published var email: String
     @Published var code: String
@@ -15,10 +15,10 @@ class SignUpViewModel: ObservableObject {
     @Published var age: String
     @Published var username: String
     
-    var addEmailVM: SignupInputViewModel
-    var addConfirmationCodeVM: SignupInputViewModel
-    var addNameVM: SignupInputViewModel
-    var addPasswordVM: SignupInputViewModel
+    var addEmailVM: SignupAddViewModel
+    var addConfirmationCodeVM: SignupAddViewModel
+    var addNameVM: SignupAddViewModel
+    var addPasswordVM: SignupAddViewModel
     
     init(email: String = "",
          code: String = "",
@@ -37,7 +37,7 @@ class SignUpViewModel: ObservableObject {
         self.birthday = birthday
         self.age = age
         self.username = username
-        self.addEmailVM = SignupInputViewModel(
+        self.addEmailVM = SignupAddViewModel(
             type: .add_email,
             headerTitle: "Enter Phone or Email",
             pickerTitle: ["Phone", "Email"],
@@ -49,7 +49,7 @@ class SignUpViewModel: ObservableObject {
             action: {
                 return email.isEmpty
             })
-        self.addConfirmationCodeVM = SignupInputViewModel(
+        self.addConfirmationCodeVM = SignupAddViewModel(
             type: .add_confirmation_code,
             headerTitle: "Enter confirmation code",
             textfieldTitle: "Confirmation code",
@@ -59,7 +59,7 @@ class SignUpViewModel: ObservableObject {
             action: {
                 return code.isEmpty
             })
-        self.addNameVM = SignupInputViewModel(
+        self.addNameVM = SignupAddViewModel(
             type: .add_full_name,
             headerTitle: "Add Your Name",
             textfieldTitle: "Full name",
@@ -70,7 +70,7 @@ class SignUpViewModel: ObservableObject {
             action: {
                 return fullName.isEmpty
             })
-        self.addPasswordVM = SignupInputViewModel(
+        self.addPasswordVM = SignupAddViewModel(
             type: .add_password,
             headerTitle: "Create a password",
             textfieldTitle: "Password",
