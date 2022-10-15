@@ -15,4 +15,10 @@ struct MockData {
         User(id: "user4", username: "user4@gmail", fullname: "User4", avatarUrl: "img_profile4", hasStory: true),
         User(id: "user5", username: "user5@asd", fullname: "User5", avatarUrl: "img_profile5"),
     ]
+    
+    static let posts: [Post] = [
+        Post(id: "1", uid: "1", caption: "Caption 1", imagesUrl: ["img_profile", "img_profile2"], categories: ["IGTV", "Shop"], user: users[0]),
+        Post(id: "2", uid: "2", caption: "Caption 2", imagesUrl: ["img_profile2", "img_profile3", "img_profile4"], categories: ["Sport", "Style", "Shop"], user: users[1]),
+        Post(id: "3", uid: "3", caption: "Caption 3", imagesUrl: ["img_profile5"], categories: [], user: users[2]),
+    ]
 }

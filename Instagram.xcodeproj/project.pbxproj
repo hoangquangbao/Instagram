@@ -78,6 +78,10 @@
 		CDAFADB928F7B258003B48E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADB828F7B258003B48E5 /* User.swift */; };
 		CDAFADBB28F7B681003B48E5 /* CircleAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADBA28F7B681003B48E5 /* CircleAvatar.swift */; };
 		CDAFADBD28F7B6BE003B48E5 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADBC28F7B6BE003B48E5 /* UserRow.swift */; };
+		CDAFADBF28F9196C003B48E5 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADBE28F9196C003B48E5 /* ExploreView.swift */; };
+		CDAFADC128F91A27003B48E5 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC028F91A27003B48E5 /* PostRow.swift */; };
+		CDAFADC328F91B45003B48E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC228F91B45003B48E5 /* Post.swift */; };
+		CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC428F91C69003B48E5 /* Date+Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +158,10 @@
 		CDAFADB828F7B258003B48E5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CDAFADBA28F7B681003B48E5 /* CircleAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleAvatar.swift; sourceTree = "<group>"; };
 		CDAFADBC28F7B6BE003B48E5 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
+		CDAFADBE28F9196C003B48E5 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		CDAFADC028F91A27003B48E5 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
+		CDAFADC228F91B45003B48E5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		CDAFADC428F91C69003B48E5 /* Date+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utilities.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +418,7 @@
 				CD41DB7528ED232F00870F55 /* Color+Utilities.swift */,
 				CD51112C28EE853F0090F2F4 /* String+Utilities.swift */,
 				CD51112E28EFE4750090F2F4 /* UIScreen+Utilities.swift */,
+				CDAFADC428F91C69003B48E5 /* Date+Utilities.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +439,7 @@
 				CD51113028F01BD00090F2F4 /* ImageGridLayout.swift */,
 				CDAFADBA28F7B681003B48E5 /* CircleAvatar.swift */,
 				CDAFADBC28F7B6BE003B48E5 /* UserRow.swift */,
+				CDAFADC028F91A27003B48E5 /* PostRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -461,6 +471,7 @@
 		CDAFADB328F6A557003B48E5 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
+				CDAFADBE28F9196C003B48E5 /* ExploreView.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -477,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				CDAFADB828F7B258003B48E5 /* User.swift */,
+				CDAFADC228F91B45003B48E5 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -649,6 +661,7 @@
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
 				CD51113128F01BD00090F2F4 /* ImageGridLayout.swift in Sources */,
 				CDAFADB228F6A449003B48E5 /* StorageService.swift in Sources */,
+				CDAFADC328F91B45003B48E5 /* Post.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
 				80B55EEA28F0092300BE341D /* SettingListData.swift in Sources */,
@@ -662,6 +675,8 @@
 				CDAFADBB28F7B681003B48E5 /* CircleAvatar.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
 				CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */,
+				CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */,
+				CDAFADBF28F9196C003B48E5 /* ExploreView.swift in Sources */,
 				CD51112F28EFE4760090F2F4 /* UIScreen+Utilities.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
 				CDAFADB928F7B258003B48E5 /* User.swift in Sources */,
@@ -670,6 +685,7 @@
 				CD51112D28EE853F0090F2F4 /* String+Utilities.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
 				0689E16728EA799D00AFBB92 /* RectPreference.swift in Sources */,
+				CDAFADC128F91A27003B48E5 /* PostRow.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				CD41DB7928ED380300870F55 /* AppStyle.swift in Sources */,
 				CD51112B28EE79E00090F2F4 /* ChoiceChip.swift in Sources */,

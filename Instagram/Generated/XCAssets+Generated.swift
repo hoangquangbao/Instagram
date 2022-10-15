@@ -6,6 +6,7 @@ import SwiftUI
 extension Image {
     static var icnInstagram: Image { return Image("icn_Instagram") }
     static var icnAdd: Image { return Image("icn_add") }
+    static var icnAddSquare: Image { return Image("icn_add_square") }
     static var icnBack: Image { return Image("icn_back") }
     static var icnBookmark: Image { return Image("icn_bookmark") }
     static var icnBurger: Image { return Image("icn_burger") }
@@ -17,7 +18,9 @@ extension Image {
     static var icnGrid: Image { return Image("icn_grid") }
     static var icnGridPf: Image { return Image("icn_grid_pf") }
     static var icnHeart: Image { return Image("icn_heart") }
+    static var icnHeartBold: Image { return Image("icn_heart_bold") }
     static var icnHome: Image { return Image("icn_home") }
+    static var icnHomeBold: Image { return Image("icn_home_bold") }
     static var icnLeedcode: Image { return Image("icn_leedcode") }
     static var icnLinkin: Image { return Image("icn_linkin") }
     static var icnLogo: Image { return Image("icn_logo") }
@@ -30,6 +33,7 @@ extension Image {
     static var icnPlusHl: Image { return Image("icn_plus_hl") }
     static var icnReels: Image { return Image("icn_reels") }
     static var icnSearch: Image { return Image("icn_search") }
+    static var icnSearchBold: Image { return Image("icn_search_bold") }
     static var icnSeries: Image { return Image("icn_series") }
     static var icnShare: Image { return Image("icn_share") }
     static var icnShop: Image { return Image("icn_shop") }
@@ -39,6 +43,7 @@ extension Image {
     static var icnUnHome: Image { return Image("icn_un_home") }
     static var icnUnSearch: Image { return Image("icn_un_search") }
     static var icnYoutube: Image { return Image("icn_youtube") }
+    static var iconSearch: Image { return Image("icon_search") }
     static var imgDog: Image { return Image("img_dog") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
     static var imgPfAvatar: Image { return Image("img_pf_avatar") }

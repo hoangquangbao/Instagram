@@ -31,6 +31,7 @@ struct SearchView: View {
         }
     }
 }
+
 // Components
 private extension SearchView {
     var _searchBar: some View {
@@ -59,19 +60,18 @@ private extension SearchView {
                 vm.searchText = ""
                 _searchIsFocused = false
             }
+        } label: {
+            Text("Cancel").font(.system(size: 16))
         }
-    label: {
-        Text("Cancel").font(.system(size: 16))
-    }
     }
     
     var _filteredBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(vm.filteredItems) { item in
+                ForEach(vm.categoriesFiltered) { item in
                     ChoiceChip(
                         titleKey: item.title,
-                        image: item.image,
+                        image: item.leadingIcon,
                         isSelected: vm.binding(for: item.title),
                         onSelected: { vm.toggle(for: item.title) }
                     )
@@ -87,7 +87,7 @@ private extension SearchView {
         Group {
             _filteredBar
             ScrollView {
-                ImageGridLayout(images: vm.images).padding(.top, 5)
+                ImageGridLayout(posts: vm.posts).padding(.top, 5)
             }
             
             Spacer()
@@ -135,16 +135,4 @@ struct SearchView_Previews: PreviewProvider {
         SearchView()
     }
 }
-
-struct ExploreView: View {
-    let image: ImageItem
-    
-    var body: some View {
-        VStack {
-            image.image
-            Text(image.category)
-        }
-    }
-}
-
 

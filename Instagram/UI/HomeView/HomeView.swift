@@ -22,9 +22,9 @@ struct HomeView: View {
                 
                 Divider()
                 
-                PostPage(description: "Beautiful")
-                PostPage(description: "Beautiful")
-                PostPage(description: "Beautiful")
+                ForEach(MockData.posts) { post in
+                    PostRow(post: post)
+                }
             }
         }
     }
@@ -89,139 +89,6 @@ extension HomeView {
             
             Text(name ?? "")
                 .font(.caption)
-        }
-    }
-    
-    private func PostPage(description: String?) -> some View {
-        VStack(alignment: .leading, spacing: 0.0) {
-            PostHeader()
-            
-            PostContent()
-            
-            Text("Liked by Meng To and others")
-                .font(.footnote)
-                .frame(width: .infinity, alignment: .leading)
-                .padding(.horizontal, 12)
-            
-            Text(description ?? "")
-                .font(.footnote)
-                .frame(width: .infinity, alignment: .leading)
-                .padding(.horizontal, 12)
-            
-            HStack {
-                HStack(spacing: 7.0) {
-                    Image.imgProfile
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .cornerRadius(50)
-                    
-                    Text("Add comment...")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 9)
-                
-                Spacer()
-                
-//                HStack(alignment: .center) {
-//                    Text("😍")
-//                    Text("😂")
-//                    Image(systemName: "plus.circle")
-//                        .foregroundColor(.secondary)
-//                }
-            }
-        }
-    }
-    
-    private func PostHeader() -> some View {
-        HStack {
-            HStack(spacing: 9.0) {
-                Image.imgProfile
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .cornerRadius(50)
-                
-                VStack(alignment: .leading) {
-                    Text("Willie Yam")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                    Text("Viet Nam")
-                        .font(.caption)
-                        .fontWeight(.light)
-                }
-            }
-            
-            Spacer()
-            
-            Image.icnMore
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 8)
-    }
-    
-    private func PostContent() -> some View {
-        VStack {
-            TabView(selection: $_currentStep) {
-                ForEach(0..<_listImage.count, id: \.self) { item in
-                    ZStack() {
-                        HStack() {
-                            Image(_listImage[item])
-                                .resizable()
-                                .frame(width: .infinity)
-                                .scaledToFit()
-                        }
-                        VStack(alignment: .leading) {
-                            HStack() {
-                                Spacer()
-                                HStack() {
-                                    Text(String(item+1))
-                                        .font(.system(size: 12)) + Text("/3").font(.system(size: 12))
-                                }
-                                .padding(7)
-                                .background(Color._121212.opacity(0.7))
-                                .foregroundColor(Color.f9F9F9)
-                                    .cornerRadius(10)
-                            }
-                            .padding(15)
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-                    .tag(item)
-                }
-            }
-            .frame(width: .infinity, height: 400)
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-
-            HStack {
-                HStack(spacing: 10.0) {
-                    Image.icnHeart
-                    Image.icnComment
-                    Image.icnShare
-                }
-                HStack() {
-                    ForEach(0..<_listImage.count, id: \.self) { item in
-                        if item == _currentStep {
-                            Rectangle()
-                                .frame(width: 10, height: 10)
-                                .cornerRadius(10)
-                                .foregroundColor(Color._3897F0)
-                        } else {
-                            Rectangle()
-                                .frame(width: 10, height: 10)
-                                .cornerRadius(10)
-                                .foregroundColor(Color._000000.opacity(0.15))
-                        }
-                    }
-                }.padding(.leading, 60)
-
-                Spacer()
-
-                Image.icnBookmark
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 9)
         }
     }
 }
