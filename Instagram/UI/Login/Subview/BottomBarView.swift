@@ -19,14 +19,14 @@ struct BottomBarView: View {
             Divider()
             HStack(alignment: .center, spacing: 4) {
                 Text(questionText ?? "")
-                    .font(.sfProTextRegular(13, relativeTo: .title1))
+                    .font(.sfProTextRegular(13, relativeTo: .caption1))
                     .foregroundColor(Color.black.opacity(0.5))
                 
                 Button {
                     action()
                 } label: {
                     Text(actionText)
-                        .font(.sfProTextSemibold(13, relativeTo: .title1))
+                        .font(.sfProTextSemibold(13, relativeTo: .caption1))
                         .foregroundColor(Color.blue)
                 }
             }

@@ -48,6 +48,7 @@
 		06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */; };
 		06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0B28F70E12003855D5 /* RectPreference.swift */; };
 		06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BB2C0D28F70E12003855D5 /* UnderlineModifier.swift */; };
+		06C02A4028FAF07B003E5E68 /* AddYourBirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C02A3F28FAF07B003E5E68 /* AddYourBirthdayView.swift */; };
 		06E9398D28D96CD30028F981 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398C28D96CD30028F981 /* FirebaseAuth */; };
 		06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 06E9398E28D96CD30028F981 /* FirebaseStorage */; };
 		06E9399128D972EB0028F981 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06E9399028D972EB0028F981 /* GoogleService-Info.plist */; };
@@ -124,6 +125,7 @@
 		06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		06BB2C0B28F70E12003855D5 /* RectPreference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectPreference.swift; sourceTree = "<group>"; };
 		06BB2C0D28F70E12003855D5 /* UnderlineModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineModifier.swift; sourceTree = "<group>"; };
+		06C02A3F28FAF07B003E5E68 /* AddYourBirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddYourBirthdayView.swift; sourceTree = "<group>"; };
 		06E9399028D972EB0028F981 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06E9399228D973160028F981 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		06F438AD28D334E7009EA3E1 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +217,7 @@
 				06BB2C0328F7026B003855D5 /* AddConfirmationCodeView.swift */,
 				06BB2C0528F70289003855D5 /* AddYourNameView.swift */,
 				06A1BE4D28F9AC58002DD172 /* AddAPasswordView.swift */,
+				06C02A3F28FAF07B003E5E68 /* AddYourBirthdayView.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */,
 				80B55EE328F006CF00BE341D /* HighlightDataModel.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
+				06C02A4028FAF07B003E5E68 /* AddYourBirthdayView.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

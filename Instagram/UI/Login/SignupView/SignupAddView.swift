@@ -52,7 +52,7 @@ extension SignupAddView {
             
             if _selectedIndex == 0 {
                 Text(vm.description)
-                    .font(.sfProTextRegular(13, relativeTo: .title1))
+                    .font(.sfProTextRegular(14, relativeTo: .caption1))
                     .foregroundColor(Color.black.opacity(0.5))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 30)
@@ -65,7 +65,7 @@ extension SignupAddView {
         VStack(spacing: 20) {
             Text(vm.description)
                 .font(.sfProTextRegular(15, relativeTo: .caption1))
-                .foregroundColor(Color.black.opacity(0.6))
+                .foregroundColor(Color.black.opacity(0.8))
                 .lineSpacing(3)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -106,7 +106,7 @@ extension SignupAddView {
             }
             
             Text(vm.saveTitle ?? "")
-                .font(.sfProTextRegular(13, relativeTo: .title1))
+                .font(.sfProTextRegular(13, relativeTo: .caption1))
                 .foregroundColor(Color.black.opacity(0.6))
             
             Spacer()

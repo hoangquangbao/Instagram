@@ -4,7 +4,7 @@ struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
-            .font(.sfProTextBold(16, relativeTo: .title1))
+            .font(.sfProTextBold(16, relativeTo: .caption1))
             .foregroundColor(.white)
             .frame(height: 45)
             .frame(maxWidth: .infinity)

@@ -14,7 +14,7 @@ struct FacebookLoginView: View {
                     .frame(width: 20, height: 20)
                 
                 Text(title)
-                    .font(.sfProTextSemibold(14, relativeTo: .title1))
+                    .font(.sfProTextSemibold(14, relativeTo: .caption1))
                     .foregroundColor(Color.blue)
             }
         }

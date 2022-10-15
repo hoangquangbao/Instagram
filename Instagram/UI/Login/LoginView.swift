@@ -122,13 +122,13 @@ extension LoginView {
             Divider()
             HStack(alignment: .center, spacing: 4) {
                 Text(vm.questionText)
-                    .font(.sfProTextRegular(13, relativeTo: .title1))
+                    .font(.sfProTextRegular(13, relativeTo: .caption1))
                     .foregroundColor(Color.black.opacity(0.5))
                 
                 NavigationLink(destination: AddEmailView(),
                                isActive: self.$perform.isBackLoginView) {
                     Text(vm.actionText)
-                        .font(.sfProTextSemibold(13, relativeTo: .title1))
+                        .font(.sfProTextSemibold(13, relativeTo: .caption1))
                         .foregroundColor(Color.blue)
                 }
             }

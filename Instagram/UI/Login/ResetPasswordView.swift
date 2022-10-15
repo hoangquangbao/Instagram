@@ -60,7 +60,7 @@ extension ResetPasswordView {
                     Text(vm.usernameOptionDescription)
                 }
             }
-            .font(.sfProTextRegular(14, relativeTo: .caption1))
+            .font(.sfProTextRegular(15, relativeTo: .caption1))
             .foregroundColor(Color.black.opacity(0.8))
             .lineSpacing(3)
             .multilineTextAlignment(.center)
@@ -90,7 +90,7 @@ extension ResetPasswordView {
             
             if !_isAccountExist {
                 Text(_alertText)
-                    .font(.sfProTextRegular(12, relativeTo: .title1))
+                    .font(.sfProTextRegular(12, relativeTo: .caption1))
                     .foregroundColor(Color.red)
             }
         }
