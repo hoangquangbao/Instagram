@@ -19,6 +19,7 @@
 		065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */; };
 		066E58BE28FBF96C00E02562 /* AddUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58BD28FBF96C00E02562 /* AddUsernameView.swift */; };
 		066E58C728FC516800E02562 /* SignupAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C628FC516800E02562 /* SignupAccountView.swift */; };
+		066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C828FC554B00E02562 /* SignupViewModel.swift */; };
 		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
 		06862E7C28DBF386005A5544 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */; };
@@ -96,6 +97,7 @@
 		065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailView.swift; sourceTree = "<group>"; };
 		066E58BD28FBF96C00E02562 /* AddUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsernameView.swift; sourceTree = "<group>"; };
 		066E58C628FC516800E02562 /* SignupAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAccountView.swift; sourceTree = "<group>"; };
+		066E58C828FC554B00E02562 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
 		06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
 				06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */,
 				065E64E028F7A5C100C9EE28 /* SignupAddViewModel.swift */,
+				066E58C828FC554B00E02562 /* SignupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */,
 				06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */,
 				80B55EE328F006CF00BE341D /* HighlightDataModel.swift in Sources */,
+				066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
 				06C02A4028FAF07B003E5E68 /* AddYourBirthdayView.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
