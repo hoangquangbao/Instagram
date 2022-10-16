@@ -11,8 +11,8 @@ struct AddYourNameView: View {
         NavigationView {
             VStack(spacing: 20) {
                 SignupAddView(vm: vm.addNameVM,
-                                text: $vm.fullName,
-                                isNavigation: $_isNavigation)
+                              text: $vm.fullName,
+                              isNavigation: $_isNavigation)
                 
                 BottomBarView(questionText: vm.addEmailVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") {

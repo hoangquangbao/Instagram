@@ -11,8 +11,8 @@ struct AddConfirmationCodeView: View {
         NavigationView {
             VStack(spacing: 20) {
                 SignupAddView(vm: vm.addConfirmationCodeVM,
-                                text: $vm.code,
-                                isNavigation: $_isNavigation)
+                              text: $vm.code,
+                              isNavigation: $_isNavigation)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

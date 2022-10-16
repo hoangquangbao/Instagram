@@ -11,8 +11,8 @@ struct AddEmailView: View {
         NavigationStack {
             VStack(spacing: 20) {
                 SignupAddView(vm: vm.addEmailVM,
-                                text: $vm.email,
-                                isNavigation: $_isNavigation)
+                              text: $vm.email,
+                              isNavigation: $_isNavigation)
                 
                 BottomBarView(questionText: vm.addEmailVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") { dismiss() }

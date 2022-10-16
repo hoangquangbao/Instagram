@@ -17,7 +17,8 @@
 		065E64DF28F7A52800C9EE28 /* SignupAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64DE28F7A52800C9EE28 /* SignupAddView.swift */; };
 		065E64E128F7A5C100C9EE28 /* SignupAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E028F7A5C100C9EE28 /* SignupAddViewModel.swift */; };
 		065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */; };
-		06786A9728EFB79300AABABC /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9628EFB79300AABABC /* SignupViewModel.swift */; };
+		066E58BE28FBF96C00E02562 /* AddUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58BD28FBF96C00E02562 /* AddUsernameView.swift */; };
+		066E58C328FC2A4100E02562 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C228FC2A4100E02562 /* SignupViewModel.swift */; };
 		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
 		06862E7C28DBF386005A5544 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */; };
@@ -93,7 +94,8 @@
 		065E64DE28F7A52800C9EE28 /* SignupAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAddView.swift; sourceTree = "<group>"; };
 		065E64E028F7A5C100C9EE28 /* SignupAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAddViewModel.swift; sourceTree = "<group>"; };
 		065E64E228F7B4ED00C9EE28 /* AddEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmailView.swift; sourceTree = "<group>"; };
-		06786A9628EFB79300AABABC /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		066E58BD28FBF96C00E02562 /* AddUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUsernameView.swift; sourceTree = "<group>"; };
+		066E58C228FC2A4100E02562 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
 		06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				06BB2C0528F70289003855D5 /* AddYourNameView.swift */,
 				06A1BE4D28F9AC58002DD172 /* AddAPasswordView.swift */,
 				06C02A3F28FAF07B003E5E68 /* AddYourBirthdayView.swift */,
+				066E58BD28FBF96C00E02562 /* AddUsernameView.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -228,7 +231,7 @@
 				064EE19E28DC20E5002B83EF /* LoginViewModel.swift */,
 				06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */,
 				065E64E028F7A5C100C9EE28 /* SignupAddViewModel.swift */,
-				06786A9628EFB79300AABABC /* SignupViewModel.swift */,
+				066E58C228FC2A4100E02562 /* SignupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -651,8 +654,10 @@
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
 				06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
+				066E58C328FC2A4100E02562 /* SignupViewModel.swift in Sources */,
 				06A3486128F2E47C00587B14 /* FacebookLoginView.swift in Sources */,
 				CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */,
+				066E58BE28FBF96C00E02562 /* AddUsernameView.swift in Sources */,
 				CD51112F28EFE4760090F2F4 /* UIScreen+Utilities.swift in Sources */,
 				CD51112D28EE853F0090F2F4 /* String+Utilities.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
@@ -671,7 +676,6 @@
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
 				06BB2C0428F7026B003855D5 /* AddConfirmationCodeView.swift in Sources */,
 				065E64E128F7A5C100C9EE28 /* SignupAddViewModel.swift in Sources */,
-				06786A9728EFB79300AABABC /* SignupViewModel.swift in Sources */,
 				801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */,
 				065E64DF28F7A52800C9EE28 /* SignupAddView.swift in Sources */,
 				06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */,

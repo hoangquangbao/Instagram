@@ -3,25 +3,34 @@ import SwiftUI
 struct SignupAddView: View {
     
     @ObservedObject var vm: SignupAddViewModel
+    
     @State private var _selectedIndex: Int = 1
+    @State private var _selectedDate: Date = Date.now
+    
+    @State private var _isShowAge: Bool = false
     @State private var _isSavePassword: Bool = false
     
     @Binding var text: String
     @Binding var isNavigation: Bool
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text(vm.headerTitle)
-                .font(.sfProTextBold(22, relativeTo: .largeTitle))
-            
-            if vm.type == .add_email {
-                addEmailView()
-            } else {
-                otherView()
+        VStack {
+            VStack(spacing: 20) {
+                if vm.type == .add_email {
+                    addEmailView()
+                } else if vm.type == .add_birthday {
+                    addYourBirthdayView()
+                } else {
+                    otherView()
+                }
+                Spacer()
             }
-            Spacer()
+            .padding(.horizontal, 30)
+            
+            if vm.type == .add_birthday {
+                addYourBirthdayView_Ext()
+            }
         }
-        .padding(.horizontal, 30)
     }
 }
 
@@ -29,6 +38,9 @@ extension SignupAddView {
     
     private func addEmailView() -> some View {
         VStack(spacing: 20) {
+            Text(vm.headerTitle)
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+            
             SegmentedPickerView(
                 titles: vm.pickerTitle ?? [],
                 selectedIndex: $_selectedIndex)
@@ -61,8 +73,93 @@ extension SignupAddView {
         }
     }
     
+    private func addYourBirthdayView() -> some View {
+        VStack(spacing: 20) {
+            Image.imgBirthday
+                .resizable()
+                .scaledToFill()
+                .frame(width: 160, height: 160)
+            
+            Text(vm.headerTitle)
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+            
+            VStack(spacing: 5) {
+                Text(vm.description)
+                    .foregroundColor(Color.black.opacity(0.8))
+                
+                Text(vm.actionText ?? "")
+                    .foregroundColor(Color.blue.opacity(0.8))
+                    .onTapGesture {
+                        
+                    }
+            }
+            .font(.sfProTextRegular(15, relativeTo: .caption1))
+            .lineSpacing(3)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            
+            HStack {
+                Text(setDateString(selectedDate: _selectedDate))
+                    .font(.sfProTextRegular(15, relativeTo: .caption1))
+                    .foregroundColor(Color.black.opacity(_isShowAge ? 1 : 0.5))
+                
+                Spacer()
+                
+                if _isShowAge {
+                    Text(String(_selectedDate.age) + vm.textfieldTitle)
+                        .font(.sfProTextRegular(13, relativeTo: .caption1))
+                        .foregroundColor(Color.black.opacity(0.5))
+                }
+            }
+            .padding(.horizontal, 8)
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .overlay {
+                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
+            }
+            .background {
+                Color.white
+            }
+            .cornerRadius(5)
+        }
+    }
+    
+    private func addYourBirthdayView_Ext() -> some View {
+        VStack {
+            Text(vm.description_ext ?? "")
+                .font(.sfProTextRegular(13, relativeTo: .caption1))
+                .foregroundColor(Color.black.opacity(0.5))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            Divider()
+            Group {
+                Button {
+                    isNavigation = vm.action()
+                } label: {
+                    Text(vm.buttonLable)
+                }
+                .buttonStyle(CustomButtonStyle())
+                
+                DatePicker("", selection: $_selectedDate, in: ...Date(), displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .padding(.top, -30)
+                    .padding(.bottom, -120)
+                    .scaleEffect(CGSize(width: 0.9, height: 0.9))
+                    .onChange(of: _selectedDate) { newValue in
+                        _isShowAge = true
+                        text = setDateString(selectedDate: _selectedDate)
+                    }
+            }
+            .padding(.horizontal)
+        }
+    }
+    
     private func otherView() -> some View {
         VStack(spacing: 20) {
+            Text(vm.headerTitle)
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+            
             Text(vm.description)
                 .font(.sfProTextRegular(15, relativeTo: .caption1))
                 .foregroundColor(Color.black.opacity(0.8))
@@ -112,4 +209,19 @@ extension SignupAddView {
             Spacer()
         }
     }
+}
+
+extension SignupAddView {
+    
+    ///Use in addYourBirthdayView()
+    private func setDateString(selectedDate: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy"
+        return formatter.string(from: selectedDate)
+    }
+}
+
+extension Date {
+    ///Use in addYourBirthdayView()
+    var age: Int { Calendar.current.dateComponents([.year], from: self, to: Date()).year! }
 }

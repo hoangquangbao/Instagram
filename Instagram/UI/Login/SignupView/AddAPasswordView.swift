@@ -11,8 +11,8 @@ struct AddAPasswordView: View {
         NavigationView {
             VStack(spacing: 20) {
                 SignupAddView(vm: vm.addPasswordVM,
-                                text: $vm.password,
-                                isNavigation: $_isNavigation)
+                              text: $vm.password,
+                              isNavigation: $_isNavigation)
                 
                 BottomBarView(questionText: vm.addEmailVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") {
