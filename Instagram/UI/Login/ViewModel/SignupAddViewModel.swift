@@ -6,6 +6,7 @@ enum OnScreen {
     case add_full_name
     case add_password
     case add_birthday
+    case add_username
 }
 
 class SignupAddViewModel: ObservableObject {
