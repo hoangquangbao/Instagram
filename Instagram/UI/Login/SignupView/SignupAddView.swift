@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct SignupAddView: View {
     
     @ObservedObject var vm: SignupAddViewModel
@@ -22,7 +23,7 @@ struct SignupAddView: View {
                     addYourBirthdayView()
                 } else if vm.type == .signup_account {
                     signupAccountView()
-                } else if vm.type == .find_friend {
+                } else if (vm.type == .find_friend || vm.type == .add_photo) {
                     connectView()
                 } else {
                     otherView()
@@ -35,13 +36,14 @@ struct SignupAddView: View {
                 addYourBirthdayView_Ext()
             } else if vm.type == .signup_account {
                 signupAccountView_Ext()
-            } else if vm.type == .find_friend {
+            } else if (vm.type == .find_friend || vm.type == .add_photo) {
                 connectView_Ext()
             }
         }
     }
 }
 
+@available(iOS 16.0, *)
 extension SignupAddView {
     
     private func addEmailView() -> some View {
@@ -190,7 +192,7 @@ extension SignupAddView {
     }
     
     private func signupAccountView_Ext() -> some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
             Divider()
             
             Button {
@@ -218,12 +220,13 @@ extension SignupAddView {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 Spacer()
-                
-                Image.imgFindFriend
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 160, height: 160)
-                    .offset(x: 15)
+
+                Image(systemName: vm.imageSystemName ?? "")
+                    .fontWeight(.ultraLight)
+                    .font(.system(size: 120))
+                    .foregroundStyle(
+                        AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
+                    )
                 
                 Spacer()
             }
@@ -308,6 +311,7 @@ extension SignupAddView {
     }
 }
 
+@available(iOS 16.0, *)
 extension SignupAddView {
     
     ///Use in addYourBirthdayView()

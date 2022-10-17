@@ -21,6 +21,7 @@
 		066E58C728FC516800E02562 /* SignupAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C628FC516800E02562 /* SignupAccountView.swift */; };
 		066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C828FC554B00E02562 /* SignupViewModel.swift */; };
 		06704FFB28FD9B8C00814F91 /* FindFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06704FFA28FD9B8C00814F91 /* FindFriendView.swift */; };
+		06704FFD28FDC42400814F91 /* SharePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06704FFC28FDC42400814F91 /* SharePhotoView.swift */; };
 		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
 		067AB19528FCFFFD00CA081E /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067AB19428FCFFFD00CA081E /* AddPhotoView.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
@@ -101,6 +102,7 @@
 		066E58C628FC516800E02562 /* SignupAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAccountView.swift; sourceTree = "<group>"; };
 		066E58C828FC554B00E02562 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		06704FFA28FD9B8C00814F91 /* FindFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendView.swift; sourceTree = "<group>"; };
+		06704FFC28FDC42400814F91 /* SharePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoView.swift; sourceTree = "<group>"; };
 		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		067AB19428FCFFFD00CA081E /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				066E58C628FC516800E02562 /* SignupAccountView.swift */,
 				06704FFA28FD9B8C00814F91 /* FindFriendView.swift */,
 				067AB19428FCFFFD00CA081E /* AddPhotoView.swift */,
+				06704FFC28FDC42400814F91 /* SharePhotoView.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -660,6 +663,7 @@
 				062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */,
 				801A567128EFC7260025D9C8 /* HomeView.swift in Sources */,
 				066E58C728FC516800E02562 /* SignupAccountView.swift in Sources */,
+				06704FFD28FDC42400814F91 /* SharePhotoView.swift in Sources */,
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
 				06E9399328D973160028F981 /* FirebaseManager.swift in Sources */,
 				067AB19528FCFFFD00CA081E /* AddPhotoView.swift in Sources */,

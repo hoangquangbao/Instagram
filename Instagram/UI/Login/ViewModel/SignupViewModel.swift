@@ -123,11 +123,12 @@ class SignupViewModel: ObservableObject {
             action: {
                 return true
             })
-        self.addPhotoVM = SignupAddViewModel(
-            type: .add_photo,
-            headerTitle: "Add profile photo",
-            buttonLable: "Add a photos",
-            description: "Add a profile photo so your friend know it's you.",
+        self.findFriendVM = SignupAddViewModel(
+            type: .find_friend,
+            headerTitle: "Find Facebook Friends",
+            buttonLable: "Find friends",
+            imageSystemName: "faceid",
+            description: "You choose which friends to follow. We'll never post to Facebook without your permission.",
             actionText: "Skip",
             action: {
                 return true
@@ -135,11 +136,12 @@ class SignupViewModel: ObservableObject {
             action_ext: {
                 
             })
-        self.findFriendVM = SignupAddViewModel(
-            type: .find_friend,
-            headerTitle: "Find Facebook Friends",
-            buttonLable: "Find friends",
-            description: "You choose which friends to follow. We'll never post to Facebook without your permission.",
+        self.addPhotoVM = SignupAddViewModel(
+            type: .add_photo,
+            headerTitle: "Add profile photo",
+            buttonLable: "Add a photos",
+            imageSystemName: "person.crop.circle.badge.plus",
+            description: "Add a profile photo so your friend know it's you.",
             actionText: "Skip",
             action: {
                 return true

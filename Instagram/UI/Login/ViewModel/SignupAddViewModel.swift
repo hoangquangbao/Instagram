@@ -21,6 +21,7 @@ class SignupAddViewModel: ObservableObject {
     let textfieldTitle: String?
     let buttonLable: String
     let saveTitle: String?
+    let imageSystemName: String?
     let description: String
     let description_ext: String?
     let questionText: String?
@@ -35,6 +36,7 @@ class SignupAddViewModel: ObservableObject {
          textfieldTitle: String? = nil,
          buttonLable: String,
          saveTitle: String? = nil,
+         imageSystemName: String? = nil,
          description: String,
          description_ext: String? = nil,
          questionText: String? = nil,
@@ -48,6 +50,7 @@ class SignupAddViewModel: ObservableObject {
         self.textfieldTitle = textfieldTitle
         self.buttonLable = buttonLable
         self.saveTitle = saveTitle
+        self.imageSystemName = imageSystemName
         self.description = description
         self.description_ext = description_ext
         self.questionText = questionText
