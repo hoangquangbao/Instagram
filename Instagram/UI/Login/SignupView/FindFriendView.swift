@@ -1,36 +1,29 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct SignupAccountView: View {
+struct FindFriendView: View {
     
     @EnvironmentObject var vm: SignupViewModel
-    @EnvironmentObject var perform: BackLoginView
     @State private var _isNavigation: Bool = false
-        
+    
     var body: some View {
         NavigationView {
             VStack {
-                SignupAddView(vm: vm.signupAccountVM,
+                SignupAddView(vm: vm.findFriendVM,
                               text: $vm.email,
                               isNavigation: $_isNavigation)
-                
-                BottomBarView(questionText: vm.addEmailVM.questionText,
-                              actionText: vm.addEmailVM.actionText ?? "") {
-                    perform.isBackLoginView = false
-                }
-                              .padding(.top, 30)
             }
             .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { FindFriendView() })
+                                   destination: { AddPhotoView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
 @available(iOS 16.0, *)
-struct SignupAccountView_Previews: PreviewProvider {
+struct FindFriendView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupAccountView()
+        FindFriendView()
             .environmentObject(SignupViewModel())
     }
 }

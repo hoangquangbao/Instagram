@@ -8,6 +8,7 @@ enum OnScreen {
     case add_birthday
     case add_username
     case signup_account
+    case find_friend
     case add_photo
 }
 

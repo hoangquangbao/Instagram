@@ -15,13 +15,15 @@ struct SignupAddView: View {
     
     var body: some View {
         VStack {
-            VStack(spacing: 20) {
+            VStack {
                 if vm.type == .add_email {
                     addEmailView()
                 } else if vm.type == .add_birthday {
                     addYourBirthdayView()
                 } else if vm.type == .signup_account {
                     signupAccountView()
+                } else if vm.type == .find_friend {
+                    connectView()
                 } else {
                     otherView()
                 }
@@ -31,10 +33,10 @@ struct SignupAddView: View {
             
             if vm.type == .add_birthday {
                 addYourBirthdayView_Ext()
-            }
-            
-            if vm.type == .signup_account {
+            } else if vm.type == .signup_account {
                 signupAccountView_Ext()
+            } else if vm.type == .find_friend {
+                connectView_Ext()
             }
         }
     }
@@ -139,6 +141,7 @@ extension SignupAddView {
                 .padding(.horizontal)
             
             Divider()
+            
             Group {
                 Button {
                     isNavigation = vm.action()
@@ -163,11 +166,10 @@ extension SignupAddView {
     
     private func signupAccountView() -> some View {
         VStack(spacing: 20) {
-            
             Text(vm.headerTitle)
                 .font(.sfProTextBold(22, relativeTo: .largeTitle))
                 .padding(.top, 50)
-
+            
             Text(vm.description)
                 .font(.sfProTextRegular(15, relativeTo: .caption1))
                 .foregroundColor(Color.black.opacity(0.8))
@@ -188,7 +190,7 @@ extension SignupAddView {
     }
     
     private func signupAccountView_Ext() -> some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 20) {
             Divider()
             
             Button {
@@ -197,6 +199,55 @@ extension SignupAddView {
                 Text(vm.buttonLable)
             }
             .buttonStyle(CustomButtonStyle())
+            .padding(.horizontal)
+        }
+    }
+    
+    private func connectView() -> some View {
+        VStack(spacing: 20) {
+            Group {
+                Text(vm.headerTitle)
+                    .font(.sfProTextBold(22, relativeTo: .largeTitle))
+                    .padding(.top, 50)
+                
+                Text(vm.description)
+                    .font(.sfProTextRegular(15, relativeTo: .caption1))
+                    .foregroundColor(Color.black.opacity(0.8))
+                    .lineSpacing(3)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Spacer()
+                
+                Image.imgFindFriend
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 160, height: 160)
+                    .offset(x: 15)
+                
+                Spacer()
+            }
+        }
+    }
+    
+    private func connectView_Ext() -> some View {
+        VStack(spacing: 20) {
+            Divider()
+            
+            Group {
+                Button {
+                } label: {
+                    Text(vm.buttonLable)
+                }
+                .buttonStyle(CustomButtonStyle())
+                
+                Button {
+                    isNavigation = vm.action()
+                } label: {
+                    Text(vm.actionText ?? "")
+                        .font(.sfProTextBold(16, relativeTo: .caption1))
+                }
+            }
             .padding(.horizontal)
         }
     }

@@ -24,6 +24,7 @@ class SignupViewModel: ObservableObject {
     var addUsernameVM: SignupAddViewModel
     var addPhotoVM: SignupAddViewModel
     var signupAccountVM: SignupAddViewModel
+    var findFriendVM: SignupAddViewModel
     
     init(email: String = "",
          code: String = "",
@@ -127,6 +128,18 @@ class SignupViewModel: ObservableObject {
             headerTitle: "Add profile photo",
             buttonLable: "Add a photos",
             description: "Add a profile photo so your friend know it's you.",
+            actionText: "Skip",
+            action: {
+                return true
+            },
+            action_ext: {
+                
+            })
+        self.findFriendVM = SignupAddViewModel(
+            type: .find_friend,
+            headerTitle: "Find Facebook Friends",
+            buttonLable: "Find friends",
+            description: "You choose which friends to follow. We'll never post to Facebook without your permission.",
             actionText: "Skip",
             action: {
                 return true
