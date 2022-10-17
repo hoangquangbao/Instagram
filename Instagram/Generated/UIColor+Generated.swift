@@ -11,4 +11,5 @@ extension Color {
     static var _3797Ef: Color { return Color("#3797EF") }
     static var _3897F0: Color { return Color("#3897F0") }
     static var f9F9F9: Color { return Color("#F9F9F9") }
+    static var fafafa: Color { return Color("#FAFAFA") }
 }

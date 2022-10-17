@@ -63,6 +63,10 @@
 		06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC028D46818002095E5 /* UIColor.stencil */; };
 		06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1728DF2255007A5F3A /* BottomBarView.swift */; };
 		0FFCD04E5C9BCC65B9DAC070 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E84F294C7EF19A028157A31 /* libPods-Instagram.a */; };
+		801907FD28FCF0CE0014F962 /* LikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801907FC28FCF0CE0014F962 /* LikesView.swift */; };
+		801907FF28FD0EB10014F962 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801907FE28FD0EB10014F962 /* ActivityView.swift */; };
+		8019080128FD0F220014F962 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8019080028FD0F220014F962 /* ActivityModel.swift */; };
+		8019080328FD32CB0014F962 /* PostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8019080228FD32CB0014F962 /* PostDataModel.swift */; };
 		801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A566E28EFC7160025D9C8 /* TabbarBottomView.swift */; };
 		801A567128EFC7260025D9C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A567028EFC7260025D9C8 /* HomeView.swift */; };
 		80B55EDB28F0036000BE341D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EDA28F0036000BE341D /* ProfileView.swift */; };
@@ -141,6 +145,10 @@
 		06F6ACC028D46818002095E5 /* UIColor.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = UIColor.stencil; sourceTree = "<group>"; };
 		06FD5A1728DF2255007A5F3A /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
 		6308D98B2E503DC3FA20A643 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
+		801907FC28FCF0CE0014F962 /* LikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesView.swift; sourceTree = "<group>"; };
+		801907FE28FD0EB10014F962 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		8019080028FD0F220014F962 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		8019080228FD32CB0014F962 /* PostDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataModel.swift; sourceTree = "<group>"; };
 		801A566E28EFC7160025D9C8 /* TabbarBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarBottomView.swift; sourceTree = "<group>"; };
 		801A567028EFC7260025D9C8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		80B55EDA28F0036000BE341D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -191,6 +199,7 @@
 		064EE19B28DC2097002B83EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				801907FB28FCF0680014F962 /* LikesView */,
 				CD41DB7A28ED3F4700870F55 /* Components */,
 				CD273B4828EC27F000E7B06F /* Search */,
 				80B55ED928F0035100BE341D /* ProfileView */,
@@ -366,6 +375,17 @@
 				8E84F294C7EF19A028157A31 /* libPods-Instagram.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		801907FB28FCF0680014F962 /* LikesView */ = {
+			isa = PBXGroup;
+			children = (
+				801907FC28FCF0CE0014F962 /* LikesView.swift */,
+				801907FE28FD0EB10014F962 /* ActivityView.swift */,
+				8019080028FD0F220014F962 /* ActivityModel.swift */,
+				8019080228FD32CB0014F962 /* PostDataModel.swift */,
+			);
+			path = LikesView;
 			sourceTree = "<group>";
 		};
 		801A566B28EFC6DD0025D9C8 /* TabbarBottom */ = {
@@ -648,6 +668,7 @@
 				06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
+				801907FD28FCF0CE0014F962 /* LikesView.swift in Sources */,
 				80B55EEA28F0092300BE341D /* SettingListData.swift in Sources */,
 				CD41DB7C28ED3F7800870F55 /* SearchBar.swift in Sources */,
 				062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */,
@@ -662,8 +683,10 @@
 				CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */,
 				066E58BE28FBF96C00E02562 /* AddUsernameView.swift in Sources */,
 				CD51112F28EFE4760090F2F4 /* UIScreen+Utilities.swift in Sources */,
+				8019080128FD0F220014F962 /* ActivityModel.swift in Sources */,
 				CD51112D28EE853F0090F2F4 /* String+Utilities.swift in Sources */,
 				065B7EC228DC473D00AA9166 /* DivideView.swift in Sources */,
+				801907FF28FD0EB10014F962 /* ActivityView.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				CD41DB7928ED380300870F55 /* AppStyle.swift in Sources */,
 				06A1BE4E28F9AC58002DD172 /* AddAPasswordView.swift in Sources */,
@@ -686,6 +709,7 @@
 				80B55EE328F006CF00BE341D /* HighlightDataModel.swift in Sources */,
 				066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */,
 				06FD5A1828DF2255007A5F3A /* BottomBarView.swift in Sources */,
+				8019080328FD32CB0014F962 /* PostDataModel.swift in Sources */,
 				06C02A4028FAF07B003E5E68 /* AddYourBirthdayView.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 			);
