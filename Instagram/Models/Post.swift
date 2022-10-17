@@ -14,16 +14,20 @@ struct Post: Identifiable, Decodable, Equatable {
     let caption: String
     var imagesUrl: [String]
     var categories: [String]
-    var likes: Int = 0
+    var likes: [User] = []
+    var comments: [User] = []
     var timestamp: Timestamp = Timestamp(date: Date())
     
     var user: User?
     var didLike: Bool = false
     
+    var likeCount: Int { return likes.count }
+    var commentCount: Int { return comments.count }
+    var latestUserLiked: User { return likes[likeCount - 1] }
+    
     static func == (lhs: Post, rhs: Post) -> Bool {
         return lhs.uid == rhs.uid
     }
-    
     
     func getTimePostAgo() -> String {
         return self.timestamp.dateValue().timeAgoDisplay()

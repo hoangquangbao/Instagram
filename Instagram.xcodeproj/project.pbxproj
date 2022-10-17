@@ -82,6 +82,11 @@
 		CDAFADC128F91A27003B48E5 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC028F91A27003B48E5 /* PostRow.swift */; };
 		CDAFADC328F91B45003B48E5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC228F91B45003B48E5 /* Post.swift */; };
 		CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC428F91C69003B48E5 /* Date+Utilities.swift */; };
+		CDAFADC828FABDB9003B48E5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC728FABDB9003B48E5 /* HomeViewModel.swift */; };
+		CDAFADCA28FCF941003B48E5 /* SquareImageTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADC928FCF941003B48E5 /* SquareImageTab.swift */; };
+		CDAFADCF28FD011A003B48E5 /* PostRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADCE28FD011A003B48E5 /* PostRowViewModel.swift */; };
+		CDAFADD128FD0D22003B48E5 /* ImageTabIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADD028FD0D22003B48E5 /* ImageTabIndicator.swift */; };
+		CDAFADD328FD13AE003B48E5 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADD228FD13AE003B48E5 /* IconButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +167,11 @@
 		CDAFADC028F91A27003B48E5 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
 		CDAFADC228F91B45003B48E5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CDAFADC428F91C69003B48E5 /* Date+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utilities.swift"; sourceTree = "<group>"; };
+		CDAFADC728FABDB9003B48E5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CDAFADC928FCF941003B48E5 /* SquareImageTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareImageTab.swift; sourceTree = "<group>"; };
+		CDAFADCE28FD011A003B48E5 /* PostRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowViewModel.swift; sourceTree = "<group>"; };
+		CDAFADD028FD0D22003B48E5 /* ImageTabIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTabIndicator.swift; sourceTree = "<group>"; };
+		CDAFADD228FD13AE003B48E5 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				801A567028EFC7260025D9C8 /* HomeView.swift */,
+				CDAFADC728FABDB9003B48E5 /* HomeViewModel.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -434,12 +445,15 @@
 		CD41DB7A28ED3F4700870F55 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CDAFADCD28FD00FF003B48E5 /* PostRow */,
 				CD41DB7B28ED3F7800870F55 /* SearchBar.swift */,
 				CD51112A28EE79E00090F2F4 /* ChoiceChip.swift */,
 				CD51113028F01BD00090F2F4 /* ImageGridLayout.swift */,
 				CDAFADBA28F7B681003B48E5 /* CircleAvatar.swift */,
 				CDAFADBC28F7B6BE003B48E5 /* UserRow.swift */,
-				CDAFADC028F91A27003B48E5 /* PostRow.swift */,
+				CDAFADC928FCF941003B48E5 /* SquareImageTab.swift */,
+				CDAFADD028FD0D22003B48E5 /* ImageTabIndicator.swift */,
+				CDAFADD228FD13AE003B48E5 /* IconButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -491,6 +505,15 @@
 				CDAFADC228F91B45003B48E5 /* Post.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CDAFADCD28FD00FF003B48E5 /* PostRow */ = {
+			isa = PBXGroup;
+			children = (
+				CDAFADC028F91A27003B48E5 /* PostRow.swift */,
+				CDAFADCE28FD011A003B48E5 /* PostRowViewModel.swift */,
+			);
+			path = PostRow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -661,6 +684,7 @@
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
 				CD51113128F01BD00090F2F4 /* ImageGridLayout.swift in Sources */,
 				CDAFADB228F6A449003B48E5 /* StorageService.swift in Sources */,
+				CDAFADCF28FD011A003B48E5 /* PostRowViewModel.swift in Sources */,
 				CDAFADC328F91B45003B48E5 /* Post.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
@@ -671,13 +695,17 @@
 				801A567128EFC7260025D9C8 /* HomeView.swift in Sources */,
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
 				06E9399328D973160028F981 /* FirebaseManager.swift in Sources */,
+				CDAFADD128FD0D22003B48E5 /* ImageTabIndicator.swift in Sources */,
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
 				CDAFADBB28F7B681003B48E5 /* CircleAvatar.swift in Sources */,
+				CDAFADCA28FCF941003B48E5 /* SquareImageTab.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,
+				CDAFADD328FD13AE003B48E5 /* IconButton.swift in Sources */,
 				CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */,
 				CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */,
 				CDAFADBF28F9196C003B48E5 /* ExploreView.swift in Sources */,
 				CD51112F28EFE4760090F2F4 /* UIScreen+Utilities.swift in Sources */,
+				CDAFADC828FABDB9003B48E5 /* HomeViewModel.swift in Sources */,
 				06F438B328D334E7009EA3E1 /* ContentView.swift in Sources */,
 				CDAFADB928F7B258003B48E5 /* User.swift in Sources */,
 				0600FC4028E005EE00F374C5 /* ImageTextButtonView.swift in Sources */,

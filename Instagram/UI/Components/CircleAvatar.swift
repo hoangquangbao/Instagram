@@ -22,11 +22,12 @@ struct CircleAvatar: View {
 
 extension CircleAvatar {
     func addGradientBorder(gradient: LinearGradient, lineWidth: CGFloat = 2.3, spacing: CGFloat = 8) -> some View {
-        self.overlay(
+        ZStack {
+            self
             Circle()
                 .stroke(gradient, lineWidth: lineWidth)
                 .frame(width: radius + spacing, height: radius + spacing)
-        )
+        }
     }
 }
 

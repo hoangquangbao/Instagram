@@ -24,7 +24,7 @@ struct UserRow: View {
                 
                 Text(user.fullname)
                     .font(.caption)
-                    .foregroundColor(Color("semiText"))
+                    .foregroundColor(Color.semiText)
             }
             Spacer()
         }

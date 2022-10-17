@@ -27,7 +27,7 @@ struct ChoiceChip: View {
         .cornerRadius(_cornerRadius)
         .overlay {
             RoundedRectangle(cornerRadius: _cornerRadius)
-                .stroke(Color("#3C3C43"), lineWidth: 1.5)
+                .stroke(Color._3C3C43, lineWidth: 1.5)
         }
         .onTapGesture(perform: _onTap)
     }
@@ -35,11 +35,11 @@ struct ChoiceChip: View {
 
 private extension ChoiceChip {
     var _foregroundColor: Color {
-        return isSelected ? Color("#FFFFFF") : Color("#000000")
+        return isSelected ? Color.ffffff : Color._000000
     }
     
     var _backgroundColor: Color {
-        return isSelected ? Color("#000000") : Color("#FFFFFF")
+        return isSelected ? Color._000000 : Color.ffffff
     }
     
     func _onTap() {

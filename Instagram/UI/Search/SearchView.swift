@@ -15,7 +15,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color("background").ignoresSafeArea()
+                Color.background.ignoresSafeArea()
                 
                 VStack {
                     HStack {
