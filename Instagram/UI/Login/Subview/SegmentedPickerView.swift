@@ -5,7 +5,8 @@ struct SegmentedPickerView: View {
     @Binding private var selectedIndex: Int
     @State private var frames: Array<CGRect>
     
-    init(titles: [String], selectedIndex: Binding<Int>)
+    init(titles: [String],
+         selectedIndex: Binding<Int>)
     {
         self.titles = titles
         self._selectedIndex = selectedIndex
@@ -24,7 +25,7 @@ struct SegmentedPickerView: View {
                         })
                         {
                             Text(titles[index])
-                                .font(.sfProTextSemibold(20, relativeTo: .title1))
+                                .font(.sfProTextSemibold(20, relativeTo: .caption1))
                                 .frame(height: 40)
                                 .frame(width: geometry.size.width / CGFloat(titles.count))
                                 .foregroundColor(selectedIndex == index ? .black : .gray)

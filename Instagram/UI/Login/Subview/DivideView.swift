@@ -8,7 +8,7 @@ struct DivideView: View {
             }
             
             Text("OR")
-                .font(.sfProTextSemibold(12, relativeTo: .title1))
+                .font(.sfProTextSemibold(12, relativeTo: .caption1))
                 .foregroundColor(Color.black.opacity(0.5))
             
             VStack {

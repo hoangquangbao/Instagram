@@ -44,6 +44,7 @@ extension Image {
     static var icnUnSearch: Image { return Image("icn_un_search") }
     static var icnYoutube: Image { return Image("icn_youtube") }
     static var iconSearch: Image { return Image("icon_search") }
+    static var imgBirthday: Image { return Image("img_birthday") }
     static var imgDog: Image { return Image("img_dog") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
     static var imgPfAvatar: Image { return Image("img_pf_avatar") }
