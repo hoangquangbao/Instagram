@@ -85,10 +85,12 @@ extension SignupAddView {
     
     private func addYourBirthdayView() -> some View {
         VStack(spacing: 20) {
-            Image.imgBirthday
-                .resizable()
-                .scaledToFill()
-                .frame(width: 160, height: 160)
+            Image(systemName: vm.imageSystemName ?? "")
+                .fontWeight(.ultraLight)
+                .font(.system(size: 100))
+                .foregroundStyle(
+                    AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
+                )
             
             Text(vm.headerTitle)
                 .font(.sfProTextBold(22, relativeTo: .largeTitle))
@@ -220,7 +222,7 @@ extension SignupAddView {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 Spacer()
-
+                
                 Image(systemName: vm.imageSystemName ?? "")
                     .fontWeight(.ultraLight)
                     .font(.system(size: 120))

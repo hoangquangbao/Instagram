@@ -24,5 +24,6 @@ struct AddPhotoView: View {
 struct AddPhotoView_Previews: PreviewProvider {
     static var previews: some View {
         AddPhotoView()
+            .environmentObject(SignupViewModel())
     }
 }

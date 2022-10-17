@@ -39,9 +39,7 @@ extension Image {
     static var icnUnHome: Image { return Image("icn_un_home") }
     static var icnUnSearch: Image { return Image("icn_un_search") }
     static var icnYoutube: Image { return Image("icn_youtube") }
-    static var imgBirthday: Image { return Image("img_birthday") }
     static var imgDog: Image { return Image("img_dog") }
-    static var imgFindFriend: Image { return Image("img_find_friend") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
     static var imgPfAvatar: Image { return Image("img_pf_avatar") }
     static var imgPost1: Image { return Image("img_post_1") }

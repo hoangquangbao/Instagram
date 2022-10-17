@@ -95,6 +95,7 @@ class SignupViewModel: ObservableObject {
             headerTitle: "Add your birthday",
             textfieldTitle: " years old",
             buttonLable: "Next",
+            imageSystemName: "gift",
             description: "This won't be part of your public profile.",
             description_ext: "Use your own birthday, even if this account is for a business, a pet or something else.",
             actionText: "Why I need to provide my birthday?",
