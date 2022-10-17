@@ -24,5 +24,6 @@ struct AddYourBirthdayView: View {
 struct AddYourBirthdayView_Previews: PreviewProvider {
     static var previews: some View {
         AddYourBirthdayView()
+            .environmentObject(SignupViewModel())
     }
 }

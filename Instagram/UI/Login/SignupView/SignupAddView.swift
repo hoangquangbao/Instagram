@@ -20,6 +20,8 @@ struct SignupAddView: View {
                     addEmailView()
                 } else if vm.type == .add_birthday {
                     addYourBirthdayView()
+                } else if vm.type == .signup_account {
+                    signupAccountView()
                 } else {
                     otherView()
                 }
@@ -29,6 +31,10 @@ struct SignupAddView: View {
             
             if vm.type == .add_birthday {
                 addYourBirthdayView_Ext()
+            }
+            
+            if vm.type == .signup_account {
+                signupAccountView_Ext()
             }
         }
     }
@@ -48,7 +54,7 @@ extension SignupAddView {
             if _selectedIndex == 0 {
                 PhoneTextFieldView()
             } else {
-                TextField(vm.textfieldTitle, text: $text)
+                TextField(vm.textfieldTitle ?? "", text: $text)
                     .textFieldStyle(CustomTextFieldStyle())
                     .keyboardType(.emailAddress)
             }
@@ -106,7 +112,7 @@ extension SignupAddView {
                 Spacer()
                 
                 if _isShowAge {
-                    Text(String(_selectedDate.age) + vm.textfieldTitle)
+                    Text(String(_selectedDate.age) + (vm.textfieldTitle ?? ""))
                         .font(.sfProTextRegular(13, relativeTo: .caption1))
                         .foregroundColor(Color.black.opacity(0.5))
                 }
@@ -155,6 +161,46 @@ extension SignupAddView {
         }
     }
     
+    private func signupAccountView() -> some View {
+        VStack(spacing: 20) {
+            
+            Text(vm.headerTitle)
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+                .padding(.top, 50)
+
+            Text(vm.description)
+                .font(.sfProTextRegular(15, relativeTo: .caption1))
+                .foregroundColor(Color.black.opacity(0.8))
+                .lineSpacing(3)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            Spacer()
+            
+            Text(.init(vm.description_ext ?? ""))
+                .font(.sfProTextRegular(13, relativeTo: .caption1))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+                .foregroundColor(Color.black.opacity(0.5))
+                .tint(.black.opacity(0.5))
+        }
+        .padding(.horizontal, -15)
+    }
+    
+    private func signupAccountView_Ext() -> some View {
+        VStack(spacing: 10) {
+            Divider()
+            
+            Button {
+                isNavigation = vm.action()
+            } label: {
+                Text(vm.buttonLable)
+            }
+            .buttonStyle(CustomButtonStyle())
+            .padding(.horizontal)
+        }
+    }
+    
     private func otherView() -> some View {
         VStack(spacing: 20) {
             Text(vm.headerTitle)
@@ -169,9 +215,9 @@ extension SignupAddView {
             
             ZStack {
                 if vm.type == .add_password {
-                    SecureField(vm.textfieldTitle, text: $text)
+                    SecureField(vm.textfieldTitle ?? "", text: $text)
                 } else {
-                    TextField(vm.textfieldTitle, text: $text)
+                    TextField(vm.textfieldTitle ?? "", text: $text)
                 }
             }
             .textFieldStyle(CustomTextFieldStyle())

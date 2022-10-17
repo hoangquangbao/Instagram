@@ -14,7 +14,10 @@ struct AddAPasswordView: View {
                               text: $vm.password,
                               isNavigation: $_isNavigation)
                 
-                BottomBarView(questionText: vm.addEmailVM.questionText,
+                Divider()
+                    .padding(.bottom, 10)
+                
+                BottomBarView(questionText: vm.addPasswordVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") {
                     perform.isBackLoginView = false
                 }
@@ -30,5 +33,6 @@ struct AddAPasswordView: View {
 struct AddAPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         AddAPasswordView()
+            .environmentObject(SignupViewModel())
     }
 }

@@ -14,6 +14,9 @@ struct AddEmailView: View {
                               text: $vm.email,
                               isNavigation: $_isNavigation)
                 
+                Divider()
+                    .padding(.bottom, 10)
+                
                 BottomBarView(questionText: vm.addEmailVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") { dismiss() }
             }

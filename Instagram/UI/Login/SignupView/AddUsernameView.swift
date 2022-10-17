@@ -14,7 +14,10 @@ struct AddUsernameView: View {
                               text: $vm.username,
                               isNavigation: $_isNavigation)
                 
-                BottomBarView(questionText: vm.addEmailVM.questionText,
+                Divider()
+                    .padding(.bottom, 10)
+                
+                BottomBarView(questionText: vm.addUsernameVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") {
                     perform.isBackLoginView = false
                 }
@@ -30,5 +33,6 @@ struct AddUsernameView: View {
 struct AddUsernameView_Previews: PreviewProvider {
     static var previews: some View {
         AddUsernameView()
+            .environmentObject(SignupViewModel())
     }
 }

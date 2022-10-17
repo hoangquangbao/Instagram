@@ -37,6 +37,9 @@ struct ResetPasswordView: View {
             }
             .padding(.horizontal, 30)
             
+            Divider()
+                .padding(.bottom, 10)
+            
             BottomBarView(
                 questionText: "",
                 actionText: vm.actionText) {

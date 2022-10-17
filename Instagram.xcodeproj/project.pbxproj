@@ -21,6 +21,7 @@
 		066E58C728FC516800E02562 /* SignupAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C628FC516800E02562 /* SignupAccountView.swift */; };
 		066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066E58C828FC554B00E02562 /* SignupViewModel.swift */; };
 		06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */; };
+		067AB19528FCFFFD00CA081E /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067AB19428FCFFFD00CA081E /* AddPhotoView.swift */; };
 		06862E7B28DBF386005A5544 /* SF-Pro-Text-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */; };
 		06862E7C28DBF386005A5544 /* SF-Pro-Text-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */; };
 		06862E7D28DBF386005A5544 /* SF-Pro-Text-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 06862E6B28DBF381005A5544 /* SF-Pro-Text-Ultralight.otf */; };
@@ -99,6 +100,7 @@
 		066E58C628FC516800E02562 /* SignupAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupAccountView.swift; sourceTree = "<group>"; };
 		066E58C828FC554B00E02562 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		06786A9928F0372F00AABABC /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		067AB19428FCFFFD00CA081E /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
 		06862E6928DBF380005A5544 /* SF-Pro-Text-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BlackItalic.otf"; sourceTree = "<group>"; };
 		06862E6A28DBF380005A5544 /* SF-Pro-Text-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-HeavyItalic.otf"; sourceTree = "<group>"; };
 		06862E6B28DBF381005A5544 /* SF-Pro-Text-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Ultralight.otf"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				06C02A3F28FAF07B003E5E68 /* AddYourBirthdayView.swift */,
 				066E58BD28FBF96C00E02562 /* AddUsernameView.swift */,
 				066E58C628FC516800E02562 /* SignupAccountView.swift */,
+				067AB19428FCFFFD00CA081E /* AddPhotoView.swift */,
 			);
 			path = SignupView;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				066E58C728FC516800E02562 /* SignupAccountView.swift in Sources */,
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,
 				06E9399328D973160028F981 /* FirebaseManager.swift in Sources */,
+				067AB19528FCFFFD00CA081E /* AddPhotoView.swift in Sources */,
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
 				06786A9A28F0372F00AABABC /* ResetPasswordViewModel.swift in Sources */,
 				0615453828D84F65003A2E4B /* UIColor+Generated.swift in Sources */,

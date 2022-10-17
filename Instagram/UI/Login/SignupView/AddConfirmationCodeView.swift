@@ -36,5 +36,6 @@ struct AddConfirmationCodeView: View {
 struct AddConfirmationCodeView_Previews: PreviewProvider {
     static var previews: some View {
         AddConfirmationCodeView()
+            .environmentObject(SignupViewModel())
     }
 }

@@ -7,6 +7,8 @@ enum OnScreen {
     case add_password
     case add_birthday
     case add_username
+    case signup_account
+    case add_photo
 }
 
 class SignupAddViewModel: ObservableObject {
@@ -15,7 +17,7 @@ class SignupAddViewModel: ObservableObject {
     
     let headerTitle: String
     let pickerTitle: [String]?
-    let textfieldTitle: String
+    let textfieldTitle: String?
     let buttonLable: String
     let saveTitle: String?
     let description: String
@@ -24,18 +26,20 @@ class SignupAddViewModel: ObservableObject {
     let actionText: String?
     
     var action: ()->Bool
+    var action_ext: (()->Void)?
     
     init(type: OnScreen,
          headerTitle: String,
          pickerTitle: [String]? = nil,
-         textfieldTitle: String,
+         textfieldTitle: String? = nil,
          buttonLable: String,
          saveTitle: String? = nil,
          description: String,
          description_ext: String? = nil,
          questionText: String? = nil,
          actionText: String? = nil,
-         action: @escaping () -> Bool)
+         action: @escaping () -> Bool,
+         action_ext: ( () -> Void)? = nil)
     {
         self.type = type
         self.headerTitle = headerTitle
@@ -48,5 +52,6 @@ class SignupAddViewModel: ObservableObject {
         self.questionText = questionText
         self.actionText = actionText
         self.action = action
+        self.action_ext = action_ext
     }
 }

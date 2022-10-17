@@ -14,6 +14,7 @@ class SignupViewModel: ObservableObject {
     @Published var birthday: String
     @Published var age: String
     @Published var username: String
+    @Published var profileImageUrl: String
     
     var addEmailVM: SignupAddViewModel
     var addConfirmationCodeVM: SignupAddViewModel
@@ -21,6 +22,8 @@ class SignupViewModel: ObservableObject {
     var addPasswordVM: SignupAddViewModel
     var addBirthdayVM: SignupAddViewModel
     var addUsernameVM: SignupAddViewModel
+    var addPhotoVM: SignupAddViewModel
+    var signupAccountVM: SignupAddViewModel
     
     init(email: String = "",
          code: String = "",
@@ -29,7 +32,8 @@ class SignupViewModel: ObservableObject {
          isSavePassword: Bool = false,
          birthday: String = "",
          age: String = "",
-         username: String = "")
+         username: String = "",
+         profileImageUrl: String = "")
     {
         self.email = email
         self.code = code
@@ -39,6 +43,7 @@ class SignupViewModel: ObservableObject {
         self.birthday = birthday
         self.age = age
         self.username = username
+        self.profileImageUrl = profileImageUrl
         self.addEmailVM = SignupAddViewModel(
             type: .add_email,
             headerTitle: "Enter Phone or Email",
@@ -105,6 +110,29 @@ class SignupViewModel: ObservableObject {
             actionText: "Sign In",
             action: {
                 return username.isEmpty
+            })
+        self.signupAccountVM = SignupAddViewModel(
+            type: .signup_account,
+            headerTitle: "Sign up as?",
+            buttonLable: "Sign up",
+            description: "You can always change your username later.",
+            description_ext: "People who use our service may have uploaded your contact information to Instagram. **[Learn more](https://help.instagram.com/1128997980474717)**.\n\nBy tapping Sign up, you agree to our **[Terms, Data Policy](https://privacycenter.instagram.com/policy)** and **[Cookies Policy](https://help.instagram.com/1896641480634370)**.",
+            questionText: "Already have an account?",
+            actionText: "Sign In",
+            action: {
+                return true
+            })
+        self.addPhotoVM = SignupAddViewModel(
+            type: .add_photo,
+            headerTitle: "Add profile photo",
+            buttonLable: "Add a photos",
+            description: "Add a profile photo so your friend know it's you.",
+            actionText: "Skip",
+            action: {
+                return true
+            },
+            action_ext: {
+                
             })
     }
 }
