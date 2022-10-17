@@ -10,6 +10,7 @@ enum OnScreen {
     case signup_account
     case find_friend
     case add_photo
+    case share_photo
 }
 
 class SignupAddViewModel: ObservableObject {
@@ -22,13 +23,13 @@ class SignupAddViewModel: ObservableObject {
     let buttonLable: String
     let saveTitle: String?
     let imageSystemName: String?
+    let imageSystemName_ext: String?
     let description: String
     let description_ext: String?
     let questionText: String?
     let actionText: String?
     
     var action: ()->Bool
-    var action_ext: (()->Void)?
     
     init(type: OnScreen,
          headerTitle: String,
@@ -37,12 +38,12 @@ class SignupAddViewModel: ObservableObject {
          buttonLable: String,
          saveTitle: String? = nil,
          imageSystemName: String? = nil,
+         imageSystemName_ext: String? = nil,
          description: String,
          description_ext: String? = nil,
          questionText: String? = nil,
          actionText: String? = nil,
-         action: @escaping () -> Bool,
-         action_ext: ( () -> Void)? = nil)
+         action: @escaping () -> Bool)
     {
         self.type = type
         self.headerTitle = headerTitle
@@ -51,11 +52,11 @@ class SignupAddViewModel: ObservableObject {
         self.buttonLable = buttonLable
         self.saveTitle = saveTitle
         self.imageSystemName = imageSystemName
+        self.imageSystemName_ext = imageSystemName_ext
         self.description = description
         self.description_ext = description_ext
         self.questionText = questionText
         self.actionText = actionText
         self.action = action
-        self.action_ext = action_ext
     }
 }

@@ -22,9 +22,10 @@ class SignupViewModel: ObservableObject {
     var addPasswordVM: SignupAddViewModel
     var addBirthdayVM: SignupAddViewModel
     var addUsernameVM: SignupAddViewModel
-    var addPhotoVM: SignupAddViewModel
     var signupAccountVM: SignupAddViewModel
     var findFriendVM: SignupAddViewModel
+    var addPhotoVM: SignupAddViewModel
+    var sharePhotoVM: SignupAddViewModel
     
     init(email: String = "",
          code: String = "",
@@ -84,6 +85,8 @@ class SignupViewModel: ObservableObject {
             textfieldTitle: "Password",
             buttonLable: "Next",
             saveTitle: "Save Password",
+            imageSystemName: "checkmark.square.fill",
+            imageSystemName_ext: "square",
             description: "We can remember the password, so you won't need to enter it on your iCloud® devices.",
             questionText: "Already have an account?",
             actionText: "Sign In",
@@ -98,7 +101,7 @@ class SignupViewModel: ObservableObject {
             imageSystemName: "gift",
             description: "This won't be part of your public profile.",
             description_ext: "Use your own birthday, even if this account is for a business, a pet or something else.",
-            actionText: "Why I need to provide my birthday?",
+            questionText: "[Why I need to provide my birthday?]()",
             action: {
                 return true
             })
@@ -133,9 +136,6 @@ class SignupViewModel: ObservableObject {
             actionText: "Skip",
             action: {
                 return true
-            },
-            action_ext: {
-                
             })
         self.addPhotoVM = SignupAddViewModel(
             type: .add_photo,
@@ -146,9 +146,17 @@ class SignupViewModel: ObservableObject {
             actionText: "Skip",
             action: {
                 return true
-            },
-            action_ext: {
-                
+            })
+        self.sharePhotoVM = SignupAddViewModel(
+            type: .share_photo,
+            headerTitle: "Profile photo added",
+            buttonLable: "Next",
+            imageSystemName: "person.fill",
+            description: "Make this photo your first post so people can like and comment on it.",
+            questionText: "Also share this photo as a post",
+            actionText: "Change photo",
+            action: {
+                return true
             })
     }
 }

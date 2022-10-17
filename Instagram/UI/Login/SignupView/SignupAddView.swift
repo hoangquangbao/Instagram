@@ -10,6 +10,7 @@ struct SignupAddView: View {
     
     @State private var _isShowAge: Bool = false
     @State private var _isSavePassword: Bool = false
+    @State private var _isShareThisPhoto: Bool = true
     
     @Binding var text: String
     @Binding var isNavigation: Bool
@@ -19,12 +20,18 @@ struct SignupAddView: View {
             VStack {
                 if vm.type == .add_email {
                     addEmailView()
-                } else if vm.type == .add_birthday {
+                }
+                else if vm.type == .add_birthday {
                     addYourBirthdayView()
-                } else if vm.type == .signup_account {
+                }
+                else if vm.type == .signup_account {
                     signupAccountView()
-                } else if (vm.type == .find_friend || vm.type == .add_photo) {
+                }
+                else if (vm.type == .find_friend || vm.type == .add_photo) {
                     connectView()
+                }
+                else if (vm.type == .share_photo) {
+                    sharePhotoView()
                 } else {
                     otherView()
                 }
@@ -99,11 +106,7 @@ extension SignupAddView {
                 Text(vm.description)
                     .foregroundColor(Color.black.opacity(0.8))
                 
-                Text(vm.actionText ?? "")
-                    .foregroundColor(Color.blue.opacity(0.8))
-                    .onTapGesture {
-                        
-                    }
+                Text(.init(vm.questionText ?? ""))
             }
             .font(.sfProTextRegular(15, relativeTo: .caption1))
             .lineSpacing(3)
@@ -196,7 +199,6 @@ extension SignupAddView {
     private func signupAccountView_Ext() -> some View {
         VStack(spacing: 10) {
             Divider()
-            
             Button {
                 isNavigation = vm.action()
             } label: {
@@ -229,6 +231,7 @@ extension SignupAddView {
                     .foregroundStyle(
                         AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
                     )
+                    .offset(y: -70)
                 
                 Spacer()
             }
@@ -238,7 +241,6 @@ extension SignupAddView {
     private func connectView_Ext() -> some View {
         VStack(spacing: 20) {
             Divider()
-            
             Group {
                 Button {
                 } label: {
@@ -254,6 +256,52 @@ extension SignupAddView {
                 }
             }
             .padding(.horizontal)
+        }
+    }
+    
+    private func sharePhotoView() -> some View {
+        VStack(spacing: 20) {
+            Image(systemName: vm.imageSystemName ?? "")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 90, height: 90)
+                .cornerRadius(45)
+                .overlay(
+                    Circle()
+                        .stroke(LinearGradient(colors: [.red, .purple, .red, .orange, .yellow, .orange], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 3)
+                        .frame(width: 100, height: 100)
+                )
+                .padding(.top, 50)
+            
+            Text(vm.headerTitle)
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+                .padding(.top, 20)
+            
+            Button {
+            } label: {
+                Text(vm.actionText ?? "")
+                    .font(.sfProTextSemibold(15, relativeTo: .caption1))
+                    .foregroundColor(Color.blue)
+            }
+            
+            Toggle(vm.questionText ?? "", isOn: $_isShareThisPhoto.animation(.spring()))
+                .font(.sfProTextRegular(15, relativeTo: .caption1))
+                .foregroundColor(Color.black.opacity(0.6))
+                .lineSpacing(3)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            Text(vm.description)
+                .font(.sfProTextRegular(13, relativeTo: .caption1))
+                .multilineTextAlignment(.leading)
+                .foregroundColor(Color.black.opacity(0.5))
+            
+            Button {
+                isNavigation = vm.action()
+            } label: {
+                Text(vm.buttonLable)
+            }
+            .buttonStyle(CustomButtonStyle())
         }
     }
     
@@ -299,7 +347,7 @@ extension SignupAddView {
             Button {
                 self._isSavePassword.toggle()
             } label: {
-                Image(systemName: _isSavePassword ? "checkmark.square.fill" : "square")
+                Image(systemName: (_isSavePassword ? vm.imageSystemName : vm.imageSystemName_ext) ?? "")
                     .resizable()
                     .frame(width: 20, height: 18)
             }
@@ -315,7 +363,6 @@ extension SignupAddView {
 
 @available(iOS 16.0, *)
 extension SignupAddView {
-    
     ///Use in addYourBirthdayView()
     private func setDateString(selectedDate: Date) -> String {
         let formatter = DateFormatter()

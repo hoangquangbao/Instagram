@@ -1,13 +1,29 @@
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct SharePhotoView: View {
+    
+    @EnvironmentObject var vm: SignupViewModel
+    @State private var _isNavigation: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                SignupAddView(vm: vm.sharePhotoVM,
+                              text: $vm.profileImageUrl,
+                              isNavigation: $_isNavigation)
+            }
+            .navigationDestination(isPresented: $_isNavigation,
+                                   destination: { HomeView() })
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
+@available(iOS 16.0, *)
 struct SharePhotoView_Previews: PreviewProvider {
     static var previews: some View {
         SharePhotoView()
+            .environmentObject(SignupViewModel())
     }
 }
