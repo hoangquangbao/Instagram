@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct ImageGridLayout: View {
-    let images: [ImageItem]
+    let posts: [Post]
     let columnCount: Int
+    let onImageTap: (() -> Void)?
     
     private let _spacing = 2.0
     private var _gridColumns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
-    init(images: [ImageItem], columnCount: Int? = 3) {
-        self.images = images
+    init(posts: [Post], columnCount: Int? = 3, onImageTap: (() -> Void)? = nil) {
+        self.posts = posts
         self.columnCount = columnCount!
+        self.onImageTap = onImageTap
         initializeGridColumn(columnCount!)
     }
     
     var body: some View {
         VStack {
             LazyVGrid(columns: _gridColumns, spacing: _spacing) {
-                ForEach(images) { item in
-                    _imageItem(with: item.image, size: UIScreen.screenWidth / CGFloat(columnCount))
+                ForEach(posts) { post in
+                    NavigationLink {
+                        ExploreView(post: post)
+                    } label: {
+                        _squareImage(with: post.imagesUrl[0], size: _imageSize)
+                    }
                 }
             }
         }
@@ -32,10 +38,27 @@ struct ImageGridLayout: View {
 }
 
 private extension ImageGridLayout {
-    func _imageItem(with image: Image, size: CGFloat) -> some View {
-        return image
+    var _imageSize: CGFloat {
+        return UIScreen.screenWidth / CGFloat(self.columnCount)
+    }
+
+    func _squareImage(with imageUrl: String, size: CGFloat) -> some View {
+        return Image(imageUrl)
             .resizable()
             .frame(width: size, height: size)
+            .transition(.opacity)
+            .contextMenu {
+                Button {
+                    StorageService.download()
+                } label: {
+                    HStack {
+                        Text("Save")
+                        Spacer()
+                        Image(systemName: "arrow.down.to.line")
+                    }
+                }
+                
+            }
     }
     
     mutating func initializeGridColumn(_ column: Int) {
@@ -45,6 +68,6 @@ private extension ImageGridLayout {
 
 struct ImageGridLayout_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGridLayout(images: SearchData.imagesData)
+        ImageGridLayout(posts: MockData.posts)
     }
 }

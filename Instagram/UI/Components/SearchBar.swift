@@ -11,8 +11,8 @@ struct SearchBar: View {
     @Binding var searchText: String
     var onChange: (() -> Void)?
     
+    @FocusState private var isFocusedState: Bool
     @State private var leadingIconColor = Color(.lightGray)
-    @State private var isFocus = false
     
     var body: some View {
         TextField("Search", text: $searchText, onEditingChanged: {isEditing in
@@ -21,7 +21,7 @@ struct SearchBar: View {
         .font(.sfProTextMedium(18, relativeTo: .caption2))
         .padding(.horizontal, 45)
         .padding(.vertical, 10)
-        .background(Color(118, 118, 128, withOpacity: 0.12))
+        .background(Color("#767680"))
         .cornerRadius(10)
         .overlay {
             HStack {
@@ -61,8 +61,8 @@ private extension SearchBar {
     }
     
     func onEditingChanged(_ isEditing: Bool) {
-        self.isFocus = isEditing
-        self.leadingIconColor = isEditing ? Color(.black) : Color(.lightGray)
+        self.isFocusedState = isEditing
+        self.leadingIconColor = isEditing ? Color("primary") : Color(.lightGray)
     }
     
     func resetSearchText() {

@@ -9,49 +9,76 @@ import SwiftUI
 class SearchViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var itemsSelectionState = [String: Bool]()
+    @Published var isSearchingMode = false
+    
+    enum Mode { case postSuggestion, searching }
+    
+    let users: [User] = MockData.users
+    var posts: [Post] = MockData.posts
+    let categoriesFiltered = SearchData.categoriesFilteredData
+    var mode: Mode = .postSuggestion
     
     init() {
-        initializeFilterSelectionState()
+        initializeFilteredSelectionState()
     }
     
-    var filteredItems = SearchData.filteredItemsData
-    var images: [ImageItem] = SearchData.imagesData
-    
-    func initializeFilterSelectionState() {
-        self.filteredItems.forEach { item in
-            itemsSelectionState[item.title] = false
+    func initializeFilteredSelectionState() {
+        self.categoriesFiltered.forEach { category in
+            itemsSelectionState[category.title] = false
         }
     }
     
     func toggle(for category: String){
-        itemsSelectionState[category] = !itemsSelectionState[category]!
-        refreshImages()
+        withAnimation(.linear(duration: 0.2)) {
+            itemsSelectionState[category] = !itemsSelectionState[category]!
+            refreshImages()
+        }
     }
     
     func refreshImages() {
         var falseSize: Int = 0
-        var filterImages: [ImageItem] = []
+        var postsFiltered: [Post] = []
         itemsSelectionState.forEach { (category: String, isSelected: Bool) in
-            if(!isSelected) {
-                falseSize += 1
-            }
+            if(!isSelected) { falseSize += 1 }
             else {
-                SearchData.imagesData.forEach({ imageItem in
-                    if(imageItem.category == category) {
-                        filterImages.append(imageItem)
+                MockData.posts.forEach({ post in
+                    if(post.categories.contains(category) && _isNotContain(post: post, in: postsFiltered)) {
+                        postsFiltered.append(post)
                     }
                 })
             }
         }
         
-        images = falseSize == itemsSelectionState.count ? SearchData.imagesData : filterImages
+        posts = falseSize == itemsSelectionState.count ? MockData.posts : postsFiltered
     }
     
+    private func _isNotContain(post: Post, in posts: [Post]) -> Bool {
+        return !posts.contains(where: { _post in post == _post})
+    }
+    
+    /// Convert Bool value to Binding when passing key of dictionary [String: Bool]
     func binding(for key: String) -> Binding<Bool> {
-        return Binding(get: {
-            return self.itemsSelectionState[key] ?? false
-        }, set: {
-            self.itemsSelectionState[key] = $0
-        })
+        return Binding(
+            get: { return self.itemsSelectionState[key] ?? false },
+            set: { self.itemsSelectionState[key] = $0 }
+        )
+    }
+    
+    func openCamera() {
+        print("open camera")
+    }
+    
+    func switchMode(_ mode: Mode) {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            self.mode = mode
+        }
+    }
+    
+    var searchableUser: [User] {
+        if(searchText.isEmpty) { return users }
+        
+        return users.filter { user in
+            user.username.contains(searchText) || user.fullname.contains(searchText)
+        }
     }
 }

@@ -10,37 +10,39 @@ import SwiftUI
 struct ChoiceChip: View {
     let titleKey: String
     var image: Image?
-    
     @Binding var isSelected: Bool
     var onSelected: () -> ()
     
+    private let _cornerRadius: CGFloat = 10
+    
     var body: some View {
         HStack {
-            _LeadingIcon(image: image, color: self.foregroundColor)
+            _LeadingIcon(image: image, color: _foregroundColor)
             Text(titleKey).font(.subheadline).bold().lineLimit(1)
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
-        .foregroundColor(self.foregroundColor)
-        .background(self.backgroundColor)
-        .cornerRadius(10)
+        .foregroundColor(_foregroundColor)
+        .background(_backgroundColor)
+        .cornerRadius(_cornerRadius)
         .overlay {
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(60, 60, 67, withOpacity: 0.18), lineWidth: 1.5)
-        }.onTapGesture(perform: self.onTap)
+            RoundedRectangle(cornerRadius: _cornerRadius)
+                .stroke(Color._3C3C43, lineWidth: 1.5)
+        }
+        .onTapGesture(perform: _onTap)
     }
 }
 
 private extension ChoiceChip {
-    var foregroundColor: Color {
-        return isSelected ? .white : .black
+    var _foregroundColor: Color {
+        return isSelected ? Color.ffffff : Color._000000
     }
     
-    var backgroundColor: Color {
-        return isSelected ? Color.black : Color.white
+    var _backgroundColor: Color {
+        return isSelected ? Color._000000 : Color.ffffff
     }
     
-    func onTap() {
+    func _onTap() {
         self.onSelected()
     }
 }
