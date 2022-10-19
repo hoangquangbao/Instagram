@@ -14,8 +14,9 @@ class SignupViewModel: ObservableObject {
     @Published var birthday: String
     @Published var age: String
     @Published var username: String
+    @Published var profileImage: UIImage?
     @Published var profileImageUrl: String
-    
+        
     var addEmailVM: SignupAddViewModel
     var addConfirmationCodeVM: SignupAddViewModel
     var addNameVM: SignupAddViewModel
@@ -35,6 +36,7 @@ class SignupViewModel: ObservableObject {
          birthday: String = "",
          age: String = "",
          username: String = "",
+         profileImage: UIImage? = nil,
          profileImageUrl: String = "")
     {
         self.email = email
@@ -45,7 +47,9 @@ class SignupViewModel: ObservableObject {
         self.birthday = birthday
         self.age = age
         self.username = username
+        self.profileImage = profileImage
         self.profileImageUrl = profileImageUrl
+        
         self.addEmailVM = SignupAddViewModel(
             type: .add_email,
             headerTitle: "Enter Phone or Email",

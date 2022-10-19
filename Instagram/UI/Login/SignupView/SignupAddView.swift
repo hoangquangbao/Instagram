@@ -4,6 +4,7 @@ import SwiftUI
 struct SignupAddView: View {
     
     @ObservedObject var vm: SignupAddViewModel
+    @EnvironmentObject var vmSignup: SignupViewModel
     
     @State private var _selectedIndex: Int = 1
     @State private var _selectedDate: Date = Date.now
@@ -11,6 +12,7 @@ struct SignupAddView: View {
     @State private var _isShowAge: Bool = false
     @State private var _isSavePassword: Bool = false
     @State private var _isShareThisPhoto: Bool = true
+    @State private var _isShowImagePicker: Bool = false
     
     @Binding var text: String
     @Binding var isNavigation: Bool
@@ -46,6 +48,9 @@ struct SignupAddView: View {
             } else if (vm.type == .find_friend || vm.type == .add_photo) {
                 connectView_Ext()
             }
+        }
+        .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: isNavigation_On) {
+            ImagePicker(image: $vmSignup.profileImage)
         }
     }
 }
@@ -243,6 +248,11 @@ extension SignupAddView {
             Divider()
             Group {
                 Button {
+                    if vm.type == .add_photo {
+                        withAnimation {
+                            _isShowImagePicker = true
+                        }
+                    }
                 } label: {
                     Text(vm.buttonLable)
                 }
@@ -261,23 +271,35 @@ extension SignupAddView {
     
     private func sharePhotoView() -> some View {
         VStack(spacing: 20) {
-            Image(systemName: vm.imageSystemName ?? "")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 90, height: 90)
-                .cornerRadius(45)
-                .overlay(
-                    Circle()
-                        .stroke(LinearGradient(colors: [.red, .purple, .red, .orange, .yellow, .orange], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 3)
-                        .frame(width: 100, height: 100)
-                )
-                .padding(.top, 50)
+            
+            ZStack {
+                if let image = vmSignup.profileImage {
+                    Image(uiImage: image)
+                        .resizable()
+                } else {
+                    Image(systemName: vm.imageSystemName ?? "")
+                }
+            }
+            .scaledToFill()
+            .frame(width: 90, height: 90)
+            .cornerRadius(45)
+            .overlay(
+                Circle()
+                    .stroke(LinearGradient(
+                        colors: [.red, .purple, .red, .orange, .yellow, .orange],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing),
+                            lineWidth: 3)
+                    .frame(width: 100, height: 100)
+            )
+            .padding(.top, 50)
             
             Text(vm.headerTitle)
                 .font(.sfProTextBold(22, relativeTo: .largeTitle))
                 .padding(.top, 20)
             
             Button {
+                _isShowImagePicker = true
             } label: {
                 Text(vm.actionText ?? "")
                     .font(.sfProTextSemibold(15, relativeTo: .caption1))
@@ -368,6 +390,15 @@ extension SignupAddView {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM yyyy"
         return formatter.string(from: selectedDate)
+    }
+    
+    private func isNavigation_On() {
+        ///Auto next view apply for AddPhotoView only, not SharePhotoView
+        if vm.type == .add_photo {
+            withAnimation {
+                isNavigation = true
+            }
+        }
     }
 }
 

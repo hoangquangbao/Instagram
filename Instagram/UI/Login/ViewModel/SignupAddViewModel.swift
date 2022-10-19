@@ -29,7 +29,7 @@ class SignupAddViewModel: ObservableObject {
     let questionText: String?
     let actionText: String?
     
-    var action: ()->Bool
+    var action: () -> Bool
     
     init(type: OnScreen,
          headerTitle: String,

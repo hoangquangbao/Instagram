@@ -43,8 +43,8 @@ struct AddEmailView: View {
 
 @available(iOS 16.0, *)
 struct AddEmailView_Previews: PreviewProvider {
-    static var vm = SignupViewModel()
     static var previews: some View {
-        AddEmailView(vm: vm)
+        AddEmailView()
+            .environmentObject(SignupViewModel())
     }
 }
