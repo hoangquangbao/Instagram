@@ -50,7 +50,7 @@ struct SignupAddView: View {
             }
         }
         .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: isNavigation_On) {
-            ImagePicker(image: $vmSignup.profileImage)
+            ImagePicker(image: $vmSignup.avatarImage)
         }
     }
 }
@@ -273,14 +273,16 @@ extension SignupAddView {
         VStack(spacing: 20) {
             
             ZStack {
-                if let image = vmSignup.profileImage {
+                if let image = vmSignup.avatarImage {
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
                 } else {
                     Image(systemName: vm.imageSystemName ?? "")
+                        .resizable()
+                        .scaledToFit()
                 }
             }
-            .scaledToFill()
             .frame(width: 90, height: 90)
             .cornerRadius(45)
             .overlay(
@@ -306,19 +308,21 @@ extension SignupAddView {
                     .foregroundColor(Color.blue)
             }
             
-            Toggle(vm.questionText ?? "", isOn: $_isShareThisPhoto.animation(.spring()))
-                .font(.sfProTextRegular(15, relativeTo: .caption1))
-                .foregroundColor(Color.black.opacity(0.6))
-                .lineSpacing(3)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-            
-            Text(vm.description)
-                .font(.sfProTextRegular(13, relativeTo: .caption1))
-                .multilineTextAlignment(.leading)
-                .foregroundColor(Color.black.opacity(0.5))
+            VStack(alignment: .leading, spacing: 20) {
+                Toggle(vm.questionText ?? "", isOn: $_isShareThisPhoto.animation(.spring()))
+                    .font(.sfProTextRegular(15, relativeTo: .caption1))
+                    .foregroundColor(Color.black.opacity(0.6))
+                    .lineSpacing(3)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Text(vm.description)
+                    .font(.sfProTextRegular(12, relativeTo: .caption1))
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(Color.black.opacity(0.5))
+            }
             
             Button {
+                vmSignup.signupAccount()
                 isNavigation = vm.action()
             } label: {
                 Text(vm.buttonLable)
@@ -394,7 +398,8 @@ extension SignupAddView {
     
     private func isNavigation_On() {
         ///Auto next view apply for AddPhotoView only, not SharePhotoView
-        if vm.type == .add_photo {
+        ///vmSignup.avatarImage != nil to check case that user press cancel ImagePickerView
+        if (vm.type == .add_photo && vmSignup.avatarImage != nil) {
             withAnimation {
                 isNavigation = true
             }

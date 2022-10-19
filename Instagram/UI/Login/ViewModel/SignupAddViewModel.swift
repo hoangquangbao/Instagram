@@ -31,15 +31,15 @@ class SignupAddViewModel: ObservableObject {
     
     var action: () -> Bool
     
-    init(type: OnScreen,
-         headerTitle: String,
+    init(type: OnScreen = .add_email,
+         headerTitle: String = "",
          pickerTitle: [String]? = nil,
          textfieldTitle: String? = nil,
-         buttonLable: String,
+         buttonLable: String = "",
          saveTitle: String? = nil,
          imageSystemName: String? = nil,
          imageSystemName_ext: String? = nil,
-         description: String,
+         description: String = "",
          description_ext: String? = nil,
          questionText: String? = nil,
          actionText: String? = nil,

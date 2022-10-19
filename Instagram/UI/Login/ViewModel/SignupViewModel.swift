@@ -6,6 +6,7 @@ class BackLoginView: ObservableObject {
 
 class SignupViewModel: ObservableObject {
     
+    ///Get data from SignupView
     @Published var email: String
     @Published var code: String
     @Published var fullName: String
@@ -14,9 +15,17 @@ class SignupViewModel: ObservableObject {
     @Published var birthday: String
     @Published var age: String
     @Published var username: String
-    @Published var profileImage: UIImage?
-    @Published var profileImageUrl: String
-        
+    @Published var avatarImage: UIImage?
+    ///Other View
+    @Published var hasStory: Bool
+    @Published var followings: [String]
+    @Published var followers: [String]
+    @Published var isOnline: Bool
+    @Published var description: String
+    
+    @Published var isShowAlert : Bool = false
+    @Published var alertMessage : String = ""
+    
     var addEmailVM: SignupAddViewModel
     var addConfirmationCodeVM: SignupAddViewModel
     var addNameVM: SignupAddViewModel
@@ -36,8 +45,12 @@ class SignupViewModel: ObservableObject {
          birthday: String = "",
          age: String = "",
          username: String = "",
-         profileImage: UIImage? = nil,
-         profileImageUrl: String = "")
+         avatarImage: UIImage? = nil,
+         hasStory: Bool = false,
+         followings: [String] = [],
+         followers: [String] = [],
+         isOnline: Bool = false,
+         description: String = "")
     {
         self.email = email
         self.code = code
@@ -47,8 +60,12 @@ class SignupViewModel: ObservableObject {
         self.birthday = birthday
         self.age = age
         self.username = username
-        self.profileImage = profileImage
-        self.profileImageUrl = profileImageUrl
+        self.avatarImage = avatarImage
+        self.hasStory = hasStory
+        self.followings = followings
+        self.followers = followers
+        self.isOnline = isOnline
+        self.description = description
         
         self.addEmailVM = SignupAddViewModel(
             type: .add_email,
@@ -162,5 +179,101 @@ class SignupViewModel: ObservableObject {
             action: {
                 return true
             })
+    }
+    
+    func signupAccount() {
+        FirebaseManager.shared.auth.createUser(withEmail: email,
+                                               password: password) { result, error in
+            if let error = error {
+                self.isShowAlert = true
+                self.alertMessage = error.localizedDescription
+                print(error.localizedDescription)
+                return
+            }
+            
+            if self.avatarImage == nil {
+                self.avatarImage = UIImage(named: "img_avatar_default")
+                self.uploadUserProfileImage()
+            } else {
+                self.uploadUserProfileImage()
+            }
+        }
+    }
+    
+    func uploadUserProfileImage() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
+        guard let imageData = avatarImage?.jpegData(compressionQuality: 0.5) else { return }
+        
+        ref.putData(imageData, metadata: nil) { metadata, err in
+            if let err = err {
+                self.isShowAlert = true
+                self.alertMessage = err.localizedDescription
+                return
+            }
+            
+            ref.downloadURL { url, err in
+                if let err = err {
+                    self.isShowAlert = true
+                    self.alertMessage = err.localizedDescription
+                    return
+                }
+                guard let url = url else { return }
+                self.storeUserInfo(avatarUrl: url)
+            }
+        }
+    }
+    
+    func storeUserInfo(avatarUrl: URL) {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        let userData = ["id": uid,
+                        "username": username,
+                        "fullName": fullName,
+                        "email": email,
+                        "avatarUrl": avatarUrl.absoluteString,
+                        "hasStory": hasStory,
+                        "followings": followings,
+                        "followers": followers,
+                        "isOnline": isOnline,
+                        "description": description
+        ] as [String : Any]
+        
+        FirebaseManager.shared.firestore
+            .collection("user")
+            .document(uid)
+            .setData(userData) { error in
+                if let error = error {
+                    self.isShowAlert = true
+                    self.alertMessage = error.localizedDescription
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                print("email TRC: " + self.email)
+                self.resetSignupProperties()
+                print("email SAU: " + self.email)
+                
+                //Show alert successfully created
+                self.isShowAlert = true
+                self.alertMessage = "Your account has been successfully cereated!"
+            }
+    }
+    
+    func resetSignupProperties() {
+        email = ""
+        code = ""
+        fullName = ""
+        password = ""
+        isSavePassword = false
+        birthday = ""
+        age = ""
+        username = ""
+        avatarImage = nil
+        hasStory = false
+        followings = []
+        followers = []
+        isOnline = false
+        description = ""
     }
 }

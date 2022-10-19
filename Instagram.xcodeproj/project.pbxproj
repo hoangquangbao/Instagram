@@ -217,7 +217,6 @@
 				06B067CD28ED8DA90014FFB9 /* PhoneTextFieldView.swift */,
 				065B7EC128DC473D00AA9166 /* DivideView.swift */,
 				06A3486028F2E47C00587B14 /* FacebookLoginView.swift */,
-				069D61F228FF97F3006F5618 /* ImagePicker.swift */,
 			);
 			path = Subview;
 			sourceTree = "<group>";
@@ -259,6 +258,7 @@
 				06BB2C0A28F70E12003855D5 /* CustomButtonStyle.swift */,
 				06BB2C0B28F70E12003855D5 /* RectPreference.swift */,
 				06BB2C0D28F70E12003855D5 /* UnderlineModifier.swift */,
+				069D61F228FF97F3006F5618 /* ImagePicker.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";

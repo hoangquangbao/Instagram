@@ -10,7 +10,7 @@ struct SharePhotoView: View {
         NavigationView {
             VStack {
                 SignupAddView(vm: vm.sharePhotoVM,
-                              text: $vm.profileImageUrl,
+                              text: $vm.email,
                               isNavigation: $_isNavigation)
             }
             .navigationDestination(isPresented: $_isNavigation,
