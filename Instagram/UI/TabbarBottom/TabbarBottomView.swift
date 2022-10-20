@@ -17,26 +17,25 @@ struct TabbarBottomView: View {
                 HomeView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
-                        selection == 0 ? Image.icnHome : Image.icnUnHome
+                        selection == 0 ? Image.icnHomeBold : Image.icnHome
                     }
                     .tag(0)
                 SearchView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
-                        Image.icnSearch
-                        selection == 1 ? Image.icnSearch : Image.icnUnSearch
+                        selection == 1 ? Image.icnSearchBold : Image.icnSearch
                     }
                     .tag(1)
                 ProfileView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
-                        Image.icnAdd
+                        Image.icnAddSquare
                     }
                     .tag(2)
                 ProfileView()
                     .font(.system(size: 40, weight: .bold, design: .default))
                     .tabItem {
-                        selection == 3 ? Image.icnHeart : Image.icnUnHeart
+                        selection == 3 ? Image.icnHeartBold : Image.icnHeart
                     }
                     .tag(3)
                 ProfileView()

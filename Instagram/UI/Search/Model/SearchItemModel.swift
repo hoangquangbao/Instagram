@@ -6,18 +6,11 @@
 //
 import SwiftUI
 
-struct FilteredSearchItem: Identifiable {
+struct SearchCategoryModel: Identifiable {
     let id = UUID()
     
     let title: String
-    var image: Image?
+    var leadingIcon: Image?
     var isSelected: Bool? = false
     var onSelected: ((String) -> Void)?
-}
-
-struct ImageItem: Identifiable {
-    let id = UUID()
-    
-    let image: Image
-    let category: String
 }

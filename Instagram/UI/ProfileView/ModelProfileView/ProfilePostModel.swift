@@ -13,12 +13,6 @@ struct ProfilePostModel: Identifiable {
     let type: String
 }
 
-struct User: Identifiable {
-    var id = UUID()
-    let userName: String
-    let userImage: String
-}
-
 var ProfilePostData: [ProfilePostModel] = [
     ProfilePostModel(image: "img_post_1", type: "multiple"),
     ProfilePostModel(image: "img_post_2", type: "video"),
