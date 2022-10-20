@@ -76,7 +76,7 @@ extension SignupAddView {
             }
             
             Button {
-                isNavigation = vm.action()
+                isNavigation = true
             } label: {
                 Text(vm.buttonLable)
             }
@@ -156,7 +156,7 @@ extension SignupAddView {
             
             Group {
                 Button {
-                    isNavigation = vm.action()
+                    isNavigation = true
                 } label: {
                     Text(vm.buttonLable)
                 }
@@ -205,7 +205,7 @@ extension SignupAddView {
         VStack(spacing: 10) {
             Divider()
             Button {
-                isNavigation = vm.action()
+                isNavigation = true
             } label: {
                 Text(vm.buttonLable)
             }
@@ -259,7 +259,7 @@ extension SignupAddView {
                 .buttonStyle(CustomButtonStyle())
                 
                 Button {
-                    isNavigation = vm.action()
+                    isNavigation = true
                 } label: {
                     Text(vm.actionText ?? "")
                         .font(.sfProTextBold(16, relativeTo: .caption1))
@@ -323,7 +323,7 @@ extension SignupAddView {
             
             Button {
                 vmSignup.signupAccount()
-                isNavigation = vm.action()
+                isNavigation = true
             } label: {
                 Text(vm.buttonLable)
             }
@@ -358,7 +358,7 @@ extension SignupAddView {
             }
             
             Button {
-                isNavigation = vm.action()
+                isNavigation = true
             } label: {
                 Text(vm.buttonLable)
             }

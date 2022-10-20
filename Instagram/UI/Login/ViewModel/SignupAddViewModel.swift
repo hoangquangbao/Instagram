@@ -29,8 +29,6 @@ class SignupAddViewModel: ObservableObject {
     let questionText: String?
     let actionText: String?
     
-    var action: () -> Bool
-    
     init(type: OnScreen = .add_email,
          headerTitle: String = "",
          pickerTitle: [String]? = nil,
@@ -42,8 +40,7 @@ class SignupAddViewModel: ObservableObject {
          description: String = "",
          description_ext: String? = nil,
          questionText: String? = nil,
-         actionText: String? = nil,
-         action: @escaping () -> Bool)
+         actionText: String? = nil)
     {
         self.type = type
         self.headerTitle = headerTitle
@@ -57,6 +54,5 @@ class SignupAddViewModel: ObservableObject {
         self.description_ext = description_ext
         self.questionText = questionText
         self.actionText = actionText
-        self.action = action
     }
 }

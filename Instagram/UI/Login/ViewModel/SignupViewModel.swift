@@ -75,20 +75,14 @@ class SignupViewModel: ObservableObject {
             buttonLable: "Next",
             description: "You may receive SMS notification from us for security and login purpose.",
             questionText: "Already have an account?",
-            actionText: "Sign In",
-            action: {
-                return email.isEmpty
-            })
+            actionText: "Sign In")
         self.addConfirmationCodeVM = SignupAddViewModel(
             type: .add_confirmation_code,
             headerTitle: "Enter confirmation code",
             textfieldTitle: "Confirmation code",
             buttonLable: "Next",
             description: "Enter confirmation code we send",
-            actionText: "Resend confirmation code.",
-            action: {
-                return code.isEmpty
-            })
+            actionText: "Resend confirmation code.")
         self.addNameVM = SignupAddViewModel(
             type: .add_full_name,
             headerTitle: "Add Your Name",
@@ -96,10 +90,7 @@ class SignupViewModel: ObservableObject {
             buttonLable: "Next",
             description: "Add your name so friend can find you.",
             questionText: "Already have an account?",
-            actionText: "Sign In",
-            action: {
-                return fullName.isEmpty
-            })
+            actionText: "Sign In")
         self.addPasswordVM = SignupAddViewModel(
             type: .add_password,
             headerTitle: "Create a password",
@@ -110,10 +101,7 @@ class SignupViewModel: ObservableObject {
             imageSystemName_ext: "square",
             description: "We can remember the password, so you won't need to enter it on your iCloud® devices.",
             questionText: "Already have an account?",
-            actionText: "Sign In",
-            action: {
-                return password.isEmpty
-            })
+            actionText: "Sign In")
         self.addBirthdayVM = SignupAddViewModel(
             type: .add_birthday,
             headerTitle: "Add your birthday",
@@ -122,10 +110,7 @@ class SignupViewModel: ObservableObject {
             imageSystemName: "gift",
             description: "This won't be part of your public profile.",
             description_ext: "Use your own birthday, even if this account is for a business, a pet or something else.",
-            questionText: "[Why I need to provide my birthday?]()",
-            action: {
-                return true
-            })
+            questionText: "[Why I need to provide my birthday?]()")
         self.addUsernameVM = SignupAddViewModel(
             type: .add_username,
             headerTitle: "Create username",
@@ -133,10 +118,7 @@ class SignupViewModel: ObservableObject {
             buttonLable: "Next",
             description: "Pick a username for your new account. You can always change it later.",
             questionText: "Already have an account?",
-            actionText: "Sign In",
-            action: {
-                return username.isEmpty
-            })
+            actionText: "Sign In")
         self.signupAccountVM = SignupAddViewModel(
             type: .signup_account,
             headerTitle: "Sign up as?",
@@ -144,30 +126,21 @@ class SignupViewModel: ObservableObject {
             description: "You can always change your username later.",
             description_ext: "People who use our service may have uploaded your contact information to Instagram. **[Learn more](https://help.instagram.com/1128997980474717)**.\n\nBy tapping Sign up, you agree to our **[Terms, Data Policy](https://privacycenter.instagram.com/policy)** and **[Cookies Policy](https://help.instagram.com/1896641480634370)**.",
             questionText: "Already have an account?",
-            actionText: "Sign In",
-            action: {
-                return true
-            })
+            actionText: "Sign In")
         self.findFriendVM = SignupAddViewModel(
             type: .find_friend,
             headerTitle: "Find Facebook Friends",
             buttonLable: "Find friends",
             imageSystemName: "faceid",
             description: "You choose which friends to follow. We'll never post to Facebook without your permission.",
-            actionText: "Skip",
-            action: {
-                return true
-            })
+            actionText: "Skip")
         self.addPhotoVM = SignupAddViewModel(
             type: .add_photo,
             headerTitle: "Add profile photo",
             buttonLable: "Add a photos",
             imageSystemName: "person.crop.circle.badge.plus",
             description: "Add a profile photo so your friend know it's you.",
-            actionText: "Skip",
-            action: {
-                return true
-            })
+            actionText: "Skip")
         self.sharePhotoVM = SignupAddViewModel(
             type: .share_photo,
             headerTitle: "Profile photo added",
@@ -175,10 +148,7 @@ class SignupViewModel: ObservableObject {
             imageSystemName: "person.fill",
             description: "Make this photo your first post so people can like and comment on it.",
             questionText: "Also share this photo as a post",
-            actionText: "Change photo",
-            action: {
-                return true
-            })
+            actionText: "Change photo")
     }
     
     func signupAccount() {
@@ -193,14 +163,14 @@ class SignupViewModel: ObservableObject {
             
             if self.avatarImage == nil {
                 self.avatarImage = UIImage(named: "img_avatar_default")
-                self.uploadUserProfileImage()
+                self.uploadAvatarImage()
             } else {
-                self.uploadUserProfileImage()
+                self.uploadAvatarImage()
             }
         }
     }
     
-    func uploadUserProfileImage() {
+    func uploadAvatarImage() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let ref = FirebaseManager.shared.storage.reference(withPath: uid)
         guard let imageData = avatarImage?.jpegData(compressionQuality: 0.5) else { return }
@@ -250,9 +220,7 @@ class SignupViewModel: ObservableObject {
                     return
                 }
                 
-                print("email TRC: " + self.email)
                 self.resetSignupProperties()
-                print("email SAU: " + self.email)
                 
                 //Show alert successfully created
                 self.isShowAlert = true
@@ -260,7 +228,7 @@ class SignupViewModel: ObservableObject {
             }
     }
     
-    func resetSignupProperties() {
+    private func resetSignupProperties() {
         email = ""
         code = ""
         fullName = ""
