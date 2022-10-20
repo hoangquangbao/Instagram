@@ -224,17 +224,19 @@ class SignupViewModel: ObservableObject {
             .setData(userData) { error in
                 if let error = error {
                     self.isShowAlert = true
+                    self.alertTitle = "Register a new account"
                     self.alertMessage = error.localizedDescription
                     print(error.localizedDescription)
                     return
                 }
                 
-                self.resetSignupProperties()
-                
                 //Show alert successfully created
                 self.isShowAlert = true
                 self.alertTitle = "Instagram account"
+                self.alertButtonTitle = "Got it!"
                 self.alertMessage = "Your account has been successfully cereated!"
+                
+                self.resetSignupProperties()
             }
     }
     
