@@ -48,6 +48,13 @@ struct LoginView: View {
                         .transition(.move(edge: .trailing))
                 }
             }
+            .alert(isPresented: $vm.isShowAlert, content: {
+                Alert(title: Text(vm.alertTitle),
+                      message: Text(vm.alertMessage),
+                      dismissButton: .default(Text(vm.alertButtonTitle)))
+            })
+            .navigationDestination(isPresented: $vm.isShowHomeView,
+                                   destination: { HomeView() })
         }
         .environmentObject(vm)
         .environmentObject(perform)

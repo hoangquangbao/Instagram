@@ -6,6 +6,13 @@ class LoginViewModel: ObservableObject {
     @Published var password: String
     @Published var isShowResetPasswordView: Bool
     
+    @Published var isShowAlert : Bool = false
+    @Published var alertTitle : String = ""
+    @Published var alertButtonTitle : String = ""
+    @Published var alertMessage : String = ""
+    
+    @Published var isShowHomeView: Bool = false
+    
     let emailTitle: String
     let passwordTitle: String
     let forgotPasswordText: String
@@ -37,10 +44,16 @@ class LoginViewModel: ObservableObject {
     func handleLogin() {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
             if let error = error {
-                print(error.localizedDescription)
+                self.isShowAlert = true
+                self.alertTitle = "Login account"
+                self.alertButtonTitle = "OK"
+                self.alertMessage = error.localizedDescription
                 return
             }
-            print("Successfully logged in as user: \(result?.user.uid ?? "")")
+            
+            self.email = ""
+            self.password = ""
+            self.isShowHomeView = true
         }
     }
     

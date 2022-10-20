@@ -24,6 +24,8 @@ class SignupViewModel: ObservableObject {
     @Published var description: String
     
     @Published var isShowAlert : Bool = false
+    @Published var alertTitle : String = ""
+    @Published var alertButtonTitle : String = ""
     @Published var alertMessage : String = ""
     
     var addEmailVM: SignupAddViewModel
@@ -110,7 +112,8 @@ class SignupViewModel: ObservableObject {
             imageSystemName: "gift",
             description: "This won't be part of your public profile.",
             description_ext: "Use your own birthday, even if this account is for a business, a pet or something else.",
-            questionText: "[Why I need to provide my birthday?]()")
+            questionText: "You need to enter the day you were born",
+        actionText: "[Why I need to provide my birthday?](https://help.instagram.com/366075557613433)")
         self.addUsernameVM = SignupAddViewModel(
             type: .add_username,
             headerTitle: "Create username",
@@ -121,7 +124,7 @@ class SignupViewModel: ObservableObject {
             actionText: "Sign In")
         self.signupAccountVM = SignupAddViewModel(
             type: .signup_account,
-            headerTitle: "Sign up as?",
+            headerTitle: "Sign up as ",
             buttonLable: "Sign up",
             description: "You can always change your username later.",
             description_ext: "People who use our service may have uploaded your contact information to Instagram. **[Learn more](https://help.instagram.com/1128997980474717)**.\n\nBy tapping Sign up, you agree to our **[Terms, Data Policy](https://privacycenter.instagram.com/policy)** and **[Cookies Policy](https://help.instagram.com/1896641480634370)**.",
@@ -149,6 +152,12 @@ class SignupViewModel: ObservableObject {
             description: "Make this photo your first post so people can like and comment on it.",
             questionText: "Also share this photo as a post",
             actionText: "Change photo")
+    }
+    
+    func validateAccountExist(completion: @escaping (Bool, Error?) -> Void) {
+        FirebaseManager.shared.auth.fetchSignInMethods(forEmail: email) { array, error in
+            completion(array?.isEmpty != nil, error)
+        }
     }
     
     func signupAccount() {
@@ -224,6 +233,7 @@ class SignupViewModel: ObservableObject {
                 
                 //Show alert successfully created
                 self.isShowAlert = true
+                self.alertTitle = "Instagram account"
                 self.alertMessage = "Your account has been successfully cereated!"
             }
     }

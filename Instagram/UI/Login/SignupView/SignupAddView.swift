@@ -52,6 +52,11 @@ struct SignupAddView: View {
         .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: isNavigation_On) {
             ImagePicker(image: $vmSignup.avatarImage)
         }
+        .alert(isPresented: $vmSignup.isShowAlert, content: {
+            Alert(title: Text(vmSignup.alertTitle),
+                  message: Text(vmSignup.alertMessage),
+                  dismissButton: .default(Text(vmSignup.alertButtonTitle)))
+        })
     }
 }
 
@@ -76,7 +81,21 @@ extension SignupAddView {
             }
             
             Button {
-                isNavigation = true
+                vmSignup.validateAccountExist { result, error  in
+                    if let error = error {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Signup account"
+                        vmSignup.alertButtonTitle = "Got it!"
+                        vmSignup.alertMessage = error.localizedDescription
+                    } else if result {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Signup account"
+                        vmSignup.alertButtonTitle = "Got it!"
+                        vmSignup.alertMessage = "You already have an Instagram account with this email!"
+                    } else {
+                        isNavigation = true
+                    }
+                }
             } label: {
                 Text(vm.buttonLable)
             }
@@ -111,36 +130,45 @@ extension SignupAddView {
                 Text(vm.description)
                     .foregroundColor(Color.black.opacity(0.8))
                 
-                Text(.init(vm.questionText ?? ""))
+                Text(.init(vm.actionText ?? ""))
             }
             .font(.sfProTextRegular(15, relativeTo: .caption1))
             .lineSpacing(3)
             .multilineTextAlignment(.center)
             .fixedSize(horizontal: false, vertical: true)
             
-            HStack {
-                Text(setDateString(selectedDate: _selectedDate))
-                    .font(.sfProTextRegular(15, relativeTo: .caption1))
-                    .foregroundColor(Color.black.opacity(_isShowAge ? 1 : 0.5))
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(setDateString(selectedDate: _selectedDate))
+                        .font(.sfProTextRegular(15, relativeTo: .caption1))
+                        .foregroundColor(Color.black.opacity(_isShowAge ? 1 : 0.5))
+                    
+                    Spacer()
+                    
+                    if _isShowAge {
+                        Text(String(_selectedDate.age) + (vm.textfieldTitle ?? ""))
+                            .font(.sfProTextRegular(13, relativeTo: .caption1))
+                            .foregroundColor((_isShowAge && _selectedDate.age < 5) ? Color.red : Color.black.opacity(0.5))
+                    }
+                }
+                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity)
+                .frame(height: 45)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.blue.opacity(0.5), lineWidth: 0.5)
+                }
+                .background {
+                    Color.white
+                }
+                .cornerRadius(5)
                 
-                Spacer()
-                
-                if _isShowAge {
-                    Text(String(_selectedDate.age) + (vm.textfieldTitle ?? ""))
+                if (_isShowAge && _selectedDate.age < 5) {
+                    Text(vm.questionText ?? "")
                         .font(.sfProTextRegular(13, relativeTo: .caption1))
                         .foregroundColor(Color.black.opacity(0.5))
                 }
             }
-            .padding(.horizontal, 8)
-            .frame(maxWidth: .infinity)
-            .frame(height: 45)
-            .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
-            }
-            .background {
-                Color.white
-            }
-            .cornerRadius(5)
         }
     }
     
@@ -156,7 +184,14 @@ extension SignupAddView {
             
             Group {
                 Button {
-                    isNavigation = true
+                    if _selectedDate.age < 5 {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Enter your real birthday"
+                        vmSignup.alertButtonTitle = "OK"
+                        vmSignup.alertMessage = "Use your own birthday, even if this account is for a business, a pet or something else."
+                    } else {
+                        isNavigation = true
+                    }
                 } label: {
                     Text(vm.buttonLable)
                 }
@@ -178,7 +213,7 @@ extension SignupAddView {
     
     private func signupAccountView() -> some View {
         VStack(spacing: 20) {
-            Text(vm.headerTitle)
+            Text(vm.headerTitle +  vmSignup.username + " ?")
                 .font(.sfProTextBold(22, relativeTo: .largeTitle))
                 .padding(.top, 50)
             
@@ -202,7 +237,7 @@ extension SignupAddView {
     }
     
     private func signupAccountView_Ext() -> some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 20) {
             Divider()
             Button {
                 isNavigation = true
@@ -252,6 +287,11 @@ extension SignupAddView {
                         withAnimation {
                             _isShowImagePicker = true
                         }
+                    } else {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Find facebook friends"
+                        vmSignup.alertButtonTitle = "OK"
+                        vmSignup.alertMessage = "This func un-implement!"
                     }
                 } label: {
                     Text(vm.buttonLable)
@@ -363,8 +403,8 @@ extension SignupAddView {
                 Text(vm.buttonLable)
             }
             .buttonStyle(CustomButtonStyle())
-            .opacity(text.isEmpty ? 0.5 : 1)
-            .disabled(text.isEmpty)
+            .opacity(vm.type == .add_password ? (text.count < 6 ? 0.5 : 1) : (text.isEmpty ? 0.5 : 1))
+            .disabled(vm.type == .add_password ? (text.count < 6) : (text.isEmpty))
         }
     }
     
