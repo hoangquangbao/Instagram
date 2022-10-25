@@ -5,7 +5,9 @@ struct LoginView: View {
     
     @StateObject var vm = LoginViewModel()
     @StateObject var perform = BackLoginView()
+    
     @State private var _isHidePassword: Bool = true
+    @State var _isNavigation: Int? = nil
     
     var body: some View {
         NavigationView {
@@ -26,14 +28,20 @@ struct LoginView: View {
                             .padding(.top,5)
                     }
                     
-                    Button {
-                        vm.handleLogin()
-                    } label: {
-                        Text(vm.loginButtonTitle)
+                    NavigationLink(destination: TabbarBottomView(), tag: 1, selection: $_isNavigation) {
+                        Button {
+                            vm.handleLogin { isSuccess in
+                                if(isSuccess) {
+                                    _isNavigation = 1
+                                }
+                            }
+                        } label: {
+                            Text(vm.loginButtonTitle)
+                        }
+                        .buttonStyle(CustomButtonStyle())
+                        .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
+                        .disabled(vm.textFieldIsEmpty())
                     }
-                    .buttonStyle(CustomButtonStyle())
-                    .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
-                    .disabled(vm.textFieldIsEmpty())
                     
                     optionLogin()
                     Spacer()

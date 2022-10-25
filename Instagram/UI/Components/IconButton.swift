@@ -9,6 +9,7 @@ import SwiftUI
 
 struct IconButton: View {
     let imageIcon: Image
+    let size: CGFloat = 20
     let onTap: () -> Void
     
     var body: some View {
@@ -16,8 +17,9 @@ struct IconButton: View {
             onTap()
         } label: {
             imageIcon
+                .renderingMode(.template)
+                .foregroundColor(Color.primary)
         }
-
     }
 }
 

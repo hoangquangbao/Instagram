@@ -10,27 +10,22 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject var vm = HomeViewModel()
     
+    @State var _isNavigateAddPostView: Bool = false
+    
+    
     var body: some View {
         NavigationView {
-            ScrollView(.vertical, showsIndicators: false) {
-                _storyBar
-                
-                Divider()
-                
-                _usersPost
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Image.icnLogo
-                }
-                
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    IconButton(imageIcon: Image.icnAddSquare) {
-                        
-                    }
+            ZStack {
+                Color.background.ignoresSafeArea()
+                VStack {
+                    _topBar
                     
-                    IconButton(imageIcon: Image.icnShare) {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        _storyBar
                         
+                        Divider()
+                        
+                        _usersPost
                     }
                 }
             }
@@ -47,6 +42,20 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 private extension HomeView {
+    var _topBar: some View {
+        HStack(spacing: 15) {
+            Image.icnLogo.renderingMode(.template).foregroundColor(Color.primary)
+            Spacer()
+            _addStoryButton
+
+            IconButton(imageIcon: Image.icnShare) {
+                print("asdasd")
+            }
+            
+        }
+        .padding(.horizontal, AppStyle.defaultSpacing)
+    }
+    
     var _storyBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 15.0) {
@@ -55,12 +64,6 @@ private extension HomeView {
                 }
             }
             .padding(.horizontal, AppStyle.defaultSpacing)
-        }
-    }
-    
-    var _usersPost: some View {
-        ForEach(MockData.posts) { post in
-            PostRow(post: post)
         }
     }
     
@@ -73,6 +76,21 @@ private extension HomeView {
                 .font(.caption)
         }
         .padding(.top, 8)
+    }
+    
+    var _usersPost: some View {
+        ForEach(MockData.posts) { post in
+            PostRow(post: post)
+        }
+    }
+    
+    var _addStoryButton: some View {
+        IconButton(imageIcon: Image.icnAddSquare) {
+            _isNavigateAddPostView = true
+        }
+        .fullScreenCover(isPresented: $_isNavigateAddPostView) {
+            NewPostView(user: vm.users[0])
+        }
     }
 }
 

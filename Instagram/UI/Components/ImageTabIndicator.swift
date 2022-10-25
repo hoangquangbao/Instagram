@@ -17,11 +17,10 @@ struct ImageTabIndicator: View {
                 if index == activeIndex {
                     _DotCustomized(color: Color._3897F0)
                 } else {
-                    _DotCustomized(color: Color._000000.opacity(0.15))
+                    _DotCustomized(color: Color.primary.opacity(0.15))
                 }
             }
         }
-        .padding(.leading, 60)
     }
 }
 

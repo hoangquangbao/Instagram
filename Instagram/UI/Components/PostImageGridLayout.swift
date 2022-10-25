@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ImageGridLayout: View {
+struct PostImageGridLayout: View {
     let posts: [Post]
     let columnCount: Int
     let onImageTap: (() -> Void)?
@@ -15,11 +15,11 @@ struct ImageGridLayout: View {
     private let _spacing = 2.0
     private var _gridColumns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
-    init(posts: [Post], columnCount: Int? = 3, onImageTap: (() -> Void)? = nil) {
+    init(posts: [Post], columnCount: Int = 3, onImageTap: (() -> Void)? = nil) {
         self.posts = posts
-        self.columnCount = columnCount!
+        self.columnCount = columnCount
         self.onImageTap = onImageTap
-        initializeGridColumn(columnCount!)
+        initializeGridColumn(columnCount)
     }
     
     var body: some View {
@@ -37,7 +37,7 @@ struct ImageGridLayout: View {
     }
 }
 
-private extension ImageGridLayout {
+private extension PostImageGridLayout {
     var _imageSize: CGFloat {
         return UIScreen.screenWidth / CGFloat(self.columnCount)
     }
@@ -66,8 +66,8 @@ private extension ImageGridLayout {
     }
 }
 
-struct ImageGridLayout_Previews: PreviewProvider {
+struct PostImageGridLayout_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGridLayout(posts: MockData.posts)
+        PostImageGridLayout(posts: MockData.posts)
     }
 }

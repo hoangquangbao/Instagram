@@ -10,4 +10,8 @@ class HomeViewModel: ObservableObject {
     var users = MockData.users.filter { user in
         user.hasStory == true
     }
+    
+    func navigateMessageView() {
+        print("navigate to Message View")
+    }
 }

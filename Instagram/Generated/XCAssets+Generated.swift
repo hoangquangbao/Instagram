@@ -11,6 +11,9 @@ extension Image {
     static var icnBookmark: Image { return Image("icn_bookmark") }
     static var icnBurger: Image { return Image("icn_burger") }
     static var icnCamera: Image { return Image("icn_camera") }
+    static var icnCameraBold: Image { return Image("icn_camera_bold") }
+    static var icnClose: Image { return Image("icn_close") }
+    static var icnCollapse: Image { return Image("icn_collapse") }
     static var icnComment: Image { return Image("icn_comment") }
     static var icnFacebook: Image { return Image("icn_facebook") }
     static var icnFacebookBlack: Image { return Image("icn_facebook_black") }
@@ -32,6 +35,7 @@ extension Image {
     static var icnPhonebook: Image { return Image("icn_phonebook") }
     static var icnPlusHl: Image { return Image("icn_plus_hl") }
     static var icnReels: Image { return Image("icn_reels") }
+    static var icnScan: Image { return Image("icn_scan") }
     static var icnSearch: Image { return Image("icn_search") }
     static var icnSearchBold: Image { return Image("icn_search_bold") }
     static var icnSeries: Image { return Image("icn_series") }

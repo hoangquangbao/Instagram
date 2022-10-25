@@ -17,28 +17,25 @@ struct PostRow: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.background
-            VStack(alignment: .leading, spacing: 0.0) {
-                _header
-                
-                _content
-                
-                if(vm.post.likeCount > 0) {
-                    _likeDescription
-                }
-                
-                Text(vm.post.caption)
-                    .font(.footnote)
-                    .padding(.top, 8)
-                    .padding(.horizontal, AppStyle.defaultSpacing)
-                
-                if(vm.post.commentCount > 0) {
-                    _showAllCommentButton
-                }
-                
-                _commentArea
+        VStack(alignment: .leading, spacing: 0.0) {
+            _header
+            
+            _content
+            
+            if(vm.post.likeCount > 0) {
+                _likeDescription
             }
+            
+            Text(vm.post.caption)
+                .font(.footnote)
+                .padding(.top, 8)
+                .padding(.horizontal, AppStyle.defaultSpacing)
+            
+            if(vm.post.commentCount > 0) {
+                _showAllCommentButton
+            }
+            
+            _commentArea
         }
     }
 }
@@ -71,7 +68,7 @@ private extension PostRow {
     
     var _content: some View {
         VStack {
-            SquareImageTab(images: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
+            SquareImageTab(images: vm.imagesUrlToImageView(), currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
                     IconButton(imageIcon: Image.icnHeart, onTap: vm.onFavorite)
@@ -83,6 +80,7 @@ private extension PostRow {
                 
                 if(vm.imageCount > 1) {
                     ImageTabIndicator(tabCount: vm.imageCount, activeIndex: $_imageSelectionIndex)
+                        .padding(.leading, 60)
                 }
                 
                 Spacer()

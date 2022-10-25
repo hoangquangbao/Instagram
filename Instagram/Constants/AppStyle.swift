@@ -14,5 +14,4 @@ struct AppStyle {
         colors: [.red, .purple, .red, .orange, .yellow, .orange],
         startPoint: .topLeading, endPoint: .bottomTrailing
     )
-    
 }

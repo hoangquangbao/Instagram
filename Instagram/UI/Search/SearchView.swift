@@ -42,17 +42,6 @@ private extension SearchView {
         .onTapGesture { vm.switchMode(.searching) }
     }
     
-    var _cameraButton: some View {
-        Button(action: vm.openCamera) {
-            Image.icnCamera
-                .renderingMode(.template)
-                .resizable()
-                .frame(width: 25, height: 25)
-                .foregroundColor(Color("primary"))
-                .padding(.leading, 10)
-        }
-    }
-    
     var _cancelButton: some View {
         Button {
             withAnimation(.easeInOut(duration: 0.3)) {
@@ -87,7 +76,7 @@ private extension SearchView {
         Group {
             _filteredBar
             ScrollView {
-                ImageGridLayout(posts: vm.posts).padding(.top, 5)
+                PostImageGridLayout(posts: vm.posts).padding(.top, 5)
             }
             
             Spacer()
@@ -112,8 +101,6 @@ private extension SearchView {
     var _actionButtonBuilder: some View {
         if (vm.mode == .searching) {
             _cancelButton
-        } else {
-            _cameraButton
         }
     }
     

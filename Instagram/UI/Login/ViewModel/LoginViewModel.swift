@@ -34,12 +34,14 @@ class LoginViewModel: ObservableObject {
         self.actionText = actionText
     }
     
-    func handleLogin() {
+    func handleLogin(complete: @escaping(Bool) -> Void) {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print(error.localizedDescription)
+                complete(false)
                 return
             }
+            complete(true)
             print("Successfully logged in as user: \(result?.user.uid ?? "")")
         }
     }
