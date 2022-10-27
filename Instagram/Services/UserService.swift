@@ -5,18 +5,22 @@
 //  Created by lhduc on 27/10/2022.
 //
 
-
+import Firebase
+import FirebaseFirestoreSwift
 
 class UserService: UserServiceProtocol {
     private let userRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.USER_COLLECTION)
     
     func fetchUser(with uid: String, completion: @escaping (User) -> Void) {
-        userRef.document(uid).getDocument { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            guard let user = try? snapshot.data(as User.self) else { return }
-            
-            completion(user)
-        }
+        userRef
+            .document(uid)
+            .getDocument { snapshot, error in
+                
+                guard let snapshot = snapshot else { return }
+                guard let user = try? snapshot.data(as: User.self) else { return }
+                
+                completion(user)
+            }
     }
     
     func fetchAll(completion: @escaping ([User]) -> Void) {

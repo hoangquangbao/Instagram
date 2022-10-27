@@ -15,7 +15,7 @@ class PostRowViewModel: ObservableObject {
     
     var imageSelectionIndex = 0
     var imageCount        : Int  { return post.imagesUrl.count }
-    var latestUserLikePost: User { return post.latestUserLiked }
+    var latestUserLikePost: User? { return post.latestUserLiked }
     var likeCount         : Int  { return post.likeCount }
     var commentCount      : Int  { return post.commentCount }
     

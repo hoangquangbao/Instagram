@@ -23,7 +23,7 @@ struct PostRow: View {
             _content
             
             if(vm.post.likeCount > 0) {
-                _likeDescription
+                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
             }
             
             Text(vm.post.caption)
@@ -92,21 +92,6 @@ private extension PostRow {
         }
     }
     
-    var _likeDescription: some View {
-        HStack {
-            CircleAvatar(image: Image(vm.latestUserLikePost.avatarUrl), radius: 20)
-            Group<Text> {
-                Text("Liked by ") +
-                Text("\(vm.latestUserLikePost.fullName) ").bold() +
-                Text("and ") +
-                Text("\(vm.likeCount - 1) others").bold()
-            }
-            .font(.caption)
-        }
-        .padding(.horizontal, AppStyle.defaultSpacing)
-        .padding(.top, 5)
-    }
-    
     var _showAllCommentButton: some View {
         Button(action: vm.showAllComment) {
             Text("Show all \(vm.commentCount) comment")
@@ -130,6 +115,27 @@ private extension PostRow {
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.top, 12)
+    }
+}
+
+struct LikeInfoRow: View {
+    let user: User
+    let likeCount: Int
+    
+    var body: some View {
+        HStack {
+            CircleAvatar(image: Image(user.avatarUrl), radius: 20)
+            Group<Text> {
+                Text("Liked by ") +
+                Text("\(user.fullName) ").bold() +
+                Text("and ") +
+                Text("\(likeCount - 1) others").bold()
+            }
+            .font(.caption)
+        }
+        .padding(.horizontal, AppStyle.defaultSpacing)
+        .padding(.top, 5)
+        
     }
 }
 

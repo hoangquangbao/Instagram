@@ -343,7 +343,7 @@
 		06F438AF28D334E7009EA3E1 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
-				CD2B3EF7290A86B6002E3A8F /* Contracts */,
+				CD2B3EF8290A86D3002E3A8F /* Protocols */,
 				CDAFADB728F7B1C3003B48E5 /* Models */,
 				CDAFADB428F7B156003B48E5 /* Data */,
 				CDAFADB028F6A3EA003B48E5 /* Services */,
@@ -498,14 +498,6 @@
 				CD41DB6E28ED192E00870F55 /* SearchViewModel.swift */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		CD2B3EF7290A86B6002E3A8F /* Contracts */ = {
-			isa = PBXGroup;
-			children = (
-				CD2B3EF8290A86D3002E3A8F /* Protocols */,
-			);
-			path = Contracts;
 			sourceTree = "<group>";
 		};
 		CD2B3EF8290A86D3002E3A8F /* Protocols */ = {
