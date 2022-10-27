@@ -44,7 +44,7 @@ struct HomeView_Previews: PreviewProvider {
 private extension HomeView {
     var _topBar: some View {
         HStack(spacing: 15) {
-            Image.icnLogo.renderingMode(.template).foregroundColor(Color.primary)
+            Image.icnLogo.renderingMode(.template).foregroundColor(Color.appPrimary)
             Spacer()
             _addStoryButton
 

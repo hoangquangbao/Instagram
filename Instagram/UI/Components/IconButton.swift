@@ -18,7 +18,7 @@ struct IconButton: View {
         } label: {
             imageIcon
                 .renderingMode(.template)
-                .foregroundColor(Color.primary)
+                .foregroundColor(Color.appPrimary)
         }
     }
 }

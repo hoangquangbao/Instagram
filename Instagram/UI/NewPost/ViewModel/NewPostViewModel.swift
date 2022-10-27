@@ -9,8 +9,12 @@ import SwiftUI
 
 class NewPostViewModel: ObservableObject {
     var user: User
+    var actionType:  ActionType   =  .image
     
     @Published var caption: String = ""
+    @Published var isBottomSheetDisplayed: Bool = false
+    
+    enum ActionType: String { case image, camera, emoji, more }
     
     init(user: User) {
         self.user = user

@@ -48,7 +48,7 @@ struct TabbarBottomView: View {
                     }
                     .tag(4)
             }
-            .accentColor(Color.primary)
+            .accentColor(Color.appPrimary)
         }
     }
 }

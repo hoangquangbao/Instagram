@@ -14,7 +14,7 @@ extension Color {
     static var _767680: Color { return Color("#767680") }
     static var f9F9F9: Color { return Color("#F9F9F9") }
     static var ffffff: Color { return Color("#FFFFFF") }
+    static var appPrimary: Color { return Color("appPrimary") }
     static var background: Color { return Color("background") }
-    static var primary: Color { return Color("primary") }
     static var semiText: Color { return Color("semiText") }
 }

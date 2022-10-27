@@ -39,30 +39,24 @@ struct NewPostView: View {
                     }
                 }
             }
-            
             HStack {
                 Button {
                     withAnimation(.linear) {
                         isShowImageBottomSheet.toggle()
                     }
                 } label: {
-                    ZStack(alignment: .topTrailing) {
-                        Image.icnCollapse
+                    HStack {
+                        Image.icnMultipleSelected
                             .renderingMode(.template)
                             .resizable()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(isShowImageBottomSheet ? Color.ffffff : Color.primary)
-                            .padding(10)
-                            .background(isShowImageBottomSheet ? Color.primary : Color.semiText.opacity(0.3))
-                            .clipShape(Circle())
-                        Badge(
-                            text: photosSelected.count.toString(),
-                            foregroundColor: Color.background,
-                            backgroundColor: Color.primary
-                        )
-                        .offset(y: -5)
-                        .opacity((photosSelected.count > 0 && !isShowImageBottomSheet) ? 1 : 0)
+                        Text("Select image")
+                            .font(.subheadline)
                     }
+                    .foregroundColor(Color._000000)
+                    .padding(10)
+                    .background(Color._3C3C43.opacity(0.8))
+                    .clipShape(Capsule())
                 }
                 
                 Spacer()
@@ -82,49 +76,46 @@ struct NewPostView: View {
             }
             .padding(.horizontal, AppStyle.defaultSpacing)
             
-            ScrollView {
-                LazyVGrid(columns: _gridColumns, spacing: 1.0) {
-                    ForEach(photoVm.allPhotos, id: \.self) { photo in
-                        Button {
-                            withAnimation {
-                                if(photosSelected.contains{ $0 == photo }) {
-                                    photosSelected = photosSelected.filter { $0 != photo }
-                                } else {
-                                    photosSelected.append(photo)
-                                }
-                            }
-                        } label: {
-                            if (photosSelected.contains(photo)) {
-                                ZStack(alignment: .topTrailing) {
-                                    Image(uiImage: photo)
-                                        .resizable()
-                                        .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
-                                        .aspectRatio(1, contentMode: .fill)
-                                    Color.primary.opacity(0.5)
-                                    Badge(
-                                        text: photoVm.getOrderOf(photo: photo, in: photosSelected).toString(),
-                                        foregroundColor: Color.white,
-                                        backgroundColor: Color.blue,
-                                        size: 12
-                                    )
-                                    .padding(5)
-                                }
-                            } else {
-                                Image(uiImage: photo)
-                                    .resizable()
-                                    .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
-                                    .aspectRatio(1, contentMode: .fill)
-                            }
-                        }
-                    }
-                }
-                .alert(isPresented: .constant(self.photoVm.errorString != "") ) {
-                    Alert(title: Text("Error"), message: Text(self.photoVm.errorString ), dismissButton: Alert.Button.default(Text("OK")))
-                }
-            }
-            .frame(height: isShowImageBottomSheet ? _getBottomSheetHeight() : 0)
-            
-            Spacer()
+            //            ScrollView {
+            //                LazyVGrid(columns: _gridColumns, spacing: 1.0) {
+            //                    ForEach(photoVm.allPhotos, id: \.self) { photo in
+            //                        Button {
+            //                            withAnimation {
+            //                                if(photosSelected.contains{ $0 == photo }) {
+            //                                    photosSelected = photosSelected.filter { $0 != photo }
+            //                                } else {
+            //                                    photosSelected.append(photo)
+            //                                }
+            //                            }
+            //                        } label: {
+            //                            if (photosSelected.contains(photo)) {
+            //                                ZStack(alignment: .topTrailing) {
+            //                                    Image(uiImage: photo)
+            //                                        .resizable()
+            //                                        .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
+            //                                        .aspectRatio(1, contentMode: .fill)
+            //                                    Color.appPrimary.opacity(0.5)
+            //                                    Badge(
+            //                                        text: photoVm.getOrderOf(photo: photo, in: photosSelected).toString(),
+            //                                        foregroundColor: Color.white,
+            //                                        backgroundColor: Color.blue,
+            //                                        size: 12
+            //                                    )
+            //                                    .padding(5)
+            //                                }
+            //                            } else {
+            //                                Image(uiImage: photo)
+            //                                    .resizable()
+            //                                    .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
+            //                                    .aspectRatio(1, contentMode: .fill)
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //                .alert(isPresented: .constant(self.photoVm.errorString != "") ) {
+            //                    Alert(title: Text("Error"), message: Text(self.photoVm.errorString ), dismissButton: Alert.Button.default(Text("OK")))
+            //                }
+            //            }
         }
     }
     
@@ -154,7 +145,7 @@ struct CircleIconButton: View {
                 .renderingMode(.template)
                 .resizable()
                 .frame(width: size, height: size)
-                .foregroundColor(Color.primary)
+                .foregroundColor(Color.appPrimary)
                 .padding(10)
                 .background(Color.semiText.opacity(0.25))
                 .clipShape(Circle())

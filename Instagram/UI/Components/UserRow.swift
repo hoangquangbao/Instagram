@@ -20,7 +20,7 @@ struct UserRow: View {
             VStack(alignment: .leading) {
                 Text(user.username)
                     .font(.subheadline).bold()
-                    .foregroundColor(Color("primary"))
+                    .foregroundColor(Color.appPrimary)
                 
                 Text(user.fullname)
                     .font(.caption)

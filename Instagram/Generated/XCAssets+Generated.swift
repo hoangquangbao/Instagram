@@ -30,6 +30,7 @@ extension Image {
     static var icnMentions: Image { return Image("icn_mentions") }
     static var icnMessenger: Image { return Image("icn_messenger") }
     static var icnMore: Image { return Image("icn_more") }
+    static var icnMultipleSelected: Image { return Image("icn_multiple_selected") }
     static var icnNotifiations: Image { return Image("icn_notifiations") }
     static var icnPfTabbar: Image { return Image("icn_pf_tabbar") }
     static var icnPhonebook: Image { return Image("icn_phonebook") }
