@@ -9,24 +9,21 @@ import SwiftUI
 
 class NewPostViewModel: ObservableObject {
     var user: User
-    var actionType:  ActionType   =  .image
     
-    @Published var caption: String = ""
-    @Published var isBottomSheetDisplayed: Bool = false
-    
-    enum ActionType: String { case image, camera, emoji, more }
+    @Published  var caption: String = ""
+    @Published  var isBottomSheetDisplayed: Bool = false
     
     init(user: User) {
         self.user = user
     }
     
     func resetCaption() {
-        self.caption = ""
+        caption = ""
     }
     
-    func uiImageToImage(_ images: [UIImage]) -> [Image] {
+    func uiImageToImage(_ uiImages: [UIImage]) -> [Image] {
         var result = [Image]()
-        images.forEach { image in
+        uiImages.forEach { image in
             result.append(Image(uiImage: image))
         }
         

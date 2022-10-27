@@ -22,7 +22,7 @@ struct UserRow: View {
                     .font(.subheadline).bold()
                     .foregroundColor(Color.appPrimary)
                 
-                Text(user.fullname)
+                Text(user.fullName)
                     .font(.caption)
                     .foregroundColor(Color.semiText)
             }

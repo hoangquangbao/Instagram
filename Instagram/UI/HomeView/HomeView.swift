@@ -72,7 +72,7 @@ private extension HomeView {
             CircleAvatar(image: Image(user.avatarUrl), radius: 55)
                 .addGradientBorder(gradient: AppStyle.storyLinearGradient)
             
-            Text(user.fullname)
+            Text(user.fullName)
                 .font(.caption)
         }
         .padding(.top, 8)

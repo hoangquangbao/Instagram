@@ -28,20 +28,14 @@ struct LoginView: View {
                             .padding(.top,5)
                     }
                     
-                    NavigationLink(destination: TabbarBottomView(), tag: 1, selection: $_isNavigation) {
-                        Button {
-                            vm.handleLogin { isSuccess in
-                                if(isSuccess) {
-                                    _isNavigation = 1
-                                }
-                            }
-                        } label: {
-                            Text(vm.loginButtonTitle)
-                        }
-                        .buttonStyle(CustomButtonStyle())
-                        .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
-                        .disabled(vm.textFieldIsEmpty())
+                    Button {
+                        vm.handleLogin()
+                    } label: {
+                        Text(vm.loginButtonTitle)
                     }
+                    .buttonStyle(CustomButtonStyle())
+                    .opacity(vm.textFieldIsEmpty() ? 0.5 : 1)
+                    .disabled(vm.textFieldIsEmpty())
                     
                     optionLogin()
                     Spacer()

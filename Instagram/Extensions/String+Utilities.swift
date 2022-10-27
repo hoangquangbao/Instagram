@@ -12,3 +12,9 @@ extension String {
         return !self.isEmpty
     }
 }
+
+extension Int {
+    func toString() -> String{
+        return String(self)
+    }
+}

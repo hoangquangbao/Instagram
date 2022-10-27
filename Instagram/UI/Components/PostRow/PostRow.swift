@@ -47,7 +47,7 @@ private extension PostRow {
                 if let user = vm.post.user {
                     CircleAvatar(image: Image(user.avatarUrl), radius: 40)
                     VStack(alignment: .leading) {
-                        Text(user.fullname)
+                        Text(user.fullName)
                             .font(.subheadline)
                             .fontWeight(.bold)
                         Text("@\(user.username)")
@@ -97,7 +97,7 @@ private extension PostRow {
             CircleAvatar(image: Image(vm.latestUserLikePost.avatarUrl), radius: 20)
             Group<Text> {
                 Text("Liked by ") +
-                Text("\(vm.latestUserLikePost.fullname) ").bold() +
+                Text("\(vm.latestUserLikePost.fullName) ").bold() +
                 Text("and ") +
                 Text("\(vm.likeCount - 1) others").bold()
             }

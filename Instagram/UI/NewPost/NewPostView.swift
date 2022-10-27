@@ -10,12 +10,11 @@ import SwiftUI
 struct NewPostView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var vm: NewPostViewModel
-    @ObservedObject var photoVm = PhotoModel()
     
     @State var photosSelected = [UIImage]()
+    @State var imageAttach: UIImage?
     @State var currentIndex = 0
-    @State var isShowImageBottomSheet = true
-    private var _gridColumns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 4)
+    @FocusState var hasTextFieldFocus: Bool
     
     init(user: User) {
         vm = NewPostViewModel(user: user)
@@ -25,135 +24,20 @@ struct NewPostView: View {
         VStack {
             _header
             
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    UserRow(user: vm.user)
-                        .padding(.top)
-                        .padding(.horizontal, AppStyle.defaultSpacing)
-                    
-                    TextEditorWithPlaceholder("What are you thinking about?", text: $vm.caption)
-                        .padding(.horizontal, AppStyle.defaultSpacing)
-                    
-                    if(photosSelected.count > 0) {
-                        SquareImageTab(images: vm.uiImageToImage(photosSelected), currentStep: $currentIndex)
-                    }
-                }
-            }
-            HStack {
-                Button {
-                    withAnimation(.linear) {
-                        isShowImageBottomSheet.toggle()
-                    }
-                } label: {
-                    HStack {
-                        Image.icnMultipleSelected
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        Text("Select image")
-                            .font(.subheadline)
-                    }
-                    .foregroundColor(Color._000000)
-                    .padding(10)
-                    .background(Color._3C3C43.opacity(0.8))
-                    .clipShape(Capsule())
-                }
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image("icn_camera_bold")
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 25, height: 25)
-                        .foregroundColor(Color.white)
-                        .padding(10)
-                        .background(AppStyle.storyLinearGradient)
-                        .clipShape(Circle())
-                }
-            }
-            .padding(.horizontal, AppStyle.defaultSpacing)
+            _postInfo
             
-            //            ScrollView {
-            //                LazyVGrid(columns: _gridColumns, spacing: 1.0) {
-            //                    ForEach(photoVm.allPhotos, id: \.self) { photo in
-            //                        Button {
-            //                            withAnimation {
-            //                                if(photosSelected.contains{ $0 == photo }) {
-            //                                    photosSelected = photosSelected.filter { $0 != photo }
-            //                                } else {
-            //                                    photosSelected.append(photo)
-            //                                }
-            //                            }
-            //                        } label: {
-            //                            if (photosSelected.contains(photo)) {
-            //                                ZStack(alignment: .topTrailing) {
-            //                                    Image(uiImage: photo)
-            //                                        .resizable()
-            //                                        .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
-            //                                        .aspectRatio(1, contentMode: .fill)
-            //                                    Color.appPrimary.opacity(0.5)
-            //                                    Badge(
-            //                                        text: photoVm.getOrderOf(photo: photo, in: photosSelected).toString(),
-            //                                        foregroundColor: Color.white,
-            //                                        backgroundColor: Color.blue,
-            //                                        size: 12
-            //                                    )
-            //                                    .padding(5)
-            //                                }
-            //                            } else {
-            //                                Image(uiImage: photo)
-            //                                    .resizable()
-            //                                    .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
-            //                                    .aspectRatio(1, contentMode: .fill)
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //                .alert(isPresented: .constant(self.photoVm.errorString != "") ) {
-            //                    Alert(title: Text("Error"), message: Text(self.photoVm.errorString ), dismissButton: Alert.Button.default(Text("OK")))
-            //                }
-            //            }
+            Spacer()
+            
+            _actionButtonsBuilder
         }
-    }
-    
-    private func _getBottomSheetHeight() -> CGFloat {
-        let imageLength = photoVm.allPhotos.count
-        if(imageLength > 0 && imageLength <= 4) {
-            return UIScreen.screenWidth / 4
-        }
-        else if(imageLength <= 8) {
-            return UIScreen.screenWidth / 2
-        }
-        
-        return UIScreen.screenWidth
-    }
-}
-
-struct CircleIconButton: View {
-    let icon: Image
-    var size: CGFloat = 20
-    let onTap: () -> Void
-    
-    var body: some View {
-        Button {
-            onTap()
-        } label: {
-            icon
-                .renderingMode(.template)
-                .resizable()
-                .frame(width: size, height: size)
-                .foregroundColor(Color.appPrimary)
-                .padding(10)
-                .background(Color.semiText.opacity(0.25))
-                .clipShape(Circle())
+        .sheet(isPresented: $vm.isBottomSheetDisplayed) {
+            ImagePicker(image: $imageAttach)
         }
     }
 }
 
-extension NewPostView {
+private extension NewPostView {
+    
     var _header: some View {
         ZStack(alignment: .center) {
             Text("New post")
@@ -171,18 +55,110 @@ extension NewPostView {
                 Button {
                     
                 } label: {
-                    Text("Continue").font(.subheadline)
+                    Text("Upload").font(.subheadline)
                 }
+                .disabled(vm.caption.isEmpty)
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.top, 5)
     }
+    
+    var _postInfo: some View {
+        ScrollView(showsIndicators: false) {
+            VStack {
+                ZStack(alignment: .topTrailing) {
+                    UserRow(user: vm.user)
+                        .padding(.top)
+                        .padding(.horizontal, AppStyle.defaultSpacing)
+                }
+                
+                TextEditorWithPlaceholder("What are you thinking about?", text: $vm.caption)
+                    .padding(.horizontal, AppStyle.defaultSpacing)
+                    .focused($hasTextFieldFocus)
+                
+                if(photosSelected.count > 0) {
+                    SquareImageTab(images: vm.uiImageToImage(photosSelected), currentStep: $currentIndex)
+                }
+                
+                if let imageAttach = imageAttach {
+                    SquareImageTab(images: [Image(uiImage: imageAttach)], currentStep: $currentIndex)
+                }
+            }
+        }
+    }
+    
+    var _selectImageButton: some View {
+        Button {
+            vm.isBottomSheetDisplayed.toggle()
+        } label: {
+            HStack {
+                Image.icnMultipleSelected
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                Text("Select image")
+                    .font(.subheadline)
+            }
+            .foregroundColor(Color._000000)
+            .padding(10)
+            .background(Color._3C3C43.opacity(0.8))
+            .clipShape(Capsule())
+        }
+    }
+    
+    var _openCameraButton: some View {
+        Button {
+        } label: {
+            Image("icn_camera_bold")
+                .renderingMode(.template)
+                .resizable()
+                .frame(width: 25, height: 25)
+                .foregroundColor(Color.white)
+                .padding(10)
+                .background(AppStyle.storyLinearGradient)
+                .clipShape(Circle())
+        }
+    }
+    
+    var _closeKeyboardButton: some View {
+        Button {
+            
+            withAnimation {
+                hasTextFieldFocus = false
+            }
+        } label: {
+            Text("Done")
+                .font(.subheadline)
+                .padding(.vertical, 7)
+                .padding(.horizontal)
+                .foregroundColor(Color._000000)
+                .background(Color._3C3C43.opacity(0.8))
+                .cornerRadius(5)
+        }
+    }
+    
 }
 
-extension Int {
-    func toString() -> String{
-        return String(self)
+private extension NewPostView {
+    
+    @ViewBuilder
+    var _actionButtonsBuilder: some View {
+        if(hasTextFieldFocus) {
+            HStack {
+                Spacer()
+                _closeKeyboardButton
+            }
+            
+            
+        } else {
+            HStack {
+                _selectImageButton
+                Spacer()
+                _openCameraButton
+            }
+            .padding(.horizontal, AppStyle.defaultSpacing)
+        }
     }
 }
 

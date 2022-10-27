@@ -78,7 +78,7 @@ class SearchViewModel: ObservableObject {
         if(searchText.isEmpty) { return users }
         
         return users.filter { user in
-            user.username.contains(searchText) || user.fullname.contains(searchText)
+            user.username.contains(searchText) || user.fullName.contains(searchText)
         }
     }
 }

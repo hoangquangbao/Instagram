@@ -20,11 +20,16 @@ struct Post: Identifiable, Decodable, Equatable {
     
     var user: User?
     var didLike: Bool = false
-    
     var likeCount: Int { return likes.count }
     var commentCount: Int { return comments.count }
-    var latestUserLiked: User { return likes[likeCount - 1] }
-    
+    var latestUserLiked: User {
+        if(likes.count > 0) {
+            return likes[likeCount - 1]
+        }
+    }
+}
+
+extension Post {
     static func == (lhs: Post, rhs: Post) -> Bool {
         return lhs.uid == rhs.uid
     }
