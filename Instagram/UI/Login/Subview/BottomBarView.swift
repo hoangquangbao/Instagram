@@ -16,7 +16,6 @@ struct BottomBarView: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            Divider()
             HStack(alignment: .center, spacing: 4) {
                 Text(questionText ?? "")
                     .font(.sfProTextRegular(13, relativeTo: .caption1))

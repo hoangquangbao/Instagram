@@ -14,6 +14,9 @@ struct AddEmailView: View {
                               text: $vm.email,
                               isNavigation: $_isNavigation)
                 
+                Divider()
+                    .padding(.bottom, 10)
+                
                 BottomBarView(questionText: vm.addEmailVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") { dismiss() }
             }
@@ -40,8 +43,8 @@ struct AddEmailView: View {
 
 @available(iOS 16.0, *)
 struct AddEmailView_Previews: PreviewProvider {
-    static var vm = SignupViewModel()
     static var previews: some View {
-        AddEmailView(vm: vm)
+        AddEmailView()
+            .environmentObject(SignupViewModel())
     }
 }

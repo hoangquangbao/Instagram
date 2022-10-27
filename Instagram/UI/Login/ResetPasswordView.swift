@@ -7,7 +7,6 @@ struct ResetPasswordView: View {
     
     @State private var _selectedIndex: Int = 0
     @State private var _isAccountExist: Bool = true
-    @State private var _alertText: String = "No users found"
     @FocusState private var _isFocusedKeyboard: Bool
     
     var body: some View {
@@ -37,6 +36,9 @@ struct ResetPasswordView: View {
             }
             .padding(.horizontal, 30)
             
+            Divider()
+                .padding(.bottom, 10)
+            
             BottomBarView(
                 questionText: "",
                 actionText: vm.actionText) {
@@ -45,6 +47,17 @@ struct ResetPasswordView: View {
                     }
                 }
         }
+        .alert(isPresented: $vm.isShowAlert, content: {
+            Alert(title: Text("Reset password"),
+                  message: Text(vm.alertMessage),
+                  dismissButton: .default(Text("OK"),
+                                          action: {
+                withAnimation {
+                    vmLogin.email = ""
+                    vmLogin.isShowResetPasswordView = false
+                }
+            }))
+        })
         .background()
     }
 }
@@ -89,7 +102,7 @@ extension ResetPasswordView {
             }
             
             if !_isAccountExist {
-                Text(_alertText)
+                Text(vm.alertMessage)
                     .font(.sfProTextRegular(12, relativeTo: .caption1))
                     .foregroundColor(Color.red)
             }

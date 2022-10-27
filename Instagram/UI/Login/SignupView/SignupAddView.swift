@@ -1,25 +1,39 @@
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct SignupAddView: View {
     
     @ObservedObject var vm: SignupAddViewModel
+    @EnvironmentObject var vmSignup: SignupViewModel
     
     @State private var _selectedIndex: Int = 1
     @State private var _selectedDate: Date = Date.now
     
     @State private var _isShowAge: Bool = false
     @State private var _isSavePassword: Bool = false
+    @State private var _isShareThisPhoto: Bool = true
+    @State private var _isShowImagePicker: Bool = false
     
     @Binding var text: String
     @Binding var isNavigation: Bool
     
     var body: some View {
         VStack {
-            VStack(spacing: 20) {
+            VStack {
                 if vm.type == .add_email {
                     addEmailView()
-                } else if vm.type == .add_birthday {
+                }
+                else if vm.type == .add_birthday {
                     addYourBirthdayView()
+                }
+                else if vm.type == .signup_account {
+                    signupAccountView()
+                }
+                else if (vm.type == .find_friend || vm.type == .add_photo) {
+                    connectView()
+                }
+                else if (vm.type == .share_photo) {
+                    sharePhotoView()
                 } else {
                     otherView()
                 }
@@ -29,11 +43,24 @@ struct SignupAddView: View {
             
             if vm.type == .add_birthday {
                 addYourBirthdayView_Ext()
+            } else if vm.type == .signup_account {
+                signupAccountView_Ext()
+            } else if (vm.type == .find_friend || vm.type == .add_photo) {
+                connectView_Ext()
             }
         }
+        .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: isNavigation_On) {
+            ImagePicker(image: $vmSignup.avatarImage)
+        }
+        .alert(isPresented: $vmSignup.isShowAlert, content: {
+            Alert(title: Text(vmSignup.alertTitle),
+                  message: Text(vmSignup.alertMessage),
+                  dismissButton: .default(Text(vmSignup.alertButtonTitle)))
+        })
     }
 }
 
+@available(iOS 16.0, *)
 extension SignupAddView {
     
     private func addEmailView() -> some View {
@@ -48,13 +75,27 @@ extension SignupAddView {
             if _selectedIndex == 0 {
                 PhoneTextFieldView()
             } else {
-                TextField(vm.textfieldTitle, text: $text)
+                TextField(vm.textfieldTitle ?? "", text: $text)
                     .textFieldStyle(CustomTextFieldStyle())
                     .keyboardType(.emailAddress)
             }
             
             Button {
-                isNavigation = vm.action()
+                vmSignup.validateAccountExist { result, error  in
+                    if let error = error {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Signup account"
+                        vmSignup.alertButtonTitle = "Got it!"
+                        vmSignup.alertMessage = error.localizedDescription
+                    } else if result {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Signup account"
+                        vmSignup.alertButtonTitle = "Got it!"
+                        vmSignup.alertMessage = "You already have an Instagram account with this email!"
+                    } else {
+                        isNavigation = true
+                    }
+                }
             } label: {
                 Text(vm.buttonLable)
             }
@@ -75,10 +116,12 @@ extension SignupAddView {
     
     private func addYourBirthdayView() -> some View {
         VStack(spacing: 20) {
-            Image.imgBirthday
-                .resizable()
-                .scaledToFill()
-                .frame(width: 160, height: 160)
+            Image(systemName: vm.imageSystemName ?? "")
+                .fontWeight(.ultraLight)
+                .font(.system(size: 100))
+                .foregroundStyle(
+                    AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
+                )
             
             Text(vm.headerTitle)
                 .font(.sfProTextBold(22, relativeTo: .largeTitle))
@@ -87,40 +130,45 @@ extension SignupAddView {
                 Text(vm.description)
                     .foregroundColor(Color.black.opacity(0.8))
                 
-                Text(vm.actionText ?? "")
-                    .foregroundColor(Color.blue.opacity(0.8))
-                    .onTapGesture {
-                        
-                    }
+                Text(.init(vm.actionText ?? ""))
             }
             .font(.sfProTextRegular(15, relativeTo: .caption1))
             .lineSpacing(3)
             .multilineTextAlignment(.center)
             .fixedSize(horizontal: false, vertical: true)
             
-            HStack {
-                Text(setDateString(selectedDate: _selectedDate))
-                    .font(.sfProTextRegular(15, relativeTo: .caption1))
-                    .foregroundColor(Color.black.opacity(_isShowAge ? 1 : 0.5))
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(setDateString(selectedDate: _selectedDate))
+                        .font(.sfProTextRegular(15, relativeTo: .caption1))
+                        .foregroundColor(Color.black.opacity(_isShowAge ? 1 : 0.5))
+                    
+                    Spacer()
+                    
+                    if _isShowAge {
+                        Text(String(_selectedDate.age) + (vm.textfieldTitle ?? ""))
+                            .font(.sfProTextRegular(13, relativeTo: .caption1))
+                            .foregroundColor((_isShowAge && _selectedDate.age < 5) ? Color.red : Color.black.opacity(0.5))
+                    }
+                }
+                .padding(.horizontal, 8)
+                .frame(maxWidth: .infinity)
+                .frame(height: 45)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.blue.opacity(0.5), lineWidth: 0.5)
+                }
+                .background {
+                    Color.white
+                }
+                .cornerRadius(5)
                 
-                Spacer()
-                
-                if _isShowAge {
-                    Text(String(_selectedDate.age) + vm.textfieldTitle)
+                if (_isShowAge && _selectedDate.age < 5) {
+                    Text(vm.questionText ?? "")
                         .font(.sfProTextRegular(13, relativeTo: .caption1))
                         .foregroundColor(Color.black.opacity(0.5))
                 }
             }
-            .padding(.horizontal, 8)
-            .frame(maxWidth: .infinity)
-            .frame(height: 45)
-            .overlay {
-                RoundedRectangle(cornerRadius: 5).stroke(Color.black.opacity(0.5), lineWidth: 0.5)
-            }
-            .background {
-                Color.white
-            }
-            .cornerRadius(5)
         }
     }
     
@@ -133,9 +181,17 @@ extension SignupAddView {
                 .padding(.horizontal)
             
             Divider()
+            
             Group {
                 Button {
-                    isNavigation = vm.action()
+                    if _selectedDate.age < 5 {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Enter your real birthday"
+                        vmSignup.alertButtonTitle = "OK"
+                        vmSignup.alertMessage = "Use your own birthday, even if this account is for a business, a pet or something else."
+                    } else {
+                        isNavigation = true
+                    }
                 } label: {
                     Text(vm.buttonLable)
                 }
@@ -155,6 +211,166 @@ extension SignupAddView {
         }
     }
     
+    private func signupAccountView() -> some View {
+        VStack(spacing: 20) {
+            Text(vm.headerTitle +  vmSignup.username + " ?")
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+                .padding(.top, 50)
+            
+            Text(vm.description)
+                .font(.sfProTextRegular(15, relativeTo: .caption1))
+                .foregroundColor(Color.black.opacity(0.8))
+                .lineSpacing(3)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            Spacer()
+            
+            Text(.init(vm.description_ext ?? ""))
+                .font(.sfProTextRegular(13, relativeTo: .caption1))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+                .foregroundColor(Color.black.opacity(0.5))
+                .tint(.black.opacity(0.5))
+        }
+        .padding(.horizontal, -15)
+    }
+    
+    private func signupAccountView_Ext() -> some View {
+        VStack(spacing: 20) {
+            Divider()
+            Button {
+                isNavigation = true
+            } label: {
+                Text(vm.buttonLable)
+            }
+            .buttonStyle(CustomButtonStyle())
+            .padding(.horizontal)
+        }
+    }
+    
+    private func connectView() -> some View {
+        VStack(spacing: 20) {
+            Group {
+                Text(vm.headerTitle)
+                    .font(.sfProTextBold(22, relativeTo: .largeTitle))
+                    .padding(.top, 50)
+                
+                Text(vm.description)
+                    .font(.sfProTextRegular(15, relativeTo: .caption1))
+                    .foregroundColor(Color.black.opacity(0.8))
+                    .lineSpacing(3)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Spacer()
+                
+                Image(systemName: vm.imageSystemName ?? "")
+                    .fontWeight(.ultraLight)
+                    .font(.system(size: 120))
+                    .foregroundStyle(
+                        AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
+                    )
+                    .offset(y: -70)
+                
+                Spacer()
+            }
+        }
+    }
+    
+    private func connectView_Ext() -> some View {
+        VStack(spacing: 20) {
+            Divider()
+            Group {
+                Button {
+                    if vm.type == .add_photo {
+                        withAnimation {
+                            _isShowImagePicker = true
+                        }
+                    } else {
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Find facebook friends"
+                        vmSignup.alertButtonTitle = "OK"
+                        vmSignup.alertMessage = "This func un-implement!"
+                    }
+                } label: {
+                    Text(vm.buttonLable)
+                }
+                .buttonStyle(CustomButtonStyle())
+                
+                Button {
+                    isNavigation = true
+                } label: {
+                    Text(vm.actionText ?? "")
+                        .font(.sfProTextBold(16, relativeTo: .caption1))
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+    
+    private func sharePhotoView() -> some View {
+        VStack(spacing: 20) {
+            
+            ZStack {
+                if let image = vmSignup.avatarImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: vm.imageSystemName ?? "")
+                        .resizable()
+                        .scaledToFit()
+                }
+            }
+            .frame(width: 90, height: 90)
+            .cornerRadius(45)
+            .overlay(
+                Circle()
+                    .stroke(LinearGradient(
+                        colors: [.red, .purple, .red, .orange, .yellow, .orange],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing),
+                            lineWidth: 3)
+                    .frame(width: 100, height: 100)
+            )
+            .padding(.top, 50)
+            
+            Text(vm.headerTitle)
+                .font(.sfProTextBold(22, relativeTo: .largeTitle))
+                .padding(.top, 20)
+            
+            Button {
+                _isShowImagePicker = true
+            } label: {
+                Text(vm.actionText ?? "")
+                    .font(.sfProTextSemibold(15, relativeTo: .caption1))
+                    .foregroundColor(Color.blue)
+            }
+            
+            VStack(alignment: .leading, spacing: 20) {
+                Toggle(vm.questionText ?? "", isOn: $_isShareThisPhoto.animation(.spring()))
+                    .font(.sfProTextRegular(15, relativeTo: .caption1))
+                    .foregroundColor(Color.black.opacity(0.6))
+                    .lineSpacing(3)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Text(vm.description)
+                    .font(.sfProTextRegular(12, relativeTo: .caption1))
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(Color.black.opacity(0.5))
+            }
+            
+            Button {
+                vmSignup.signupAccount()
+                isNavigation = true
+            } label: {
+                Text(vm.buttonLable)
+            }
+            .buttonStyle(CustomButtonStyle())
+        }
+    }
+    
     private func otherView() -> some View {
         VStack(spacing: 20) {
             Text(vm.headerTitle)
@@ -169,9 +385,9 @@ extension SignupAddView {
             
             ZStack {
                 if vm.type == .add_password {
-                    SecureField(vm.textfieldTitle, text: $text)
+                    SecureField(vm.textfieldTitle ?? "", text: $text)
                 } else {
-                    TextField(vm.textfieldTitle, text: $text)
+                    TextField(vm.textfieldTitle ?? "", text: $text)
                 }
             }
             .textFieldStyle(CustomTextFieldStyle())
@@ -182,13 +398,13 @@ extension SignupAddView {
             }
             
             Button {
-                isNavigation = vm.action()
+                isNavigation = true
             } label: {
                 Text(vm.buttonLable)
             }
             .buttonStyle(CustomButtonStyle())
-            .opacity(text.isEmpty ? 0.5 : 1)
-            .disabled(text.isEmpty)
+            .opacity(vm.type == .add_password ? (text.count < 6 ? 0.5 : 1) : (text.isEmpty ? 0.5 : 1))
+            .disabled(vm.type == .add_password ? (text.count < 6) : (text.isEmpty))
         }
     }
     
@@ -197,7 +413,7 @@ extension SignupAddView {
             Button {
                 self._isSavePassword.toggle()
             } label: {
-                Image(systemName: _isSavePassword ? "checkmark.square.fill" : "square")
+                Image(systemName: (_isSavePassword ? vm.imageSystemName : vm.imageSystemName_ext) ?? "")
                     .resizable()
                     .frame(width: 20, height: 18)
             }
@@ -211,13 +427,23 @@ extension SignupAddView {
     }
 }
 
+@available(iOS 16.0, *)
 extension SignupAddView {
-    
     ///Use in addYourBirthdayView()
     private func setDateString(selectedDate: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM yyyy"
         return formatter.string(from: selectedDate)
+    }
+    
+    private func isNavigation_On() {
+        ///Auto next view apply for AddPhotoView only, not SharePhotoView
+        ///vmSignup.avatarImage != nil to check case that user press cancel ImagePickerView
+        if (vm.type == .add_photo && vmSignup.avatarImage != nil) {
+            withAnimation {
+                isNavigation = true
+            }
+        }
     }
 }
 

@@ -11,6 +11,9 @@ class ResetPasswordViewModel: ObservableObject {
     let resetQuestionText: String
     let actionText: String
     
+    @Published var alertMessage: String = ""
+    @Published var isShowAlert: Bool = false
+    
     init(headerTitle: String = "Trouble logging in?",
          pickerTitles: [String] = ["Username", "Phone"],
          phoneOptionDescription: String = "Enter your username or email and we'll send you a link to get back into your account.",
@@ -34,10 +37,12 @@ class ResetPasswordViewModel: ObservableObject {
         FirebaseManager.shared.auth.sendPasswordReset(withEmail: email) { error in
             if let error = error {
                 print(error.localizedDescription)
+                self.alertMessage = "No users found"
                 completion(false)
                 return
             }
-            print("Email Link Sent. We sent an email to " + email + " with a link to get back into your account")
+            self.alertMessage = "Email Link Sent. We sent an email to " + email + " with a link to get back into your account"
+            self.isShowAlert = true
             completion(true)
         }
     }

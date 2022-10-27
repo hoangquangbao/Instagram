@@ -2,7 +2,7 @@ PODS:
   - FirebaseFirestore (7.11.0)
   - FirebaseFirestoreSwift (7.11.0-beta):
     - FirebaseFirestore (~> 7.0)
-  - SwiftGen (6.6.1)
+  - SwiftGen (6.6.2)
 
 DEPENDENCIES:
   - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `7.11.0`)
@@ -27,8 +27,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   FirebaseFirestore: 783538aced1557a6b817ee121593561127a00244
   FirebaseFirestoreSwift: 1e3899e6430e77267cac7da81c555f7a7a49a549
-  SwiftGen: 787181d7895fa2f5e7313d05de92c387010149c2
+  SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
 
-PODFILE CHECKSUM: c6f6739b53b962e2f26699073e95b543f023ff5b
+PODFILE CHECKSUM: 2467d907c244c9ba2270f6ad639e4f7b756f44bd
 
 COCOAPODS: 1.11.3

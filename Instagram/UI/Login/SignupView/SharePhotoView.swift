@@ -1,7 +1,7 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-struct AddYourBirthdayView: View {
+struct SharePhotoView: View {
     
     @EnvironmentObject var vm: SignupViewModel
     @State private var _isNavigation: Bool = false
@@ -9,21 +9,21 @@ struct AddYourBirthdayView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SignupAddView(vm: vm.addBirthdayVM,
-                              text: $vm.birthday,
+                SignupAddView(vm: vm.sharePhotoVM,
+                              text: $vm.email,
                               isNavigation: $_isNavigation)
             }
             .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddUsernameView() })
+                                   destination: { HomeView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
 @available(iOS 16.0, *)
-struct AddYourBirthdayView_Previews: PreviewProvider {
+struct SharePhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        AddYourBirthdayView()
+        SharePhotoView()
             .environmentObject(SignupViewModel())
     }
 }
