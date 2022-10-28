@@ -113,7 +113,7 @@ class SignupViewModel: ObservableObject {
             description: "This won't be part of your public profile.",
             description_ext: "Use your own birthday, even if this account is for a business, a pet or something else.",
             questionText: "You need to enter the day you were born",
-        actionText: "[Why I need to provide my birthday?](https://help.instagram.com/366075557613433)")
+            actionText: "[Why I need to provide my birthday?](https://help.instagram.com/366075557613433)")
         self.addUsernameVM = SignupAddViewModel(
             type: .add_username,
             headerTitle: "Create username",
@@ -229,31 +229,6 @@ class SignupViewModel: ObservableObject {
                     print(error.localizedDescription)
                     return
                 }
-                
-                //Show alert successfully created
-                self.isShowAlert = true
-                self.alertTitle = "Instagram account"
-                self.alertButtonTitle = "Got it!"
-                self.alertMessage = "Your account has been successfully cereated!"
-                
-                self.resetSignupProperties()
             }
-    }
-    
-    private func resetSignupProperties() {
-        email = ""
-        code = ""
-        fullName = ""
-        password = ""
-        isSavePassword = false
-        birthday = ""
-        age = ""
-        username = ""
-        avatarImage = nil
-        hasStory = false
-        followings = []
-        followers = []
-        isOnline = false
-        description = ""
     }
 }
