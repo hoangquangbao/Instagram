@@ -10,7 +10,7 @@ struct SignupAddView: View {
     @State private var _selectedDate: Date = Date.now
     
     @State private var _isShowAge: Bool = false
-    @State private var _isSavePassword: Bool = false
+    @State private var _isSavePassword: Bool = true
     @State private var _isShareThisPhoto: Bool = true
     @State private var _isShowImagePicker: Bool = false
     @State private var _isShowImagePickerOptions: Bool = false
@@ -87,19 +87,28 @@ extension SignupAddView {
             }
             
             Button {
-                vmSignup.validateAccountExist { result, error  in
-                    if let error = error {
-                        vmSignup.isShowAlert = true
-                        vmSignup.alertTitle = "Signup account"
-                        vmSignup.alertButtonTitle = "Got it!"
-                        vmSignup.alertMessage = error.localizedDescription
-                    } else if result {
-                        vmSignup.isShowAlert = true
-                        vmSignup.alertTitle = "Signup account"
-                        vmSignup.alertButtonTitle = "Got it!"
-                        vmSignup.alertMessage = "You already have an Instagram account with this email!"
+                vmSignup.validateEmailFormat { result in
+                    if result {
+                        vmSignup.validateAccountExist { result, error  in
+                            if let error = error {
+                                vmSignup.isShowAlert = true
+                                vmSignup.alertTitle = "Signup account"
+                                vmSignup.alertButtonTitle = "Got it!"
+                                vmSignup.alertMessage = error.localizedDescription
+                            } else if result {
+                                vmSignup.isShowAlert = true
+                                vmSignup.alertTitle = "Signup account"
+                                vmSignup.alertButtonTitle = "Got it!"
+                                vmSignup.alertMessage = "You already have an Instagram account with this email!"
+                            } else {
+                                isNavigation = true
+                            }
+                        }
                     } else {
-                        isNavigation = true
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Signup account"
+                        vmSignup.alertButtonTitle = "Got it!"
+                        vmSignup.alertMessage = "Invalid email address!"
                     }
                 }
             } label: {
