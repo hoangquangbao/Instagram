@@ -60,7 +60,7 @@ private struct _SquareImage: View {
     var body: some View {
         image
             .resizable()
-            .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth)
+//            .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth)
             .scaledToFill()
     }
 }

@@ -6,8 +6,8 @@ struct InstagramApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            LoginView()
-            TabbarBottomView()
+            LoginView()
+//            TabbarBottomView()
         }
     }
 }

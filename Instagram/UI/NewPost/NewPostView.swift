@@ -31,7 +31,7 @@ struct NewPostView: View {
             _actionButtonsBuilder
         }
         .sheet(isPresented: $vm.isBottomSheetDisplayed) {
-            ImagePicker(image: $imageAttach)
+            ImagePicker(image: $imageAttach, sourceType: vm.sourceType)
         }
     }
 }
@@ -65,7 +65,7 @@ private extension NewPostView {
     }
     
     var _postInfo: some View {
-        ScrollView(showsIndicators: false) {
+//        ScrollView(showsIndicators: false) {
             VStack {
                 ZStack(alignment: .topTrailing) {
                     UserRow(user: vm.user)
@@ -85,12 +85,13 @@ private extension NewPostView {
                     SquareImageTab(images: [Image(uiImage: imageAttach)], currentStep: $currentIndex)
                 }
             }
-        }
+//        }
     }
     
     var _selectImageButton: some View {
         Button {
             vm.isBottomSheetDisplayed.toggle()
+            vm.sourceType = .photoLibrary
         } label: {
             HStack {
                 Image.icnMultipleSelected
@@ -109,6 +110,8 @@ private extension NewPostView {
     
     var _openCameraButton: some View {
         Button {
+            vm.isBottomSheetDisplayed.toggle()
+            vm.sourceType = .camera
         } label: {
             Image("icn_camera_bold")
                 .renderingMode(.template)

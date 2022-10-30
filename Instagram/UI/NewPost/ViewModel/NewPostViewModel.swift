@@ -10,8 +10,9 @@ import SwiftUI
 class NewPostViewModel: ObservableObject {
     var user: User
     
-    @Published  var caption: String = ""
-    @Published  var isBottomSheetDisplayed: Bool = false
+    @Published var caption: String = ""
+    @Published var isBottomSheetDisplayed: Bool = false
+    @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     init(user: User) {
         self.user = user
@@ -30,4 +31,5 @@ class NewPostViewModel: ObservableObject {
         return result
     }
     
+
 }

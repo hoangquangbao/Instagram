@@ -23,7 +23,7 @@ struct TextEditorWithPlaceholder: View {
                 VStack {
                     Text(_placeholder)
                         .font(.subheadline)
-                        .foregroundColor(Color.appPrimary)
+                        .foregroundColor(Color.appPrimary.opacity(0.3))
                         .padding(.top, 10)
                         .padding(.leading, 6)
                     Spacer()
