@@ -10,9 +10,11 @@ struct SignupAddView: View {
     @State private var _selectedDate: Date = Date.now
     
     @State private var _isShowAge: Bool = false
-    @State private var _isSavePassword: Bool = false
+    @State private var _isSavePassword: Bool = true
     @State private var _isShareThisPhoto: Bool = true
     @State private var _isShowImagePicker: Bool = false
+    @State private var _isShowImagePickerOptions: Bool = false
+    @State private var sourceType = UIImagePickerController.SourceType.photoLibrary
     
     @Binding var text: String
     @Binding var isNavigation: Bool
@@ -49,14 +51,18 @@ struct SignupAddView: View {
                 connectView_Ext()
             }
         }
-        .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: isNavigation_On) {
-            ImagePicker(image: $vmSignup.avatarImage)
-        }
         .alert(isPresented: $vmSignup.isShowAlert, content: {
             Alert(title: Text(vmSignup.alertTitle),
                   message: Text(vmSignup.alertMessage),
                   dismissButton: .default(Text(vmSignup.alertButtonTitle)))
         })
+        .overlay {
+            ActionSheetCustom(isShowImagePicker: $_isShowImagePicker, isShowImagePickerOptions: $_isShowImagePickerOptions, sourceType: $sourceType)
+        }
+        .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: isNavigation_On) {
+            ImagePicker(image: $vmSignup.avatarImage,
+                        sourceType: self.sourceType)
+        }
     }
 }
 
@@ -81,19 +87,28 @@ extension SignupAddView {
             }
             
             Button {
-                vmSignup.validateAccountExist { result, error  in
-                    if let error = error {
-                        vmSignup.isShowAlert = true
-                        vmSignup.alertTitle = "Signup account"
-                        vmSignup.alertButtonTitle = "Got it!"
-                        vmSignup.alertMessage = error.localizedDescription
-                    } else if result {
-                        vmSignup.isShowAlert = true
-                        vmSignup.alertTitle = "Signup account"
-                        vmSignup.alertButtonTitle = "Got it!"
-                        vmSignup.alertMessage = "You already have an Instagram account with this email!"
+                vmSignup.validateEmailFormat { result in
+                    if result {
+                        vmSignup.validateAccountExist { result, error  in
+                            if let error = error {
+                                vmSignup.isShowAlert = true
+                                vmSignup.alertTitle = "Signup account"
+                                vmSignup.alertButtonTitle = "Got it!"
+                                vmSignup.alertMessage = error.localizedDescription
+                            } else if result {
+                                vmSignup.isShowAlert = true
+                                vmSignup.alertTitle = "Signup account"
+                                vmSignup.alertButtonTitle = "Got it!"
+                                vmSignup.alertMessage = "You already have an Instagram account with this email!"
+                            } else {
+                                isNavigation = true
+                            }
+                        }
                     } else {
-                        isNavigation = true
+                        vmSignup.isShowAlert = true
+                        vmSignup.alertTitle = "Signup account"
+                        vmSignup.alertButtonTitle = "Got it!"
+                        vmSignup.alertMessage = "Invalid email address!"
                     }
                 }
             } label: {
@@ -285,7 +300,7 @@ extension SignupAddView {
                 Button {
                     if vm.type == .add_photo {
                         withAnimation {
-                            _isShowImagePicker = true
+                            _isShowImagePickerOptions = true
                         }
                     } else {
                         vmSignup.isShowAlert = true
@@ -341,7 +356,9 @@ extension SignupAddView {
                 .padding(.top, 20)
             
             Button {
-                _isShowImagePicker = true
+                withAnimation {
+                    _isShowImagePickerOptions = true
+                }
             } label: {
                 Text(vm.actionText ?? "")
                     .font(.sfProTextSemibold(15, relativeTo: .caption1))

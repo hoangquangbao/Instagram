@@ -49,6 +49,8 @@ class LoginViewModel: ObservableObject {
                 self.alertButtonTitle = "OK"
                 self.alertMessage = error.localizedDescription
                 return
+            } else {
+                self.isShowHomeView = true
             }
             
             self.email = ""

@@ -113,7 +113,7 @@ class SignupViewModel: ObservableObject {
             description: "This won't be part of your public profile.",
             description_ext: "Use your own birthday, even if this account is for a business, a pet or something else.",
             questionText: "You need to enter the day you were born",
-        actionText: "[Why I need to provide my birthday?](https://help.instagram.com/366075557613433)")
+            actionText: "[Why I need to provide my birthday?](https://help.instagram.com/366075557613433)")
         self.addUsernameVM = SignupAddViewModel(
             type: .add_username,
             headerTitle: "Create username",
@@ -158,6 +158,13 @@ class SignupViewModel: ObservableObject {
         FirebaseManager.shared.auth.fetchSignInMethods(forEmail: email) { array, error in
             completion(array?.isEmpty != nil, error)
         }
+    }
+    
+    func validateEmailFormat(completion: (Bool) -> Void) {
+        let emailFormat = "(?:[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[\\p{L}0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[\\p{L}0-9](?:[a-" + "z0-9-]*[\\p{L}0-9])?\\.)+[\\p{L}0-9](?:[\\p{L}0-9-]*[\\p{L}0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[\\p{L}0-9-]*[\\p{L}0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        completion(emailPredicate.evaluate(with: email))
     }
     
     func signupAccount() {
@@ -229,31 +236,6 @@ class SignupViewModel: ObservableObject {
                     print(error.localizedDescription)
                     return
                 }
-                
-                //Show alert successfully created
-                self.isShowAlert = true
-                self.alertTitle = "Instagram account"
-                self.alertButtonTitle = "Got it!"
-                self.alertMessage = "Your account has been successfully cereated!"
-                
-                self.resetSignupProperties()
             }
-    }
-    
-    private func resetSignupProperties() {
-        email = ""
-        code = ""
-        fullName = ""
-        password = ""
-        isSavePassword = false
-        birthday = ""
-        age = ""
-        username = ""
-        avatarImage = nil
-        hasStory = false
-        followings = []
-        followers = []
-        isOnline = false
-        description = ""
     }
 }

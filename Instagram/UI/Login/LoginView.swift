@@ -55,8 +55,9 @@ struct LoginView: View {
                       message: Text(vm.alertMessage),
                       dismissButton: .default(Text(vm.alertButtonTitle)))
             })
-            .navigationDestination(isPresented: $vm.isShowHomeView,
-                                   destination: { HomeView() })
+            .fullScreenCover(isPresented: $vm.isShowHomeView, content: {
+                HomeView()
+            })
         }
         .environmentObject(vm)
         .environmentObject(perform)

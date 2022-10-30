@@ -52,6 +52,7 @@ extension Image {
     static var imgAvatarDefault: Image { return Image("img_avatar_default") }
     static var imgDog: Image { return Image("img_dog") }
     static var imgInstagramLogo: Image { return Image("img_instagram_logo") }
+    static var imgLaunchscreen: Image { return Image("img_launchscreen") }
     static var imgPfAvatar: Image { return Image("img_pf_avatar") }
     static var imgPost1: Image { return Image("img_post_1") }
     static var imgPost2: Image { return Image("img_post_2") }
