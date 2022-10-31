@@ -5,6 +5,8 @@ class BackLoginView: ObservableObject {
 }
 
 class SignupViewModel: ObservableObject {
+    let userService = UserService()
+    @EnvironmentObject var sessionService: SessionService
     
     ///Get data from SignupView
     @Published var email: String
@@ -212,6 +214,7 @@ class SignupViewModel: ObservableObject {
     
     func storeUserInfo(avatarUrl: URL) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let user = User(id: uid, email: email, username: username, fullName: fullName, avatarUrl: avatarUrl.absoluteString)
         
         let userData = ["id": uid,
                         "username": username,
@@ -236,6 +239,14 @@ class SignupViewModel: ObservableObject {
                     print(error.localizedDescription)
                     return
                 }
+                
+                //Show alert successfully created
+                self.isShowAlert = true
+                self.alertTitle = "Instagram account"
+                self.alertButtonTitle = "Got it!"
+                self.alertMessage = "Your account has been successfully cereated!"
+                
+                self.resetSignupProperties()
             }
     }
 }

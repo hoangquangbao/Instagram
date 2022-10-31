@@ -81,8 +81,7 @@
 		80B55EEA28F0092300BE341D /* SettingListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE928F0092300BE341D /* SettingListData.swift */; };
 		CD2B3EF4290A20CA002E3A8F /* Shape+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF3290A20CA002E3A8F /* Shape+Utilities.swift */; };
 		CD2B3EF6290A8288002E3A8F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF5290A8288002E3A8F /* PostService.swift */; };
-		CD2B3EFA290A86E5002E3A8F /* PostServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF9290A86E5002E3A8F /* PostServiceProtocol.swift */; };
-		CD2B3EFC290A87E3002E3A8F /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EFB290A87E3002E3A8F /* UserServiceProtocol.swift */; };
+		CD2B3EFA290A86E5002E3A8F /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF9290A86E5002E3A8F /* ServiceProtocol.swift */; };
 		CD2B3EFE290A88A7002E3A8F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EFD290A88A7002E3A8F /* UserService.swift */; };
 		CD41DB6D28ED16EB00870F55 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41DB6C28ED16EB00870F55 /* SearchView.swift */; };
 		CD41DB6F28ED192E00870F55 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41DB6E28ED192E00870F55 /* SearchViewModel.swift */; };
@@ -95,6 +94,7 @@
 		CD51113128F01BD00090F2F4 /* PostImageGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD51113028F01BD00090F2F4 /* PostImageGridLayout.swift */; };
 		CD652AAC28FFF0940075A5F7 /* TextEditorWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652AAB28FFF0940075A5F7 /* TextEditorWithPlaceholder.swift */; };
 		CD652AB029015CEC0075A5F7 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD652AAF29015CEC0075A5F7 /* Badge.swift */; };
+		CD75D991290FDE3D009BE082 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75D990290FDE3D009BE082 /* SessionService.swift */; };
 		CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADAB28F413EA003B48E5 /* SearchItemModel.swift */; };
 		CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADAE28F4143A003B48E5 /* SearchData.swift */; };
 		CDAFADB228F6A449003B48E5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADB128F6A448003B48E5 /* StorageService.swift */; };
@@ -192,8 +192,7 @@
 		BE8E8EDFBF0E1DE9D4E64086 /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2B3EF3290A20CA002E3A8F /* Shape+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+Utilities.swift"; sourceTree = "<group>"; };
 		CD2B3EF5290A8288002E3A8F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
-		CD2B3EF9290A86E5002E3A8F /* PostServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceProtocol.swift; sourceTree = "<group>"; };
-		CD2B3EFB290A87E3002E3A8F /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
+		CD2B3EF9290A86E5002E3A8F /* ServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
 		CD2B3EFD290A88A7002E3A8F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CD2B3F01290A97A6002E3A8F /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		CD41DB6C28ED16EB00870F55 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -207,6 +206,7 @@
 		CD51113028F01BD00090F2F4 /* PostImageGridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImageGridLayout.swift; sourceTree = "<group>"; };
 		CD652AAB28FFF0940075A5F7 /* TextEditorWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorWithPlaceholder.swift; sourceTree = "<group>"; };
 		CD652AAF29015CEC0075A5F7 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		CD75D990290FDE3D009BE082 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		CDAFADAB28F413EA003B48E5 /* SearchItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemModel.swift; sourceTree = "<group>"; };
 		CDAFADAE28F4143A003B48E5 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		CDAFADB128F6A448003B48E5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -530,8 +530,7 @@
 		CD2B3EF8290A86D3002E3A8F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				CD2B3EF9290A86E5002E3A8F /* PostServiceProtocol.swift */,
-				CD2B3EFB290A87E3002E3A8F /* UserServiceProtocol.swift */,
+				CD2B3EF9290A86E5002E3A8F /* ServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -605,6 +604,7 @@
 				CDAFADB128F6A448003B48E5 /* StorageService.swift */,
 				CD2B3EF5290A8288002E3A8F /* PostService.swift */,
 				CD2B3EFD290A88A7002E3A8F /* UserService.swift */,
+				CD75D990290FDE3D009BE082 /* SessionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -854,6 +854,7 @@
 				CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */,
 				CDAFADBF28F9196C003B48E5 /* ExploreView.swift in Sources */,
 				CD51112F28EFE4760090F2F4 /* UIScreen+Utilities.swift in Sources */,
+				CD75D991290FDE3D009BE082 /* SessionService.swift in Sources */,
 				CDAFADC828FABDB9003B48E5 /* HomeViewModel.swift in Sources */,
 				CDAFADB928F7B258003B48E5 /* User.swift in Sources */,
 				CDAFADB628F7B185003B48E5 /* MockData.swift in Sources */,
@@ -875,7 +876,7 @@
 				CD41DB7928ED380300870F55 /* AppStyle.swift in Sources */,
 				06A1BE4E28F9AC58002DD172 /* AddAPasswordView.swift in Sources */,
 				CD51112B28EE79E00090F2F4 /* ChoiceChip.swift in Sources */,
-				CD2B3EFA290A86E5002E3A8F /* PostServiceProtocol.swift in Sources */,
+				CD2B3EFA290A86E5002E3A8F /* ServiceProtocol.swift in Sources */,
 				06BB2C0F28F70E12003855D5 /* CustomTextFieldStyle.swift in Sources */,
 				CD41DB6F28ED192E00870F55 /* SearchViewModel.swift in Sources */,
 				CDAFADBD28F7B6BE003B48E5 /* UserRow.swift in Sources */,
@@ -889,7 +890,6 @@
 				06BB2C0428F7026B003855D5 /* AddConfirmationCodeView.swift in Sources */,
 				065E64E128F7A5C100C9EE28 /* SignupAddViewModel.swift in Sources */,
 				801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */,
-				CD2B3EFC290A87E3002E3A8F /* UserServiceProtocol.swift in Sources */,
 				065E64DF28F7A52800C9EE28 /* SignupAddView.swift in Sources */,
 				06BB2C1328F70E12003855D5 /* UnderlineModifier.swift in Sources */,
 				06BB2C1128F70E12003855D5 /* RectPreference.swift in Sources */,

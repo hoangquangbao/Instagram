@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var vm = HomeViewModel()
+    @EnvironmentObject var sessionService: SessionService
     
     @State var _isNavigateAddPostView: Bool = false
     
@@ -79,7 +80,7 @@ private extension HomeView {
     }
     
     var _usersPost: some View {
-        ForEach(MockData.posts) { post in
+        ForEach(vm.posts) { post in
             PostRow(post: post)
         }
     }
@@ -89,7 +90,9 @@ private extension HomeView {
             _isNavigateAddPostView = true
         }
         .fullScreenCover(isPresented: $_isNavigateAddPostView) {
-            NewPostView(user: vm.users[0])
+            if let currentUser = sessionService.currentUser {
+                NewPostView(user: currentUser)
+            }
         }
     }
 }

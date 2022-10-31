@@ -8,7 +8,7 @@
 import FirebaseFirestoreSwift
 import Firebase
 
-struct Post: Identifiable, Decodable {
+struct Post: Identifiable, Decodable, Encodable {
     @DocumentID var id: String?
     let uid: String
     let caption: String

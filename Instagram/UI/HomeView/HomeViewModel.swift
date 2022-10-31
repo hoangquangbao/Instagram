@@ -7,8 +7,29 @@
 
 import Foundation
 class HomeViewModel: ObservableObject {
-    var users = MockData.users.filter { user in
-        user.hasStory == true
+    var posts = [Post]()
+    var users = [User]()
+    let currentUser = FirebaseManager.shared.auth.currentUser
+    
+    let postService = PostService()
+    let userService = UserService()
+    
+    
+    init() {
+        fetchPosts()
+        fetchUsers()
+    }
+    
+    func fetchPosts() {
+        postService.getAll { posts in
+            self.posts = posts
+        }
+    }
+    
+    func fetchUsers() {
+        userService.getAll { users in
+            self.users = users
+        }
     }
     
     func navigateMessageView() {

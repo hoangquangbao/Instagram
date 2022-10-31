@@ -14,10 +14,10 @@ class PostRowViewModel: ObservableObject {
     }
     
     var imageSelectionIndex = 0
-    var imageCount        : Int  { return post.imagesUrl.count }
+    var imageCount        : Int   { return post.imagesUrl.count }
     var latestUserLikePost: User? { return post.latestUserLiked }
-    var likeCount         : Int  { return post.likeCount }
-    var commentCount      : Int  { return post.commentCount }
+    var likeCount         : Int   { return post.likeCount }
+    var commentCount      : Int   { return post.commentCount }
     
     func imagesUrlToImageView() -> [Image] {
         var result = [Image]()

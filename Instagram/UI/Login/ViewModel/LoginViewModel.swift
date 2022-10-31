@@ -56,6 +56,7 @@ class LoginViewModel: ObservableObject {
             self.email = ""
             self.password = ""
             self.isShowHomeView = true
+            print("success")
         }
     }
     
