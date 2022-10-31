@@ -28,6 +28,8 @@ struct SearchView: View {
                     _bodyBuilder
                 }
             }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

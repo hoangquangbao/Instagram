@@ -30,9 +30,9 @@ struct HomeView: View {
                     }
                 }
             }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -90,8 +90,8 @@ private extension HomeView {
             _isNavigateAddPostView = true
         }
         .fullScreenCover(isPresented: $_isNavigateAddPostView) {
-            if let currentUser = sessionService.currentUser {
-                NewPostView(user: currentUser)
+            if let currentUserInfo = sessionService.userInfo {
+                NewPostView(user: currentUserInfo)
             }
         }
     }

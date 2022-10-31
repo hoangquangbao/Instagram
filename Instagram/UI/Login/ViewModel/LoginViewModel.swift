@@ -1,6 +1,9 @@
 import SwiftUI
+import FirebaseAuth
 
 class LoginViewModel: ObservableObject {
+    let userService = UserService()
+    @EnvironmentObject var sessionService: SessionService
     
     @Published var email: String
     @Published var password: String
@@ -41,7 +44,7 @@ class LoginViewModel: ObservableObject {
         self.actionText = actionText
     }
     
-    func handleLogin() {
+    func handleLogin(completion: @escaping (FirebaseAuth.User?) -> Void) {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 self.isShowAlert = true
@@ -56,6 +59,9 @@ class LoginViewModel: ObservableObject {
             self.email = ""
             self.password = ""
             self.isShowHomeView = true
+            
+            completion(result?.user)
+            
             print("success")
         }
     }

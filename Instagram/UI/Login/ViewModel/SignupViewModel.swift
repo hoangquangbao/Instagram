@@ -214,39 +214,23 @@ class SignupViewModel: ObservableObject {
     
     func storeUserInfo(avatarUrl: URL) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
         let user = User(id: uid, email: email, username: username, fullName: fullName, avatarUrl: avatarUrl.absoluteString)
         
-        let userData = ["id": uid,
-                        "username": username,
-                        "fullName": fullName,
-                        "email": email,
-                        "avatarUrl": avatarUrl.absoluteString,
-                        "hasStory": hasStory,
-                        "followings": followings,
-                        "followers": followers,
-                        "isOnline": isOnline,
-                        "description": description
-        ] as [String : Any]
-        
-        FirebaseManager.shared.firestore
-            .collection("user")
-            .document(uid)
-            .setData(userData) { error in
-                if let error = error {
-                    self.isShowAlert = true
-                    self.alertTitle = "Register a new account"
-                    self.alertMessage = error.localizedDescription
-                    print(error.localizedDescription)
-                    return
-                }
-                
-                //Show alert successfully created
+        userService.create(user) { isSuccess, error in
+            if let error = error {
                 self.isShowAlert = true
-                self.alertTitle = "Instagram account"
-                self.alertButtonTitle = "Got it!"
-                self.alertMessage = "Your account has been successfully cereated!"
-                
-                self.resetSignupProperties()
+                self.alertTitle = "Register a new account"
+                self.alertMessage = error.localizedDescription
+                print(error.localizedDescription)
+                return
             }
+            
+            //Show alert successfully created
+            self.isShowAlert = true
+            self.alertTitle = "Instagram account"
+            self.alertButtonTitle = "Got it!"
+            self.alertMessage = "Your account has been successfully cereated!"
+        }
     }
 }

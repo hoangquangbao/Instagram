@@ -152,6 +152,7 @@ private extension NewPostView {
                 Spacer()
                 _closeKeyboardButton
             }
+            .padding(.bottom)
             
             
         } else {
