@@ -11,27 +11,20 @@ struct HomeView: View {
     @ObservedObject var vm = HomeViewModel()
     @EnvironmentObject var sessionService: SessionService
     
-    @State var _isNavigateAddPostView: Bool = false
-    
-    
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.background.ignoresSafeArea()
-                VStack {
-                    _topBar
+        ZStack {
+            Color.background.ignoresSafeArea()
+            VStack {
+                _topBar
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    _storyBar
                     
-                    ScrollView(.vertical, showsIndicators: false) {
-                        _storyBar
-                        
-                        Divider()
-                        
-                        _usersPost
-                    }
+                    Divider()
+                    
+                    _usersPost
                 }
             }
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
         }
     }
 }
@@ -47,7 +40,7 @@ private extension HomeView {
         HStack(spacing: 15) {
             Image.icnLogo.renderingMode(.template).foregroundColor(Color.appPrimary)
             Spacer()
-            _addStoryButton
+            _createNewPostButton
 
             IconButton(imageIcon: Image.icnShare) {
                 print("asdasd")
@@ -60,6 +53,8 @@ private extension HomeView {
     var _storyBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 15.0) {
+                _createNewStoryButton
+                
                 ForEach(vm.users) { user in
                     _storyItem(of: user)
                 }
@@ -68,9 +63,46 @@ private extension HomeView {
         }
     }
     
+    var _createNewStoryButton: some View {
+        VStack {
+            Button {
+                vm.isShowNewStoryView.toggle()
+            } label: {
+                ZStack(alignment: .bottomTrailing) {
+                    if let userInfo = sessionService.userInfo {
+                        CircleAvatar(imageUrl: userInfo.avatarUrl, radius: 55)
+                            .addBorder(Color.clear)
+                    } else {
+                        Color._3C3C43.frame(width: 55, height: 55).clipShape(Circle())
+                    }
+                    
+                    ZStack {
+                        Circle().fill(Color.ffffff).frame(width: 25, height: 25)
+                        Image(systemName: "plus.circle.fill")
+                            .renderingMode(.template)
+                            .resizable()
+                            .foregroundColor(Color.blue)
+                            .background(Color.clear)
+                            .frame(width: 20, height: 20)
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $vm.isShowNewStoryView) {
+                if let userInfo = sessionService.userInfo {
+                    NewStoryView(user: userInfo)
+                }
+            }
+            
+            Text("Your story")
+                .font(.caption)
+            
+        }
+        .padding(.top, 8)
+    }
+    
     func _storyItem(of user: User) -> some View {
         VStack {
-            CircleAvatar(image: Image(user.avatarUrl), radius: 55)
+            CircleAvatar(imageUrl: user.avatarUrl, radius: 55)
                 .addGradientBorder(gradient: AppStyle.storyLinearGradient)
             
             Text(user.fullName)
@@ -85,13 +117,13 @@ private extension HomeView {
         }
     }
     
-    var _addStoryButton: some View {
+    var _createNewPostButton: some View {
         IconButton(imageIcon: Image.icnAddSquare) {
-            _isNavigateAddPostView = true
+            vm.isShowNewPostView.toggle()
         }
-        .fullScreenCover(isPresented: $_isNavigateAddPostView) {
-            if let currentUserInfo = sessionService.userInfo {
-                NewPostView(user: currentUserInfo)
+        .fullScreenCover(isPresented: $vm.isShowNewPostView) {
+            if let userInfo = sessionService.userInfo {
+                NewPostView(user: userInfo)
             }
         }
     }

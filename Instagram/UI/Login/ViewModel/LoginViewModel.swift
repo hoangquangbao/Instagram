@@ -3,7 +3,6 @@ import FirebaseAuth
 
 class LoginViewModel: ObservableObject {
     let userService = UserService()
-    @EnvironmentObject var sessionService: SessionService
     
     @Published var email: String
     @Published var password: String
@@ -44,7 +43,7 @@ class LoginViewModel: ObservableObject {
         self.actionText = actionText
     }
     
-    func handleLogin(completion: @escaping (FirebaseAuth.User?) -> Void) {
+    func handleLogin(completion: @escaping (String) -> Void) {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 self.isShowAlert = true
@@ -60,7 +59,9 @@ class LoginViewModel: ObservableObject {
             self.password = ""
             self.isShowHomeView = true
             
-            completion(result?.user)
+            guard let uid = result?.user.uid else { return }
+            
+            completion(uid)
             
             print("success")
         }

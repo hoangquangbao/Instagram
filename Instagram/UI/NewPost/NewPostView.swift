@@ -65,7 +65,7 @@ private extension NewPostView {
     }
     
     var _postInfo: some View {
-//        ScrollView(showsIndicators: false) {
+        ScrollView(showsIndicators: false) {
             VStack {
                 ZStack(alignment: .topTrailing) {
                     UserRow(user: vm.user)
@@ -85,7 +85,7 @@ private extension NewPostView {
                     SquareImageTab(images: [Image(uiImage: imageAttach)], currentStep: $currentIndex)
                 }
             }
-//        }
+        } 
     }
     
     var _selectImageButton: some View {

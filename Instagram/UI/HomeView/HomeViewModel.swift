@@ -9,10 +9,12 @@ import Foundation
 class HomeViewModel: ObservableObject {
     var posts = [Post]()
     var users = [User]()
-    let currentUser = FirebaseManager.shared.auth.currentUser
     
     let postService = PostService()
     let userService = UserService()
+    
+    @Published var isShowNewPostView: Bool = false
+    @Published var isShowNewStoryView: Bool = false
     
     
     init() {

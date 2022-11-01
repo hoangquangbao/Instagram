@@ -14,7 +14,6 @@ enum SessionState {
 
 class SessionService: ObservableObject {
     @Published var userSession: SessionState = .loggedOut
-    @Published var currentUser: FirebaseAuth.User?
     @Published var userInfo: User?
 }
 

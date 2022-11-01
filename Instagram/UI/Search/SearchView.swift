@@ -28,6 +28,7 @@ struct SearchView: View {
                     _bodyBuilder
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
         }

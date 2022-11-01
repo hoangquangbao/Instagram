@@ -31,13 +31,13 @@ struct LoginView: View {
                     }
                     
                     Button {
-                        vm.handleLogin { authUser in
-                            self.sessionService.currentUser = authUser
-                            guard let authUser = authUser else { return }
+                        vm.handleLogin { uid in
                             
-                            self.userService.get(by: authUser.uid) { user in
+                            self.userService.get(by: uid) { user in
                                 self.sessionService.userInfo = user
                             }
+                            
+                            print(sessionService.userInfo)
                         }
                     } label: {
                         Text(vm.loginButtonTitle)

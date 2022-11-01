@@ -45,7 +45,7 @@ private extension PostRow {
         HStack {
             HStack(spacing: 9.0) {
                 if let user = vm.post.user {
-                    CircleAvatar(image: Image(user.avatarUrl), radius: 40)
+                    CircleAvatar(imageUrl: user.avatarUrl, radius: 40)
                     VStack(alignment: .leading) {
                         Text(user.fullName)
                             .font(.subheadline)
@@ -106,7 +106,7 @@ private extension PostRow {
         HStack {
             HStack {
                 if let user = vm.post.user {
-                    CircleAvatar(image: Image(user.avatarUrl), radius: 30)
+                    CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
                 }
                 Text("Add comment").font(.footnote).foregroundColor(Color.semiText)
                 
@@ -124,7 +124,7 @@ struct LikeInfoRow: View {
     
     var body: some View {
         HStack {
-            CircleAvatar(image: Image(user.avatarUrl), radius: 20)
+            CircleAvatar(imageUrl: user.avatarUrl, radius: 20)
             Group<Text> {
                 Text("Liked by ") +
                 Text("\(user.fullName) ").bold() +
