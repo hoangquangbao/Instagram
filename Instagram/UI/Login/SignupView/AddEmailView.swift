@@ -29,6 +29,7 @@ struct AddEmailView: View {
                     } label: {
                         Image.icnBack
                             .resizable()
+                            .scaledToFit()
                             .frame(width: 25, height: 25)
                     }
                 }
