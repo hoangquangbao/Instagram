@@ -20,9 +20,9 @@ struct UserRow: View {
             VStack(alignment: .leading) {
                 Text(user.username)
                     .font(.subheadline).bold()
-                    .foregroundColor(Color("primary"))
+                    .foregroundColor(Color.appPrimary)
                 
-                Text(user.fullname)
+                Text(user.fullName)
                     .font(.caption)
                     .foregroundColor(Color.semiText)
             }
@@ -35,10 +35,10 @@ private extension UserRow {
     @ViewBuilder
     var _circleAvatarBuilder: some View {
         if(user.hasStory) {
-            CircleAvatar(image: Image(user.avatarUrl), radius: _avatarSize)
+            CircleAvatar(imageUrl: user.avatarUrl, radius: _avatarSize)
                 .addGradientBorder(gradient: AppStyle.storyLinearGradient)
         } else {
-            CircleAvatar(image: Image(user.avatarUrl), radius: _avatarSize)
+            CircleAvatar(imageUrl: user.avatarUrl, radius: _avatarSize)
         }
     }
 }

@@ -3,10 +3,15 @@ import SwiftUI
 @available(iOS 16.0, *)
 @main
 struct InstagramApp: App {
+    @StateObject var sessionService = SessionService()
     
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            VStack {
+                LoginView()
+            }
+            .environmentObject(sessionService)
+            //            TabbarBottomView()
         }
     }
 }

@@ -62,7 +62,7 @@ private extension SearchBar {
     
     func onEditingChanged(_ isEditing: Bool) {
         self.isFocusedState = isEditing
-        self.leadingIconColor = isEditing ? Color("primary") : Color(.lightGray)
+        self.leadingIconColor = isEditing ? Color.appPrimary : Color(.lightGray)
     }
     
     func resetSearchText() {

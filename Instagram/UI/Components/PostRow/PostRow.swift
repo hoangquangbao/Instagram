@@ -17,28 +17,25 @@ struct PostRow: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.background
-            VStack(alignment: .leading, spacing: 0.0) {
-                _header
-                
-                _content
-                
-                if(vm.post.likeCount > 0) {
-                    _likeDescription
-                }
-                
-                Text(vm.post.caption)
-                    .font(.footnote)
-                    .padding(.top, 8)
-                    .padding(.horizontal, AppStyle.defaultSpacing)
-                
-                if(vm.post.commentCount > 0) {
-                    _showAllCommentButton
-                }
-                
-                _commentArea
+        VStack(alignment: .leading, spacing: 0.0) {
+            _header
+            
+            _content
+            
+            if(vm.post.likeCount > 0) {
+                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
             }
+            
+            Text(vm.post.caption)
+                .font(.footnote)
+                .padding(.top, 8)
+                .padding(.horizontal, AppStyle.defaultSpacing)
+            
+            if(vm.post.commentCount > 0) {
+                _showAllCommentButton
+            }
+            
+            _commentArea
         }
     }
 }
@@ -48,9 +45,9 @@ private extension PostRow {
         HStack {
             HStack(spacing: 9.0) {
                 if let user = vm.post.user {
-                    CircleAvatar(image: Image(user.avatarUrl), radius: 40)
+                    CircleAvatar(imageUrl: user.avatarUrl, radius: 40)
                     VStack(alignment: .leading) {
-                        Text(user.fullname)
+                        Text(user.fullName)
                             .font(.subheadline)
                             .fontWeight(.bold)
                         Text("@\(user.username)")
@@ -71,7 +68,7 @@ private extension PostRow {
     
     var _content: some View {
         VStack {
-            SquareImageTab(images: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
+            SquareImageTab(images: vm.imagesUrlToImageView(), currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
                     IconButton(imageIcon: Image.icnHeart, onTap: vm.onFavorite)
@@ -83,6 +80,7 @@ private extension PostRow {
                 
                 if(vm.imageCount > 1) {
                     ImageTabIndicator(tabCount: vm.imageCount, activeIndex: $_imageSelectionIndex)
+                        .padding(.leading, 60)
                 }
                 
                 Spacer()
@@ -92,21 +90,6 @@ private extension PostRow {
             .padding(.horizontal, 12)
             .padding(.vertical, 9)
         }
-    }
-    
-    var _likeDescription: some View {
-        HStack {
-            CircleAvatar(image: Image(vm.latestUserLikePost.avatarUrl), radius: 20)
-            Group<Text> {
-                Text("Liked by ") +
-                Text("\(vm.latestUserLikePost.fullname) ").bold() +
-                Text("and ") +
-                Text("\(vm.likeCount - 1) others").bold()
-            }
-            .font(.caption)
-        }
-        .padding(.horizontal, AppStyle.defaultSpacing)
-        .padding(.top, 5)
     }
     
     var _showAllCommentButton: some View {
@@ -123,7 +106,7 @@ private extension PostRow {
         HStack {
             HStack {
                 if let user = vm.post.user {
-                    CircleAvatar(image: Image(user.avatarUrl), radius: 30)
+                    CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
                 }
                 Text("Add comment").font(.footnote).foregroundColor(Color.semiText)
                 
@@ -132,6 +115,27 @@ private extension PostRow {
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.top, 12)
+    }
+}
+
+struct LikeInfoRow: View {
+    let user: User
+    let likeCount: Int
+    
+    var body: some View {
+        HStack {
+            CircleAvatar(imageUrl: user.avatarUrl, radius: 20)
+            Group<Text> {
+                Text("Liked by ") +
+                Text("\(user.fullName) ").bold() +
+                Text("and ") +
+                Text("\(likeCount - 1) others").bold()
+            }
+            .font(.caption)
+        }
+        .padding(.horizontal, AppStyle.defaultSpacing)
+        .padding(.top, 5)
+        
     }
 }
 

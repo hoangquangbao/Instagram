@@ -53,7 +53,7 @@ struct BottomSheetView<Content: View>: View {
             .cornerRadius(CGFloat(radius))
             .frame(height: geometry.size.height, alignment: .bottom)
             .offset(y: max(self.offset + self.translation, 0))
-            .animation(.interpolatingSpring(mass: 1.0,stiffness: 100.0,damping: 20,initialVelocity: 0))
+            .animation(.interpolatingSpring(mass: 1.0,stiffness: 100.0, damping: 20,initialVelocity: 0))
             .gesture(
                 DragGesture().updating(self.$translation) { value, state, _ in
                     state = value.translation.height

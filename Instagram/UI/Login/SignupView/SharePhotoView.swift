@@ -14,9 +14,10 @@ struct SharePhotoView: View {
                               isNavigation: $_isNavigation)
             }
             .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { HomeView() })
+                                   destination: { TabbarBottomView() })
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 

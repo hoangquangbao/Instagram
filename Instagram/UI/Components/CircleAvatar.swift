@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CircleAvatar: View {
-    let image: Image
+    let imageUrl: String
     var radius: CGFloat = AppStyle.defaultAvatarSize
     
     var body: some View {
-        image
+        KFImage(URL(string: imageUrl))
             .resizable()
             .scaledToFill()
             .frame(width: radius, height: radius)
@@ -29,10 +30,18 @@ extension CircleAvatar {
                 .frame(width: radius + spacing, height: radius + spacing)
         }
     }
-}
-
-struct CircleAvatar_Previews: PreviewProvider {
-    static var previews: some View {
-        CircleAvatar(image: Image.imgProfile2)
+    func addBorder(_ color: Color, lineWidth: CGFloat = 2.3, spacing: CGFloat = 8) -> some View {
+        ZStack {
+            self
+            Circle()
+                .stroke(color, lineWidth: lineWidth)
+                .frame(width: radius + spacing, height: radius + spacing)
+        }
     }
 }
+
+//struct CircleAvatar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CircleAvatar(image: Image.imgProfile2)
+//    }
+//}

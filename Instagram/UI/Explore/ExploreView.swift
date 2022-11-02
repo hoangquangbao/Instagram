@@ -19,7 +19,7 @@ struct ExploreView: View {
                 LazyVStack {
                     PostRow(post: post).padding(.bottom, 0.5)
                     ForEach(posts) { _post in
-                        if(!(_post == post)) {
+                        if(_post.id != post.id) {
                             PostRow(post: _post).padding(.bottom, 0.5)
                         }
                     }

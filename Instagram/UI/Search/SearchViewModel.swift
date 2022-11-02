@@ -53,7 +53,7 @@ class SearchViewModel: ObservableObject {
     }
     
     private func _isNotContain(post: Post, in posts: [Post]) -> Bool {
-        return !posts.contains(where: { _post in post == _post})
+        return !posts.contains(where: { _post in post.id == _post.id})
     }
     
     /// Convert Bool value to Binding when passing key of dictionary [String: Bool]
@@ -78,7 +78,7 @@ class SearchViewModel: ObservableObject {
         if(searchText.isEmpty) { return users }
         
         return users.filter { user in
-            user.username.contains(searchText) || user.fullname.contains(searchText)
+            user.username.contains(searchText) || user.fullName.contains(searchText)
         }
     }
 }

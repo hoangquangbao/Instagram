@@ -2,10 +2,14 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct LoginView: View {
-    
+    var userService = UserService()
     @StateObject var vm = LoginViewModel()
     @StateObject var perform = BackLoginView()
+    
     @State private var _isHidePassword: Bool = true
+    @State var _isNavigation: Int? = nil
+    
+    @EnvironmentObject var sessionService: SessionService
     
     var body: some View {
         NavigationView {
@@ -27,7 +31,14 @@ struct LoginView: View {
                     }
                     
                     Button {
-                        vm.handleLogin()
+                        vm.handleLogin { uid in
+                            
+                            self.userService.get(by: uid) { user in
+                                self.sessionService.userInfo = user
+                            }
+                            
+                            print(sessionService.userInfo)
+                        }
                     } label: {
                         Text(vm.loginButtonTitle)
                     }
@@ -54,7 +65,7 @@ struct LoginView: View {
                       dismissButton: .default(Text(vm.alertButtonTitle)))
             })
             .fullScreenCover(isPresented: $vm.isShowHomeView, content: {
-                HomeView()
+                TabbarBottomView()
             })
         }
         .environmentObject(vm)
