@@ -2,14 +2,15 @@ import SwiftUI
 
 @available(iOS 16.0, *)
 struct LoginView: View {
-    var userService = UserService()
+    
     @StateObject var vm = LoginViewModel()
-    @StateObject var perform = BackLoginView()
+    @StateObject var perform = BackLoginViewModel()
     
     @State private var _isHidePassword: Bool = true
     @State var _isNavigation: Int? = nil
     
     @EnvironmentObject var sessionService: SessionService
+    var userService = UserService()
     
     var body: some View {
         NavigationView {
@@ -32,11 +33,9 @@ struct LoginView: View {
                     
                     Button {
                         vm.handleLogin { uid in
-                            
                             self.userService.get(by: uid) { user in
                                 self.sessionService.userInfo = user
                             }
-                            
                             print(sessionService.userInfo)
                         }
                     } label: {
@@ -52,6 +51,15 @@ struct LoginView: View {
                 .padding(.horizontal, 25)
                 
                 bottomBarView()
+                
+                NavigationLink(destination: TabbarBottomView(), isActive:
+                                $perform.isBackLoginView
+                ) {
+                    EmptyView()
+                }
+            }
+            .onChange(of: vm.isShowTabbarBottomView) { result in
+                perform.isBackLoginView = result
             }
             .overlay {
                 if vm.isShowResetPasswordView {
@@ -64,9 +72,7 @@ struct LoginView: View {
                       message: Text(vm.alertMessage),
                       dismissButton: .default(Text(vm.alertButtonTitle)))
             })
-            .fullScreenCover(isPresented: $vm.isShowHomeView, content: {
-                TabbarBottomView()
-            })
+            .edgesIgnoringSafeArea(.all)
         }
         .environmentObject(vm)
         .environmentObject(perform)
@@ -145,7 +151,7 @@ extension LoginView {
                     .foregroundColor(Color.black.opacity(0.5))
                 
                 NavigationLink(destination: AddEmailView(),
-                               isActive: self.$perform.isBackLoginView) {
+                               isActive: self.$perform.isBackLoginView_ext) {
                     Text(vm.actionText)
                         .font(.sfProTextSemibold(13, relativeTo: .caption1))
                         .foregroundColor(Color.blue)

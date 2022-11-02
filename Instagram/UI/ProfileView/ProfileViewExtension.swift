@@ -7,21 +7,22 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 extension ProfileView {
     
     func UserProfileView() -> some View {
         VStack(alignment: .center, spacing: 0){
-//            Divider()
-//            Button(action:{
-//
-//            }){
-//                Text("View Professional Resources")
-//                    .font(Font.system(size: 11, weight: .medium))
-//                    .frame(width:.infinity)
-//                    .padding(.vertical, 12)
-//                    .padding(.horizontal, 30)
-//            }
-//            Divider()
+            //            Divider()
+            //            Button(action:{
+            //
+            //            }){
+            //                Text("View Professional Resources")
+            //                    .font(Font.system(size: 11, weight: .medium))
+            //                    .frame(width:.infinity)
+            //                    .padding(.vertical, 12)
+            //                    .padding(.horizontal, 30)
+            //            }
+            //            Divider()
             VStack(alignment: .leading){
                 UserInfoView()
                 Text("Jacob West")
@@ -30,8 +31,8 @@ extension ProfileView {
                     .padding(.bottom, 1)
                 Text("Digital goodies designer @pixsellz \n Everything is designed.")
                     .font(Font.system(size: 13, weight: .regular))
-
-
+                
+                
                     .foregroundColor(Color._262626)
                 ProfileActionsView()
                     .padding(.top, 10)
@@ -110,63 +111,63 @@ extension ProfileView {
                         )
                 }
                 
-//                Button(action:{
-//                    print("Promotions")
-//                }){
-//                    Text("Promotions")
-//                        .font(Font.system(size: 13, weight: .medium))
-//                        .padding(.vertical, 9)
-//                        .foregroundColor(.primary)
-//                        .frame(maxWidth: .infinity)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 3)
-//                                .stroke(Color(red: 210/255, green: 210/255, blue: 210/255), lineWidth: 0.7)
-//                        )
-//                }
+                //                Button(action:{
+                //                    print("Promotions")
+                //                }){
+                //                    Text("Promotions")
+                //                        .font(Font.system(size: 13, weight: .medium))
+                //                        .padding(.vertical, 9)
+                //                        .foregroundColor(.primary)
+                //                        .frame(maxWidth: .infinity)
+                //                        .overlay(
+                //                            RoundedRectangle(cornerRadius: 3)
+                //                                .stroke(Color(red: 210/255, green: 210/255, blue: 210/255), lineWidth: 0.7)
+                //                        )
+                //                }
             }//: HSTACK
-//            HStack(alignment: .center, spacing: 8){
-//                Button(action:{
-//                    print("insights")
-//                }){
-//                    Text("Insights")
-//                        .font(Font.system(size: 13, weight: .medium))
-//                        .padding(.vertical, 9)
-//                        .foregroundColor(.primary)
-//                        .frame(maxWidth: .infinity)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 3)
-//                                .stroke(Color(red: 210/255, green: 210/255, blue: 210/255), lineWidth: 0.7)
-//                        )
-//                }
-//
-//                Button(action:{
-//                    print("shop")
-//                }){
-//                    Text("Add Shop")
-//                        .font(Font.system(size: 13, weight: .medium))
-//                        .padding(.vertical, 9)
-//                        .foregroundColor(.primary)
-//                        .frame(maxWidth: .infinity)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 3)
-//                                .stroke(Color(red: 210/255, green: 210/255, blue: 220/255), lineWidth: 0.7)
-//                        )
-//                }
-//
-//                Button(action:{
-//                    print("call")
-//                }){
-//                    Text("Call")
-//                        .font(Font.system(size: 13, weight: .medium))
-//                        .padding(.vertical, 9)
-//                        .foregroundColor(.primary)
-//                        .frame(maxWidth: .infinity)
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 3)
-//                                .stroke(Color(red: 210/255, green: 210/255, blue: 210/255), lineWidth: 0.7)
-//                        )
-//                }
-//            }//: HSTACK
+            //            HStack(alignment: .center, spacing: 8){
+            //                Button(action:{
+            //                    print("insights")
+            //                }){
+            //                    Text("Insights")
+            //                        .font(Font.system(size: 13, weight: .medium))
+            //                        .padding(.vertical, 9)
+            //                        .foregroundColor(.primary)
+            //                        .frame(maxWidth: .infinity)
+            //                        .overlay(
+            //                            RoundedRectangle(cornerRadius: 3)
+            //                                .stroke(Color(red: 210/255, green: 210/255, blue: 210/255), lineWidth: 0.7)
+            //                        )
+            //                }
+            //
+            //                Button(action:{
+            //                    print("shop")
+            //                }){
+            //                    Text("Add Shop")
+            //                        .font(Font.system(size: 13, weight: .medium))
+            //                        .padding(.vertical, 9)
+            //                        .foregroundColor(.primary)
+            //                        .frame(maxWidth: .infinity)
+            //                        .overlay(
+            //                            RoundedRectangle(cornerRadius: 3)
+            //                                .stroke(Color(red: 210/255, green: 210/255, blue: 220/255), lineWidth: 0.7)
+            //                        )
+            //                }
+            //
+            //                Button(action:{
+            //                    print("call")
+            //                }){
+            //                    Text("Call")
+            //                        .font(Font.system(size: 13, weight: .medium))
+            //                        .padding(.vertical, 9)
+            //                        .foregroundColor(.primary)
+            //                        .frame(maxWidth: .infinity)
+            //                        .overlay(
+            //                            RoundedRectangle(cornerRadius: 3)
+            //                                .stroke(Color(red: 210/255, green: 210/255, blue: 210/255), lineWidth: 0.7)
+            //                        )
+            //                }
+            //            }//: HSTACK
         }//: VSTACK
     }
     
@@ -185,7 +186,7 @@ extension ProfileView {
                             Circle().stroke(Color(red: 220/255, green: 220/255, blue: 220/255) , style: StrokeStyle(lineWidth: 1, lineCap: .round))
                                 .frame(width: 68, height: 68, alignment: .center)
                         }//: ZSTACK
-                    
+                        
                         Text(item.name)
                             .lineLimit(1)
                             .font(Font.system(size: 12, weight: .regular))
@@ -203,28 +204,28 @@ extension ProfileView {
         VStack(spacing: 1) {
             HStack() {
                 Button(action: {
-                      print("button gird")
-
-                    }) {
-                        VStack() {
-                            Image.icnGridPf
+                    print("button gird")
+                    
+                }) {
+                    VStack() {
+                        Image.icnGridPf
                             .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
-                            Divider()
-                             .frame(height: 1)
-                             .background(Color._262626)
-                        }
+                        Divider()
+                            .frame(height: 1)
+                            .background(Color._262626)
                     }
-                    .frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
                 Button(action: {
-                      print("button phonebook")
-
-                    }) {
-                        VStack() {
-                            Image.icnPhonebook
+                    print("button phonebook")
+                    
+                }) {
+                    VStack() {
+                        Image.icnPhonebook
                             .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
-                        }
                     }
-                    .frame(maxWidth: .infinity)
+                }
+                .frame(maxWidth: .infinity)
             }
             LazyVGrid(columns: gridLayout, spacing:2){
                 ForEach(data) { item in
@@ -233,42 +234,20 @@ extension ProfileView {
                         .scaledToFill()
                         .frame(height: (UIScreen.main.bounds.width - 8) / 3)
                         .clipped()
-//                        .overlay(
-//                            ZStack{
-//                                Image(item.type == "video" ? "video" : "multiple")
-//                                    .resizable()
-//                                    .scaledToFill()
-//                                    .frame(width: 28, height: 28)
-//                                    .padding(5)
-//                            }
-//                            , alignment: .topTrailing
-//                        )
+                    //                        .overlay(
+                    //                            ZStack{
+                    //                                Image(item.type == "video" ? "video" : "multiple")
+                    //                                    .resizable()
+                    //                                    .scaledToFill()
+                    //                                    .frame(width: 28, height: 28)
+                    //                                    .padding(5)
+                    //                            }
+                    //                            , alignment: .topTrailing
+                    //                        )
                 }//: LOOP
             }//: GRID
         }
         
-    }
-    
-    func SettingsView() -> some View {
-        ScrollView(.vertical, showsIndicators:false) {
-            ForEach(SettingListData){ item in
-                VStack(alignment: .leading){
-                    HStack(alignment: .center, spacing: 15){
-                        Image(item.image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 30, height: 30)
-                        Text(item.title)
-                            .font(Font.system(size: 17, weight: .regular))
-                    }//: HSTACK
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 15)
-                    Divider()
-                        .padding(.leading, 50)
-                }//: VSTACK
-            }//: LOOP
-        }//: SCROLL
-        .background(Color.white)
     }
 }
 

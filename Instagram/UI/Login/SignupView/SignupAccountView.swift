@@ -4,9 +4,9 @@ import SwiftUI
 struct SignupAccountView: View {
     
     @EnvironmentObject var vm: SignupViewModel
-    @EnvironmentObject var perform: BackLoginView
+    @EnvironmentObject var perform: BackLoginViewModel
     @State private var _isNavigation: Bool = false
-        
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -16,7 +16,7 @@ struct SignupAccountView: View {
                 
                 BottomBarView(questionText: vm.addEmailVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") {
-                    perform.isBackLoginView = false
+                    perform.isBackLoginView_ext = false
                 }
                               .padding(.top, 30)
             }

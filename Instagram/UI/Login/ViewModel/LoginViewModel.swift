@@ -1,11 +1,17 @@
 import SwiftUI
 import FirebaseAuth
 
+class BackLoginViewModel: ObservableObject {
+    @Published var isBackLoginView: Bool = false
+    @Published var isBackLoginView_ext: Bool = false
+}
+
 class LoginViewModel: ObservableObject {
     let userService = UserService()
     
     @Published var email: String
     @Published var password: String
+    @Published var isShowLoginView: Bool
     @Published var isShowResetPasswordView: Bool
     
     @Published var isShowAlert : Bool = false
@@ -13,7 +19,7 @@ class LoginViewModel: ObservableObject {
     @Published var alertButtonTitle : String = ""
     @Published var alertMessage : String = ""
     
-    @Published var isShowHomeView: Bool = false
+    @Published var isShowTabbarBottomView: Bool = false
     
     let emailTitle: String
     let passwordTitle: String
@@ -24,6 +30,7 @@ class LoginViewModel: ObservableObject {
     
     init(email: String = "",
          password: String = "",
+         isShowLoginView: Bool = false,
          isShowResetPasswordView: Bool = false,
          emailTitle: String = "Email Address",
          passwordTitle: String = "Password",
@@ -34,6 +41,7 @@ class LoginViewModel: ObservableObject {
     {
         self.email = email
         self.password = password
+        self.isShowLoginView = isShowLoginView
         self.isShowResetPasswordView = isShowResetPasswordView
         self.emailTitle = emailTitle
         self.passwordTitle = passwordTitle
@@ -52,12 +60,11 @@ class LoginViewModel: ObservableObject {
                 self.alertMessage = error.localizedDescription
                 return
             } else {
-                self.isShowHomeView = true
+                self.isShowTabbarBottomView = true
             }
             
             self.email = ""
             self.password = ""
-            self.isShowHomeView = true
             
             guard let uid = result?.user.uid else { return }
             
@@ -67,8 +74,21 @@ class LoginViewModel: ObservableObject {
         }
     }
     
+    func handleLogout(completion: @escaping (Bool) -> Void) {
+        do {
+            try FirebaseManager.shared.auth.signOut()
+            self.isShowTabbarBottomView = false
+            completion(false)
+            print ("Logout success!")
+        }
+        catch let logoutError as NSError {
+            completion(true)
+            print ("Error Logout: %@", logoutError)
+        }
+    }
+    
     func textFieldIsEmpty() -> Bool {
         return email.isEmpty || password.isEmpty
     }
-
+    
 }
