@@ -68,7 +68,7 @@ private extension PostRow {
     
     var _content: some View {
         VStack {
-            SquareImageTab(images: vm.imagesUrlToImageView(), currentStep: $_imageSelectionIndex)
+            SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
                     IconButton(imageIcon: Image.icnHeart, onTap: vm.onFavorite)

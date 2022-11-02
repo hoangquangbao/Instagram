@@ -13,6 +13,12 @@ extension String {
     }
 }
 
+extension Array {
+    var isNotEmpty: Bool {
+        return !self.isEmpty
+    }
+}
+
 extension Int {
     func toString() -> String{
         return String(self)

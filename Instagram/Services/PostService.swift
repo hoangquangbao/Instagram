@@ -34,8 +34,21 @@ struct PostService: ServiceProtocol {
     }
     
     
-    func create(_ post: Post, completion: @escaping(Bool, Error?)->  Void) {
-        
+    func create(_ post: Post, completion: @escaping(Bool, Error?) -> Void) {
+        do {
+            try postRef
+                .document()
+                .setData(from: post) { error in
+                    if let error = error {
+                        completion(false, error)
+                    }
+                    else {
+                        completion(true, nil)
+                    }
+                }
+        } catch {
+            completion(false, error)
+        }
     }
     
     func update(_ post: Post, completion: @escaping (Bool, Error?) -> Void) {

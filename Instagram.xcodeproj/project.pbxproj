@@ -100,6 +100,8 @@
 		CD75D9932910B1B7009BE082 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75D9922910B1B7009BE082 /* FirebaseConstants.swift */; };
 		CD75D9962910CEB5009BE082 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CD75D9952910CEB5009BE082 /* Kingfisher */; };
 		CD8331AD291121F000E12E14 /* NewStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8331AC291121EF00E12E14 /* NewStoryView.swift */; };
+		CD8331AF2912195B00E12E14 /* CustomWaitingDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8331AE2912195B00E12E14 /* CustomWaitingDialog.swift */; };
+		CD8331B129121C5500E12E14 /* FirebaseUploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8331B029121C5500E12E14 /* FirebaseUploaderService.swift */; };
 		CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADAB28F413EA003B48E5 /* SearchItemModel.swift */; };
 		CDAFADAF28F4143A003B48E5 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADAE28F4143A003B48E5 /* SearchData.swift */; };
 		CDAFADB228F6A449003B48E5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADB128F6A448003B48E5 /* StorageService.swift */; };
@@ -215,6 +217,8 @@
 		CD75D990290FDE3D009BE082 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		CD75D9922910B1B7009BE082 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		CD8331AC291121EF00E12E14 /* NewStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoryView.swift; sourceTree = "<group>"; };
+		CD8331AE2912195B00E12E14 /* CustomWaitingDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWaitingDialog.swift; sourceTree = "<group>"; };
+		CD8331B029121C5500E12E14 /* FirebaseUploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUploaderService.swift; sourceTree = "<group>"; };
 		CDAFADAB28F413EA003B48E5 /* SearchItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemModel.swift; sourceTree = "<group>"; };
 		CDAFADAE28F4143A003B48E5 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
 		CDAFADB128F6A448003B48E5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -590,6 +594,7 @@
 				CDAFADD228FD13AE003B48E5 /* IconButton.swift */,
 				CD652AAB28FFF0940075A5F7 /* TextEditorWithPlaceholder.swift */,
 				CD652AAF29015CEC0075A5F7 /* Badge.swift */,
+				CD8331AE2912195B00E12E14 /* CustomWaitingDialog.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 				CD2B3EF5290A8288002E3A8F /* PostService.swift */,
 				CD2B3EFD290A88A7002E3A8F /* UserService.swift */,
 				CD75D990290FDE3D009BE082 /* SessionService.swift */,
+				CD8331B029121C5500E12E14 /* FirebaseUploaderService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -852,12 +858,14 @@
 				CD51113128F01BD00090F2F4 /* PostImageGridLayout.swift in Sources */,
 				CDAFADB228F6A449003B48E5 /* StorageService.swift in Sources */,
 				CDAFADD828FD4EB6003B48E5 /* NewPostViewModel.swift in Sources */,
+				CD8331B129121C5500E12E14 /* FirebaseUploaderService.swift in Sources */,
 				CDAFADCF28FD011A003B48E5 /* PostRowViewModel.swift in Sources */,
 				CDAFADC328F91B45003B48E5 /* Post.swift in Sources */,
 				CD652AAC28FFF0940075A5F7 /* TextEditorWithPlaceholder.swift in Sources */,
 				06BB2C1028F70E12003855D5 /* CustomButtonStyle.swift in Sources */,
 				06BB2C0E28F70E12003855D5 /* CustomPhoneTextFieldStyle.swift in Sources */,
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
+				CD8331AF2912195B00E12E14 /* CustomWaitingDialog.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
 				80B55EEA28F0092300BE341D /* SettingListData.swift in Sources */,
 				CD41DB7C28ED3F7800870F55 /* SearchBar.swift in Sources */,
