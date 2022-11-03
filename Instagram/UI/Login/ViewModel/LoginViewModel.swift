@@ -61,7 +61,9 @@ class LoginViewModel: ObservableObject {
                 return
             } else {
                 UserDefaults.standard.setIsLoggedIn(value: true)
-                self.isShowTabbarBottomView = true
+                withAnimation(.easeOut(duration: 0.1)) {
+                    self.isShowTabbarBottomView = true
+                }
             }
             
             self.email = ""
