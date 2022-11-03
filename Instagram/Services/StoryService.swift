@@ -46,11 +46,11 @@ struct StoryService: ServiceProtocol {
     }
     
     func update(_ story: Story, completion: @escaping (Bool, Error?) -> Void) {
-        <#code#>
+        return
     }
     
     func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
-        <#code#>
+        return
     }
     
 }
