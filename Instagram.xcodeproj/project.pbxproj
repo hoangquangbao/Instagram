@@ -72,8 +72,8 @@
 		388F7943E174EEB828E27B92 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8E8EDFBF0E1DE9D4E64086 /* libPods-Instagram.a */; };
 		801A566F28EFC7160025D9C8 /* TabbarBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A566E28EFC7160025D9C8 /* TabbarBottomView.swift */; };
 		801A567128EFC7260025D9C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A567028EFC7260025D9C8 /* HomeView.swift */; };
+		803F61A1291261CC00AD0918 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803F61A0291261CC00AD0918 /* ProfileViewModel.swift */; };
 		80B55EDB28F0036000BE341D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EDA28F0036000BE341D /* ProfileView.swift */; };
-		80B55EE028F005B800BE341D /* ProfileViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EDF28F005B800BE341D /* ProfileViewExtension.swift */; };
 		80B55EE328F006CF00BE341D /* HighlightDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE228F006CF00BE341D /* HighlightDataModel.swift */; };
 		80B55EE528F0076A00BE341D /* ProfilePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE428F0076A00BE341D /* ProfilePostModel.swift */; };
 		80B55EE828F008D200BE341D /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE728F008D200BE341D /* BottomSheetView.swift */; };
@@ -184,8 +184,8 @@
 		70596A3D6A81A041B72818DB /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		801A566E28EFC7160025D9C8 /* TabbarBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarBottomView.swift; sourceTree = "<group>"; };
 		801A567028EFC7260025D9C8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		803F61A0291261CC00AD0918 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		80B55EDA28F0036000BE341D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		80B55EDF28F005B800BE341D /* ProfileViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewExtension.swift; sourceTree = "<group>"; };
 		80B55EE228F006CF00BE341D /* HighlightDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightDataModel.swift; sourceTree = "<group>"; };
 		80B55EE428F0076A00BE341D /* ProfilePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostModel.swift; sourceTree = "<group>"; };
 		80B55EE728F008D200BE341D /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
@@ -473,13 +473,21 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
+		803F619F291261B800AD0918 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				803F61A0291261CC00AD0918 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		80B55ED928F0035100BE341D /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				803F619F291261B800AD0918 /* ViewModel */,
 				80B55EE628F008C000BE341D /* SubView */,
 				80B55EE128F005EF00BE341D /* ModelProfileView */,
 				80B55EDA28F0036000BE341D /* ProfileView.swift */,
-				80B55EDF28F005B800BE341D /* ProfileViewExtension.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -829,7 +837,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD41DB6D28ED16EB00870F55 /* SearchView.swift in Sources */,
-				80B55EE028F005B800BE341D /* ProfileViewExtension.swift in Sources */,
 				0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */,
 				065E64E328F7B4ED00C9EE28 /* AddEmailView.swift in Sources */,
 				06704FFB28FD9B8C00814F91 /* FindFriendView.swift in Sources */,
@@ -856,6 +863,7 @@
 				067AB19528FCFFFD00CA081E /* AddPhotoView.swift in Sources */,
 				CDAFADD128FD0D22003B48E5 /* ImageTabIndicator.swift in Sources */,
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
+				803F61A1291261CC00AD0918 /* ProfileViewModel.swift in Sources */,
 				CDAFADBB28F7B681003B48E5 /* CircleAvatar.swift in Sources */,
 				CD652AB029015CEC0075A5F7 /* Badge.swift in Sources */,
 				CD2B3EFE290A88A7002E3A8F /* UserService.swift in Sources */,
