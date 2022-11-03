@@ -4,7 +4,7 @@ import SwiftUI
 struct AddAPasswordView: View {
     
     @EnvironmentObject var vm: SignupViewModel
-    @EnvironmentObject var perform: BackLoginView
+    @EnvironmentObject var perform: BackLoginViewModel
     @State private var _isNavigation: Bool = false
     
     var body: some View {
@@ -19,7 +19,7 @@ struct AddAPasswordView: View {
                 
                 BottomBarView(questionText: vm.addPasswordVM.questionText,
                               actionText: vm.addEmailVM.actionText ?? "") {
-                    perform.isBackLoginView = false
+                    perform.isBackLoginView_ext = false
                 }
             }
             .navigationDestination(isPresented: $_isNavigation,

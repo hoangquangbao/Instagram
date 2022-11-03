@@ -6,19 +6,18 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct StaticListDataModel: Identifiable {
     let id = UUID()
-    let image: String
+    let image: Image
     let title: String
 }
 
 var SettingListData: [StaticListDataModel] = [
-//    StaticListDataModel(image: "setting2", title: "Setting"),
-//    StaticListDataModel(image: "Activity", title: "Archive"),
-//    StaticListDataModel(image: "insights", title: "Insight"),
-//    StaticListDataModel(image: "qr", title: "QR Code"),
-//    StaticListDataModel(image: "save", title: "Saved"),
-//    StaticListDataModel(image: "closefriend", title: "Close Friends"),
-//    StaticListDataModel(image: "discover", title: "Discover People"),
+    StaticListDataModel(image: Image.icnSetting, title: "Settings"),
+    StaticListDataModel(image: Image.icnArchive, title: "Archive"),
+    StaticListDataModel(image: Image.icnScan, title: "QR Code"),
+    StaticListDataModel(image: Image.icnSaved, title: "Saved"),
+    StaticListDataModel(image: Image.icnCloseFriend, title: "Close Friends"),
 ]

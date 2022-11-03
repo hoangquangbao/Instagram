@@ -7,7 +7,11 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct TabbarBottomView: View {
+    
+    @EnvironmentObject var vm: LoginViewModel
+    @EnvironmentObject var perform: BackLoginViewModel
     
     @State private var selection = 0
     
@@ -51,6 +55,9 @@ struct TabbarBottomView: View {
             .accentColor(Color.appPrimary)
         }
         .navigationBarBackButtonHidden(true)
+        .background {
+            Color.appPrimary
+        }
     }
 }
 
@@ -66,9 +73,11 @@ struct _TabBarIcon: View {
     }
 }
 
+@available(iOS 16.0, *)
 struct TabbarBottomView_Previews: PreviewProvider {
     static var previews: some View {
         TabbarBottomView()
+            .environmentObject(SessionService())
     }
 }
 
