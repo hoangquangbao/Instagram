@@ -57,9 +57,6 @@ struct SettingView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             })
-            .navigationDestination(isPresented: $vmLogin.isShowLoginView, destination: {
-                LoginView()
-            })
         }
     }
 }

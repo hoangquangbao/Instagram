@@ -3,8 +3,8 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct LoginView: View {
     
-    @StateObject var vm = LoginViewModel()
-    @StateObject var perform = BackLoginViewModel()
+    @EnvironmentObject var vm: LoginViewModel
+    @EnvironmentObject var perform: BackLoginViewModel
     
     @State private var _isHidePassword: Bool = true
     @State var _isNavigation: Int? = nil
@@ -74,8 +74,6 @@ struct LoginView: View {
             })
             .edgesIgnoringSafeArea(.all)
         }
-        .environmentObject(vm)
-        .environmentObject(perform)
     }
 }
 

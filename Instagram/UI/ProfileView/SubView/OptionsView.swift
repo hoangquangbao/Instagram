@@ -8,7 +8,6 @@ struct OptionsView: View {
     @Binding var title: String
     
     var body: some View {
-        NavigationView {
             ScrollView(.vertical, showsIndicators:false) {
                 ForEach(SettingListData){ item in
                     VStack(alignment: .leading){
@@ -32,13 +31,13 @@ struct OptionsView: View {
                             .padding(.vertical, 8)
                             .padding(.horizontal, 15)
                         }
+                        .disabled(item.title != "Settings")
                         Divider()
                             .padding(.leading, 50)
                     }
                 }
             }
             .background(Color.white)
-        }
     }
 }
 

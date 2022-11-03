@@ -60,6 +60,7 @@ class LoginViewModel: ObservableObject {
                 self.alertMessage = error.localizedDescription
                 return
             } else {
+                UserDefaults.standard.setIsLoggedIn(value: true)
                 self.isShowTabbarBottomView = true
             }
             
@@ -77,6 +78,7 @@ class LoginViewModel: ObservableObject {
     func handleLogout(completion: @escaping (Bool) -> Void) {
         do {
             try FirebaseManager.shared.auth.signOut()
+            UserDefaults.standard.setIsLoggedIn(value: false)
             self.isShowTabbarBottomView = false
             completion(false)
             print ("Logout success!")
