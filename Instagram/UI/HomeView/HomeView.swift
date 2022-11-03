@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject var vm = HomeViewModel()
     @EnvironmentObject var sessionService: SessionService
+    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var postData: PostData
     
     var body: some View {
         ZStack {
@@ -25,6 +27,9 @@ struct HomeView: View {
                     _usersPost
                 }
             }
+        }
+        .onAppear {
+            postData.refresh()
         }
     }
 }
@@ -56,7 +61,7 @@ private extension HomeView {
             HStack(spacing: 15.0) {
                 _createNewStoryButton
                 
-                ForEach(vm.users) { user in
+                ForEach(userData.usersHasStory) { user in
                     _storyItem(of: user)
                 }
             }
@@ -113,7 +118,7 @@ private extension HomeView {
     }
     
     var _usersPost: some View {
-        ForEach(vm.posts) { post in
+        ForEach(postData.posts) { post in
             PostRow(post: post)
         }
     }

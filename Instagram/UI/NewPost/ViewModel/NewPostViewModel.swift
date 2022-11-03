@@ -26,15 +26,6 @@ class NewPostViewModel: ObservableObject {
         caption = ""
     }
     
-    func uiImageToImage(_ uiImages: [UIImage]) -> [Image] {
-        var result = [Image]()
-        uiImages.forEach { image in
-            result.append(Image(uiImage: image))
-        }
-        
-        return result
-    }
-    
     func uploadPost(completion: @escaping (Bool) -> Void) {
         self.isUploading.toggle()
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }

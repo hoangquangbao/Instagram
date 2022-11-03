@@ -9,6 +9,9 @@ import SwiftUI
 
 struct NewPostView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var postData: PostData
+    
     @ObservedObject var vm: NewPostViewModel
     
     @State var photosSelected = [UIImage]()
@@ -67,6 +70,8 @@ private extension NewPostView {
             vm.uploadPost { isSuccess in
                 if(isSuccess) {
                     vm.isUploading.toggle()
+                    userData.refresh()
+                    postData.refresh()
                     presentationMode.wrappedValue.dismiss()
                 } else {
                     vm.isUploading.toggle()
@@ -98,7 +103,21 @@ private extension NewPostView {
                 }
                 
                 if let imageAttach = vm.imageAttach {
-                    SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: $currentIndex)
+                    ZStack(alignment: .topTrailing) {
+                        SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: $currentIndex)
+                        Button {
+                            withAnimation {
+                                vm.imageAttach = nil
+                            }
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .renderingMode(.template)
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                    }
                 }
             }
         } 

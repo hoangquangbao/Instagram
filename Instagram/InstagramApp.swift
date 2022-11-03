@@ -6,6 +6,8 @@ struct InstagramApp: App {
     @StateObject var sessionService = SessionService()
     @StateObject var vm = LoginViewModel()
     @StateObject var perform = BackLoginViewModel()
+    @StateObject var userData = UserData()
+    @StateObject var postData = PostData()
     
     var body: some Scene {
         WindowGroup {
@@ -20,6 +22,8 @@ struct InstagramApp: App {
             .environmentObject(vm)
             .environmentObject(perform)
             //            TabbarBottomView()
+            .environmentObject(userData)
+            .environmentObject(postData)
         }
     }
     
