@@ -16,37 +16,18 @@ struct NewStoryView: View {
     
     var body: some View {
         VStack {
-            ZStack(alignment: .center) {
-                Text("New story")
-                    .font(.system(size: 18))
-                    .bold()
-                HStack {
-                    IconButton(imageIcon: Image(systemName: "xmark")) {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .font(.subheadline)
-                    .foregroundColor(Color._000000)
-                    
-                    Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Upload").font(.subheadline)
-                    }
-                }
-            }
-            .padding(.horizontal, AppStyle.defaultSpacing)
-            .padding(.top, 5)
+            
+            _header
+            
+            TextField("Caption...", text: $vm.caption)
+                .font(.system(.subheadline))
+                .padding(.horizontal, AppStyle.defaultSpacing)
+                .padding(.top)
             
             if let imageAttach = vm.imageAttach {
                 ZStack(alignment: .topTrailing) {
                     SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: .constant(0))
-                    Button {
-                        withAnimation {
-                            vm.imageAttach = nil
-                        }
-                    } label: {
+                    Button(action: vm.clearImageAttach) {
                         Image(systemName: "xmark.circle.fill")
                             .renderingMode(.template)
                             .resizable()
@@ -54,58 +35,22 @@ struct NewStoryView: View {
                             .foregroundColor(.white)
                             .padding()
                     }
-                }
-            }
-            if let template = vm.templateSelected {
-                ZStack(alignment: .topTrailing) {
-                    SquareImageTab(images: [UIImage(named: template)] as! [UIImage], currentStep: .constant(0))
-                    Button {
-                        withAnimation {
-                            vm.templateSelected = nil
-                        }
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                            .padding()
-                    }
+                    
+                    Text(vm.caption).font(.headline).foregroundColor(Color(vm.captionColorHexSelected))
                 }
             }
             
             Spacer()
             
+            _captionColors
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 5) {
-                    ForEach(vm.templates, id: \.self) { template in
-                        Button {
-                            vm.selectTemplate(for: template)
-                        } label: {
-                            Image(template)
-                                .resizable()
-                                .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
-                                .scaledToFill()
-                                .cornerRadius(10)
-                                .padding(5)
-                                .background(self.getColorBorder(for: template))
-                                .cornerRadius(10)
-                        }
-                    }
-                }
-            }
-            .padding(.leading, AppStyle.defaultSpacing)
+            _backgroundTemplates
             
-            Button {
-                
-            } label: {
-                Text("Select from gallery")
-            }
-            .buttonStyle(CustomButtonStyle(bgColor: Color.appPrimary))
-            .padding(.horizontal, AppStyle.defaultSpacing)
-            .padding(.top)
-
+            _selectFromGalleryButton
+        }
+        .background(Color.f9F9F9)
+        .sheet(isPresented: $vm.isImagePickerDisplay) {
+            ImagePicker(image: $vm.imageAttach, sourceType: .photoLibrary)
         }
     }
     
@@ -119,6 +64,86 @@ struct NewStoryView: View {
         }
         
         return Color.clear
+    }
+}
+
+private extension NewStoryView {
+    var _header: some View {
+        ZStack(alignment: .center) {
+            Text("New story")
+                .font(.system(size: 18))
+                .bold()
+            HStack {
+                IconButton(imageIcon: Image(systemName: "xmark")) {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .font(.subheadline)
+                .foregroundColor(Color._000000)
+                
+                Spacer()
+                
+                Button {
+                    print("upload")
+                } label: {
+                    Text("Upload").font(.subheadline)
+                }
+                .disabled(vm.caption.isEmpty || vm.imageAttach == nil)
+            }
+        }
+        .padding(.horizontal, AppStyle.defaultSpacing)
+        .padding(.top, 5)
+    }
+    
+    var _captionColors: some View {
+        HStack {
+            
+            ForEach(vm.colors, id: \.self) { (colorHex: String) in
+                Button {
+                    vm.captionColorHexSelected = colorHex
+                } label: {
+                    Color(colorHex).frame(width: 28).clipShape(Circle()).padding(vm.captionColorHexSelected == colorHex ? 3 : 0)
+                        .overlay(
+                            Circle().stroke(Color.gray.opacity(0.4), lineWidth: 2)
+                                .shadow(color: Color(colorHex), radius: vm.captionColorHexSelected == colorHex ? 10 : 0, x: 0, y: 0)
+                        )
+                }
+            }
+        }
+        
+    }
+    
+    var _backgroundTemplates: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 5) {
+                ForEach(vm.templates, id: \.self) { template in
+                    Button {
+                        vm.selectTemplate(for: template)
+                    } label: {
+                        Image(template)
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
+                            .scaledToFill()
+                            .cornerRadius(10)
+                            .padding(5)
+                            .background(self.getColorBorder(for: template))
+                            .cornerRadius(10)
+                    }
+                }
+            }
+        }
+        .padding(.leading, AppStyle.defaultSpacing)
+    }
+    
+    var _selectFromGalleryButton: some View {
+        Button {
+            vm.isImagePickerDisplay.toggle()
+            vm.clearImageAttach()
+        } label: {
+            Text("Select from gallery")
+        }
+        .buttonStyle(CustomButtonStyle(foregroundColor: Color.ffffff, bgColor: Color.appPrimary))
+        .padding(.horizontal, AppStyle.defaultSpacing)
+        .padding(.top)
     }
 }
 
