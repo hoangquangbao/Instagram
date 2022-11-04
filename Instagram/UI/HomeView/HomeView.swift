@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct HomeView: View {
     @ObservedObject var vm = HomeViewModel()
@@ -24,12 +25,14 @@ struct HomeView: View {
                     
                     Divider()
                     
-                    _usersPost
+                    if postData.posts.isNotEmpty {
+                        _usersPost
+                    } else {
+                        PostRowShimmer()
+                    }
+                    
                 }
             }
-        }
-        .onAppear {
-            postData.refresh()
         }
     }
 }
@@ -79,7 +82,7 @@ private extension HomeView {
                         CircleAvatar(imageUrl: userInfo.avatarUrl, radius: 55)
                             .addBorder(Color.clear)
                     } else {
-                        Color._3C3C43.frame(width: 55, height: 55).clipShape(Circle())
+                        UserRowShimmer().circleAvatar(radius: 55)
                     }
                     
                     ZStack {
@@ -120,6 +123,7 @@ private extension HomeView {
     var _usersPost: some View {
         ForEach(postData.posts) { post in
             PostRow(post: post)
+                .padding(.top, 15)
         }
     }
     

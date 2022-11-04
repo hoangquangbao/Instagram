@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shimmer
 
 struct PostRow: View {
     
@@ -24,6 +25,9 @@ struct PostRow: View {
             
             if(vm.post.likeCount > 0) {
                 LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
+                    .padding(.horizontal, AppStyle.defaultSpacing)
+                    .padding(.top, 5)
+
             }
             
             Text(vm.post.caption)
@@ -36,6 +40,8 @@ struct PostRow: View {
             }
             
             _commentArea
+            
+            
         }
     }
 }
@@ -55,6 +61,10 @@ private extension PostRow {
                             .fontWeight(.light)
                     }
                 }
+                
+                else {
+                    UserRowShimmer()
+                }
             }
             
             Spacer()
@@ -62,7 +72,6 @@ private extension PostRow {
             Image.icnMore
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
-        .padding(.top, 15)
         .padding(.bottom, 8)
     }
     
@@ -108,6 +117,9 @@ private extension PostRow {
                 if let user = vm.post.user {
                     CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
                 }
+                else {
+                    UserRowShimmer().circleAvatar(radius: 30)
+                }
                 Text("Add comment").font(.footnote).foregroundColor(Color.semiText)
                 
             }
@@ -133,9 +145,6 @@ struct LikeInfoRow: View {
             }
             .font(.caption)
         }
-        .padding(.horizontal, AppStyle.defaultSpacing)
-        .padding(.top, 5)
-        
     }
 }
 

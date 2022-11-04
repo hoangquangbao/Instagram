@@ -12,6 +12,10 @@ class PostData: ObservableObject {
     private let postService = PostService()
     private let userService = UserService()
     
+    init() {
+        refresh()
+    }
+    
     func refresh() {
         postService.getAll { posts in
             self.posts = posts

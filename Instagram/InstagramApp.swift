@@ -9,6 +9,7 @@ struct InstagramApp: App {
     @StateObject var userData = UserData()
     @StateObject var postData = PostData()
     
+    
     var body: some Scene {
         WindowGroup {
             VStack {
@@ -21,7 +22,6 @@ struct InstagramApp: App {
             .environmentObject(sessionService)
             .environmentObject(vm)
             .environmentObject(perform)
-            //            TabbarBottomView()
             .environmentObject(userData)
             .environmentObject(postData)
         }
