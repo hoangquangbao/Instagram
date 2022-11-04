@@ -78,4 +78,8 @@ extension Image {
     static var imgProfile6: Image { return Image("img_profile6") }
     static var imgProfile7: Image { return Image("img_profile7") }
     static var imgProfile8: Image { return Image("img_profile8") }
+    static var storyBg1: Image { return Image("story_bg1") }
+    static var storyBg2: Image { return Image("story_bg2") }
+    static var storyBg3: Image { return Image("story_bg3") }
+    static var storyBg4: Image { return Image("story_bg4") }
 }

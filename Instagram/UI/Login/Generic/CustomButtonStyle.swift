@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CustomButtonStyle: ButtonStyle {
+    var bgColor: Color = Color.blue
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration
             .label
@@ -9,7 +11,7 @@ struct CustomButtonStyle: ButtonStyle {
             .frame(height: 45)
             .frame(maxWidth: .infinity)
             .background(
-                configuration.isPressed ? Color.blue.opacity(0.8) : Color.blue
+                configuration.isPressed ? bgColor.opacity(0.8) : bgColor
             )
             .cornerRadius(10)
     }

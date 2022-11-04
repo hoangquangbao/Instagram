@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct NewPostView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var postData: PostData
+    
     @ObservedObject var vm: NewPostViewModel
     
     @State var photosSelected = [UIImage]()
-    @State var imageAttach: UIImage?
     @State var currentIndex = 0
     @FocusState var hasTextFieldFocus: Bool
     
@@ -30,8 +32,12 @@ struct NewPostView: View {
             
             _actionButtonsBuilder
         }
+        .showWaitingDialog(title: "Uploading", isLoading: $vm.isUploading)
         .sheet(isPresented: $vm.isBottomSheetDisplayed) {
-            ImagePicker(image: $imageAttach, sourceType: vm.sourceType)
+            ImagePicker(image: $vm.imageAttach, sourceType: vm.sourceType)
+        }
+        .alert("Something was wrong", isPresented: $vm.isErrorAlertDisplayed) {
+            Button("Try again", role: .cancel) { }
         }
     }
 }
@@ -45,23 +51,38 @@ private extension NewPostView {
                 .bold()
             HStack {
                 IconButton(imageIcon: Image(systemName: "xmark")) {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }
                 .font(.subheadline)
                 .foregroundColor(Color._000000)
                 
                 Spacer()
                 
-                Button {
-                    
-                } label: {
-                    Text("Upload").font(.subheadline)
-                }
-                .disabled(vm.caption.isEmpty)
+                _uploadButton
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.top, 5)
+    }
+    
+    var _uploadButton: some View {
+        Button {
+            vm.uploadPost { isSuccess in
+                if(isSuccess) {
+                    vm.isUploading.toggle()
+                    userData.refresh()
+                    postData.refresh()
+                    presentationMode.wrappedValue.dismiss()
+                } else {
+                    vm.isUploading.toggle()
+                    vm.isErrorAlertDisplayed.toggle()
+                }
+            }
+            
+        } label: {
+            Text("Upload").font(.subheadline)
+        }
+        .disabled(vm.caption.isEmpty || vm.imageAttach == nil)
     }
     
     var _postInfo: some View {
@@ -78,11 +99,25 @@ private extension NewPostView {
                     .focused($hasTextFieldFocus)
                 
                 if(photosSelected.count > 0) {
-                    SquareImageTab(images: vm.uiImageToImage(photosSelected), currentStep: $currentIndex)
+                    SquareImageTab(images: [vm.imageAttach] as! [UIImage], currentStep: $currentIndex)
                 }
                 
-                if let imageAttach = imageAttach {
-                    SquareImageTab(images: [Image(uiImage: imageAttach)], currentStep: $currentIndex)
+                if let imageAttach = vm.imageAttach {
+                    ZStack(alignment: .topTrailing) {
+                        SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: $currentIndex)
+                        Button {
+                            withAnimation {
+                                vm.imageAttach = nil
+                            }
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .renderingMode(.template)
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                    }
                 }
             }
         } 

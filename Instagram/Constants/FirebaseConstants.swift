@@ -8,6 +8,7 @@
 import Foundation
 
 struct FirebaseConstants {
-    static let USER_COLLECTION = "users"
-    static let POST_COLLECTION = "posts"
+    static let USER_COLLECTION  = "users"
+    static let POST_COLLECTION  = "posts"
+    static let STORY_COLLECTION = "stories"
 }

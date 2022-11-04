@@ -25,17 +25,32 @@ struct PostService: ServiceProtocol {
     }
     
     func getAll(completion: @escaping ([Post]) -> Void) {
-        postRef.getDocuments { snapshot, error in
-            guard let documents = snapshot?.documents else { return }
-            let posts = documents.compactMap { try? $0.data(as: Post.self) }
-            
-            completion(posts)
-        }
+        postRef
+            .order(by: "createAt", descending: true)
+            .getDocuments { snapshot, error in
+                guard let documents = snapshot?.documents else { return }
+                let posts = documents.compactMap { try? $0.data(as: Post.self) }
+                
+                completion(posts)
+            }
     }
     
     
-    func create(_ post: Post, completion: @escaping(Bool, Error?)->  Void) {
-        
+    func create(_ post: Post, completion: @escaping(Bool, Error?) -> Void) {
+        do {
+            try postRef
+                .document()
+                .setData(from: post) { error in
+                    if let error = error {
+                        completion(false, error)
+                    }
+                    else {
+                        completion(true, nil)
+                    }
+                }
+        } catch {
+            completion(false, error)
+        }
     }
     
     func update(_ post: Post, completion: @escaping (Bool, Error?) -> Void) {

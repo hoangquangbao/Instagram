@@ -6,16 +6,27 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SquareImageTab: View {
-    let images: [Image]
+    let images: [Any]
     @Binding var currentStep: Int
+    
+    init(imagesUrl: [String], currentStep: Binding<Int>) {
+        self.images = imagesUrl
+        _currentStep = currentStep
+    }
+    
+    init(images: [UIImage], currentStep: Binding<Int>) {
+        self.images = images
+        _currentStep = currentStep
+    }
     
     var body: some View {
         TabView(selection: $currentStep) {
             ForEach(0..<images.count, id: \.self) { index in
                 ZStack() {
-                    _SquareImage(image: images[index])
+                    _imageBuilder(image: images[index])
                     
                     if(images.count > 1) {
                         _ActiveIndexBadge(currentIndex: index + 1, total: images.count)
@@ -28,6 +39,17 @@ struct SquareImageTab: View {
         }
         .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth)
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+    }
+}
+
+private extension SquareImageTab {
+    @ViewBuilder
+    func _imageBuilder(image: Any) -> some View {
+        if(image is String) {
+            _KFImage(imageUrl: image as! String)
+        } else {
+            _UIImage(image: image as! UIImage)
+        }
     }
 }
 
@@ -54,19 +76,28 @@ private struct _ActiveIndexBadge: View {
     }
 }
 
-private struct _SquareImage: View {
-    let image: Image
+private struct _KFImage: View {
+    let imageUrl: String
     
     var body: some View {
-        image
+        KFImage(URL(string: imageUrl))
             .resizable()
-//            .frame(width: UIScreen.screenWidth, height: UIScreen.screenWidth)
+            .scaledToFill()
+    }
+}
+
+private struct _UIImage: View {
+    let image: UIImage
+    
+    var body: some View {
+        Image(uiImage: image)
+            .resizable()
             .scaledToFill()
     }
 }
 
 struct SquareImageTab_Previews: PreviewProvider {
     static var previews: some View {
-        SquareImageTab(images: [Image("img_profile"), Image("img_profile2")], currentStep: .constant(1))
+        SquareImageTab(imagesUrl: ["shorturl.at/rUV36"], currentStep: .constant(1))
     }
 }

@@ -19,15 +19,6 @@ class PostRowViewModel: ObservableObject {
     var likeCount         : Int   { return post.likeCount }
     var commentCount      : Int   { return post.commentCount }
     
-    func imagesUrlToImageView() -> [Image] {
-        var result = [Image]()
-        post.imagesUrl.forEach { image in
-            result.append(Image(image))
-        }
-        
-        return result
-    }
-    
     func showAllComment() {
         print("All comment have been displayed")
     }

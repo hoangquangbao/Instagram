@@ -13,7 +13,7 @@ struct Post: Identifiable, Decodable, Encodable {
     let uid: String
     let caption: String
     var imagesUrl: [String]
-    var categories: [String]
+    var categories: [String] = []
     var likes: [User] = []
     var comments: [User] = []
     var createAt: Timestamp = Timestamp(date: Date())

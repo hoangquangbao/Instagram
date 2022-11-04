@@ -9,7 +9,10 @@ import SwiftUI
 
 struct NewStoryView: View {
     let user: User
+    
+    @StateObject var vm = NewStoryViewModel()
     @Environment(\.presentationMode) var presentationMode
+    
     
     var body: some View {
         VStack {
@@ -35,8 +38,87 @@ struct NewStoryView: View {
             }
             .padding(.horizontal, AppStyle.defaultSpacing)
             .padding(.top, 5)
+            
+            if let imageAttach = vm.imageAttach {
+                ZStack(alignment: .topTrailing) {
+                    SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: .constant(0))
+                    Button {
+                        withAnimation {
+                            vm.imageAttach = nil
+                        }
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                }
+            }
+            if let template = vm.templateSelected {
+                ZStack(alignment: .topTrailing) {
+                    SquareImageTab(images: [UIImage(named: template)] as! [UIImage], currentStep: .constant(0))
+                    Button {
+                        withAnimation {
+                            vm.templateSelected = nil
+                        }
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                            .padding()
+                    }
+                }
+            }
+            
             Spacer()
+            
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 5) {
+                    ForEach(vm.templates, id: \.self) { template in
+                        Button {
+                            vm.selectTemplate(for: template)
+                        } label: {
+                            Image(template)
+                                .resizable()
+                                .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
+                                .scaledToFill()
+                                .cornerRadius(10)
+                                .padding(5)
+                                .background(self.getColorBorder(for: template))
+                                .cornerRadius(10)
+                        }
+                    }
+                }
+            }
+            .padding(.leading, AppStyle.defaultSpacing)
+            
+            Button {
+                
+            } label: {
+                Text("Select from gallery")
+            }
+            .buttonStyle(CustomButtonStyle(bgColor: Color.appPrimary))
+            .padding(.horizontal, AppStyle.defaultSpacing)
+            .padding(.top)
+
         }
+    }
+    
+    func getColorBorder(for template: String) -> Color {
+        guard let templateSelected = vm.templateSelected else {
+            return Color.clear
+        }
+        
+        if(templateSelected == template) {
+            return Color.primary.opacity(0.7)
+        }
+        
+        return Color.clear
     }
 }
 
