@@ -24,8 +24,6 @@ struct AddYourNameView: View {
                 NavigationLink("", destination: AddAPasswordView(), isActive: $_isNavigation)
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { AddAPasswordView() })
         }
         .navigationBarBackButtonHidden(true)
     }

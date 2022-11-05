@@ -15,8 +15,6 @@ struct AddPhotoView: View {
                 NavigationLink("", destination: SharePhotoView(), isActive: $_isNavigation)
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { SharePhotoView() })
         }
         .navigationBarBackButtonHidden(true)
     }

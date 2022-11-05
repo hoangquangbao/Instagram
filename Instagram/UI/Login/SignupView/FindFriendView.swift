@@ -15,8 +15,6 @@ struct FindFriendView: View {
                 NavigationLink("", destination: AddPhotoView(), isActive: $_isNavigation)
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { AddPhotoView() })
         }
         .navigationBarBackButtonHidden(true)
     }

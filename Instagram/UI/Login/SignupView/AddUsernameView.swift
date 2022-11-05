@@ -24,13 +24,8 @@ struct AddUsernameView: View {
                 NavigationLink("", destination: SignupAccountView(), isActive: $_isNavigation)
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { SignupAccountView() })
         }
         .navigationBarBackButtonHidden(true)
-//                    .edgesIgnoringSafeArea(.bottom)
-        
-//                        NavigationLink("", destination: SignupAccountView(), isActive: $_isNavigation)
     }
 }
 

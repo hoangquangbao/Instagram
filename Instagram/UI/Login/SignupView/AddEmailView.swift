@@ -36,8 +36,6 @@ struct AddEmailView: View {
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { AddConfirmationCodeView() })
         }
         .navigationBarBackButtonHidden(true)
         .environmentObject(vm)

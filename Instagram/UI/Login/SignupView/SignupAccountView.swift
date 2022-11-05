@@ -17,13 +17,10 @@ struct SignupAccountView: View {
                               actionText: vm.addEmailVM.actionText ?? "") {
                     perform.isBackLoginView_ext = false
                 }
-//                              .padding(.top, 30)
                 
                 NavigationLink("", destination: FindFriendView(), isActive: $_isNavigation)
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { FindFriendView() })
         }
         .navigationBarBackButtonHidden(true)
     }

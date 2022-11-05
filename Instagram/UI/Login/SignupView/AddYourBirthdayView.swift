@@ -13,16 +13,7 @@ struct AddYourBirthdayView: View {
                               isNavigation: $_isNavigation)
                 
                 NavigationLink("", destination: AddUsernameView(), isActive: $_isNavigation)
-//                NavigationLink("", isActive: $_isNavigation) {
-//                    AddUsernameView()
-//                }
-//                NavigationLink(destination: AddUsernameView(), isActive: $_isNavigation) {
-//                    EmptyView()
-//                }
             }
-//            .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { AddUsernameView() })
         }
         .navigationBarBackButtonHidden(true)
     }

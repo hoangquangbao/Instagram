@@ -28,8 +28,6 @@ struct AddConfirmationCodeView: View {
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
-//            .navigationDestination(isPresented: $_isNavigation,
-//                                   destination: { AddYourNameView() })
         }
         .navigationBarBackButtonHidden(true)
     }
