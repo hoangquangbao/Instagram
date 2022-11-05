@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct SignupAddView: View {
     
     @ObservedObject var vm: SignupAddViewModel
@@ -45,6 +44,9 @@ struct SignupAddView: View {
             
             if vm.type == .add_birthday {
                 addYourBirthdayView_Ext()
+                    .animation(.spring(response: 0.5, dampingFraction: 4, blendDuration: 2))
+//                    .transition(.move(edge: .bottom))
+//                    .animation(.easeInOut(duration: 0.5))
             } else if vm.type == .signup_account {
                 signupAccountView_Ext()
             } else if (vm.type == .find_friend || vm.type == .add_photo) {
@@ -66,7 +68,6 @@ struct SignupAddView: View {
     }
 }
 
-@available(iOS 16.0, *)
 extension SignupAddView {
     
     private func addEmailView() -> some View {
@@ -132,8 +133,7 @@ extension SignupAddView {
     private func addYourBirthdayView() -> some View {
         VStack(spacing: 20) {
             Image(systemName: vm.imageSystemName ?? "")
-                .fontWeight(.ultraLight)
-                .font(.system(size: 100))
+                .font(.system(size: 100, weight: .ultraLight))
                 .foregroundStyle(
                     AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
                 )
@@ -281,8 +281,7 @@ extension SignupAddView {
                 Spacer()
                 
                 Image(systemName: vm.imageSystemName ?? "")
-                    .fontWeight(.ultraLight)
-                    .font(.system(size: 120))
+                    .font(.system(size: 120, weight: .ultraLight))
                     .foregroundStyle(
                         AngularGradient(colors: [.purple, .red, .yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270))
                     )
@@ -319,6 +318,7 @@ extension SignupAddView {
                     Text(vm.actionText ?? "")
                         .font(.sfProTextBold(16, relativeTo: .caption1))
                 }
+                .padding(.bottom, 5)
             }
             .padding(.horizontal)
         }
@@ -444,7 +444,6 @@ extension SignupAddView {
     }
 }
 
-@available(iOS 16.0, *)
 extension SignupAddView {
     ///Use in addYourBirthdayView()
     private func setDateString(selectedDate: Date) -> String {

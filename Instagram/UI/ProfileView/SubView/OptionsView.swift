@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct OptionsView: View {
     
     @Binding var bottomSheetShow: Bool
@@ -41,7 +40,6 @@ struct OptionsView: View {
     }
 }
 
-@available(iOS 16.0, *)
 struct OptionsView_Previews: PreviewProvider {
     static var previews: some View {
         OptionsView(bottomSheetShow: .constant(false), isShowDetailOption: .constant(false), title: .constant(""))

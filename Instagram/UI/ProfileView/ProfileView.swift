@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct ProfileView: View {
     
     @EnvironmentObject var sessionService: SessionService
@@ -87,14 +86,12 @@ struct ProfileView: View {
 
 // MARK:- PREVIEW
 
-@available(iOS 16.0, *)
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
     }
 }
 
-@available(iOS 16.0, *)
 extension ProfileView {
         
     func UserProfileView() -> some View {

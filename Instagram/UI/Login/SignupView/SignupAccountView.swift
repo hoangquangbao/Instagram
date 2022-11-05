@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct SignupAccountView: View {
     
     @EnvironmentObject var vm: SignupViewModel
@@ -9,7 +8,7 @@ struct SignupAccountView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 20) {
                 SignupAddView(vm: vm.signupAccountVM,
                               text: $vm.email,
                               isNavigation: $_isNavigation)
@@ -18,16 +17,18 @@ struct SignupAccountView: View {
                               actionText: vm.addEmailVM.actionText ?? "") {
                     perform.isBackLoginView_ext = false
                 }
-                              .padding(.top, 30)
+//                              .padding(.top, 30)
+                
+                NavigationLink("", destination: FindFriendView(), isActive: $_isNavigation)
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { FindFriendView() })
+            .edgesIgnoringSafeArea(.bottom)
+//            .navigationDestination(isPresented: $_isNavigation,
+//                                   destination: { FindFriendView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
 struct SignupAccountView_Previews: PreviewProvider {
     static var previews: some View {
         SignupAccountView()

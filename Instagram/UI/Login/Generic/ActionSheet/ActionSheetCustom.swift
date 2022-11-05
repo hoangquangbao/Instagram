@@ -15,6 +15,7 @@ struct ActionSheetCustom: View {
                         isShowImagePickerOptions = false
                     }
                 }
+//                .edgesIgnoringSafeArea(.all)
             
             if isShowImagePickerOptions {
                 VStack {

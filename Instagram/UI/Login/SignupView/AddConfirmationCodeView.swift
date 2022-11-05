@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct AddConfirmationCodeView: View {
     
     @EnvironmentObject var vm: SignupViewModel
@@ -13,6 +12,8 @@ struct AddConfirmationCodeView: View {
                 SignupAddView(vm: vm.addConfirmationCodeVM,
                               text: $vm.code,
                               isNavigation: $_isNavigation)
+                
+                NavigationLink("", destination: AddYourNameView(), isActive: $_isNavigation)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -26,14 +27,14 @@ struct AddConfirmationCodeView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddYourNameView() })
+            .edgesIgnoringSafeArea(.bottom)
+//            .navigationDestination(isPresented: $_isNavigation,
+//                                   destination: { AddYourNameView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
 struct AddConfirmationCodeView_Previews: PreviewProvider {
     static var previews: some View {
         AddConfirmationCodeView()

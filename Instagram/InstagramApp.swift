@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 @main
 struct InstagramApp: App {
     @StateObject var sessionService = SessionService()

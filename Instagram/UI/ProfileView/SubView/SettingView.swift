@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct SettingView: View {
     
     @EnvironmentObject var vmLogin: LoginViewModel
@@ -12,7 +11,7 @@ struct SettingView: View {
     var title: String
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 0) {
                 Divider()
                 ScrollView {
@@ -61,7 +60,6 @@ struct SettingView: View {
     }
 }
 
-@available(iOS 16.0, *)
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView(isShowDetailOption: .constant(false), title: "Setting")
