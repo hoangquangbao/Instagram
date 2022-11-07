@@ -1,5 +1,5 @@
 //
-//  PostData.swift
+//  PostViewModel.swift
 //  Instagram
 //
 //  Created by lhduc on 02/11/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PostData: ObservableObject {
+class PostViewModel: ObservableObject {
     @Published var posts: [Post] = []
     private let postService = PostService()
     private let userService = UserService()

@@ -54,6 +54,10 @@ class UserService: ServiceProtocol {
         
     }
     
+    func updateStoryStatus(with uid: String) {
+        userRef.document(uid).updateData(["hasStory": true])
+    }
+    
     func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
         
     }

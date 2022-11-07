@@ -10,7 +10,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct ProfileView: View {
     
-    @EnvironmentObject var sessionService: SessionService
+    @EnvironmentObject var sessionViewModel: SessionViewModel
     
     // MARK:- PROPERTIES
     
@@ -41,7 +41,7 @@ struct ProfileView: View {
                 .navigationBarTitle("", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        Text(sessionService.userInfo?.username ?? "")
+                        Text(sessionViewModel.userInfo?.username ?? "")
                             .font(Font.system(size: 22, weight: .bold))
                     }//: TOOLBAR ITEM LEFT
                     
@@ -101,7 +101,7 @@ extension ProfileView {
         VStack(alignment: .center, spacing: 0){
             VStack(alignment: .leading){
                 UserInfoView()
-                Text(sessionService.userInfo?.username ?? "")
+                Text(sessionViewModel.userInfo?.username ?? "")
                     .font(Font.system(size: 13, weight: .medium))
                     .padding(.top, 5)
                     .padding(.bottom, 1)
@@ -121,7 +121,7 @@ extension ProfileView {
     func UserInfoView() -> some View {
         HStack(alignment: .center){
             ZStack{
-                AsyncImage(url: URL(string: sessionService.userInfo?.avatarUrl ?? ""))
+                AsyncImage(url: URL(string: sessionViewModel.userInfo?.avatarUrl ?? ""))
 //                    .resizable()
                     .scaledToFill()
                     .frame(width: 90, height: 90)

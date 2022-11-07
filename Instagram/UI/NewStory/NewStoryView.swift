@@ -11,44 +11,41 @@ struct NewStoryView: View {
     let user: User
     
     @StateObject var vm = NewStoryViewModel()
+    @EnvironmentObject var userVm: UserViewModel
+    @EnvironmentObject var postVm: PostViewModel
+    @EnvironmentObject var storyVm: StoryViewModel
     @Environment(\.presentationMode) var presentationMode
     
     
     var body: some View {
         VStack {
-            
             _header
-            
-            TextField("Caption...", text: $vm.caption)
-                .font(.system(.subheadline))
-                .padding(.horizontal, AppStyle.defaultSpacing)
-                .padding(.top)
+            _caption
             
             if let imageAttach = vm.imageAttach {
-                ZStack(alignment: .topTrailing) {
-                    SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: .constant(0))
-                    Button(action: vm.clearImageAttach) {
-                        Image(systemName: "xmark.circle.fill")
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.white)
-                            .padding()
-                    }
-                    
-                    Text(vm.caption).font(.headline).foregroundColor(Color(vm.captionColorHexSelected))
-                }
+                _StoryContent(
+                    imageAttach: imageAttach,
+                    caption: vm.caption,
+                    captionColorHex: vm.captionColorHexSelected,
+                    onTapCloseButton: vm.clearImageAttach
+                )
             }
             
             Spacer()
             
-            _captionColors
+            if vm.imageAttach != nil && vm.caption.isNotEmpty {
+                _captionColors
+            }
             
             _backgroundTemplates
-            
             _selectFromGalleryButton
+            
         }
         .background(Color.f9F9F9)
+        .showWaitingDialog(title: "Uploading...", isLoading: $vm.isStoryUploading)
+        .alert("Something was wrong", isPresented: $vm.isErrorAlertDisplay) {
+            Button("Try again", role: .cancel) { }
+        }
         .sheet(isPresented: $vm.isImagePickerDisplay) {
             ImagePicker(image: $vm.imageAttach, sourceType: .photoLibrary)
         }
@@ -83,7 +80,19 @@ private extension NewStoryView {
                 Spacer()
                 
                 Button {
-                    print("upload")
+                    vm.uploadStory { isSuccess in
+                        if(isSuccess) {
+                            vm.isStoryUploading.toggle()
+                            userVm.refresh()
+                            postVm.refresh()
+                            storyVm.refresh()
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
+                            vm.isStoryUploading.toggle()
+                            vm.isErrorAlertDisplay.toggle()
+                        }
+                    }
+                    
                 } label: {
                     Text("Upload").font(.subheadline)
                 }
@@ -94,14 +103,23 @@ private extension NewStoryView {
         .padding(.top, 5)
     }
     
+    var _caption: some View {
+        TextField("Caption...", text: $vm.caption)
+            .font(.system(.subheadline))
+            .padding(.horizontal, AppStyle.defaultSpacing)
+            .padding(.top)
+    }
+    
     var _captionColors: some View {
         HStack {
-            
             ForEach(vm.colors, id: \.self) { (colorHex: String) in
                 Button {
-                    vm.captionColorHexSelected = colorHex
+                    withAnimation() {
+                        vm.captionColorHexSelected = colorHex
+                    }
                 } label: {
-                    Color(colorHex).frame(width: 28).clipShape(Circle()).padding(vm.captionColorHexSelected == colorHex ? 3 : 0)
+                    Color(colorHex).frame(width: 28).clipShape(Circle())
+                        .padding(vm.captionColorHexSelected == colorHex ? 3 : 0)
                         .overlay(
                             Circle().stroke(Color.gray.opacity(0.4), lineWidth: 2)
                                 .shadow(color: Color(colorHex), radius: vm.captionColorHexSelected == colorHex ? 10 : 0, x: 0, y: 0)
@@ -109,7 +127,6 @@ private extension NewStoryView {
                 }
             }
         }
-        
     }
     
     var _backgroundTemplates: some View {
@@ -121,7 +138,8 @@ private extension NewStoryView {
                     } label: {
                         Image(template)
                             .resizable()
-                            .frame(width: UIScreen.screenWidth / 4, height: UIScreen.screenWidth / 4)
+                            .frame(width: UIScreen.screenWidth / 4,
+                                   height: UIScreen.screenWidth / 4)
                             .scaledToFill()
                             .cornerRadius(10)
                             .padding(5)
@@ -144,6 +162,39 @@ private extension NewStoryView {
         .buttonStyle(CustomButtonStyle(foregroundColor: Color.ffffff, bgColor: Color.appPrimary))
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.top)
+    }
+}
+
+private struct _StoryContent: View {
+    let imageAttach: UIImage
+    let caption: String
+    let captionColorHex: String
+    let onTapCloseButton: () -> Void
+    
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            ZStack(alignment: .bottom) {
+                SquareImageTab(images: [imageAttach] as! [UIImage], currentStep: .constant(0))
+                
+                Text(caption)
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(captionColorHex))
+                    .padding(.horizontal, 12)
+                    .padding(.bottom, 8)
+            }
+            Button {
+                onTapCloseButton()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .renderingMode(.template)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.white)
+                    .padding()
+            }
+        }
+        .padding(.top, 5)
     }
 }
 

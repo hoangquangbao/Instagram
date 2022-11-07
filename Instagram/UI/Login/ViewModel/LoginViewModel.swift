@@ -81,6 +81,7 @@ class LoginViewModel: ObservableObject {
         do {
             try FirebaseManager.shared.auth.signOut()
             UserDefaults.standard.setIsLoggedIn(value: false)
+            LocalStorage.delete(for: StorageKey.USER_INFO)
             self.isShowTabbarBottomView = false
             completion(false)
             print ("Logout success!")
@@ -94,5 +95,4 @@ class LoginViewModel: ObservableObject {
     func textFieldIsEmpty() -> Bool {
         return email.isEmpty || password.isEmpty
     }
-    
 }

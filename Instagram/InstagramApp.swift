@@ -3,11 +3,12 @@ import SwiftUI
 @available(iOS 16.0, *)
 @main
 struct InstagramApp: App {
-    @StateObject var sessionService = SessionService()
+    @StateObject var sessionViewModel = SessionViewModel()
     @StateObject var vm = LoginViewModel()
     @StateObject var perform = BackLoginViewModel()
-    @StateObject var userData = UserData()
-    @StateObject var postData = PostData()
+    @StateObject var userVm = UserViewModel()
+    @StateObject var postVm = PostViewModel()
+    @StateObject var storyData = StoryViewModel()
     
     
     var body: some Scene {
@@ -19,11 +20,12 @@ struct InstagramApp: App {
                     LoginView()
                 }
             }
-            .environmentObject(sessionService)
+            .environmentObject(sessionViewModel)
             .environmentObject(vm)
             .environmentObject(perform)
-            .environmentObject(userData)
-            .environmentObject(postData)
+            .environmentObject(userVm)
+            .environmentObject(postVm)
+            .environmentObject(storyData)
         }
     }
     
@@ -31,3 +33,6 @@ struct InstagramApp: App {
         return UserDefaults.standard.isLoggedIn()
     }
 }
+
+
+
