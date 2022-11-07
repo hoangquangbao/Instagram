@@ -9,8 +9,8 @@ import SwiftUI
 
 struct NewPostView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var userData: UserData
-    @EnvironmentObject var postData: PostData
+    @EnvironmentObject var userVm: UserViewModel
+    @EnvironmentObject var postVm: PostViewModel
     
     @ObservedObject var vm: NewPostViewModel
     
@@ -33,10 +33,10 @@ struct NewPostView: View {
             _actionButtonsBuilder
         }
         .showWaitingDialog(title: "Uploading", isLoading: $vm.isUploading)
-        .sheet(isPresented: $vm.isBottomSheetDisplayed) {
+        .sheet(isPresented: $vm.isBottomSheetDisplay) {
             ImagePicker(image: $vm.imageAttach, sourceType: vm.sourceType)
         }
-        .alert("Something was wrong", isPresented: $vm.isErrorAlertDisplayed) {
+        .alert("Something was wrong", isPresented: $vm.isErrorAlertDisplay) {
             Button("Try again", role: .cancel) { }
         }
     }
@@ -70,12 +70,12 @@ private extension NewPostView {
             vm.uploadPost { isSuccess in
                 if(isSuccess) {
                     vm.isUploading.toggle()
-                    userData.refresh()
-                    postData.refresh()
+                    userVm.refresh()
+                    postVm.refresh()
                     presentationMode.wrappedValue.dismiss()
                 } else {
                     vm.isUploading.toggle()
-                    vm.isErrorAlertDisplayed.toggle()
+                    vm.isErrorAlertDisplay.toggle()
                 }
             }
             
@@ -125,7 +125,7 @@ private extension NewPostView {
     
     var _selectImageButton: some View {
         Button {
-            vm.isBottomSheetDisplayed.toggle()
+            vm.isBottomSheetDisplay.toggle()
             vm.sourceType = .photoLibrary
         } label: {
             HStack {
@@ -145,7 +145,7 @@ private extension NewPostView {
     
     var _openCameraButton: some View {
         Button {
-            vm.isBottomSheetDisplayed.toggle()
+            vm.isBottomSheetDisplay.toggle()
             vm.sourceType = .camera
         } label: {
             Image("icn_camera_bold")

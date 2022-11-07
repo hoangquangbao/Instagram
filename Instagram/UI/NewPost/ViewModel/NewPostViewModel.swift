@@ -13,9 +13,9 @@ class NewPostViewModel: ObservableObject {
     
     @Published var caption: String = ""
     @Published var imageAttach: UIImage?
-    @Published var isErrorAlertDisplayed = false
+    @Published var isErrorAlertDisplay = false
     @Published var isUploading: Bool = false
-    @Published var isBottomSheetDisplayed: Bool = false
+    @Published var isBottomSheetDisplay: Bool = false
     @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     init(user: User) {

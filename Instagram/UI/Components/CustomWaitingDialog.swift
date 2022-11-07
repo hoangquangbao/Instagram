@@ -20,21 +20,15 @@ struct CustomWaitingDialog: ViewModifier {
                 Color.black
                     .opacity(0.7)
                     .ignoresSafeArea()
-                    .onTapGesture {
-                        isLoading.toggle()
-                    }
-                VStack (spacing: 12) {
-                    Text(title)
-                        .font(.system(.subheadline))
-                        .foregroundColor(Color.black)
-                    
-                    ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-                    
-                }
-                .padding(15)
-                .background(.white)
-                .cornerRadius(10, corners: .allCorners)
-                .shadow(color: Color(.systemGray2), radius: 5, x: 0, y: 0)
+                
+                ProgressView(title)
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
+                    .font(.system(.subheadline))
+                    .foregroundColor(Color.black)
+                    .padding(15)
+                    .background(.white)
+                    .cornerRadius(10, corners: .allCorners)
+                    .shadow(color: Color(.systemGray2), radius: 5, x: 0, y: 0)
             }
         }
     }
@@ -48,6 +42,8 @@ extension View {
 
 struct CustomWaitingDialog_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().showWaitingDialog(title: "Loading", isLoading: .constant(true))
+        VStack{
+            
+        }.showWaitingDialog(title: "Loading", isLoading: .constant(true))
     }
 }

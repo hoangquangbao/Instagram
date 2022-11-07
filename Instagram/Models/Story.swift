@@ -5,8 +5,7 @@
 //  Created by lhduc on 02/11/2022.
 //
 
-import Foundation
-
+import SwiftUI
 import FirebaseFirestoreSwift
 import Firebase
 
@@ -15,6 +14,7 @@ struct Story: Identifiable, Decodable, Encodable {
     let uid: String
     let caption: String
     var imagesUrl: String
+    var captionColorHex: String = "000000"
     var likes: [User] = []
     var createAt: Timestamp = Timestamp(date: Date())
     
