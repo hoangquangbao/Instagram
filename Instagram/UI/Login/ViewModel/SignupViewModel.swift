@@ -2,7 +2,6 @@ import SwiftUI
 
 class SignupViewModel: ObservableObject {
     let userService = UserService()
-    @EnvironmentObject var sessionViewModel: SessionViewModel
     
     ///Get data from SignupView
     @Published var email: String

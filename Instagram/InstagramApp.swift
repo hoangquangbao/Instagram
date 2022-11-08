@@ -3,7 +3,7 @@ import SwiftUI
 @available(iOS 16.0, *)
 @main
 struct InstagramApp: App {
-    @StateObject var sessionViewModel = SessionViewModel()
+    @StateObject var sessionVm = SessionViewModel()
     @StateObject var vm = LoginViewModel()
     @StateObject var perform = BackLoginViewModel()
     @StateObject var userVm = UserViewModel()
@@ -20,7 +20,7 @@ struct InstagramApp: App {
                     LoginView()
                 }
             }
-            .environmentObject(sessionViewModel)
+            .environmentObject(sessionVm)
             .environmentObject(vm)
             .environmentObject(perform)
             .environmentObject(userVm)

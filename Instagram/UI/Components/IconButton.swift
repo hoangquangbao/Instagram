@@ -9,7 +9,8 @@ import SwiftUI
 
 struct IconButton: View {
     let imageIcon: Image
-    let size: CGFloat = 20
+    var size: CGFloat = 20
+    var color: Color = Color.appPrimary
     let onTap: () -> Void
     
     var body: some View {
@@ -18,13 +19,13 @@ struct IconButton: View {
         } label: {
             imageIcon
                 .renderingMode(.template)
-                .foregroundColor(Color.appPrimary)
+                .foregroundColor(color)
         }
     }
 }
 
 struct IconButton_Previews: PreviewProvider {
     static var previews: some View {
-        IconButton(imageIcon: Image.icnHeart, onTap: {})
+        IconButton(imageIcon: Image.icnHeart, color: Color.black, onTap: {})
     }
 }

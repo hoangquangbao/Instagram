@@ -31,7 +31,7 @@ class StoryViewModel: ObservableObject {
         }
     }
     
-    func userStories(forUid uid: String) -> [Story] {
+    func userStories(of uid: String) -> [Story] {
         return self.stories.filter { $0.uid == uid }
     }
     

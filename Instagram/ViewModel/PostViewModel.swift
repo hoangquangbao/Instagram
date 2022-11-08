@@ -27,4 +27,13 @@ class PostViewModel: ObservableObject {
             }
         }
     }
+    
+    func getNotOwningPost() -> [Post] {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return [] }
+        return posts.filter{ $0.uid != uid  }
+    }
+    
+    func getOwningPost(withUid uid: String) -> [Post] {
+        return posts.filter{ $0.uid == uid  }
+    }
 }

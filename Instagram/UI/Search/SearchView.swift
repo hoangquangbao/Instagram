@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject var vm = SearchViewModel()
-    
     @FocusState private var _searchIsFocused: Bool
+    @EnvironmentObject var userVm: UserViewModel
+    @EnvironmentObject var postVm: PostViewModel
     
     var body: some View {
         NavigationView {
@@ -78,8 +79,9 @@ private extension SearchView {
     var _imageGridAndFilteredBar: some View {
         Group {
             _filteredBar
+            
             ScrollView {
-                PostImageGridLayout(posts: vm.posts).padding(.top, 5)
+                PostImageGridLayout(posts: postVm.getNotOwningPost()).padding(.top, 5)
             }
             
             Spacer()
@@ -89,8 +91,12 @@ private extension SearchView {
     var _usersRow: some View {
         ScrollView {
             LazyVStack {
-                ForEach(vm.searchableUser) { user in
-                    UserRow(user: user).padding(.vertical, 5)
+                ForEach(userVm.searchableUser(vm.searchText)) { user in
+                    NavigationLink {
+                        ProfileView(user: user)
+                    } label: {
+                        UserRow(user: user).padding(.vertical, 5)
+                    }
                 }
             }
             .padding(AppStyle.defaultSpacing)

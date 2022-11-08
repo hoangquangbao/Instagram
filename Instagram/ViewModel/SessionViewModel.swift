@@ -12,7 +12,9 @@ enum SessionState {
     case loggedIn, loggedOut
 }
 
-@MainActor class SessionViewModel: ObservableObject {
+class SessionViewModel: ObservableObject {
+    private let userService = UserService()
+    
     @Published var userSession: SessionState = .loggedOut
     @Published var userInfo: User?
     
@@ -21,6 +23,17 @@ enum SessionState {
             LocalStorage.retrieve(forKey: StorageKey.USER_INFO) { user in
                 self.userInfo = user
             }
+            
+            refresh()
+        }
+    }
+    
+    func refresh() {
+        guard let uid = self.userInfo?.id else { return }
+        userService.get(by: uid) { user in
+            self.userInfo = user
+            
+            LocalStorage.store(with: user, forKey: StorageKey.USER_INFO)
         }
     }
     

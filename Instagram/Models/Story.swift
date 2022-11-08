@@ -15,6 +15,7 @@ struct Story: Identifiable, Decodable, Encodable {
     let caption: String
     var imagesUrl: String
     var captionColorHex: String = "000000"
+    var textAlignment: String = "bottom"
     var likes: [User] = []
     var createAt: Timestamp = Timestamp(date: Date())
     
@@ -26,6 +27,15 @@ struct Story: Identifiable, Decodable, Encodable {
 extension Story {
     func getTimePostAgo() -> String {
         return self.createAt.dateValue().timeAgoDisplay()
+    }
+    
+    func getTextAlignment() -> Alignment {
+        switch self.textAlignment {
+            case "center": return Alignment.center
+            case "bottom": return Alignment.bottom
+            default:       return Alignment.bottom
+            
+        }
     }
 }
 

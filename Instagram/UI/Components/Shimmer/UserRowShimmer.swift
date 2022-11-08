@@ -2,7 +2,7 @@
 //  UserRowShimmer.swift
 //  Instagram
 //
-//  Created by Nguyễn Lâm Hoàng Anh on 04/11/2022.
+//  Created by lhduc on 04/11/2022.
 //
 
 import SwiftUI

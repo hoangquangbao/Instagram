@@ -17,7 +17,10 @@ struct StoryView: View {
     var body: some View {
         ZStack {
             if storyVm.activeStories.isNotEmpty {
-                _imageBackground
+                ZStack(alignment: currentStory.getTextAlignment()) {
+                    _imageBackground
+                    _caption
+                }
 
                 VStack {
                     _timeProgressIndicators
@@ -26,7 +29,6 @@ struct StoryView: View {
 
                     _invisibleLayerForChangeStory
                     
-                    _caption
                 }
                 .padding(.horizontal, AppStyle.defaultSpacing)
             }
@@ -38,7 +40,8 @@ struct StoryView: View {
     }
     
     var currentStory: Story {
-        return storyVm.activeStories[min(Int(currentProgress), storyVm.activeStories.count - 1)]
+        let activeStories: [Story] = storyVm.activeStories
+        return activeStories[min(Int(currentProgress), activeStories.count - 1)]
     }
 }
 
@@ -63,8 +66,8 @@ private extension StoryView {
         GeometryReader { proxy in
             KFImage(URL(string: currentStory.imagesUrl))
                 .resizable()
-                .scaledToFill()
-                .frame(width: proxy.size.width, height: proxy.size.height)
+//                .frame(width: proxy.size.width, height: proxy.size.height)
+                .aspectRatio(proxy.size, contentMode: .fill)
                 .cornerRadius(5, corners: .allCorners)
         }
     }
@@ -117,7 +120,7 @@ private extension StoryView {
             if(currentProgress >= CGFloat(storyVm.activeStories.count)) {
                 storyVm.clear()
             } else {
-                self.currentProgress += 0.02
+                self.currentProgress += 0.01
             }
         }
     }

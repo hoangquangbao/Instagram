@@ -9,16 +9,14 @@ import SwiftUI
 
 struct ExploreView: View {
     let post: Post
-    
-    private let posts: [Post] = MockData.posts
+    @EnvironmentObject var postVm: PostViewModel
     
     var body: some View {
         ZStack {
-            Color(.systemGray6)
             ScrollView {
                 LazyVStack {
                     PostRow(post: post).padding(.bottom, 0.5)
-                    ForEach(posts) { _post in
+                    ForEach(postVm.getNotOwningPost()) { _post in
                         if(_post.id != post.id) {
                             PostRow(post: _post).padding(.bottom, 0.5)
                         }

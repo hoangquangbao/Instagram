@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PostImageGridLayout: View {
     let posts: [Post]
@@ -43,7 +44,7 @@ private extension PostImageGridLayout {
     }
 
     func _squareImage(with imageUrl: String, size: CGFloat) -> some View {
-        return Image(imageUrl)
+        return KFImage(URL(string: imageUrl))
             .resizable()
             .frame(width: size, height: size)
             .transition(.opacity)
