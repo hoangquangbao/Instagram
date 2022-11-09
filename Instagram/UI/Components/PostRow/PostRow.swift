@@ -9,7 +9,6 @@ import SwiftUI
 import Shimmer
 
 struct PostRow: View {
-    
     @State private var _imageSelectionIndex = 0
     @ObservedObject var vm: PostRowViewModel
     

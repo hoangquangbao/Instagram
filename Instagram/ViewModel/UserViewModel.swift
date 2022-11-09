@@ -32,4 +32,12 @@ class UserViewModel: ObservableObject {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return [] }
         return users.filter { $0.hasStory == true && $0.id != uid}
     }
+    
+    func searchableUser(_ text: String) -> [User] {
+        if(text.isEmpty) { return users }
+        
+        return users.filter { user in
+            user.username.contains(text) || user.fullName.contains(text)
+        }
+    }
 }

@@ -5,7 +5,7 @@ struct LoginView: View {
     
     @EnvironmentObject var vm: LoginViewModel
     @EnvironmentObject var perform: BackLoginViewModel
-    @EnvironmentObject var sessionViewModel: SessionViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     
     @State private var _isHidePassword: Bool = true
     @State var _isNavigation: Int? = nil
@@ -34,7 +34,7 @@ struct LoginView: View {
                     Button {
                         vm.handleLogin { uid in
                             self.userService.get(by: uid) { user in
-                                self.sessionViewModel.userInfo = user
+                                self.sessionVm.userInfo = user
                                 LocalStorage.store(with: user, forKey: StorageKey.USER_INFO)
                                 
                             }

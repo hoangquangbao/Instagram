@@ -10,7 +10,8 @@ import SwiftUI
 struct TabbarBottomView: View {
     @EnvironmentObject var vm: LoginViewModel
     @EnvironmentObject var perform: BackLoginViewModel
-    @EnvironmentObject var storyData: StoryViewModel
+    @EnvironmentObject var storyVm: StoryViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     
     @State private var selection = 0
     
@@ -36,13 +37,13 @@ struct TabbarBottomView: View {
                             _TabBarIcon(Image.icnAddSquare)
                         }
                         .tag(2)
-                    ProfileView()
+                    ProfileView(user: sessionVm.userInfo)
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .tabItem {
                             _TabBarIcon(selection == 3 ? Image.icnHeartBold : Image.icnHeart)
                         }
                         .tag(3)
-                    ProfileView()
+                    ProfileView(user: sessionVm.userInfo)
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .tabItem {
                             Image.icnPfTabbar
@@ -59,7 +60,7 @@ struct TabbarBottomView: View {
                 Color.appPrimary
             }
             
-            if(storyData.isStoryDisplay) {
+            if(storyVm.isStoryDisplay) {
                 StoryView()
             }
         }
@@ -81,7 +82,7 @@ struct _TabBarIcon: View {
 struct TabbarBottomView_Previews: PreviewProvider {
     static var previews: some View {
         TabbarBottomView()
-            .environmentObject(SessionViewModel())
+            .environmentObject(StoryViewModel())
     }
 }
 

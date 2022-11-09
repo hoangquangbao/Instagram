@@ -32,7 +32,11 @@ class NewPostViewModel: ObservableObject {
         guard let imageAttach = imageAttach else { return }
         
         print("Upload image...")
-        FirebaseUploaderService.uploadImage(imageAttach) { imageUrl, error in
+        FirebaseUploaderService.uploadImage(
+            imageAttach,
+            withPath: FirebaseConstants.POST_COLLECTION
+        ){ imageUrl, error in
+            
             if error != nil { completion(false); return }
             guard let imageUrl = imageUrl else { completion(false); return }
             let post = Post(uid: uid, caption: self.caption, imagesUrl: [imageUrl])
@@ -50,9 +54,9 @@ class NewPostViewModel: ObservableObject {
             if(!isSuccess) {
                 completion(false)
             }
-
+            
             completion(true)
         }
     }
-
+    
 }

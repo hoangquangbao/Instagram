@@ -14,9 +14,10 @@ class NewStoryViewModel: ObservableObject {
     @Published var caption: String = ""
     @Published var imageAttach: UIImage?
     @Published var templateSelected: String?
+    @Published var isTextCenter: Bool = false
     @Published var isStoryUploading: Bool = false
-    @Published var isImagePickerDisplay: Bool = false
     @Published var isErrorAlertDisplay: Bool = false
+    @Published var isImagePickerDisplay: Bool = false
     @Published var captionColorHexSelected: String = "#FFFFFF"
     
     let templates: [String] = ["story_bg1", "story_bg2", "story_bg3", "story_bg4"]
@@ -40,14 +41,19 @@ class NewStoryViewModel: ObservableObject {
         guard let imageAttach = imageAttach else { return }
         
         print("Upload image...")
-        FirebaseUploaderService.uploadImage(imageAttach) { imageUrl, error in
+        FirebaseUploaderService.uploadImage(
+            imageAttach,
+            withPath: FirebaseConstants.STORY_PATH
+        ) { imageUrl, error in
+            
             if error != nil { completion(false); return }
             guard let imageUrl = imageUrl else { completion(false); return }
             
             let story = Story(uid: uid,
                               caption: self.caption,
                               imagesUrl: imageUrl,
-                              captionColorHex: self.captionColorHexSelected)
+                              captionColorHex: self.captionColorHexSelected,
+                              textAlignment: self.isTextCenter ? "center" : "bottom")
             
             self._createStory(story) { isSuccess in
                 self.userService.updateStoryStatus(with: uid)

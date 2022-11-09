@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
-    
-    @EnvironmentObject var sessionViewModel: SessionViewModel
+    var user: User?
+    @EnvironmentObject var sessionVm: SessionViewModel
+    @EnvironmentObject var postVm: PostViewModel
     
     // MARK:- PROPERTIES
     
-    init(){
+    init(user: User?) {
+        if let user = user { self.user = user }
+        else { self.user = self.sessionVm.userInfo }
+        
         UINavigationBar.appearance().barTintColor = .white
         UINavigationBar.appearance().shadowImage = UIImage()
     }
@@ -40,7 +45,7 @@ struct ProfileView: View {
                 .navigationBarTitle("", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        Text(sessionViewModel.userInfo?.username ?? "")
+                        Text(user?.username ?? "")
                             .font(Font.system(size: 22, weight: .bold))
                     }//: TOOLBAR ITEM LEFT
                     
@@ -88,7 +93,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: MockData.users[0])
     }
 }
 
@@ -98,11 +103,11 @@ extension ProfileView {
         VStack(alignment: .center, spacing: 0){
             VStack(alignment: .leading){
                 UserInfoView()
-                Text(sessionViewModel.userInfo?.username ?? "")
+                Text(user?.fullName ?? "")
                     .font(Font.system(size: 13, weight: .medium))
                     .padding(.top, 5)
                     .padding(.bottom, 1)
-                Text("Digital goodies designer @pixsellz \n Everything is designed.")
+                Text("Digital goodies designer @pixsellz \nEverything is designed.")
                     .font(Font.system(size: 13, weight: .regular))
 
 
@@ -118,7 +123,7 @@ extension ProfileView {
     func UserInfoView() -> some View {
         HStack(alignment: .center){
             ZStack{
-                AsyncImage(url: URL(string: sessionViewModel.userInfo?.avatarUrl ?? ""))
+                KFImage(URL(string: user?.avatarUrl ?? ""))
 //                    .resizable()
                     .scaledToFill()
                     .frame(width: 90, height: 90)
@@ -142,21 +147,21 @@ extension ProfileView {
             
             HStack(alignment: .center, spacing:30){
                 VStack(alignment: .center, spacing: 0){
-                    Text("54")
+                    Text(postVm.getOwningPost(withUid: user?.id ?? "").count.toString())
                         .font(Font.system(size: 17, weight: .medium))
                     Text("Posts")
                         .font(.footnote)
                 }//: VSTACK
                 
                 VStack(alignment: .center, spacing: 0){
-                    Text("834")
+                    Text(user?.followers.count.toString() ?? "")
                         .font(Font.system(size: 17, weight: .medium))
                     Text("Followers")
                         .font(.footnote)
                 }//: VSTACK
                 
                 VStack(alignment: .center, spacing: 0){
-                    Text("162")
+                    Text(user?.followings.count.toString() ?? "")
                         .font(Font.system(size: 17, weight: .medium))
                     Text("Following")
                         .font(.footnote)
@@ -210,7 +215,7 @@ extension ProfileView {
                             .foregroundColor(.primary)
                     }//: VSTACK
                 }//: LOOP
-            }//: HSTACK
+            }
             .padding(.horizontal, 15)
             .padding(.vertical, 10)
         }//: SCROLL
@@ -244,14 +249,14 @@ extension ProfileView {
                     .frame(maxWidth: .infinity)
             }
             LazyVGrid(columns: gridLayout, spacing:2){
-                ForEach(data) { item in
-                    Image(item.image)
+                ForEach(postVm.getOwningPost(withUid: user?.id ?? "")) { post in
+                    KFImage(URL(string: post.imagesUrl[0]))
                         .resizable()
                         .scaledToFill()
                         .frame(height: (UIScreen.main.bounds.width - 8) / 3)
                         .clipped()
-                }//: LOOP
-            }//: GRID
+                }
+            }
         }
         
     }

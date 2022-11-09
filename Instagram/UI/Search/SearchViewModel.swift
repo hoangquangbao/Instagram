@@ -74,11 +74,4 @@ class SearchViewModel: ObservableObject {
         }
     }
     
-    var searchableUser: [User] {
-        if(searchText.isEmpty) { return users }
-        
-        return users.filter { user in
-            user.username.contains(searchText) || user.fullName.contains(searchText)
-        }
-    }
 }
