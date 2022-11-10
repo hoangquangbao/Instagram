@@ -7,7 +7,11 @@
 import SwiftUI
 
 class PostRowViewModel: ObservableObject {
-    let post: Post
+    private let postService = PostService()
+    private let userService = UserService()
+    
+    @Published var post: Post
+    @Published var isNavigateProfileView: Int? = nil
     
     init(post: Post) {
         self.post = post
@@ -15,9 +19,16 @@ class PostRowViewModel: ObservableObject {
     
     var imageSelectionIndex = 0
     var imageCount        : Int   { return post.imagesUrl.count }
-    var latestUserLikePost: User? { return post.latestUserLiked }
     var likeCount         : Int   { return post.likeCount }
     var commentCount      : Int   { return post.commentCount }
+    var didLike: Bool {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return false}
+        return post.likes.contains(uid)
+    }
+    
+    func toggleNavigate() {
+        self.isNavigateProfileView = 1
+    }
     
     func showAllComment() {
         print("All comment have been displayed")
@@ -37,5 +48,35 @@ class PostRowViewModel: ObservableObject {
     
     func onShare() {
         print("share")
+    }
+    
+    
+    func handleLike() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        guard let postId = post.id else { return }
+        
+        if post.likes.contains(uid) {
+            post.likes = post.likes.filter { $0 != uid }
+            _updateLike(with: postId, likes: post.likes)
+            
+        } else {
+            post.likes.append(uid)
+            _updateLike(with: postId, likes: post.likes)
+        }
+    }
+    
+    func _updateLike(with id: String, likes: [String]) {
+        postService.update(with: id, field: "likes", data: likes) { [self] isSuccess, error in
+            if error != nil { return }
+            
+            postService.get(by: id) { [self] _post in
+                self.post = _post
+                guard let uid = _post.user?.id else { return }
+                
+                userService.get(by: uid) { user in
+                    self.post.user = user
+                }
+            }
+        }
     }
 }

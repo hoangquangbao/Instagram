@@ -16,44 +16,47 @@ struct HomeView: View {
     @EnvironmentObject var storyVm: StoryViewModel
     
     var body: some View {
-        ZStack {
-            Color.background.ignoresSafeArea()
-            VStack {
-                _topBar
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    _storyBar
+        NavigationView {
+            ZStack {
+                Color.background.ignoresSafeArea()
+                VStack {
+                    _topBar
                     
-                    Divider()
-                    
-                    if(postVm.isFetching) {
-                        PostRowShimmer()
-                    }
-                    else {
-                        _usersPost
+                    ScrollView(.vertical, showsIndicators: false) {
+                        _storyBar
+                        
+                        Divider()
+                        
+                        if(postVm.isFetching) {
+                            PostRowShimmer()
+                        }
+                        else {
+                            _usersPost
+                        }
                     }
                 }
             }
-        }
-        .confirmationDialog(
-            "choose option",
-            isPresented: $vm.isShowOptionForNavigateStoryView,
-            actions: {
-                Button("Create story")  { vm.isShowNewStoryView.toggle() }
-                Button("Show my story") {
-                    vm.isStoryDisplay.toggle()
-                    storyVm.activeStories = storyVm.userStories(of: sessionViewModel.uid)
-                    withAnimation(.default) {
-                        storyVm.isStoryDisplay.toggle()
+            .navigationBarHidden(true)
+            .confirmationDialog(
+                "choose option",
+                isPresented: $vm.isShowOptionForNavigateStoryView,
+                actions: {
+                    Button("Create story")  { vm.isShowNewStoryView.toggle() }
+                    Button("Show my story") {
+                        vm.isStoryDisplay.toggle()
+                        storyVm.activeStories = storyVm.userStories(of: sessionViewModel.uid)
+                        withAnimation(.default) {
+                            storyVm.isStoryDisplay.toggle()
+                        }
                     }
-                }
-            },
-            message: { Text("Please choose one option") }
-        )
-        .onAppear {
-            userVm.refresh()
-            postVm.refresh()
-            storyVm.refresh()
+                },
+                message: { Text("Please choose one option") }
+            )
+            .onAppear {
+                userVm.refresh()
+                postVm.refresh()
+                storyVm.refresh()
+            }
         }
     }
 }

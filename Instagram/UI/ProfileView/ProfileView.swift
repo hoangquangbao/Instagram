@@ -40,15 +40,16 @@ struct ProfileView: View {
                     ToolbarItem(placement: .principal) {
                         Text(user.username) .font(Font.system(size: 22, weight: .bold))
                     }
-                    
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            _isShowBottomSheet.toggle()
-                        } label: {
-                            Image.icnBurger
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 22, height: 22)
+                        if sessionVm.uid == user.id {
+                            Button {
+                                _isShowBottomSheet.toggle()
+                            } label: {
+                                Image.icnBurger
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 22, height: 22)
+                            }
                         }
                     }
                 }

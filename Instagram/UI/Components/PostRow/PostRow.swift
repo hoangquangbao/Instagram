@@ -22,12 +22,12 @@ struct PostRow: View {
             
             _content
             
-            if(vm.post.likeCount > 0) {
-                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
-                    .padding(.horizontal, AppStyle.defaultSpacing)
-                    .padding(.top, 5)
-
-            }
+//            if(vm.post.likeCount > 0) {
+//                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
+//                    .padding(.horizontal, AppStyle.defaultSpacing)
+//                    .padding(.top, 5)
+//
+//            }
             
             Text(vm.post.caption)
                 .font(.footnote)
@@ -40,7 +40,7 @@ struct PostRow: View {
             
             _commentArea
             
-            
+            _postTime
         }
     }
 }
@@ -50,14 +50,18 @@ private extension PostRow {
         HStack {
             HStack(spacing: 9.0) {
                 if let user = vm.post.user {
-                    CircleAvatar(imageUrl: user.avatarUrl, radius: 40)
-                    VStack(alignment: .leading) {
-                        Text(user.fullName)
-                            .font(.subheadline)
-                            .fontWeight(.bold)
-                        Text("@\(user.username)")
-                            .font(.caption)
-                            .fontWeight(.light)
+                    NavigationLink(destination: ProfileView(user: user), tag: 1, selection: $vm.isNavigateProfileView) {
+                        Button(action: vm.toggleNavigate) {
+                            CircleAvatar(imageUrl: user.avatarUrl, radius: 40)
+                            VStack(alignment: .leading) {
+                                Text(user.fullName)
+                                    .font(.subheadline)
+                                    .fontWeight(.bold)
+                                Text("@\(user.username)")
+                                    .font(.caption)
+                                    .fontWeight(.light)
+                            }
+                        }
                     }
                 }
                 
@@ -79,11 +83,20 @@ private extension PostRow {
             SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
-                    IconButton(imageIcon: Image.icnHeart, onTap: vm.onFavorite)
+                    Button(action: vm.handleLike) {
+                        if vm.didLike {
+                            Image.icnHeartBold
+                                .renderingMode(.template)
+                                .foregroundColor(Color.red)
+                        } else {
+                            Image.icnHeart
+                        }
+                    }
                     
                     IconButton(imageIcon: Image.icnComment, onTap: vm.onComment)
                     
                     IconButton(imageIcon: Image.icnShare, onTap: vm.onMessage)
+                    
                 }
                 
                 if(vm.imageCount > 1) {
@@ -119,13 +132,33 @@ private extension PostRow {
                 else {
                     UserRowShimmer().circleAvatar(radius: 30)
                 }
-                Text("Add comment").font(.footnote).foregroundColor(Color.semiText)
+                GeometryReader { proxy in
+                    NavigationLink {
+                        CommentView(postRowVm: vm)
+                    } label: {
+                        Text("Add comment")
+                            .font(.footnote)
+                            .foregroundColor(Color.semiText)
+                            .frame(width: proxy.size.width,
+                                   height: proxy.size.height,
+                                   alignment: .leading)
+                    }
+                        
+                }
+                
                 
             }
-            Spacer()
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.top, 12)
+    }
+    
+    var _postTime: some View {
+        Text(vm.post.getTimePostAgo())
+            .font(.system(.caption))
+            .foregroundColor(Color.semiText)
+            .padding(.horizontal, AppStyle.defaultSpacing)
+            .padding(.top, 5)
     }
 }
 

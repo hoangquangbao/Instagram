@@ -53,8 +53,15 @@ struct PostService: ServiceProtocol {
         }
     }
     
-    func update(_ post: Post, completion: @escaping (Bool, Error?) -> Void) {
-        
+    func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+        postRef.document(id).updateData([field: data]) { error in
+            guard error != nil else {
+                completion (false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
     }
     
     func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {

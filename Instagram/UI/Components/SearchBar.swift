@@ -28,7 +28,7 @@ struct SearchBar: View {
                 _searchIcon
                 Spacer()
                 if(searchText.isNotEmpty) {
-                   _clearIcon
+                    _clearIcon
                 }
             }
         }

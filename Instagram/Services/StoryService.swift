@@ -45,8 +45,15 @@ struct StoryService: ServiceProtocol {
         
     }
     
-    func update(_ story: Story, completion: @escaping (Bool, Error?) -> Void) {
-        return
+    func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+        storyRef.document(id).updateData([field: data]) { error in
+            guard error != nil else {
+                completion (false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
     }
     
     func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {

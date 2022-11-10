@@ -11,6 +11,7 @@ extension Date {
     func timeAgoDisplay() -> String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
+        formatter.locale = Locale(identifier: "en_US")
         return formatter.localizedString(for: self, relativeTo: Date())
     }
 }
