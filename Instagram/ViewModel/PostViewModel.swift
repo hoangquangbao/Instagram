@@ -8,6 +8,8 @@
 import Foundation
 
 class PostViewModel: ObservableObject {
+    var isFetching: Bool = false
+    
     @Published var posts: [Post] = []
     private let postService = PostService()
     private let userService = UserService()
@@ -17,6 +19,7 @@ class PostViewModel: ObservableObject {
     }
     
     func refresh() {
+        self.isFetching.toggle()
         postService.getAll { posts in
             self.posts = posts
             
@@ -25,6 +28,8 @@ class PostViewModel: ObservableObject {
                     self.posts[i].user = user
                 }
             }
+            
+            self.isFetching.toggle()
         }
     }
     
@@ -33,7 +38,8 @@ class PostViewModel: ObservableObject {
         return posts.filter{ $0.uid != uid  }
     }
     
-    func getOwningPost(withUid uid: String) -> [Post] {
-        return posts.filter{ $0.uid == uid  }
+    func getOwningPost(of user: User) -> [Post] {
+        guard let uid = user.id else { return [] }
+        return posts.filter { $0.uid == uid  }
     }
 }

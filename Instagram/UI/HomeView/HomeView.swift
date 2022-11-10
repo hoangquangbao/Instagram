@@ -26,12 +26,12 @@ struct HomeView: View {
                     
                     Divider()
                     
-                    if postVm.posts.isNotEmpty {
-                        _usersPost
-                    } else {
+                    if(postVm.isFetching) {
                         PostRowShimmer()
                     }
-                    
+                    else {
+                        _usersPost
+                    }
                 }
             }
         }
