@@ -12,9 +12,11 @@ class PostRowViewModel: ObservableObject {
     
     @Published var post: Post
     @Published var isNavigateProfileView: Int? = nil
+    @Published var latestUserLikePost: User?
     
     init(post: Post) {
         self.post = post
+        getLatestUserLikePost()
     }
     
     var imageSelectionIndex = 0
@@ -50,33 +52,36 @@ class PostRowViewModel: ObservableObject {
         print("share")
     }
     
+    func getLatestUserLikePost() {
+        if post.likeCount <= 0 { return }
+        userService.get(by: post.likes[post.likeCount - 1]) { user in
+            self.latestUserLikePost = user
+        }
+    }
     
-    func handleLike() {
+    func handleLikePost() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         guard let postId = post.id else { return }
         
         if post.likes.contains(uid) {
             post.likes = post.likes.filter { $0 != uid }
-            _updateLike(with: postId, likes: post.likes)
+            _updateLikePost(with: postId, likes: post.likes)
             
         } else {
             post.likes.append(uid)
-            _updateLike(with: postId, likes: post.likes)
+            _updateLikePost(with: postId, likes: post.likes)
         }
     }
     
-    func _updateLike(with id: String, likes: [String]) {
+    func _updateLikePost(with id: String, likes: [String]) {
         postService.update(with: id, field: "likes", data: likes) { [self] isSuccess, error in
             if error != nil { return }
             
             postService.get(by: id) { [self] _post in
-                self.post = _post
-                guard let uid = _post.user?.id else { return }
-                
-                userService.get(by: uid) { user in
-                    self.post.user = user
-                }
+                self.post.likes = _post.likes
             }
+            
+            getLatestUserLikePost()
         }
     }
 }

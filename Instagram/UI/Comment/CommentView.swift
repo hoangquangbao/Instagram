@@ -39,14 +39,19 @@ private extension CommentView {
                     Text("asdasdasdasdas dasd adsfcsdfdasfasdfasdfdsffdsfdsfdsfdsfdsfdsfdsfdsfsdfdsfadsfasdfasdfadsfadsf")
                         .font(.system(.caption))
                 }
-                Button(action: postRowVm.handleLike) {
-                    if postRowVm.post.likes.contains(sessionVm.uid) {
-                        Image.icnHeartBold
-                            .renderingMode(.template)
-                            .foregroundColor(Color.red)
-                    } else {
-                        Image.icnHeart
-                    }
+//                Button(action: postRowVm.handleLikePost) {
+//                    if postRowVm.post.likes.contains(sessionVm.uid) {
+//                        Image.icnHeartBold
+//                            .renderingMode(.template)
+//                            .foregroundColor(Color.red)
+//                    } else {
+//                        Image.icnHeart
+//
+//                    }
+//                }
+                
+                IconButton(imageIcon: Image.icnHeart) {
+                    
                 }
                 
             }
@@ -72,6 +77,8 @@ private extension CommentView {
                 
             } label: {
                 Image.icnShare
+                    .renderingMode(.template)
+                    .foregroundColor(Color.primary)
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)

@@ -22,12 +22,11 @@ struct PostRow: View {
             
             _content
             
-//            if(vm.post.likeCount > 0) {
-//                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
-//                    .padding(.horizontal, AppStyle.defaultSpacing)
-//                    .padding(.top, 5)
-//
-//            }
+            if (vm.latestUserLikePost != nil && vm.post.likeCount > 0) {
+                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
+                    .padding(.horizontal, AppStyle.defaultSpacing)
+                    .padding(.top, 5)
+            }
             
             Text(vm.post.caption)
                 .font(.footnote)
@@ -83,13 +82,15 @@ private extension PostRow {
             SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
-                    Button(action: vm.handleLike) {
+                    Button(action: vm.handleLikePost) {
                         if vm.didLike {
                             Image.icnHeartBold
                                 .renderingMode(.template)
                                 .foregroundColor(Color.red)
                         } else {
                             Image.icnHeart
+                                .renderingMode(.template)
+                                .foregroundColor(Color.primary)
                         }
                     }
                     

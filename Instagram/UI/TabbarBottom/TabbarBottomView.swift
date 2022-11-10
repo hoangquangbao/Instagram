@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct TabbarBottomView: View {
     @EnvironmentObject var vm: LoginViewModel
     @EnvironmentObject var perform: BackLoginViewModel

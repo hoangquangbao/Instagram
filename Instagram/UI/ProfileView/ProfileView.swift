@@ -41,16 +41,18 @@ struct ProfileView: View {
                         Text(user.username) .font(Font.system(size: 22, weight: .bold))
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        if sessionVm.uid == user.id {
+//                        if sessionVm.uid == user.id {
                             Button {
                                 _isShowBottomSheet.toggle()
                             } label: {
                                 Image.icnBurger
                                     .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(Color.primary)
                                     .scaledToFill()
                                     .frame(width: 22, height: 22)
                             }
-                        }
+//                        }
                     }
                 }
             }
