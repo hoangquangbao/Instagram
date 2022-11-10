@@ -5,6 +5,7 @@ struct SignupAddView: View {
     
     @ObservedObject var vm: SignupAddViewModel
     @EnvironmentObject var vmSignup: SignupViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     
     @State private var _selectedIndex: Int = 1
     @State private var _selectedDate: Date = Date.now
@@ -379,8 +380,11 @@ extension SignupAddView {
             }
             
             Button {
-                vmSignup.signupAccount()
-                isNavigation = true
+                vmSignup.signupAccount { user in
+                    self.sessionVm.userInfo = user
+                    LocalStorage.store(with: user, forKey: StorageKey.USER_INFO)
+                    isNavigation = true
+                }
             } label: {
                 Text(vm.buttonLable)
             }

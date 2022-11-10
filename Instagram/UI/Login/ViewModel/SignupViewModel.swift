@@ -164,7 +164,7 @@ class SignupViewModel: ObservableObject {
         completion(emailPredicate.evaluate(with: email))
     }
     
-    func signupAccount() {
+    func signupAccount(completion: @escaping (User) -> Void) {
         FirebaseManager.shared.auth.createUser(withEmail: email,
                                                password: password) { result, error in
             if let error = error {
@@ -176,14 +176,18 @@ class SignupViewModel: ObservableObject {
             
             if self.avatarImage == nil {
                 self.avatarImage = UIImage(named: "img_avatar_default")
-                self.uploadAvatarImage()
+                self.uploadAvatarImage { user in
+                    completion(user)
+                }
             } else {
-                self.uploadAvatarImage()
+                self.uploadAvatarImage { user in
+                    completion(user)
+                }
             }
         }
     }
     
-    func uploadAvatarImage() {
+    func uploadAvatarImage(completion: @escaping (User) -> Void) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         let ref = FirebaseManager.shared.storage.reference(withPath: uid)
         guard let imageData = avatarImage?.jpegData(compressionQuality: 0.5) else { return }
@@ -202,12 +206,14 @@ class SignupViewModel: ObservableObject {
                     return
                 }
                 guard let url = url else { return }
-                self.storeUserInfo(avatarUrl: url)
+                self.storeUserInfo(avatarUrl: url) { user in
+                    completion(user)
+                }
             }
         }
     }
     
-    func storeUserInfo(avatarUrl: URL) {
+    func storeUserInfo(avatarUrl: URL, completion: @escaping (User) -> Void) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
         let user = User(id: uid, email: email, username: username, fullName: fullName, avatarUrl: avatarUrl.absoluteString)
@@ -226,6 +232,8 @@ class SignupViewModel: ObservableObject {
             self.alertTitle = "Instagram account"
             self.alertButtonTitle = "Got it!"
             self.alertMessage = "Your account has been successfully cereated!"
+            
+            completion(user)
         }
     }
 }

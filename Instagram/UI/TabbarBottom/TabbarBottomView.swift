@@ -38,21 +38,33 @@ struct TabbarBottomView: View {
                             _TabBarIcon(Image.icnAddSquare)
                         }
                         .tag(2)
-                    ProfileView(user: sessionVm.userInfo)
+                    EmptyView()
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .tabItem {
                             _TabBarIcon(selection == 3 ? Image.icnHeartBold : Image.icnHeart)
                         }
                         .tag(3)
-                    ProfileView(user: sessionVm.userInfo)
-                        .font(.system(size: 40, weight: .bold, design: .default))
-                        .tabItem {
-                            Image.icnPfTabbar
-                                .resizable()
-                                .frame(width: 21, height: 21)
-                                .cornerRadius(50)
-                        }
-                        .tag(4)
+                    if let user = sessionVm.userInfo {
+                        ProfileView(user: user)
+                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .tabItem {
+                                Image.icnPfTabbar
+                                    .resizable()
+                                    .frame(width: 21, height: 21)
+                                    .cornerRadius(50)
+                            }
+                            .tag(4)
+                    } else {
+                        EmptyView()
+                            .font(.system(size: 40, weight: .bold, design: .default))
+                            .tabItem {
+                                Image.icnPfTabbar
+                                    .resizable()
+                                    .frame(width: 21, height: 21)
+                                    .cornerRadius(50)
+                            }
+                            .tag(4)
+                    }
                 }
                 .accentColor(Color.appPrimary)
             }
