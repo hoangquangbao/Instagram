@@ -16,7 +16,7 @@ struct Story: Identifiable, Decodable, Encodable {
     var imagesUrl: String
     var captionColorHex: String = "000000"
     var textAlignment: String = "bottom"
-    var likes: [User] = []
+    var likes: [String] = []
     var createAt: Timestamp = Timestamp(date: Date())
     
     var user: User?

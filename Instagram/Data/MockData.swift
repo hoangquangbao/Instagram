@@ -21,21 +21,21 @@ struct MockData {
              caption: "I don’t know what my future holds, but I’m hoping you are in it",
              imagesUrl: ["img_profile", "img_profile2"],
              categories: ["IGTV", "Shop"],
-             likes: [users[1], users[2]] ,
+             likes: ["user1", "user2"] ,
              user: users[0]
         ),
         Post(id: "2", uid: "2",
              caption: "It only takes a second to say I love you, but it will take a lifetime to show you how much",
              imagesUrl: ["img_profile2", "img_profile3", "img_profile4"],
              categories: ["Sport", "Style", "Shop"],
-             likes: [users[0]],
+             likes: ["user1"],
              user: users[1]
         ),
         Post(id: "3", uid: "3",
              caption: "You light up my life",
              imagesUrl: ["img_profile5"],
              categories: [],
-             comments: [users[0], users[1], users[2]],
+             comments: ["user1", "user2", "user3"],
              user: users[2]
         ),
     ]

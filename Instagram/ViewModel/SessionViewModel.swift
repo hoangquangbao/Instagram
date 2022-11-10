@@ -38,7 +38,7 @@ class SessionViewModel: ObservableObject {
     }
     
     var uid: String {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return ""}
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return "" }
         return uid
     }
 }

@@ -37,7 +37,7 @@ struct TabbarBottomView: View {
                             _TabBarIcon(Image.icnAddSquare)
                         }
                         .tag(2)
-                    EmptyView()
+                    Text("Favorite")
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .tabItem {
                             _TabBarIcon(selection == 3 ? Image.icnHeartBold : Image.icnHeart)

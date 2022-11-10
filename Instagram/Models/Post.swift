@@ -14,20 +14,14 @@ struct Post: Identifiable, Decodable, Encodable {
     let caption: String
     var imagesUrl: [String]
     var categories: [String] = []
-    var likes: [User] = []
-    var comments: [User] = []
+    var likes: [String] = []
+    var comments: [String] = []
     var createAt: Timestamp = Timestamp(date: Date())
     
     var user: User?
     var didLike: Bool = false
     var likeCount: Int { return likes.count }
     var commentCount: Int { return comments.count }
-    var latestUserLiked: User? {
-        if(likes.count <= 0) {
-            return nil
-        }
-        return likes[likeCount - 1]
-    }
 }
 
 extension Post {

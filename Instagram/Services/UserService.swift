@@ -9,6 +9,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class UserService: ServiceProtocol {
+    
     typealias ModelType = User
     private let userRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.USER_COLLECTION)
     
@@ -50,8 +51,15 @@ class UserService: ServiceProtocol {
         }
     }
     
-    func update(_ user: User, completion: @escaping (Bool, Error?) -> Void) {
-        
+    func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+        userRef.document(id).updateData([field: data]) { error in
+            guard error != nil else {
+                completion (false, error)
+                return
+            }
+            
+            completion(true, nil)
+        }
     }
     
     func updateStoryStatus(with uid: String) {
