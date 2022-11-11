@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct FindFriendView: View {
     
     @EnvironmentObject var vm: SignupViewModel
@@ -12,15 +11,15 @@ struct FindFriendView: View {
                 SignupAddView(vm: vm.findFriendVM,
                               text: $vm.email,
                               isNavigation: $_isNavigation)
+                
+                NavigationLink("", destination: AddPhotoView(), isActive: $_isNavigation)
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddPhotoView() })
+            .edgesIgnoringSafeArea(.bottom)
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
 struct FindFriendView_Previews: PreviewProvider {
     static var previews: some View {
         FindFriendView()

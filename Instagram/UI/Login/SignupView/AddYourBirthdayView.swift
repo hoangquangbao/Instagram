@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct AddYourBirthdayView: View {
     
     @EnvironmentObject var vm: SignupViewModel
@@ -12,15 +11,14 @@ struct AddYourBirthdayView: View {
                 SignupAddView(vm: vm.addBirthdayVM,
                               text: $vm.birthday,
                               isNavigation: $_isNavigation)
+                
+                NavigationLink("", destination: AddUsernameView(), isActive: $_isNavigation)
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddUsernameView() })
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
 struct AddYourBirthdayView_Previews: PreviewProvider {
     static var previews: some View {
         AddYourBirthdayView()

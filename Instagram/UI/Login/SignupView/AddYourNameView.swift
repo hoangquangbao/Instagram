@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct AddYourNameView: View {
     
     @EnvironmentObject var vm: SignupViewModel
@@ -21,15 +20,15 @@ struct AddYourNameView: View {
                               actionText: vm.addEmailVM.actionText ?? "") {
                     perform.isBackLoginView_ext = false
                 }
+                
+                NavigationLink("", destination: AddAPasswordView(), isActive: $_isNavigation)
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { AddAPasswordView() })
+            .edgesIgnoringSafeArea(.bottom)
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
 struct AddYourNameView_Previews: PreviewProvider {
     static var previews: some View {
         AddYourNameView()

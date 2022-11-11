@@ -129,7 +129,7 @@ class SignupViewModel: ObservableObject {
             type: .find_friend,
             headerTitle: "Find Facebook Friends",
             buttonLable: "Find friends",
-            imageSystemName: "faceid",
+            imageSystemName: "magnifyingglass.circle",
             description: "You choose which friends to follow. We'll never post to Facebook without your permission.",
             actionText: "Skip")
         self.addPhotoVM = SignupAddViewModel(

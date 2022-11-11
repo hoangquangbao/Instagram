@@ -60,7 +60,6 @@ struct SettingView: View {
     }
 }
 
-@available(iOS 16.0, *)
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView(isShowDetailOption: .constant(false), title: "Setting")

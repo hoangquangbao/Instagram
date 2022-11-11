@@ -1,6 +1,5 @@
 import SwiftUI
 
-@available(iOS 16.0, *)
 struct SharePhotoView: View {
     
     @EnvironmentObject var vm: SignupViewModel
@@ -12,15 +11,15 @@ struct SharePhotoView: View {
                 SignupAddView(vm: vm.sharePhotoVM,
                               text: $vm.email,
                               isNavigation: $_isNavigation)
+                
+                NavigationLink("", destination: TabbarBottomView(), isActive: $_isNavigation)
             }
-            .navigationDestination(isPresented: $_isNavigation,
-                                   destination: { TabbarBottomView() })
+            .edgesIgnoringSafeArea(.bottom)
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-@available(iOS 16.0, *)
 struct SharePhotoView_Previews: PreviewProvider {
     static var previews: some View {
         SharePhotoView()

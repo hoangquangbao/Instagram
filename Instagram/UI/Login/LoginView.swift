@@ -1,7 +1,6 @@
 import SwiftUI
 import FirebaseFirestore
 
-@available(iOS 16.0, *)
 struct LoginView: View {
     
     @EnvironmentObject var vm: LoginViewModel
@@ -54,9 +53,7 @@ struct LoginView: View {
                 
                 NavigationLink(destination: TabbarBottomView(), isActive:
                                 $perform.isBackLoginView
-                ) {
-                    EmptyView()
-                }
+                ) { EmptyView() }
             }
             .onChange(of: vm.isShowTabbarBottomView) { result in
                 perform.isBackLoginView = result
@@ -72,12 +69,11 @@ struct LoginView: View {
                       message: Text(vm.alertMessage),
                       dismissButton: .default(Text(vm.alertButtonTitle)))
             })
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
 }
 
-@available(iOS 16.0, *)
 extension LoginView {
     
     private func passwordTextField() -> some View {
@@ -159,7 +155,6 @@ extension LoginView {
     }
 }
 
-@available(iOS 16.0, *)
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
