@@ -29,7 +29,7 @@ class SessionViewModel: ObservableObject {
     }
     
     func refresh() {
-        guard let uid = self.userInfo?.id else { return }
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         userService.get(by: uid) { user in
             self.userInfo = user
             

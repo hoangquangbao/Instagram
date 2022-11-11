@@ -34,7 +34,6 @@ extension Story {
             case "center": return Alignment.center
             case "bottom": return Alignment.bottom
             default:       return Alignment.bottom
-            
         }
     }
 }

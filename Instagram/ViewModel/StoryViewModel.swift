@@ -22,12 +22,6 @@ class StoryViewModel: ObservableObject {
     func refresh() {
         storyService.getAll { stories in
             self.stories = stories
-            
-            for i in 0..<stories.count {
-                self.userService.get(by: stories[i].uid) { user in
-                    self.stories[i].user = user
-                }
-            }
         }
     }
     

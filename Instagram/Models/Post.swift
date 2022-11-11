@@ -15,13 +15,13 @@ struct Post: Identifiable, Decodable, Encodable {
     var imagesUrl: [String]
     var categories: [String] = []
     var likes: [String] = []
-    var comments: [String] = []
+    var commentCount: Int = 0
     var createAt: Timestamp = Timestamp(date: Date())
     
     var user: User?
+    var comments: [Comment]?
     var didLike: Bool = false
     var likeCount: Int { return likes.count }
-    var commentCount: Int { return comments.count }
 }
 
 extension Post {

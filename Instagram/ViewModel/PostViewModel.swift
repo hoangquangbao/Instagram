@@ -22,13 +22,6 @@ class PostViewModel: ObservableObject {
         self.isFetching.toggle()
         postService.getAll { posts in
             self.posts = posts
-            
-            for i in 0..<posts.count {
-                self.userService.get(by: posts[i].uid) { user in
-                    self.posts[i].user = user
-                }
-            }
-            
             self.isFetching.toggle()
         }
     }

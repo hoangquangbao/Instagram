@@ -9,6 +9,8 @@ import Foundation
 
 struct StoryService: ServiceProtocol {
     typealias ModelType = Story
+    
+    private let userService = UserService()
     private let storyRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.STORY_COLLECTION)
     
     func get(by id: String, completion: @escaping (Story) -> Void) {
@@ -22,7 +24,14 @@ struct StoryService: ServiceProtocol {
     func getAll(completion: @escaping ([Story]) -> Void) {
         storyRef.getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
-            let stories = documents.compactMap { try? $0.data(as: Story.self)}
+            var stories = documents.compactMap { try? $0.data(as: Story.self) }
+            
+            for i in 0..<stories.count {
+                userService.get(by: stories[i].uid) { user in
+                    stories[i].user = user
+                }
+            }
+            
             completion(stories)
         }
     }
