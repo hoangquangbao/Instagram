@@ -13,8 +13,6 @@ enum SessionState {
 }
 
 class SessionViewModel: ObservableObject {
-    private let userService = UserService()
-    
     @Published var userSession: SessionState = .loggedOut
     @Published var userInfo: User?
     
@@ -29,11 +27,10 @@ class SessionViewModel: ObservableObject {
     }
     
     func refresh() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        userService.get(by: uid) { user in
-            self.userInfo = user
-            
-            LocalStorage.store(with: user, forKey: StorageKey.USER_INFO)
+        Task {
+            guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+            self.userInfo = try await UserService.get(by: uid)
+            LocalStorage.store(with: userInfo, forKey: StorageKey.USER_INFO)
         }
     }
     

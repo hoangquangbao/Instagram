@@ -26,24 +26,35 @@ struct CommentView: View {
             .navigationBarTitle("Comment", displayMode: .inline)
             .padding(.top)
         }
-        .onAppear(perform: postRowVm.loadComment)
+        .onAppear {
+            postRowVm.loadComment()
+        }
     }
 }
 
 private extension CommentView {
     var _comments: some View {
-        HStack(alignment: .top) {
+        VStack(alignment: .leading, spacing: 15) {
             if let comments = postRowVm.post.comments {
                 ForEach(comments) { comment in
-                    if let user = comment.user {
-                        CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
-                        VStack(alignment: .leading) {
-                            Text(user.username).font(.system(.subheadline)).bold()
-                            Text(comment.comment)
-                                .font(.system(.caption))
+                    HStack(alignment: .top){
+                        if let user = comment.user {
+                            CircleAvatar(imageUrl: user.avatarUrl, radius: 35)
+                            VStack(alignment: .leading) {
+                                Text(user.username).font(.system(.subheadline)).bold()
+                                Text(comment.comment)
+                                    .font(.system(.caption))
+                            }
+                            Spacer()
+                            IconButton(imageIcon: Image.icnHeart, size: 15) {}
                         }
+                    }
+                }
+            } else {
+                ForEach(0..<3) { _ in
+                    HStack {
+                        UserRowShimmer()
                         Spacer()
-                        IconButton(imageIcon: Image.icnHeart, size: 15) {}
                     }
                 }
             }

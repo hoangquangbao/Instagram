@@ -10,7 +10,6 @@ import Kingfisher
 
 struct ProfileView: View {
     let user: User
-    private let userService = UserService()
     @EnvironmentObject var sessionVm: SessionViewModel
     @EnvironmentObject var postVm: PostViewModel
     

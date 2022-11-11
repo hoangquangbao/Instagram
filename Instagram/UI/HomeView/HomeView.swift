@@ -49,11 +49,6 @@ struct HomeView: View {
                 },
                 message: { Text("Please choose one option") }
             )
-            .onAppear {
-                userVm.refresh()
-                postVm.refresh()
-                storyVm.refresh()
-            }
         }
     }
 }

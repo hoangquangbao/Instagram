@@ -12,16 +12,14 @@ class StoryViewModel: ObservableObject {
     @Published var activeStories: [Story] = []
     @Published var isStoryDisplay: Bool = false
     
-    private let storyService = StoryService()
-    private let userService  = UserService()
     
     init() {
         refresh()
     }
     
     func refresh() {
-        storyService.getAll { stories in
-            self.stories = stories
+        Task {
+            self.stories = try await StoryService.getAll()
         }
     }
     

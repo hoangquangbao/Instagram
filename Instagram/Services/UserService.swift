@@ -5,38 +5,28 @@
 //  Created by lhduc on 27/10/2022.
 //
 
+import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
 class UserService: ServiceProtocol {
     
     typealias ModelType = User
-    private let userRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.USER_COLLECTION)
+    static private let _userRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.USER_COLLECTION)
     
-    func get(by id: String, completion: @escaping (User) -> Void) {
-        userRef
-            .document(id)
-            .getDocument { snapshot, error in
-                
-                guard let snapshot = snapshot else { return }
-                guard let user = try? snapshot.data(as: User.self) else { return }
-                
-                completion(user)
-            }
+    static func get(by id: String) async throws -> User? {
+        return try await _userRef.document(id).getDocument().data(as: User.self)
     }
     
-    func getAll(completion: @escaping ([User]) -> Void) {
-        userRef.getDocuments { snapshot, error in
-            guard let documents = snapshot?.documents else { return }
-            let users = documents.compactMap { try? $0.data(as: User.self)}
-            
-            completion(users)
-        }
+    static func getAll() async throws -> [User] {
+        let documents = try await _userRef.getDocuments().documents
+        
+        return documents.compactMap { try? $0.data(as: User.self) }
     }
     
-    func create(_ user: User, completion: @escaping (Bool, Error?) -> Void) {
+    static func create(_ user: User, completion: @escaping (Bool, Error?) -> Void) {
         do {
-            try userRef
+            try _userRef
                 .document(user.id!)
                 .setData(from: user) { error in
                     if let error = error {
@@ -51,8 +41,8 @@ class UserService: ServiceProtocol {
         }
     }
     
-    func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
-        userRef.document(id).updateData([field: data]) { error in
+    static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+        _userRef.document(id).updateData([field: data]) { error in
             guard error != nil else {
                 completion (false, error)
                 return
@@ -62,7 +52,7 @@ class UserService: ServiceProtocol {
         }
     }
     
-    func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
+    static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
         
     }
     

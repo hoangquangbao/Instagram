@@ -8,9 +8,6 @@
 import SwiftUI
 
 class NewStoryViewModel: ObservableObject {
-    let storyService = StoryService()
-    let userService = UserService()
-    
     @Published var caption: String = ""
     @Published var imageAttach: UIImage?
     @Published var templateSelected: String?
@@ -58,7 +55,7 @@ class NewStoryViewModel: ObservableObject {
             _createStory(story) { [self] isSuccess in
                 if !isSuccess { return }
                 
-                userService.update(with: uid, field: "hasStory", data: true) { isSuccess, _ in
+                UserService.update(with: uid, field: "hasStory", data: true) { isSuccess, _ in
                     completion(isSuccess)
                     return
                 }
@@ -68,7 +65,7 @@ class NewStoryViewModel: ObservableObject {
     
     func _createStory(_ story: Story, completion: @escaping (Bool) -> Void) {
         print("Upload story...")
-        storyService.create(story) { (isSuccess, _) in
+        StoryService.create(story) { (isSuccess, _) in
             if(!isSuccess) {
                 completion(false)
             }

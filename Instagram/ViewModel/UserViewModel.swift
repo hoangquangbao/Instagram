@@ -11,19 +11,14 @@ class UserViewModel: ObservableObject {
     var isFetching: Bool = false
     @Published var users: [User] = []
     
-    private let userService  = UserService()
-    private let storyService = StoryService()
-    
     init() {
         refresh()
     }
     
     func refresh() {
-        self.isFetching.toggle()
-        
-        self.userService.getAll { users in
-            self.users = users
-            
+        Task {
+            self.isFetching.toggle()
+            self.users = try await UserService.getAll()
             self.isFetching.toggle()
         }
     }

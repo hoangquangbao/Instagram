@@ -1,8 +1,6 @@
 import SwiftUI
 
 class SignupViewModel: ObservableObject {
-    let userService = UserService()
-    
     ///Get data from SignupView
     @Published var email: String
     @Published var code: String
@@ -218,7 +216,7 @@ class SignupViewModel: ObservableObject {
         
         let user = User(id: uid, email: email, username: username, fullName: fullName, avatarUrl: avatarUrl.absoluteString)
         
-        userService.create(user) { isSuccess, error in
+        UserService.create(user) { isSuccess, error in
             if let error = error {
                 self.isShowAlert = true
                 self.alertTitle = "Register a new account"

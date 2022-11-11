@@ -8,9 +8,6 @@ import SwiftUI
 import Firebase
 
 class PostRowViewModel: ObservableObject {
-    private let postService = PostService()
-    private let userService = UserService()
-    
     @Published var post: Post
     @Published var isNavigateProfileView: Int? = nil
     @Published var isNavigateCommentView: Int? = nil
@@ -19,7 +16,9 @@ class PostRowViewModel: ObservableObject {
     
     init(post: Post) {
         self.post = post
-        getLatestUserLikePost()
+        Task {
+            await getLatestUserLikePost()
+        }
     }
     
     var imageSelectionIndex = 0
@@ -55,10 +54,10 @@ class PostRowViewModel: ObservableObject {
         print("share")
     }
     
-    func getLatestUserLikePost() {
-        if post.likeCount <= 0 { return }
-        userService.get(by: post.likes[post.likeCount - 1]) { user in
-            self.latestUserLikePost = user
+    @MainActor func getLatestUserLikePost() {
+        Task {
+            if post.likeCount <= 0 { return }
+            self.latestUserLikePost = try await UserService.get(by: post.likes[post.likeCount - 1])
         }
     }
     
@@ -68,20 +67,25 @@ class PostRowViewModel: ObservableObject {
         
         if post.likes.contains(uid) {
             post.likes = post.likes.filter { $0 != uid }
-            _updateLikePost(with: postId, likes: post.likes)
+            Task {
+                await _updateLikePost(with: postId, likes: post.likes)
+            }
             
         } else {
             post.likes.append(uid)
-            _updateLikePost(with: postId, likes: post.likes)
+            Task {
+                await _updateLikePost(with: postId, likes: post.likes)
+            }
         }
     }
     
-    func _updateLikePost(with id: String, likes: [String]) {
-        postService.update(with: id, field: "likes", data: likes) { [self] isSuccess, error in
+    @MainActor func _updateLikePost(with id: String, likes: [String]) {
+        PostService.update(with: id, field: "likes", data: likes) { [self] isSuccess, error in
             if error != nil { return }
             
-            postService.get(by: id) { [self] _post in
-                self.post.likes = _post.likes
+            Task {
+                guard let _posts = try await PostService.get(by: id) else { return }
+                self.post = _posts
             }
             
             getLatestUserLikePost()
@@ -94,35 +98,31 @@ class PostRowViewModel: ObservableObject {
         let comment = Comment(uid: uid, comment: commentText)
         self.commentText = ""
         
-        postService.update(with: postId, comment: comment) { [self] isSuccess, error in
+        PostService.update(with: postId, comment: comment) { [self] isSuccess, error in
             if error != nil { return }
 
             _increaseCommentCount(with: postId) {
-                self.loadComment()
+                Task {
+                    await self.loadComment()
+                }
             }
         }
     }
     
     func _increaseCommentCount(with postId: String, completion: @escaping () -> Void) {
         let data = FieldValue.increment(1.0)
-        postService.update( with: postId, field: "commentCount", data: data) { isSuccess, _ in
+        PostService.update( with: postId, field: "commentCount", data: data) { isSuccess, _ in
             if !isSuccess { return }
             
             completion()
         }
     }
     
-    func loadComment() {
+    @MainActor func loadComment() {
         guard let postId = post.id else { return }
         
-        postService.getComments(by: postId) { [self] comments in
-            self.post.comments = comments
-            
-            for i in 0..<comments.count {
-                userService.get(by: comments[i].uid) { user in
-                    self.post.comments?[i].user = user
-                }
-            }
+        Task {
+            self.post.comments = try await PostService.getComments(with: postId)
         }
     }
 }

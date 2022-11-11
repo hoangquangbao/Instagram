@@ -9,36 +9,26 @@ import Foundation
 
 struct StoryService: ServiceProtocol {
     typealias ModelType = Story
+    static private let _storyRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.STORY_COLLECTION)
     
-    private let userService = UserService()
-    private let storyRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.STORY_COLLECTION)
-    
-    func get(by id: String, completion: @escaping (Story) -> Void) {
-        storyRef.document(id).getDocument { snapshot, error in
-            guard let snapshot = snapshot else { return }
-            guard let story = try? snapshot.data(as: Story.self) else { return }
-            completion(story)
-        }
+    static func get(by id: String) async throws -> Story? {
+        return try? await _storyRef.document(id).getDocument().data(as: Story.self)
     }
     
-    func getAll(completion: @escaping ([Story]) -> Void) {
-        storyRef.getDocuments { snapshot, error in
-            guard let documents = snapshot?.documents else { return }
-            var stories = documents.compactMap { try? $0.data(as: Story.self) }
-            
-            for i in 0..<stories.count {
-                userService.get(by: stories[i].uid) { user in
-                    stories[i].user = user
-                }
-            }
-            
-            completion(stories)
+    static func getAll() async throws -> [Story] {
+        let documents = try await _storyRef.getDocuments().documents
+        var stories: [Story] = documents.compactMap { try? $0.data(as: Story.self) }
+        
+        for i in 0..<stories.count {
+            stories[i].user = try await UserService.get(by: stories[i].uid)
         }
+        
+        return stories
     }
     
-    func create(_ story: Story, completion: @escaping (Bool, Error?) -> Void) {
+    static func create(_ story: Story, completion: @escaping (Bool, Error?) -> Void) {
         do {
-            try storyRef
+            try _storyRef
                 .document()
                 .setData(from: story) { error in
                     if let error = error {
@@ -54,8 +44,8 @@ struct StoryService: ServiceProtocol {
         
     }
     
-    func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
-        storyRef.document(id).updateData([field: data]) { error in
+    static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+        _storyRef.document(id).updateData([field: data]) { error in
             guard error != nil else {
                 completion (false, error)
                 return
@@ -65,7 +55,7 @@ struct StoryService: ServiceProtocol {
         }
     }
     
-    func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
+    static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
         return
     }
     
