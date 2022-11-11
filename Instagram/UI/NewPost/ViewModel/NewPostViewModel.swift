@@ -50,7 +50,7 @@ class NewPostViewModel: ObservableObject {
     
     func _createPost(_ post: Post, completion: @escaping (Bool) -> Void) {
         print("Create post...")
-        postService.create(post) { (isSuccess, _) in
+        PostService.create(post) { (isSuccess, _) in
             if(!isSuccess) {
                 completion(false)
             }

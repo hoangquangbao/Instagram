@@ -8,9 +8,6 @@
 import SwiftUI
 
 class NewStoryViewModel: ObservableObject {
-    let storyService = StoryService()
-    let userService = UserService()
-    
     @Published var caption: String = ""
     @Published var imageAttach: UIImage?
     @Published var templateSelected: String?
@@ -44,7 +41,7 @@ class NewStoryViewModel: ObservableObject {
         FirebaseUploaderService.uploadImage(
             imageAttach,
             withPath: FirebaseConstants.STORY_PATH
-        ) { imageUrl, error in
+        ) { [self] imageUrl, error in
             
             if error != nil { completion(false); return }
             guard let imageUrl = imageUrl else { completion(false); return }
@@ -55,17 +52,20 @@ class NewStoryViewModel: ObservableObject {
                               captionColorHex: self.captionColorHexSelected,
                               textAlignment: self.isTextCenter ? "center" : "bottom")
             
-            self._createStory(story) { isSuccess in
-                self.userService.updateStoryStatus(with: uid)
-                completion(isSuccess)
-                return
+            _createStory(story) { [self] isSuccess in
+                if !isSuccess { return }
+                
+                UserService.update(with: uid, field: "hasStory", data: true) { isSuccess, _ in
+                    completion(isSuccess)
+                    return
+                }
             }
         }
     }
     
     func _createStory(_ story: Story, completion: @escaping (Bool) -> Void) {
         print("Upload story...")
-        storyService.create(story) { (isSuccess, _) in
+        StoryService.create(story) { (isSuccess, _) in
             if(!isSuccess) {
                 completion(false)
             }

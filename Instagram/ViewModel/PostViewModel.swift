@@ -9,27 +9,21 @@ import Foundation
 
 class PostViewModel: ObservableObject {
     var isFetching: Bool = false
-    
     @Published var posts: [Post] = []
-    private let postService = PostService()
-    private let userService = UserService()
     
     init() {
         refresh()
     }
     
     func refresh() {
-        self.isFetching.toggle()
-        postService.getAll { posts in
-            self.posts = posts
-            
-            for i in 0..<posts.count {
-                self.userService.get(by: posts[i].uid) { user in
-                    self.posts[i].user = user
-                }
-            }
-            
+        Task {
             self.isFetching.toggle()
+            do {
+                self.posts = try await PostService.getAll()
+                self.isFetching.toggle()
+            } catch {
+                self.isFetching.toggle()
+            }
         }
     }
     

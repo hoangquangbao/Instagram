@@ -22,12 +22,11 @@ struct PostRow: View {
             
             _content
             
-//            if(vm.post.likeCount > 0) {
-//                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
-//                    .padding(.horizontal, AppStyle.defaultSpacing)
-//                    .padding(.top, 5)
-//
-//            }
+            if (vm.latestUserLikePost != nil && vm.post.likeCount > 0) {
+                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
+                    .padding(.horizontal, AppStyle.defaultSpacing)
+                    .padding(.top, 5)
+            }
             
             Text(vm.post.caption)
                 .font(.footnote)
@@ -41,6 +40,10 @@ struct PostRow: View {
             _commentArea
             
             _postTime
+            
+            NavigationLink(destination: CommentView(postRowVm: vm),
+                           tag: 1,
+                           selection: $vm.isNavigateCommentView) {}
         }
     }
 }
@@ -51,7 +54,7 @@ private extension PostRow {
             HStack(spacing: 9.0) {
                 if let user = vm.post.user {
                     NavigationLink(destination: ProfileView(user: user), tag: 1, selection: $vm.isNavigateProfileView) {
-                        Button(action: vm.toggleNavigate) {
+                        Button(action: vm.toggleNavigateProfileView) {
                             CircleAvatar(imageUrl: user.avatarUrl, radius: 40)
                             VStack(alignment: .leading) {
                                 Text(user.fullName)
@@ -83,17 +86,19 @@ private extension PostRow {
             SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
-                    Button(action: vm.handleLike) {
+                    Button(action: vm.handleLikePost) {
                         if vm.didLike {
                             Image.icnHeartBold
                                 .renderingMode(.template)
                                 .foregroundColor(Color.red)
                         } else {
                             Image.icnHeart
+                                .renderingMode(.template)
+                                .foregroundColor(Color.primary)
                         }
                     }
                     
-                    IconButton(imageIcon: Image.icnComment, onTap: vm.onComment)
+                    IconButton(imageIcon: Image.icnComment, onTap: vm.toggleNavigateCommentView)
                     
                     IconButton(imageIcon: Image.icnShare, onTap: vm.onMessage)
                     
@@ -133,9 +138,7 @@ private extension PostRow {
                     UserRowShimmer().circleAvatar(radius: 30)
                 }
                 GeometryReader { proxy in
-                    NavigationLink {
-                        CommentView(postRowVm: vm)
-                    } label: {
+                    Button(action: vm.toggleNavigateCommentView) {
                         Text("Add comment")
                             .font(.footnote)
                             .foregroundColor(Color.semiText)
@@ -143,10 +146,7 @@ private extension PostRow {
                                    height: proxy.size.height,
                                    alignment: .leading)
                     }
-                        
                 }
-                
-                
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
@@ -169,11 +169,17 @@ struct LikeInfoRow: View {
     var body: some View {
         HStack {
             CircleAvatar(imageUrl: user.avatarUrl, radius: 20)
-            Group<Text> {
-                Text("Liked by ") +
-                Text("\(user.fullName) ").bold() +
-                Text("and ") +
-                Text("\(likeCount - 1) others").bold()
+            
+            HStack(spacing: 0) {
+                Text("Liked by ")
+                Text("\(user.fullName) ").bold()
+                if(likeCount > 1) {
+                    HStack<Text>(spacing: 0) {
+                        Text("and ") + Text("\(likeCount - 1) others").bold()
+                    }
+                } else {
+                    Text("")
+                }
             }
             .font(.caption)
         }

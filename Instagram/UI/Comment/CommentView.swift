@@ -8,47 +8,55 @@
 import SwiftUI
 
 struct CommentView: View {
-    
-    @State var commentText: String = ""
-    @StateObject var postRowVm: PostRowViewModel
-    
+
+    @StateObject var postRowVm: PostRowViewModel    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var sessionVm: SessionViewModel
     
     
     var body: some View {
-        VStack {
-            _comments
-            
-            Spacer()
-            
-            _commentBar
+        ZStack {
+            VStack {
+                _comments
+                
+                Spacer()
+                
+                _commentBar
+            }
+            .navigationBarTitle("Comment", displayMode: .inline)
+            .padding(.top)
         }
-        .navigationBarTitle("Comment", displayMode: .inline)
-        .padding(.top)
+        .onAppear {
+            postRowVm.loadComment()
+        }
     }
 }
 
 private extension CommentView {
     var _comments: some View {
-        HStack(alignment: .top) {
-            if let user = sessionVm.userInfo {
-                CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
-                VStack(alignment: .leading) {
-                    Text(user.username).font(.system(.subheadline)).bold()
-                    Text("asdasdasdasdas dasd adsfcsdfdasfasdfasdfdsffdsfdsfdsfdsfdsfdsfdsfdsfsdfdsfadsfasdfasdfadsfadsf")
-                        .font(.system(.caption))
-                }
-                Button(action: postRowVm.handleLike) {
-                    if postRowVm.post.likes.contains(sessionVm.uid) {
-                        Image.icnHeartBold
-                            .renderingMode(.template)
-                            .foregroundColor(Color.red)
-                    } else {
-                        Image.icnHeart
+        VStack(alignment: .leading, spacing: 15) {
+            if let comments = postRowVm.post.comments {
+                ForEach(comments) { comment in
+                    HStack(alignment: .top){
+                        if let user = comment.user {
+                            CircleAvatar(imageUrl: user.avatarUrl, radius: 35)
+                            VStack(alignment: .leading) {
+                                Text(user.username).font(.system(.subheadline)).bold()
+                                Text(comment.comment)
+                                    .font(.system(.caption))
+                            }
+                            Spacer()
+                            IconButton(imageIcon: Image.icnHeart, size: 15) {}
+                        }
                     }
                 }
-                
+            } else {
+                ForEach(0..<3) { _ in
+                    HStack {
+                        UserRowShimmer()
+                        Spacer()
+                    }
+                }
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
@@ -59,7 +67,7 @@ private extension CommentView {
             if let user = sessionVm.userInfo {
                 CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
             }
-            TextField("Enter comment here...", text: $commentText)
+            TextField("Enter comment here...", text: $postRowVm.commentText)
                 .font(.subheadline)
                 .padding(.horizontal, 15)
                 .padding(.vertical, 10)
@@ -68,10 +76,10 @@ private extension CommentView {
                 .overlay(
                     Capsule().stroke(Color(.systemGray).opacity(0.8))
                 )
-            Button {
-                
-            } label: {
+            Button(action: postRowVm.createComment) {
                 Image.icnShare
+                    .renderingMode(.template)
+                    .foregroundColor(Color.primary)
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)

@@ -10,8 +10,6 @@ struct LoginView: View {
     @State private var _isHidePassword: Bool = true
     @State var _isNavigation: Int? = nil
     
-    var userService = UserService()
-    
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
@@ -33,10 +31,10 @@ struct LoginView: View {
                     
                     Button {
                         vm.handleLogin { uid in
-                            self.userService.get(by: uid) { user in
+                            Task {
+                                guard let user = try await UserService.get(by: uid) else { return }
                                 self.sessionVm.userInfo = user
                                 LocalStorage.store(with: user, forKey: StorageKey.USER_INFO)
-                                
                             }
                         }
                     } label: {

@@ -17,22 +17,19 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.background.ignoresSafeArea()
-                VStack {
-                    _topBar
+            VStack {
+                _topBar
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    _storyBar
                     
-                    ScrollView(.vertical, showsIndicators: false) {
-                        _storyBar
-                        
-                        Divider()
-                        
-                        if(postVm.isFetching) {
-                            PostRowShimmer()
-                        }
-                        else {
-                            _usersPost
-                        }
+                    Divider()
+                    
+                    if(postVm.isFetching) {
+                        PostRowShimmer()
+                    }
+                    else {
+                        _usersPost
                     }
                 }
             }
@@ -52,11 +49,6 @@ struct HomeView: View {
                 },
                 message: { Text("Please choose one option") }
             )
-            .onAppear {
-                userVm.refresh()
-                postVm.refresh()
-                storyVm.refresh()
-            }
         }
     }
 }

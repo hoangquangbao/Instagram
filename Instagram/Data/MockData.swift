@@ -35,7 +35,7 @@ struct MockData {
              caption: "You light up my life",
              imagesUrl: ["img_profile5"],
              categories: [],
-             comments: ["user1", "user2", "user3"],
+             commentCount: 3,
              user: users[2]
         ),
     ]

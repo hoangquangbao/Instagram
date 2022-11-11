@@ -33,11 +33,11 @@ class CommentViewModel: ObservableObject {
     }
     
     func _updateLike(with id: String, likes: [String]) {
-        postService.update(with: id, field: "likes", data: likes) { [self] isSuccess, error in
+        PostService.update(with: id, field: "likes", data: likes) { [self] isSuccess, error in
             if error != nil { return }
             
-            postService.get(by: id) { _post in
-                self.post = _post
+            Task {
+                self.post = try await PostService.get(by: id)
             }
         }
     }

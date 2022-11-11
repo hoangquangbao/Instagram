@@ -7,11 +7,4 @@
 
 import Foundation
 
-class ProfileViewModel: ObservableObject {
-    
-    var userService: UserService
-    
-    init(userService: UserService) {
-        self.userService = userService
-    }
-}
+class ProfileViewModel: ObservableObject {}

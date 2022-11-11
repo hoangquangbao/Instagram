@@ -7,8 +7,6 @@ class BackLoginViewModel: ObservableObject {
 }
 
 class LoginViewModel: ObservableObject {
-    let userService = UserService()
-    
     @Published var email: String
     @Published var password: String
     @Published var isShowLoginView: Bool
