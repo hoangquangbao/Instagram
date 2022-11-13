@@ -12,7 +12,7 @@ struct ProfileView: View {
     
     @StateObject var vm = ProfileViewModel()
     let user: User
-
+    
     @EnvironmentObject var sessionVm: SessionViewModel
     @EnvironmentObject var postVm: PostViewModel
     
@@ -25,16 +25,16 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             NavigationView {
-                    ScrollView(.vertical, showsIndicators: false){
-                        VStack(alignment: .center, spacing: 0) {
-                            UserProfileView(user: user, postCount: postVm.getOwningPost(of: user).count, isShowEditProfile: $vm.isShowEditProfile)
-                            HighlightView(data: HighlightData)
-                            _owningPost
-                        }
-                        .fullScreenCover(isPresented: $vm.isShowEditProfile) {
-                            EditProfileView(user: user)
-                        }
+                ScrollView(.vertical, showsIndicators: false){
+                    VStack(alignment: .center, spacing: 0) {
+                        UserProfileView(user: user, postCount: postVm.getOwningPost(of: user).count, isShowEditProfile: $vm.isShowEditProfile)
+                        HighlightView(data: HighlightData)
+                        _owningPost
                     }
+                    .fullScreenCover(isPresented: $vm.isShowEditProfile) {
+                        EditProfileView(user: user)
+                    }
+                }
                 .navigationBarTitle("", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
@@ -83,18 +83,14 @@ struct ProfileView: View {
         }
         .environmentObject(vm)
     }
-    
 }
 
 // MARK:- PREVIEW
-
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(user: MockData.users[0])
     }
 }
-
-
 
 extension ProfileView {
     func HighlightView(data: Array<Highlight>) -> some View {
@@ -131,7 +127,6 @@ extension ProfileView {
             HStack() {
                 Button {
                     print("button gird")
-                    
                 } label: {
                     VStack() {
                         Image.icnGridPf

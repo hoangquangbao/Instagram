@@ -43,12 +43,6 @@ class UserService: ServiceProtocol {
     
     static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
         _userRef.document(id).updateData([field: data]) { error in
-//            guard error != nil else {
-//                completion (false, error)
-//                return
-//            }
-//
-//            completion(true, nil)
             if let error = error {
                 completion(false, error)
             }
@@ -61,6 +55,4 @@ class UserService: ServiceProtocol {
     static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
         
     }
-    
-    
 }

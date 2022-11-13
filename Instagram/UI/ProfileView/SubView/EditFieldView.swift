@@ -1,8 +1,31 @@
 import SwiftUI
 
 struct EditFieldView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("Update fields...")
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Edit field")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(Color.appPrimary)
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "multiply")
+                            .font(.system(size: 25, weight: .regular))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
     }
 }
 
