@@ -33,7 +33,7 @@ class NewPostViewModel: ObservableObject {
         
         print("Upload image...")
         FirebaseUploaderService.uploadImage(
-            imageAttach,
+            imageAttach, .for_post,
             withPath: FirebaseConstants.POST_COLLECTION
         ){ imageUrl, error in
             

@@ -11,7 +11,7 @@ struct BottomSheetView<Content: View>: View {
     @Binding var isOpen: Bool
 
     let maxHeight: CGFloat
-    let minHeight: CGFloat
+//    let minHeight: CGFloat
     let content: Content
     
     let radius = 20
@@ -19,15 +19,19 @@ struct BottomSheetView<Content: View>: View {
     let indicatorWidth = 40
     let indicatorHeight = 5
 
-    init(isOpen: Binding<Bool>, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
-        self.minHeight = maxHeight * CGFloat(heightRatio)
+    init(isOpen: Binding<Bool>,
+         maxHeight: CGFloat,
+         @ViewBuilder content: () -> Content)
+    {
+//        self.minHeight = maxHeight * CGFloat(heightRatio)
         self.maxHeight = maxHeight
         self.content = content()
         self._isOpen = isOpen
     }
     
     private var offset: CGFloat {
-        isOpen ? 0 : maxHeight - minHeight
+//        isOpen ? 0 : maxHeight - minHeight
+        isOpen ? 0 : maxHeight
     }
 
     private var indicator: some View {
