@@ -14,7 +14,7 @@ class ProfileViewModel: ObservableObject {
     @Published var isShowEditProfile = false
     @Published var title: String = ""
     @Published var imageAttach: UIImage?
-
+    
     func _uploadAvatar(completion: @escaping (Bool, Error?) -> Void) {
         guard let imageAttach = imageAttach else { return }
         print("Upload avatar image...")
@@ -44,5 +44,15 @@ class ProfileViewModel: ObservableObject {
             }
             completion(isSuccess, error)
         }
+    }
+    
+    func getFieldKeyPath(key: String?) -> KeyPath<User, String>? {
+        guard let key = key else { return nil }
+        let field: [_: KeyPath<User, _>] = [
+            "Name" : \.fullName,
+            "Username" : \.username,
+            "Bio" : \.description
+        ]
+        return field[key]
     }
 }

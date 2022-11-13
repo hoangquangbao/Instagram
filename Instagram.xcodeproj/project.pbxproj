@@ -12,6 +12,8 @@
 		0615453A28D84F65003A2E4B /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615453728D84F65003A2E4B /* Fonts+Generated.swift */; };
 		062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062CD04D28E9E4370092387D /* ResetPasswordView.swift */; };
 		0641FADD2920A5DE00C12816 /* StaticList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641FADC2920A5DE00C12816 /* StaticList.swift */; };
+		0641FADF2920A88400C12816 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641FADE2920A88400C12816 /* EditProfile.swift */; };
+		0641FAE12920D1ED00C12816 /* EditFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641FAE02920D1ED00C12816 /* EditFieldView.swift */; };
 		06469311290BEB6F00F846A4 /* ActionSheetCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06469310290BEB6F00F846A4 /* ActionSheetCustom.swift */; };
 		06469313290BEB9400F846A4 /* ActionSheetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06469312290BEB9400F846A4 /* ActionSheetItem.swift */; };
 		06494713291FB257005557D4 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06494712291FB257005557D4 /* EditProfileView.swift */; };
@@ -150,6 +152,8 @@
 		0615453728D84F65003A2E4B /* Fonts+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
 		062CD04D28E9E4370092387D /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		0641FADC2920A5DE00C12816 /* StaticList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticList.swift; sourceTree = "<group>"; };
+		0641FADE2920A88400C12816 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		0641FAE02920D1ED00C12816 /* EditFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFieldView.swift; sourceTree = "<group>"; };
 		06469310290BEB6F00F846A4 /* ActionSheetCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCustom.swift; sourceTree = "<group>"; };
 		06469312290BEB9400F846A4 /* ActionSheetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetItem.swift; sourceTree = "<group>"; };
 		06494712291FB257005557D4 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -317,13 +321,6 @@
 			path = ActionSheet;
 			sourceTree = "<group>";
 		};
-		06494714291FD220005557D4 /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Enum;
-			sourceTree = "<group>";
-		};
 		064EE19B28DC2097002B83EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +429,6 @@
 			children = (
 				6EB4A9DB2918B44300F35002 /* ViewModel */,
 				CD2B3EF8290A86D3002E3A8F /* Protocols */,
-				06494714291FD220005557D4 /* Enum */,
 				CDAFADB728F7B1C3003B48E5 /* Models */,
 				CDAFADB428F7B156003B48E5 /* Data */,
 				CDAFADB028F6A3EA003B48E5 /* Services */,
@@ -612,6 +608,7 @@
 				80B55EE228F006CF00BE341D /* Highlight.swift */,
 				80B55EE428F0076A00BE341D /* ProfilePost.swift */,
 				0641FADC2920A5DE00C12816 /* StaticList.swift */,
+				0641FADE2920A88400C12816 /* EditProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -624,6 +621,7 @@
 				064FB6E72912394600E57A0A /* SettingView.swift */,
 				CD60243C291CA9DD0060F613 /* UserProfileView.swift */,
 				06494712291FB257005557D4 /* EditProfileView.swift */,
+				0641FAE02920D1ED00C12816 /* EditFieldView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -993,6 +991,7 @@
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				CD8331AF2912195B00E12E14 /* CustomWaitingDialog.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
+				0641FADF2920A88400C12816 /* EditProfile.swift in Sources */,
 				CD41DB7C28ED3F7800870F55 /* SearchBar.swift in Sources */,
 				062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */,
 				801A567128EFC7260025D9C8 /* HomeView.swift in Sources */,
@@ -1062,6 +1061,7 @@
 				CD41DB7628ED232F00870F55 /* Color+Utilities.swift in Sources */,
 				80B55EDB28F0036000BE341D /* ProfileView.swift in Sources */,
 				80B55EE528F0076A00BE341D /* ProfilePost.swift in Sources */,
+				0641FAE12920D1ED00C12816 /* EditFieldView.swift in Sources */,
 				80B55EE828F008D200BE341D /* BottomSheetView.swift in Sources */,
 				06F438B128D334E7009EA3E1 /* InstagramApp.swift in Sources */,
 				06BB2C0628F70289003855D5 /* AddYourNameView.swift in Sources */,

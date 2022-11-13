@@ -1,27 +1,24 @@
 import SwiftUI
 
 struct EditProfileView: View {
-    
+    let user: User
     @EnvironmentObject var vm: ProfileViewModel
     @EnvironmentObject var userVm: UserViewModel
-    let user: User
+    @Environment(\.dismiss) var dismiss
     
     @State private var _isShowImagePicker: Bool = false
     @State private var _isShowImagePickerOptions: Bool = false
-    @State private var sourceType = UIImagePickerController.SourceType.photoLibrary
-    
-    @Environment(\.dismiss) var dismiss
+    @State private var _sourceType = UIImagePickerController.SourceType.photoLibrary
+    @State private var _selectedItem: EditProfile? = nil
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 40) {
                 _userAvatar
-                VStack {
-                    
-                }
+                _editProfile
             }
             .overlay {
-                ActionSheetCustom(isShowImagePicker: $_isShowImagePicker, isShowImagePickerOptions: $_isShowImagePickerOptions, sourceType: $sourceType)
+                ActionSheetCustom(isShowImagePicker: $_isShowImagePicker, isShowImagePickerOptions: $_isShowImagePickerOptions, sourceType: $_sourceType)
             }
             .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: {
                 vm._uploadAvatar { isSuccess, error in
@@ -34,9 +31,14 @@ struct EditProfileView: View {
                 }
             }, content: {
                 ImagePicker(image: $vm.imageAttach,
-                            sourceType: self.sourceType)
+                            sourceType: self._sourceType)
             })
             .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Edit profile")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(Color.appPrimary)
+                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
@@ -50,12 +52,6 @@ struct EditProfileView: View {
         }
     }
 }
-
-//struct EditProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditProfileView()
-//    }
-//}
 
 private extension EditProfileView {
     var _userAvatar: some View {
@@ -81,5 +77,42 @@ private extension EditProfileView {
                 _isShowImagePickerOptions = true
             }
         }
+    }
+}
+
+private extension EditProfileView {
+    var _editProfile: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 20) {
+                ForEach(EditProfileData) { item in
+                    Button {
+                        _selectedItem = item
+                    } label: {
+                        _field(item: item)
+                    }
+                }
+            }
+            .sheet(item: $_selectedItem) { item in
+                EditFieldView()
+            }
+        }
+    }
+    
+    func _field(item: EditProfile) -> some View {
+        VStack(spacing: 3) {
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(item.title)
+                        .font(.system(size: 12, weight: .regular))
+                        .foregroundColor(Color.semiText)
+                    Text(vm.getFieldKeyPath(key: item.title).map { user[keyPath: $0] } ?? "Unknown")
+                        .font(.system(size: 17, weight: .medium))
+                        .foregroundColor(Color.appPrimary)
+                }
+                Spacer(minLength: 0)
+            }
+            Divider()
+        }
+        .padding(.horizontal)
     }
 }
