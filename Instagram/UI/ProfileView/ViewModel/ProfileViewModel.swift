@@ -14,8 +14,10 @@ class ProfileViewModel: ObservableObject {
     @Published var isShowEditProfile = false
     @Published var title: String = ""
     @Published var imageAttach: UIImage?
+    @Published var isStoryUploading: Bool = false
     
     func _uploadAvatar(completion: @escaping (Bool, Error?) -> Void) {
+        self.isStoryUploading.toggle()
         guard let imageAttach = imageAttach else { return }
         print("Upload avatar image...")
         FirebaseUploaderService.uploadImage(imageAttach, .for_avatar, withPath: FirebaseConstants.PROFILE_AVATAR_PATH) { [self] imageUrl, error in

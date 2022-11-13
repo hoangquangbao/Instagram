@@ -4,6 +4,9 @@ struct EditProfileView: View {
     let user: User
     @EnvironmentObject var vm: ProfileViewModel
     @EnvironmentObject var userVm: UserViewModel
+    @EnvironmentObject var postVm: PostViewModel
+    @EnvironmentObject var storyVm: StoryViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     @Environment(\.dismiss) var dismiss
     
     @State private var _isShowImagePicker: Bool = false
@@ -23,9 +26,14 @@ struct EditProfileView: View {
             .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: {
                 vm._uploadAvatar { isSuccess, error in
                     if isSuccess {
+                        vm.isStoryUploading.toggle()
                         dismiss()
                         userVm.refresh()
+                        postVm.refresh()
+                        storyVm.refresh()
+                        sessionVm.refresh()
                     } else {
+                        vm.isStoryUploading.toggle()
                         print(error?.localizedDescription as Any)
                     }
                 }
@@ -49,6 +57,7 @@ struct EditProfileView: View {
                     }
                 }
             }
+            .showWaitingDialog(title: "Uploading...", isLoading: $vm.isStoryUploading)
         }
     }
 }
