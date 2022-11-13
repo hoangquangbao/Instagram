@@ -11,6 +11,8 @@ struct UserProfileView: View {
     let user: User
     let postCount: Int
     
+    @Binding var isShowEditProfile: Bool
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             VStack(alignment: .leading){
@@ -30,13 +32,15 @@ struct UserProfileView: View {
 
 private extension UserProfileView {
     var _bio: some View {
-        Text("Digital goodies designer @pixsellz \nEverything is designed.")
+//        Text("Digital goodies designer @pixsellz \nEverything is designed.")
+        Text(user.description)
             .font(Font.system(size: 13, weight: .regular))
             .foregroundColor(Color._262626)
     }
     var _editProfileButton: some View {
         Button {
-            print("edit profile")
+            print("Edit profile...")
+                isShowEditProfile.toggle()
         } label: {
             Text("Edit Profile")
                 .font(Font.system(size: 13, weight: .medium))
@@ -114,6 +118,6 @@ private struct _OverviewColumn: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView(user: MockData.users[0], postCount: 0)
+        UserProfileView(user: MockData.users[0], postCount: 0, isShowEditProfile: .constant(false))
     }
 }

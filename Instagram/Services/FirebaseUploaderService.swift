@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct FirebaseUploaderService {
-    
+        
     static func uploadImage(
         _ image: UIImage,
+        _ purpose: ImageFor,
         withPath path: String,
         completion: @escaping (String?, Error?) -> Void
     ) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         
-        let fileName = NSUUID().uuidString
+        var fileName: String = ""
+        if purpose == .for_post {
+            fileName = NSUUID().uuidString
+        } else {
+            guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+            fileName = uid
+        }
+
         let ref = FirebaseManager.shared.storage.reference(withPath: path + "/" + fileName)
         
         ref.putData(imageData) { _, err in

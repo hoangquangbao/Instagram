@@ -39,7 +39,7 @@ class NewStoryViewModel: ObservableObject {
         
         print("Upload image...")
         FirebaseUploaderService.uploadImage(
-            imageAttach,
+            imageAttach, .for_post,
             withPath: FirebaseConstants.STORY_PATH
         ) { [self] imageUrl, error in
             

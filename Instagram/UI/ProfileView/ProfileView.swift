@@ -9,7 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileView: View {
+    
+    @StateObject var vm = ProfileViewModel()
     let user: User
+
     @EnvironmentObject var sessionVm: SessionViewModel
     @EnvironmentObject var postVm: PostViewModel
     
@@ -19,30 +22,28 @@ struct ProfileView: View {
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
-    @State private var _isShowBottomSheet = false
-    @State private var _isShowDetailOption = false
-    @State private var _title: String = ""
-    
     var body: some View {
         ZStack {
             NavigationView {
-                ScrollView(.vertical, showsIndicators: false){
-                    VStack(alignment: .center, spacing: 0) {
-                        UserProfileView(user: user, postCount: postVm.getOwningPost(of: user).count)
-                        HighlightView(data: HighlightData)
-                        _owningPost
-                            
+                    ScrollView(.vertical, showsIndicators: false){
+                        VStack(alignment: .center, spacing: 0) {
+                            UserProfileView(user: user, postCount: postVm.getOwningPost(of: user).count, isShowEditProfile: $vm.isShowEditProfile)
+                            HighlightView(data: HighlightData)
+                            _owningPost
+                        }
+                        .fullScreenCover(isPresented: $vm.isShowEditProfile) {
+                            EditProfileView(user: user)
+                        }
                     }
-                }
                 .navigationBarTitle("", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
                         Text(user.username) .font(Font.system(size: 22, weight: .bold))
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-//                        if sessionVm.uid == user.id {
+                        if sessionVm.uid == user.id {
                             Button {
-                                _isShowBottomSheet.toggle()
+                                vm.isShowBottomSheet.toggle()
                             } label: {
                                 Image.icnBurger
                                     .resizable()
@@ -51,35 +52,36 @@ struct ProfileView: View {
                                     .scaledToFill()
                                     .frame(width: 22, height: 22)
                             }
-//                        }
+                        }
                     }
                 }
             }
             
-            if _isShowBottomSheet {
+            if vm.isShowBottomSheet {
                 Rectangle()
                     .fill(Color.black)
                     .opacity(0.7)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
-                        _isShowBottomSheet.toggle()
+                        vm.isShowBottomSheet.toggle()
                     }
             }
             
-            if _isShowDetailOption {
-                SettingView(isShowDetailOption: $_isShowDetailOption, title: _title)
+            if vm.isShowDetailOption {
+                SettingView(isShowDetailOption: $vm.isShowDetailOption, title: vm.title)
                     .transition(.move(edge: .trailing))
             }
             
             GeometryReader { geometry in
                 BottomSheetView(
-                    isOpen: self.$_isShowBottomSheet,
+                    isOpen: self.$vm.isShowBottomSheet,
                     maxHeight: geometry.size.height * 0.7
                 ) {
-                    OptionsView(bottomSheetShow: $_isShowBottomSheet, isShowDetailOption: $_isShowDetailOption, title: $_title)
+                    OptionsView(bottomSheetShow: $vm.isShowBottomSheet, isShowDetailOption: $vm.isShowDetailOption, title: $vm.title)
                 }
             }.edgesIgnoringSafeArea(.all)
         }
+        .environmentObject(vm)
     }
     
 }
@@ -95,7 +97,7 @@ struct ProfileView_Previews: PreviewProvider {
 
 
 extension ProfileView {
-    func HighlightView(data: Array<HighlightDataModel>) -> some View {
+    func HighlightView(data: Array<Highlight>) -> some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(alignment: .center, spacing: 10){
                 ForEach(data) { item in
