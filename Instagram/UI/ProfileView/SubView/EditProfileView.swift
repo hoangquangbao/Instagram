@@ -13,6 +13,7 @@ struct EditProfileView: View {
     @State private var _isShowImagePickerOptions: Bool = false
     @State private var _sourceType = UIImagePickerController.SourceType.photoLibrary
     @State private var _selectedItem: EditProfile? = nil
+    @State private var _isStoryUploading: Bool = false
     
     var body: some View {
         NavigationView {
@@ -24,16 +25,17 @@ struct EditProfileView: View {
                 ActionSheetCustom(isShowImagePicker: $_isShowImagePicker, isShowImagePickerOptions: $_isShowImagePickerOptions, sourceType: $_sourceType)
             }
             .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: {
+                _isStoryUploading.toggle()
                 vm._uploadAvatar { isSuccess, error in
                     if isSuccess {
-                        vm.isStoryUploading.toggle()
+                        _isStoryUploading.toggle()
                         dismiss()
                         userVm.refresh()
                         postVm.refresh()
                         storyVm.refresh()
                         sessionVm.refresh()
                     } else {
-                        vm.isStoryUploading.toggle()
+                        _isStoryUploading.toggle()
                         print(error?.localizedDescription as Any)
                     }
                 }
@@ -57,7 +59,7 @@ struct EditProfileView: View {
                     }
                 }
             }
-            .showWaitingDialog(title: "Uploading...", isLoading: $vm.isStoryUploading)
+            .showWaitingDialog(title: "Uploading...", isLoading: $_isStoryUploading)
         }
     }
 }
@@ -102,7 +104,7 @@ private extension EditProfileView {
                 }
             }
             .sheet(item: $_selectedItem) { item in
-                EditFieldView()
+                EditFieldView(user: user, _item: item)
             }
         }
     }
