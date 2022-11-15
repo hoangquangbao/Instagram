@@ -10,55 +10,57 @@ struct ResetPasswordView: View {
     @FocusState private var _isFocusedKeyboard: Bool
     
     var body: some View {
-        VStack(spacing: 20) {
-            Group {
-                Image(systemName: "lock")
-                    .font(.system(size: 45))
-                    .padding(15)
-                    .background (Circle()
-                        .stroke(.black, lineWidth: 2))
-                    .padding(.top, 20)
-                
-                Text(vm.headerTitle)
-                    .font(.sfProTextSemibold(20, relativeTo: .largeTitle))
-                
-                pickerView()
-                
-                if _selectedIndex == 0 {
-                    emailTextField()
-                } else {
-                    PhoneTextFieldView()
+        NavigationView {
+            VStack(spacing: 20) {
+                Group {
+                    Image(systemName: "lock")
+                        .font(.system(size: 45))
+                        .padding(15)
+                        .background (Circle()
+                            .stroke(.black, lineWidth: 2))
+                        .padding(.top, 20)
+                    
+                    Text(vm.headerTitle)
+                        .font(.sfProTextSemibold(20, relativeTo: .largeTitle))
+                    
+                    pickerView()
+                    
+                    if _selectedIndex == 0 {
+                        emailTextField()
+                    } else {
+                        PhoneTextFieldView()
+                    }
+                    
+                    nextButton()
+                    optionLogin()
+                    Spacer()
                 }
+                .padding(.horizontal, 30)
                 
-                nextButton()
-                optionLogin()
-                Spacer()
+                Divider()
+                    .padding(.bottom, 10)
+                
+                BottomBarView(
+                    questionText: "",
+                    actionText: vm.actionText) {
+                        withAnimation {
+                            vmLogin.isShowResetPasswordView = false
+                        }
+                    }
             }
-            .padding(.horizontal, 30)
-            
-            Divider()
-                .padding(.bottom, 10)
-            
-            BottomBarView(
-                questionText: "",
-                actionText: vm.actionText) {
+            .alert(isPresented: $vm.isShowAlert, content: {
+                Alert(title: Text("Reset password"),
+                      message: Text(vm.alertMessage),
+                      dismissButton: .default(Text("OK"),
+                                              action: {
                     withAnimation {
+                        vmLogin.email = ""
                         vmLogin.isShowResetPasswordView = false
                     }
-                }
+                }))
+            })
+            .background()
         }
-        .alert(isPresented: $vm.isShowAlert, content: {
-            Alert(title: Text("Reset password"),
-                  message: Text(vm.alertMessage),
-                  dismissButton: .default(Text("OK"),
-                                          action: {
-                withAnimation {
-                    vmLogin.email = ""
-                    vmLogin.isShowResetPasswordView = false
-                }
-            }))
-        })
-        .background()
     }
 }
 
