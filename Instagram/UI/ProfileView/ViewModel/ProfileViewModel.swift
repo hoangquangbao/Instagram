@@ -15,6 +15,11 @@ class ProfileViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var imageAttach: UIImage?
     
+    let pickerImages: [Image]
+    init(pickerImages: [Image] = [Image.icnGrid, Image.icnMention]) {
+        self.pickerImages = pickerImages
+    }
+    
     func _uploadAvatar(completion: @escaping (Bool, Error?) -> Void) {
         guard let imageAttach = imageAttach else { return }
         print("Upload avatar image...")
@@ -47,7 +52,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     func getFieldName(key: String?) -> String {
-        var default_field = ""
+        let default_field = ""
         guard let key = key else { return default_field }
         let field: [String: String] = [
             "Name" : "fullName",
