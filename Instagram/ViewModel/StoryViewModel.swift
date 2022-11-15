@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class StoryViewModel: ObservableObject {
+@MainActor class StoryViewModel: ObservableObject {
     @Published var stories: [Story] = []
     @Published var activeStories: [Story] = []
     @Published var isStoryDisplay: Bool = false

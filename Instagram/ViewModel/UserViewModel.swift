@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class UserViewModel: ObservableObject {
+@MainActor class UserViewModel: ObservableObject {
     var isFetching: Bool = false
     @Published var users: [User] = []
     

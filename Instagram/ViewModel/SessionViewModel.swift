@@ -12,7 +12,7 @@ enum SessionState {
     case loggedIn, loggedOut
 }
 
-class SessionViewModel: ObservableObject {
+@MainActor class SessionViewModel: ObservableObject {
     @Published var userSession: SessionState = .loggedOut
     @Published var userInfo: User?
     
