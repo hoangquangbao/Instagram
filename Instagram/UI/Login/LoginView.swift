@@ -49,11 +49,11 @@ struct LoginView: View {
                 }
                 .padding(.horizontal, 25)
                 
-                bottomBarView()
-                
                 NavigationLink(destination: TabbarBottomView(), isActive:
                                 $perform.isBackLoginView
                 ) { EmptyView() }
+                
+                bottomBarView()
             }
             .onChange(of: vm.isShowTabbarBottomView) { result in
                 perform.isBackLoginView = result
@@ -69,7 +69,6 @@ struct LoginView: View {
                       message: Text(vm.alertMessage),
                       dismissButton: .default(Text(vm.alertButtonTitle)))
             })
-            .edgesIgnoringSafeArea(.bottom)
         }
     }
 }

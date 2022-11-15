@@ -57,6 +57,8 @@ struct EditFieldView: View {
                             .font(.system(size: 25, weight: .regular))
                             .foregroundColor(.blue)
                     }
+                    .disabled(_fieldValue.isEmpty && (_item.title != "Bio"))
+                    .opacity(_fieldValue.isEmpty && (_item.title != "Bio") ? 0.3 : 1)
                 }
             }
             .showWaitingDialog(title: "Uploading...", isLoading: $_isStoryUploading)

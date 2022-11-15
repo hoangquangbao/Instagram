@@ -23,7 +23,6 @@ extension Image {
     static var icnFacebookBlack: Image { return Image("icn_facebook_black") }
     static var icnGithub: Image { return Image("icn_github") }
     static var icnGrid: Image { return Image("icn_grid") }
-    static var icnGridPf: Image { return Image("icn_grid_pf") }
     static var icnHeart: Image { return Image("icn_heart") }
     static var icnHeartBold: Image { return Image("icn_heart_bold") }
     static var icnHome: Image { return Image("icn_home") }
@@ -31,7 +30,7 @@ extension Image {
     static var icnLeedcode: Image { return Image("icn_leedcode") }
     static var icnLinkin: Image { return Image("icn_linkin") }
     static var icnLogo: Image { return Image("icn_logo") }
-    static var icnMentions: Image { return Image("icn_mentions") }
+    static var icnMention: Image { return Image("icn_mention") }
     static var icnMessenger: Image { return Image("icn_messenger") }
     static var icnMore: Image { return Image("icn_more") }
     static var icnMultipleSelected: Image { return Image("icn_multiple_selected") }

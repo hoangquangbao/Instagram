@@ -9,9 +9,9 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileView: View {
-    
-    @StateObject var vm = ProfileViewModel()
     let user: User
+    @StateObject var vm = ProfileViewModel()
+    @State private var _selectedIndex: Int = 0
     
     @EnvironmentObject var sessionVm: SessionViewModel
     @EnvironmentObject var postVm: PostViewModel
@@ -28,8 +28,14 @@ struct ProfileView: View {
                 ScrollView(.vertical, showsIndicators: false){
                     VStack(alignment: .center, spacing: 0) {
                         UserProfileView(user: user, postCount: postVm.getOwningPost(of: user).count, isShowEditProfile: $vm.isShowEditProfile)
-                        HighlightView(data: HighlightData)
-                        _owningPost
+                        _highlightView(data: HighlightData)
+                        SegmentedPickerView(titles: vm.pickerImages,
+                                            selectedIndex: $_selectedIndex)
+                        if _selectedIndex == 0 {
+                            _owningPost
+                        } else {
+                            _owningContact
+                        }
                     }
                     .fullScreenCover(isPresented: $vm.isShowEditProfile) {
                         EditProfileView(user: user)
@@ -92,8 +98,8 @@ struct ProfileView_Previews: PreviewProvider {
     }
 }
 
-extension ProfileView {
-    func HighlightView(data: Array<Highlight>) -> some View {
+private extension ProfileView {
+    func _highlightView(data: Array<Highlight>) -> some View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack(alignment: .center, spacing: 10){
                 ForEach(data) { item in
@@ -123,39 +129,18 @@ extension ProfileView {
     }
     
     var _owningPost: some View {
-        VStack(spacing: 1) {
-            HStack() {
-                Button {
-                    print("button gird")
-                } label: {
-                    VStack() {
-                        Image.icnGridPf
-                            .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
-                        Divider()
-                            .frame(height: 1)
-                            .background(Color._262626)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                
-                Button {
-                    print("button phonebook")
-                    
-                } label:{
-                    VStack() {
-                        Image.icnPhonebook
-                            .renderingMode(Image.TemplateRenderingMode?.init(Image.TemplateRenderingMode.original))
-                    }
-                }
-                .frame(maxWidth: .infinity)
-            }
-            
+        VStack(spacing: 2) {
             PostImageGridLayout(posts: postVm.getOwningPost(of: user))
         }
         .padding(.horizontal, 2)
     }
     
-    func SettingsView() -> some View {
+    var _owningContact: some View {
+        Text("Owning contact")
+            .font(.system(size: 15, weight: .ultraLight))
+    }
+    
+    func _settingsView() -> some View {
         ScrollView(.vertical, showsIndicators:false) {
             ForEach(SettingListData){ item in
                 VStack(alignment: .leading){

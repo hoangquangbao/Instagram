@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PostViewModel: ObservableObject {
+@MainActor class PostViewModel: ObservableObject {
     var isFetching: Bool = false
     @Published var posts: [Post] = []
     
