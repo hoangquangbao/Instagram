@@ -45,7 +45,7 @@ struct PostService: ServiceProtocol {
     static func getComments(with id: String) async throws -> [Comment]? {
         let commentRef = _postRef.document(id).collection(FirebaseConstants.COMMENT_COLLECTION)
         
-        let documents = try await commentRef.order(by: "commentAt", descending: true).getDocuments().documents
+        let documents = try await commentRef.order(by: "commentAt").getDocuments().documents
         var comments: [Comment] = documents.compactMap { document in
             try? document.data(as: Comment.self)
         }
