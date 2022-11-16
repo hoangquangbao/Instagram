@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-class UserService: ServiceProtocol {
+struct UserService: ServiceProtocol {
     
     typealias ModelType = User
     static private let _userRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.USER_COLLECTION)

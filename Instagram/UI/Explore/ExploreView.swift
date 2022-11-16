@@ -14,7 +14,7 @@ struct ExploreView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                LazyVStack {
+                LazyVStack(spacing: 20) {
                     PostRow(post: post).padding(.bottom, 0.5)
                     ForEach(postVm.getNotOwningPost()) { _post in
                         if(_post.id != post.id) {

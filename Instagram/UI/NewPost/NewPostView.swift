@@ -43,7 +43,28 @@ struct NewPostView: View {
 }
 
 private extension NewPostView {
-    
+    @ViewBuilder
+    var _actionButtonsBuilder: some View {
+        if(hasTextFieldFocus) {
+            HStack {
+                Spacer()
+                _closeKeyboardButton
+            }
+            .padding(.bottom)
+            
+            
+        } else {
+            HStack {
+                _selectImageButton
+                Spacer()
+                _openCameraButton
+            }
+            .padding(.horizontal, AppStyle.defaultSpacing)
+        }
+    }
+}
+
+private extension NewPostView {
     var _header: some View {
         ZStack(alignment: .center) {
             Text("New post")
@@ -69,10 +90,12 @@ private extension NewPostView {
         Button {
             vm.uploadPost { isSuccess in
                 if(isSuccess) {
-                    vm.isUploading.toggle()
-                    userVm.refresh()
-                    postVm.refresh()
-                    presentationMode.wrappedValue.dismiss()
+                    Task {
+                        vm.isUploading.toggle()
+                        await userVm.refresh()
+                        await postVm.refresh()
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 } else {
                     vm.isUploading.toggle()
                     vm.isErrorAlertDisplay.toggle()
@@ -178,28 +201,6 @@ private extension NewPostView {
     
 }
 
-private extension NewPostView {
-    
-    @ViewBuilder
-    var _actionButtonsBuilder: some View {
-        if(hasTextFieldFocus) {
-            HStack {
-                Spacer()
-                _closeKeyboardButton
-            }
-            .padding(.bottom)
-            
-            
-        } else {
-            HStack {
-                _selectImageButton
-                Spacer()
-                _openCameraButton
-            }
-            .padding(.horizontal, AppStyle.defaultSpacing)
-        }
-    }
-}
 
 struct NewPostView_Previews: PreviewProvider {
     static var previews: some View {

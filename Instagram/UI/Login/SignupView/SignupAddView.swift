@@ -44,8 +44,10 @@ struct SignupAddView: View {
             .padding(.horizontal, 30)
             
             if vm.type == .add_birthday {
-                addYourBirthdayView_Ext()
-                    .animation(.spring(response: 0.5, dampingFraction: 4, blendDuration: 2))
+                withAnimation(.spring(response: 0.5, dampingFraction: 4, blendDuration: 2)) {
+                    addYourBirthdayView_Ext()
+                }
+                    
 //                    .transition(.move(edge: .bottom))
 //                    .animation(.easeInOut(duration: 0.5))
             } else if vm.type == .signup_account {

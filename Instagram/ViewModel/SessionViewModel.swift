@@ -22,15 +22,19 @@ enum SessionState {
                 self.userInfo = user
             }
             
-            refresh()
+            Task {
+                await refresh()
+            }
         }
     }
     
-    func refresh() {
-        Task {
+    @MainActor func refresh() async {
+        do {
             guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
             self.userInfo = try await UserService.get(by: uid)
             LocalStorage.store(with: userInfo, forKey: StorageKey.USER_INFO)
+        } catch {
+            
         }
     }
     

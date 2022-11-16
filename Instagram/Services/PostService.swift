@@ -9,8 +9,6 @@ import Foundation
 
 struct PostService: ServiceProtocol {
     typealias ModelType = Post
-    
-    private let postRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.POST_COLLECTION)
     static private let _postRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.POST_COLLECTION)
     
     static func get(by id: String) async throws -> Post? {
@@ -34,6 +32,11 @@ struct PostService: ServiceProtocol {
         
         for i in 0..<posts.count {
             posts[i].user = try await UserService.get(by: posts[i].uid)
+            
+            if posts[i].likes.isNotEmpty {
+                let latestUid = posts[i].likes[posts[i].likeCount - 1]
+                posts[i].latestUserLikePost = try await UserService.get(by: latestUid)
+            }
         }
         
         return posts
@@ -42,7 +45,7 @@ struct PostService: ServiceProtocol {
     static func getComments(with id: String) async throws -> [Comment]? {
         let commentRef = _postRef.document(id).collection(FirebaseConstants.COMMENT_COLLECTION)
         
-        let documents = try await commentRef.getDocuments().documents
+        let documents = try await commentRef.order(by: "commentAt", descending: true).getDocuments().documents
         var comments: [Comment] = documents.compactMap { document in
             try? document.data(as: Comment.self)
         }

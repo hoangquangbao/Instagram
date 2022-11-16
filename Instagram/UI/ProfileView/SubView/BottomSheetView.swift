@@ -23,14 +23,12 @@ struct BottomSheetView<Content: View>: View {
          maxHeight: CGFloat,
          @ViewBuilder content: () -> Content)
     {
-//        self.minHeight = maxHeight * CGFloat(heightRatio)
         self.maxHeight = maxHeight
         self.content = content()
         self._isOpen = isOpen
     }
     
     private var offset: CGFloat {
-//        isOpen ? 0 : maxHeight - minHeight
         isOpen ? 0 : maxHeight
     }
 
