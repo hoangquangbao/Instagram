@@ -17,23 +17,19 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack() {
                 _topBar
                 
                 ScrollView(.vertical, showsIndicators: false) {
-                    _storyBar
+                    _storyBarBuilder
                     
                     Divider()
                     
-                    if(postVm.isFetching) {
-                        PostRowShimmer()
-                    }
-                    else {
-                        _usersPost
-                    }
+                    _postBuilder
                 }
             }
             .navigationBarHidden(true)
+
             .confirmationDialog(
                 "choose option",
                 isPresented: $vm.isShowOptionForNavigateStoryView,
@@ -49,6 +45,36 @@ struct HomeView: View {
                 },
                 message: { Text("Please choose one option") }
             )
+        }
+        .onAppear {
+            Task {
+                await postVm.refresh()
+            }
+        }
+    }
+}
+
+private extension HomeView {
+    @ViewBuilder
+    var _storyBarBuilder: some View {
+        if userVm.isFetching {
+            ScrollView(.horizontal) {
+                StoryAvatarShimmer()
+            }
+            .padding(.horizontal, AppStyle.defaultSpacing)
+            
+        } else {
+            _storyBar
+        }
+    }
+    
+    @ViewBuilder
+    var _postBuilder: some View {
+        if postVm.isFetching {
+            PostRowShimmer()
+        }
+        else {
+            _usersPost
         }
     }
 }
@@ -72,14 +98,9 @@ private extension HomeView {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 15.0) {
                 CreateNewStoryButton(homeVm: vm)
-                
-                if(userVm.isFetching) {
-                    StoryAvatarShimmer()
-                } else {
-                    ForEach(userVm.userHasStory) { user in
-                        StoryAvatar(user: user)
-                            .padding(.top, 8)
-                    }
+                ForEach(userVm.userHasStory) { user in
+                    StoryAvatar(user: user)
+                        .padding(.top, 8)
                 }
             }
             .padding(.horizontal, AppStyle.defaultSpacing)
@@ -89,7 +110,7 @@ private extension HomeView {
     var _usersPost: some View {
         ForEach(postVm.posts) { post in
             PostRow(post: post)
-                .padding(.top, 15)
+                .padding(.top, 20)
         }
     }
     

@@ -22,16 +22,9 @@ struct PostRow: View {
             
             _content
             
-            if (vm.latestUserLikePost != nil && vm.post.likeCount > 0) {
-                LikeInfoRow(user: vm.latestUserLikePost!, likeCount: vm.likeCount)
-                    .padding(.horizontal, AppStyle.defaultSpacing)
-                    .padding(.top, 5)
-            }
+            LatestUserLikedRow(user: vm.post.latestUserLikePost, likeCount: vm.likeCount)
             
-            Text(vm.post.caption)
-                .font(.footnote)
-                .padding(.top, 8)
-                .padding(.horizontal, AppStyle.defaultSpacing)
+            _caption
             
             if(vm.post.commentCount > 0) {
                 _showAllCommentButton
@@ -41,9 +34,19 @@ struct PostRow: View {
             
             _postTime
             
-            NavigationLink(destination: CommentView(postRowVm: vm),
-                           tag: 1,
-                           selection: $vm.isNavigateCommentView) {}
+            NavigationLink(
+                destination: CommentView(postRowVm: vm),
+                tag: 1,
+                selection: $vm.isNavigateCommentView,
+                label: {}
+            )
+            
+            NavigationLink(
+                destination: ProfileView(user: vm.post.user!),
+                tag: 1,
+                selection: $vm.isNavigateProfileView,
+                label: {}
+            )
         }
     }
 }
@@ -52,25 +55,20 @@ private extension PostRow {
     var _header: some View {
         HStack {
             HStack(spacing: 9.0) {
-                if let user = vm.post.user {
-                    NavigationLink(destination: ProfileView(user: user), tag: 1, selection: $vm.isNavigateProfileView) {
-                        Button(action: vm.toggleNavigateProfileView) {
-                            CircleAvatar(imageUrl: user.avatarUrl, radius: 40)
-                            VStack(alignment: .leading) {
-                                Text(user.fullName)
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
-                                Text("@\(user.username)")
-                                    .font(.caption)
-                                    .fontWeight(.light)
-                            }
-                        }
+                Button {
+                    vm.toggleNavigateProfileView()
+                } label: {
+                    CircleAvatar(imageUrl: vm.post.user!.avatarUrl, radius: 40)
+                    VStack(alignment: .leading) {
+                        Text(vm.post.user!.fullName)
+                            .font(.subheadline)
+                            .fontWeight(.bold)
+                        Text("@\(vm.post.user!.username)")
+                            .font(.caption)
+                            .fontWeight(.light)
                     }
                 }
                 
-                else {
-                    UserRowShimmer()
-                }
             }
             
             Spacer()
@@ -86,7 +84,11 @@ private extension PostRow {
             SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
             HStack {
                 HStack(spacing: 10.0) {
-                    Button(action: vm.handleLikePost) {
+                    Button {
+                        Task {
+                            await vm.handleLikePost()
+                        }
+                    } label: {
                         if vm.didLike {
                             Image.icnHeartBold
                                 .renderingMode(.template)
@@ -98,9 +100,13 @@ private extension PostRow {
                         }
                     }
                     
-                    IconButton(imageIcon: Image.icnComment, onTap: vm.toggleNavigateCommentView)
+                    IconButton(imageIcon: Image.icnComment) {
+                        vm.toggleNavigateCommentView()
+                    }
                     
-                    IconButton(imageIcon: Image.icnShare, onTap: vm.onMessage)
+                    IconButton(imageIcon: Image.icnShare) {
+                        vm.onMessage()
+                    }
                     
                 }
                 
@@ -111,15 +117,26 @@ private extension PostRow {
                 
                 Spacer()
                 
-                IconButton(imageIcon: Image.icnBookmark, onTap: vm.onShare)
+                IconButton(imageIcon: Image.icnBookmark) {
+                    vm.onShare()
+                }
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 9)
         }
     }
     
+    var _caption: some View {
+        Text(vm.post.caption)
+            .font(.footnote)
+            .padding(.top, 8)
+            .padding(.horizontal, AppStyle.defaultSpacing)
+    }
+    
     var _showAllCommentButton: some View {
-        Button(action: vm.showAllComment) {
+        Button {
+            vm.showAllComment()
+        } label: {
             Text("Show all \(vm.commentCount) comment")
                 .font(.footnote)
                 .foregroundColor(Color.semiText)
@@ -138,7 +155,9 @@ private extension PostRow {
                     UserRowShimmer().circleAvatar(radius: 30)
                 }
                 GeometryReader { proxy in
-                    Button(action: vm.toggleNavigateCommentView) {
+                    Button {
+                        vm.toggleNavigateCommentView()
+                    } label: {
                         Text("Add comment")
                             .font(.footnote)
                             .foregroundColor(Color.semiText)
@@ -162,29 +181,6 @@ private extension PostRow {
     }
 }
 
-struct LikeInfoRow: View {
-    let user: User
-    let likeCount: Int
-    
-    var body: some View {
-        HStack {
-            CircleAvatar(imageUrl: user.avatarUrl, radius: 20)
-            
-            HStack(spacing: 0) {
-                Text("Liked by ")
-                Text("\(user.fullName) ").bold()
-                if(likeCount > 1) {
-                    HStack<Text>(spacing: 0) {
-                        Text("and ") + Text("\(likeCount - 1) others").bold()
-                    }
-                } else {
-                    Text("")
-                }
-            }
-            .font(.caption)
-        }
-    }
-}
 
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {

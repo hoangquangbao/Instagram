@@ -82,12 +82,14 @@ private extension NewStoryView {
                 Button {
                     vm.uploadStory { isSuccess in
                         if(isSuccess) {
-                            vm.isStoryUploading.toggle()
-                            userVm.refresh()
-                            postVm.refresh()
-                            storyVm.refresh()
-                            sessionVm.refresh()
-                            presentationMode.wrappedValue.dismiss()
+                            Task {
+                                vm.isStoryUploading.toggle()
+                                await userVm.refresh()
+                                await postVm.refresh()
+                                await storyVm.refresh()
+                                await sessionVm.refresh()
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         } else {
                             vm.isStoryUploading.toggle()
                             vm.isErrorAlertDisplay.toggle()

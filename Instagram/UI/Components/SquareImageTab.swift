@@ -82,7 +82,7 @@ private struct _KFImage: View {
     var body: some View {
         KFImage(URL(string: imageUrl))
             .resizable()
-            .scaledToFill()
+            .aspectRatio(contentMode: .fill)
     }
 }
 

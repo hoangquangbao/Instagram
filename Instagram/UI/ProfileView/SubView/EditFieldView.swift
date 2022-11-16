@@ -41,12 +41,14 @@ struct EditFieldView: View {
                     Button {
                         vm._updateProfile(field: vm.getFieldName(key: _item.title), data: _fieldValue) { isSuccess, error in
                             if isSuccess {
-                                _isStoryUploading.toggle()
-                                dismiss()
-                                userVm.refresh()
-                                postVm.refresh()
-                                storyVm.refresh()
-                                sessionVm.refresh()
+                                Task {
+                                    _isStoryUploading.toggle()
+                                    dismiss()
+                                    await userVm.refresh()
+                                    await postVm.refresh()
+                                    await storyVm.refresh()
+                                    await sessionVm.refresh()
+                                }
                             } else {
                                 _isStoryUploading.toggle()
                                 print(error?.localizedDescription as Any)

@@ -43,20 +43,6 @@ struct CreateNewStoryButton: View {
 }
 
 private extension CreateNewStoryButton {
-    var _plusIcon: some View {
-        ZStack {
-            Circle().fill(Color.ffffff).frame(width: 25, height: 25)
-            Image(systemName: "plus.circle.fill")
-                .renderingMode(.template)
-                .resizable()
-                .foregroundColor(Color.blue)
-                .background(Color.clear)
-                .frame(width: 20, height: 20)
-        }
-    }
-}
-
-private extension CreateNewStoryButton {
     @ViewBuilder
     var _circleAvatarBuilder: some View {
         if let userInfo = sessionVm.userInfo {
@@ -73,6 +59,21 @@ private extension CreateNewStoryButton {
         }
     }
 }
+
+private extension CreateNewStoryButton {
+    var _plusIcon: some View {
+        ZStack {
+            Circle().fill(Color.ffffff).frame(width: 25, height: 25)
+            Image(systemName: "plus.circle.fill")
+                .renderingMode(.template)
+                .resizable()
+                .foregroundColor(Color.blue)
+                .background(Color.clear)
+                .frame(width: 20, height: 20)
+        }
+    }
+}
+
 
 struct CreateNewStoryButton_Previews: PreviewProvider {
     static var previews: some View {

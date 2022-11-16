@@ -36,6 +36,28 @@ struct SearchView: View {
     }
 }
 
+// ViewBuilder
+private extension SearchView {
+    @ViewBuilder
+    var _actionButtonBuilder: some View {
+        if (vm.mode == .searching) {
+            _cancelButton
+        }
+    }
+    
+    @ViewBuilder
+    var _bodyBuilder: some View {
+        if (vm.mode == .searching) {
+            Group {
+                _usersRow
+                Spacer()
+            }
+        } else {
+            _imageGridAndFilteredBar
+        }
+    }
+}
+
 // Components
 private extension SearchView {
     var _searchBar: some View {
@@ -104,27 +126,6 @@ private extension SearchView {
     }
 }
 
-// ViewBuilder
-private extension SearchView {
-    @ViewBuilder
-    var _actionButtonBuilder: some View {
-        if (vm.mode == .searching) {
-            _cancelButton
-        }
-    }
-    
-    @ViewBuilder
-    var _bodyBuilder: some View {
-        if (vm.mode == .searching) {
-            Group {
-                _usersRow
-                Spacer()
-            }
-        } else {
-            _imageGridAndFilteredBar
-        }
-    }
-}
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

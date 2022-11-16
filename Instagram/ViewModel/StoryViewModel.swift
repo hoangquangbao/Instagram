@@ -14,12 +14,16 @@ import SwiftUI
     
     
     init() {
-        refresh()
+        Task {
+            await refresh()
+        }
     }
     
-    func refresh() {
-        Task {
+    @MainActor func refresh() async {
+        do {
             self.stories = try await StoryService.getAll()
+        } catch {
+            
         }
     }
     

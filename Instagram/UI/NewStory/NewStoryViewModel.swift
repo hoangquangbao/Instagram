@@ -52,7 +52,7 @@ class NewStoryViewModel: ObservableObject {
                               captionColorHex: self.captionColorHexSelected,
                               textAlignment: self.isTextCenter ? "center" : "bottom")
             
-            _createStory(story) { [self] isSuccess in
+            _createStory(story) { isSuccess in
                 if !isSuccess { return }
                 
                 UserService.update(with: uid, field: "hasStory", data: true) { isSuccess, _ in

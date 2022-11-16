@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CommentView: View {
-
-    @StateObject var postRowVm: PostRowViewModel    
+    @StateObject var postRowVm: PostRowViewModel
+    @ObservedObject var vm = CommentViewModel()
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var sessionVm: SessionViewModel
     
@@ -19,43 +19,29 @@ struct CommentView: View {
             VStack {
                 _comments
                 
-                Spacer()
-                
                 _commentBar
             }
             .navigationBarTitle("Comment", displayMode: .inline)
             .padding(.top)
         }
-        .onAppear {
-            postRowVm.loadComment()
+        .showWaitingDialog(title: "Please wait...", isLoading: $vm.isShowWaitingDialog)
+        .task {
+            await postRowVm.loadComment()
         }
     }
 }
 
+
 private extension CommentView {
     var _comments: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            if let comments = postRowVm.post.comments {
-                ForEach(comments) { comment in
-                    HStack(alignment: .top){
-                        if let user = comment.user {
-                            CircleAvatar(imageUrl: user.avatarUrl, radius: 35)
-                            VStack(alignment: .leading) {
-                                Text(user.username).font(.system(.subheadline)).bold()
-                                Text(comment.comment)
-                                    .font(.system(.caption))
-                            }
-                            Spacer()
-                            IconButton(imageIcon: Image.icnHeart, size: 15) {}
-                        }
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 30) {
+                if let comments = postRowVm.post.comments {
+                    ForEach(comments) { comment in
+                        CommentRow(comment: comment)
                     }
-                }
-            } else {
-                ForEach(0..<3) { _ in
-                    HStack {
-                        UserRowShimmer()
-                        Spacer()
-                    }
+                } else {
+                    CommentRowShimmer()
                 }
             }
         }
@@ -67,6 +53,7 @@ private extension CommentView {
             if let user = sessionVm.userInfo {
                 CircleAvatar(imageUrl: user.avatarUrl, radius: 30)
             }
+            
             TextField("Enter comment here...", text: $postRowVm.commentText)
                 .font(.subheadline)
                 .padding(.horizontal, 15)
@@ -76,14 +63,26 @@ private extension CommentView {
                 .overlay(
                     Capsule().stroke(Color(.systemGray).opacity(0.8))
                 )
-            Button(action: postRowVm.createComment) {
+            
+            Button(action: postComment) {
                 Image.icnShare
                     .renderingMode(.template)
                     .foregroundColor(Color.primary)
             }
+            .disabled(postRowVm.commentText.isEmpty)
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.bottom)
+    }
+    
+    func postComment() {
+        vm.isShowWaitingDialog = true
+        postRowVm.createComment()
+        Task {
+            await postRowVm.loadComment()
+            postRowVm.commentText = ""
+            vm.isShowWaitingDialog.toggle()
+        }
     }
 }
 

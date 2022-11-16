@@ -19,6 +19,7 @@ struct Post: Identifiable, Decodable, Encodable {
     var createAt: Timestamp = Timestamp(date: Date())
     
     var user: User?
+    var latestUserLikePost: User?
     var comments: [Comment]?
     var didLike: Bool = false
     var likeCount: Int { return likes.count }

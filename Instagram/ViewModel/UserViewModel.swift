@@ -12,14 +12,18 @@ import SwiftUI
     @Published var users: [User] = []
     
     init() {
-        refresh()
+        Task {
+            self.isFetching = true
+            await refresh()
+        }
     }
     
-    func refresh() {
-        Task {
-            self.isFetching.toggle()
+    @MainActor func refresh() async {
+        do {
             self.users = try await UserService.getAll()
-            self.isFetching.toggle()
+            self.isFetching = false
+        } catch {
+            self.isFetching = false
         }
     }
     
