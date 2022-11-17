@@ -11,7 +11,7 @@ import Shimmer
 struct CommentRowShimmer: View {
     var body: some View {
         HStack {
-            Circle().frame(width: 30).shimmering()
+            UserRowShimmer().circleAvatar(radius: 50)
             VStack(alignment: .leading) {
                 Rectangle().frame(width: 70, height: 10).shimmering()
                 GeometryReader { proxy in

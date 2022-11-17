@@ -14,7 +14,7 @@ enum TabbarBottomViewModel: Int, CaseIterable {
         case .home:         return AnyView(HomeView())
         case .search:       return AnyView(SearchView())
         case .favorite:     return AnyView(Text("Favorite view"))
-        case .notification: return AnyView(Text("Notification view"))
+        case .notification: return AnyView(NotificationView())
         case .profile:      return AnyView(ProfileView(user: user))
         }
     }

@@ -7,7 +7,8 @@ struct InstagramApp: App {
     @StateObject var perform = BackLoginViewModel()
     @StateObject var userVm = UserViewModel()
     @StateObject var postVm = PostViewModel()
-    @StateObject var storyData = StoryViewModel()
+    @StateObject var storyVm = StoryViewModel()
+    @StateObject var notificationVm = NotificationViewModel()
     
     
     var body: some Scene {
@@ -24,7 +25,8 @@ struct InstagramApp: App {
             .environmentObject(perform)
             .environmentObject(userVm)
             .environmentObject(postVm)
-            .environmentObject(storyData)
+            .environmentObject(storyVm)
+            .environmentObject(notificationVm)
         }
     }
     

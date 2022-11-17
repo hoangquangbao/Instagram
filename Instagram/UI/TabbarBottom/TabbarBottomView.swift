@@ -12,6 +12,7 @@ struct TabbarBottomView: View {
     @EnvironmentObject var perform: BackLoginViewModel
     @EnvironmentObject var storyVm: StoryViewModel
     @EnvironmentObject var sessionVm: SessionViewModel
+    @EnvironmentObject var notificationVm : NotificationViewModel
     
     @State private var selection = 0
     
@@ -21,12 +22,22 @@ struct TabbarBottomView: View {
                 TabView(selection: $selection) {
                     ForEach(TabbarBottomViewModel.allCases, id: \.rawValue) { item in
                         if let user = sessionVm.userInfo {
-                            item.getView(user: user)
-                                .tag(item.rawValue)
-                                .tabItem {
-                                    item.getImage(isActive: selection == item.rawValue)
-                                        .renderingMode(.template).foregroundColor(Color._000000)
-                                }
+                            if item == TabbarBottomViewModel.notification {
+                                item.getView(user: user)
+                                    .tag(item.rawValue)
+                                    .tabItem {
+                                        item.getImage(isActive: selection == item.rawValue)
+                                            .renderingMode(.template).foregroundColor(Color._000000)
+                                    }
+                                    .badge(notificationVm.unReadCount)
+                            } else {
+                                item.getView(user: user)
+                                    .tag(item.rawValue)
+                                    .tabItem {
+                                        item.getImage(isActive: selection == item.rawValue)
+                                            .renderingMode(.template).foregroundColor(Color._000000)
+                                    }
+                            }
                         }
                     }
                 }
