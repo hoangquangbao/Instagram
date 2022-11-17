@@ -80,6 +80,18 @@ private extension SearchView {
         }
     }
     
+    var _imageGridAndFilteredBar: some View {
+        Group {
+//            _filteredBar
+            
+            ScrollView {
+                PostImageGridLayout(posts: postVm.getNotOwningPost()).padding(.top, 5)
+            }
+            
+            Spacer()
+        }
+    }
+    
     var _filteredBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
@@ -96,18 +108,6 @@ private extension SearchView {
         }
         .padding(.top, 5)
         .padding(.horizontal, AppStyle.defaultSpacing)
-    }
-    
-    var _imageGridAndFilteredBar: some View {
-        Group {
-            _filteredBar
-            
-            ScrollView {
-                PostImageGridLayout(posts: postVm.getNotOwningPost()).padding(.top, 5)
-            }
-            
-            Spacer()
-        }
     }
     
     var _usersRow: some View {
