@@ -20,9 +20,6 @@ struct CustomWaitingDialog: ViewModifier {
                 .blur(radius: isLoading ? 7 : 0)
             
             if(isLoading) {
-                Color.clear
-                    .ignoresSafeArea()
-                
                 HStack {
                     Circle()
                         .fill(AngularGradient(colors: [.yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
