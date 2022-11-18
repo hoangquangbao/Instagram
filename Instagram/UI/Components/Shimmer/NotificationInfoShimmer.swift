@@ -1,19 +1,17 @@
 //
-//  CommentRowShimmer.swift
+//  NotificationInfoShimmer.swift
 //  Instagram
 //
-//  Created by lhduc on 14/11/2022.
+//  Created by lhduc on 18/11/2022.
 //
 
 import SwiftUI
-import Shimmer
 
-struct CommentRowShimmer: View {
+struct NotificationInfoShimmer: View {
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
             UserRowShimmer().circleAvatar(radius: 50)
-            VStack(alignment: .leading) {
-                Rectangle().frame(width: 70, height: 10).shimmering()
+            VStack(alignment: .leading, spacing: 0) {
                 GeometryReader { proxy in
                     Rectangle().frame(width: proxy.size.width, height: 10).shimmering()
                 }
@@ -21,13 +19,17 @@ struct CommentRowShimmer: View {
                 GeometryReader { proxy in
                     Rectangle().frame(width: proxy.size.width, height: 10).shimmering()
                 }
+                
+                Rectangle().frame(width: 50, height: 8).shimmering()
             }
+            
+            Rectangle().frame(width: 50, height: 50).shimmering()
         }
     }
 }
 
-struct CommentRowShimmer_Previews: PreviewProvider {
+struct NotificationInfoShimmer_Previews: PreviewProvider {
     static var previews: some View {
-        CommentRowShimmer()
+        NotificationInfoShimmer()
     }
 }

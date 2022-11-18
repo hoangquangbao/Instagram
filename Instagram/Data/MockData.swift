@@ -9,31 +9,29 @@ import Foundation
 
 struct MockData {
     static let users: [User] = [
-        User(id: "user1", email: "user1@gmail.com", username: "user1.instagram", fullName: "User1", avatarUrl: "img_profile"),
-        User(id: "user2", email: "user2@gmail.com", username: "user2.das", fullName: "User2", avatarUrl: "img_profile2", hasStory: true),
-        User(id: "user3", email: "user3@gmail.com", username: "user3.9c", fullName: "User3", avatarUrl: "img_profile3"),
-        User(id: "user4", email: "user4@gmail.com", username: "user4.gmail", fullName: "User4", avatarUrl: "img_profile4", hasStory: true),
-        User(id: "user5", email: "user5@gmail.com", username: "user5.asd", fullName: "User5", avatarUrl: "img_profile5"),
+        User(id: "user1", email: "user1@gmail.com", username: "user1.instagram", fullName: "User1", avatarUrl: "https://firebasestorage.googleapis.com:443/v0/b/instagramdb-70607.appspot.com/o/XTzUZUn51MWFEShk3R3nIoe5R4s2?alt=media&token=56758ab2-22bb-4742-bfd3-2abb8b10d504"),
+        User(id: "user2", email: "user2@gmail.com", username: "user2.das", fullName: "User2", avatarUrl: "https://firebasestorage.googleapis.com:443/v0/b/instagramdb-70607.appspot.com/o/profile_avatar%2FZI45HNIJvcdjbfL1ljtw9DCEMDt2?alt=media&token=c5ad5ecd-edcb-491c-83bf-4b4a835e8fbd", hasStory: true),
+        User(id: "user3", email: "user3@gmail.com", username: "user3.9c", fullName: "User3", avatarUrl: "https://firebasestorage.googleapis.com:443/v0/b/instagramdb-70607.appspot.com/o/a5RRaJzAJJSe6W14xB6oH03uoY62?alt=media&token=1280f918-1476-4053-a52f-7dbcf5046a1c"),
     ]
     
     static let posts: [Post] = [
         Post(id: "1", uid: "1",
              caption: "I don’t know what my future holds, but I’m hoping you are in it",
-             imagesUrl: ["img_profile", "img_profile2"],
+             imagesUrl: ["https://firebasestorage.googleapis.com:443/v0/b/instagramdb-70607.appspot.com/o/posts%2FD5271E37-B7D7-45A6-96B0-6AA26274452F?alt=media&token=25c238d7-50a0-4dec-819a-932bce6c4cbb"],
              categories: ["IGTV", "Shop"],
              likes: ["user1", "user2"] ,
              user: users[0]
         ),
         Post(id: "2", uid: "2",
              caption: "It only takes a second to say I love you, but it will take a lifetime to show you how much",
-             imagesUrl: ["img_profile2", "img_profile3", "img_profile4"],
+             imagesUrl: ["https://firebasestorage.googleapis.com:443/v0/b/instagramdb-70607.appspot.com/o/posts%2FE1FD9215-C148-4B66-B8EF-41FEC0D6A116?alt=media&token=6c1a2308-abf6-4042-8771-8fd037b4a22b"],
              categories: ["Sport", "Style", "Shop"],
              likes: ["user1"],
              user: users[1]
         ),
         Post(id: "3", uid: "3",
              caption: "You light up my life",
-             imagesUrl: ["img_profile5"],
+             imagesUrl: ["https://firebasestorage.googleapis.com:443/v0/b/instagramdb-70607.appspot.com/o/posts%2FFA1B0BA7-6D5F-4275-8CD4-B7DD5BEB22C1?alt=media&token=5c9d0b21-855f-4787-8c56-4d5e2a5c63f9"],
              categories: [],
              commentCount: 3,
              user: users[2]

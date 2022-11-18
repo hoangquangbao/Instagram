@@ -44,7 +44,7 @@ private extension LatestUserLikedRow {
     
     var _loadingShimmer: some View {
         HStack {
-            Circle().frame(width: 20).shimmering()
+            Circle().frame(width: 20, height: 20).shimmering()
             
             Text("Loading...").font(.caption).shimmering()
         }

@@ -16,9 +16,6 @@ class PostRowViewModel: ObservableObject {
     
     init(post: Post) {
         self.post = post
-//        Task {
-//            await getLatestUserLikePost()
-//        }
     }
     
     var imageSelectionIndex = 0
@@ -65,6 +62,10 @@ class PostRowViewModel: ObservableObject {
         } else {
             post.likes.append(uid)
             await _updateLikePost(with: postId, likes: post.likes)
+            if post.uid != uid {
+                
+                notifyToAuthor(of: post, action: .like)
+            }
         }
     }
     
@@ -100,13 +101,30 @@ class PostRowViewModel: ObservableObject {
         
         PostService.update(with: postId, comment: comment) { [self] isSuccess, error in
             if error != nil { return }
-
+            
+            if post.uid != uid {
+                notifyToAuthor(of: post, action: .comment)
+            }
+            
             _increaseCommentCount(with: postId) {
                 Task {
                     await self.loadComment()
                 }
             }
         }
+    }
+    
+    func notifyToAuthor(of post: Post, action: NotificationAction) {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        let content = action == NotificationAction.comment ? "has commented on your post" : "has liked your post"
+        
+        let notification = Notification(uid: post.uid, action: action, type: .post, referenceId: post.id!, userInteractionId: uid, content: content)
+        
+        NotificationService.create(notification) { isSuccess, _ in
+            print(isSuccess)
+        }
+        
     }
     
     func _increaseCommentCount(with postId: String, completion: @escaping () -> Void) {

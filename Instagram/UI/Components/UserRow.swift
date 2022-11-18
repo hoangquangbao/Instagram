@@ -15,7 +15,7 @@ struct UserRow: View {
     
     var body: some View {
         HStack() {
-            _UserAvatar(user: user)
+            UserAvatar(user: user)
             
             VStack(alignment: .leading) {
                 Text(user.username)
@@ -31,16 +31,16 @@ struct UserRow: View {
     }
 }
 
-private struct _UserAvatar: View {
+struct UserAvatar: View {
     let user: User
-    var _avatarSize: CGFloat = 44.0
+    var radius: CGFloat = 44.0
     
     var body: some View {
         if(user.hasStory) {
-            CircleAvatar(imageUrl: user.avatarUrl, radius: _avatarSize)
+            CircleAvatar(imageUrl: user.avatarUrl, radius: radius)
                 .addGradientBorder(gradient: AppStyle.storyLinearGradient)
         } else {
-            CircleAvatar(imageUrl: user.avatarUrl, radius: _avatarSize)
+            CircleAvatar(imageUrl: user.avatarUrl, radius: radius)
         }
     }
 }

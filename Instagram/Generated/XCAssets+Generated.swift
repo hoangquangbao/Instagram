@@ -34,7 +34,9 @@ extension Image {
     static var icnMessenger: Image { return Image("icn_messenger") }
     static var icnMore: Image { return Image("icn_more") }
     static var icnMultipleSelected: Image { return Image("icn_multiple_selected") }
-    static var icnNotifiations: Image { return Image("icn_notifiations") }
+    static var icnNotification: Image { return Image("icn_notification") }
+    static var icnNotificationBold: Image { return Image("icn_notification_bold") }
+    static var icnNotifications: Image { return Image("icn_notifications") }
     static var icnOpenFacebook: Image { return Image("icn_open_facebook") }
     static var icnPfTabbar: Image { return Image("icn_pf_tabbar") }
     static var icnPhonebook: Image { return Image("icn_phonebook") }
@@ -53,6 +55,8 @@ extension Image {
     static var icnUnHeart: Image { return Image("icn_un_heart") }
     static var icnUnHome: Image { return Image("icn_un_home") }
     static var icnUnSearch: Image { return Image("icn_un_search") }
+    static var icnUser: Image { return Image("icn_user") }
+    static var icnUserBold: Image { return Image("icn_user_bold") }
     static var icnYoutube: Image { return Image("icn_youtube") }
     static var iconSearch: Image { return Image("icon_search") }
     static var imgAvatarDefault: Image { return Image("img_avatar_default") }
