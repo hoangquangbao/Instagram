@@ -17,6 +17,12 @@ struct PostService: ServiceProtocol {
         
         post.user = try await UserService.get(by: post.uid)
         post.comments = try await getComments(with: post.uid)
+        
+        if post.likes.isNotEmpty {
+            let latestUid = post.likes[post.likeCount - 1]
+            post.latestUserLikePost = try await UserService.get(by: latestUid)
+        }
+        
         return post
     }
     

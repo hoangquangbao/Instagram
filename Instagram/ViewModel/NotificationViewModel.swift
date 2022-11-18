@@ -5,41 +5,62 @@
 //  Created by lhduc on 17/11/2022.
 //
 
-import Foundation
+import Firebase
 
-class NotificationViewModel: ObservableObject {
+@MainActor class NotificationViewModel: ObservableObject {
     @Published var notifications: [Notification] = []
     @Published var unReadCount: Int = 0
     @Published var isFetching: Bool = false
     
     init() {
-        Task {
-            await getUnReadCount()
+        getUnReadCount()
+        getAll()
+    }
+    
+    func getUnReadCount() {
+        NotificationService.getUnReadCount {[self] count in
+            Task {
+                unReadCount = count
+            }
         }
     }
     
-    @MainActor func getUnReadCount() async {
-        let unReadCount = try? await NotificationService.getUnReadCount()
-        self.unReadCount = unReadCount ?? 0
-    }
-    
-    @MainActor func getAll() async {
+//    func getAll() async {
+//        self.isFetching = true
+//        do {
+//            self.notifications = try await NotificationService.getAll()
+//            self.isFetching = false
+//        } catch {
+//            print(error)
+//            self.isFetching = false
+//        }
+//    }
+    func getAll() {
         self.isFetching = true
-        do {
-            self.notifications = try await NotificationService.getAll()
-            self.isFetching = false
-        } catch {
-            print(error)
-            self.isFetching = false
+        NotificationService.getAll { notifications in
+            Task {
+                self.notifications = notifications
+                self.isFetching = false
+            }
         }
     }
     
-    func create() {
+    func read(notification: Notification, completion: @escaping () -> Void) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let notification = Notification(uid: uid, action: .like, type: .post, referenceId: "LeHuynhDucID", userInteractionId: "XTzUZUn51MWFEShk3R3nIoe5R4s2", content: "lhduc2205 has liked your post")
         
-        NotificationService.create(notification) { isSuccess, _ in
-            print(isSuccess)
+        if notification.isRead {
+            completion()
+            return
         }
+        
+        NotificationService.update(with: notification.id, field: "isRead", data: true) { isSuccess, _ in
+            if !isSuccess { return }
+        
+            NotificationService.updateUnReadCount(of: uid, data: FieldValue.increment(-1.0)) { isSuccess, _ in
+                if !isSuccess { return }
+                completion()
+            }
+        }
+                
     }
 }

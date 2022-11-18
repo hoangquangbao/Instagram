@@ -32,7 +32,6 @@ struct UserProfileView: View {
 
 private extension UserProfileView {
     var _bio: some View {
-//        Text("Digital goodies designer @pixsellz \nEverything is designed.")
         Text(user.description)
             .font(Font.system(size: 13, weight: .regular))
             .foregroundColor(Color._262626)

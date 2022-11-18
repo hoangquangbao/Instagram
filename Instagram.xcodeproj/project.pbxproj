@@ -76,6 +76,7 @@
 		06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC028D46818002095E5 /* UIColor.stencil */; };
 		246EF3039CCB1C4170B0B595 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA1A4B3DD8121A80730CF7C /* libPods-Instagram.a */; };
 		6E0015A82926521400011DD1 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0015A72926521400011DD1 /* PostDetailView.swift */; };
+		6E332FEC292734650034D28D /* NotificationInfoShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E332FEB292734650034D28D /* NotificationInfoShimmer.swift */; };
 		6E353EE8291DE4D700373A5B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E353EE7291DE4D700373A5B /* Comment.swift */; };
 		6E60AE7D291557E700B816B5 /* StoryAvatarShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60AE7C291557E700B816B5 /* StoryAvatarShimmer.swift */; };
 		6E60AE7F29162A9900B816B5 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60AE7E29162A9900B816B5 /* StoryViewModel.swift */; };
@@ -229,6 +230,7 @@
 		11CB14A04F81EE274AD43F24 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		1EA1A4B3DD8121A80730CF7C /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E0015A72926521400011DD1 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		6E332FEB292734650034D28D /* NotificationInfoShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInfoShimmer.swift; sourceTree = "<group>"; };
 		6E353EE7291DE4D700373A5B /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		6E60AE7C291557E700B816B5 /* StoryAvatarShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAvatarShimmer.swift; sourceTree = "<group>"; };
 		6E60AE7E29162A9900B816B5 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
@@ -557,6 +559,7 @@
 				6E8EB8A32914C4A000B4761A /* UserRowShimmer.swift */,
 				6E60AE7C291557E700B816B5 /* StoryAvatarShimmer.swift */,
 				6ED7D78E2921FB5200928F80 /* CommentRowShimmer.swift */,
+				6E332FEB292734650034D28D /* NotificationInfoShimmer.swift */,
 			);
 			path = Shimmer;
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				6E353EE8291DE4D700373A5B /* Comment.swift in Sources */,
 				06494716291FD2BE005557D4 /* Enum.swift in Sources */,
 				CD602443291CE4770060F613 /* CommentView.swift in Sources */,
+				6E332FEC292734650034D28D /* NotificationInfoShimmer.swift in Sources */,
 				06469313290BEB9400F846A4 /* ActionSheetItem.swift in Sources */,
 				6E9B8635291285DF00FF9487 /* StoryService.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,

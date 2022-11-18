@@ -9,4 +9,5 @@ import Foundation
 
 struct StorageKey {
     static let USER_INFO = "UserInfo"
+    static let NOTIFICATIONS = "Notifications"
 }
