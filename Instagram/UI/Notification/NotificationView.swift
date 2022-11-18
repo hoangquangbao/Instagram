@@ -103,11 +103,19 @@ struct NotificationInfo: View {
             }
             
             NavigationLink(
-                destination: PostDetailView(post: notification.post!),
+                destination: getDestination(),
                 tag: 1,
                 selection: $selection,
                 label: {}
             )
+        }
+    }
+    
+    @ViewBuilder
+    func getDestination() -> some View {
+        switch notification.type {
+        case .post: return PostDetailView(post: notification.post!)
+        default: return PostDetailView(post: notification.post!)
         }
     }
 }
