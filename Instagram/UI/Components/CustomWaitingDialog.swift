@@ -11,24 +11,35 @@ struct CustomWaitingDialog: ViewModifier {
     var title: String
     
     @Binding var isLoading: Bool
+    @State private var shouldAnimate = false
     
     func body(content: Content) -> some View {
         ZStack {
-            content.disabled(isLoading)
+            content
+                .disabled(isLoading)
+                .blur(radius: isLoading ? 7 : 0)
             
             if(isLoading) {
-                Color.black
-                    .opacity(0.7)
-                    .ignoresSafeArea()
-                
-                ProgressView(title)
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-                    .font(.system(.subheadline))
-                    .foregroundColor(Color.black)
-                    .padding(15)
-                    .background(.white)
-                    .cornerRadius(10, corners: .allCorners)
-                    .shadow(color: Color(.systemGray2), radius: 5, x: 0, y: 0)
+                HStack {
+                    Circle()
+                        .fill(AngularGradient(colors: [.yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
+                        .frame(width: 20, height: 20)
+                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
+                        .animation(Animation.easeInOut(duration: 0.5).repeatForever(), value: shouldAnimate)
+                    Circle()
+                        .fill(AngularGradient(colors: [.purple, .red], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
+                        .frame(width: 20, height: 20)
+                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
+                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.3), value: shouldAnimate)
+                    Circle()
+                        .fill(AngularGradient(colors: [.red, .yellow], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
+                        .frame(width: 20, height: 20)
+                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
+                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.6), value: shouldAnimate)
+                }
+                .onAppear {
+                    self.shouldAnimate = true
+                }
             }
         }
     }
