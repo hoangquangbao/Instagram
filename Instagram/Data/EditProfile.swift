@@ -5,7 +5,7 @@ struct EditProfile: Identifiable {
     let title: String
 }
 
-var EditProfileData: [EditProfile] = [
+var editProfileData: [EditProfile] = [
     EditProfile(title: "Name"),
     EditProfile(title: "Username"),
     EditProfile(title: "Bio")

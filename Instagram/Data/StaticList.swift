@@ -7,7 +7,7 @@ struct StaticList: Identifiable {
     let title: String
 }
 
-var SettingListData: [StaticList] = [
+var settingListData: [StaticList] = [
     StaticList(image: Image.icnSetting, title: "Settings"),
     StaticList(image: Image.icnArchive, title: "Archive"),
     StaticList(image: Image.icnScan, title: "QR Code"),

@@ -13,7 +13,7 @@ struct Highlight: Identifiable {
     let cover: String
 }
 
-var HighlightData: [Highlight] = [
+var highlightData: [Highlight] = [
     Highlight(name: "new", cover: "icn_plus_hl"),
     Highlight(name: "Instagram", cover: "icn_Instagram"),
     Highlight(name: "Linkin", cover: "icn_linkin"),

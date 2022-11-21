@@ -657,23 +657,11 @@
 		80B55ED928F0035100BE341D /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
-				80B55EE128F005EF00BE341D /* Models */,
 				803F619F291261B800AD0918 /* ViewModel */,
 				80B55EE628F008C000BE341D /* SubView */,
 				80B55EDA28F0036000BE341D /* ProfileView.swift */,
 			);
 			path = ProfileView;
-			sourceTree = "<group>";
-		};
-		80B55EE128F005EF00BE341D /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				80B55EE228F006CF00BE341D /* Highlight.swift */,
-				80B55EE428F0076A00BE341D /* ProfilePost.swift */,
-				0641FADC2920A5DE00C12816 /* StaticList.swift */,
-				0641FADE2920A88400C12816 /* EditProfile.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		80B55EE628F008C000BE341D /* SubView */ = {
@@ -829,6 +817,10 @@
 			isa = PBXGroup;
 			children = (
 				CDAFADB528F7B185003B48E5 /* MockData.swift */,
+				80B55EE228F006CF00BE341D /* Highlight.swift */,
+				80B55EE428F0076A00BE341D /* ProfilePost.swift */,
+				0641FADC2920A5DE00C12816 /* StaticList.swift */,
+				0641FADE2920A88400C12816 /* EditProfile.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
