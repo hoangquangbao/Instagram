@@ -187,7 +187,7 @@ class SignupViewModel: ObservableObject {
     
     func uploadAvatarImage(completion: @escaping (User) -> Void) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
+        let ref = FirebaseManager.shared.storage.reference(withPath: FirebaseConstants.PROFILE_AVATAR_PATH + "/" + uid)
         guard let imageData = avatarImage?.jpegData(compressionQuality: 0.5) else { return }
         
         ref.putData(imageData, metadata: nil) { metadata, err in
