@@ -13,6 +13,7 @@ class PostRowViewModel: ObservableObject {
     @Published var isNavigateProfileView: Int? = nil
     @Published var isNavigateCommentView: Int? = nil
     @Published var commentText: String = ""
+    @Published var isShowDeletePostAlert: Bool = false
     
     init(post: Post) {
         self.post = post
@@ -143,6 +144,31 @@ class PostRowViewModel: ObservableObject {
             self.post.comments = try await PostService.getComments(with: postId)
         } catch {
             
+        }
+    }
+    
+    func deletePost(completion: @escaping (Bool, Error?) -> Void) {
+        guard let id = post.id else {
+            return
+        }
+        
+        if post.comments != nil {
+            PostService.deleteComment(with: id, comments: post.comments!) { isSuccess, error in
+                if !isSuccess {
+                    completion(isSuccess, error)
+                    return
+                }
+            }
+        }
+        
+        PostService.delete(with: id) { isSuccess, error in
+            if isSuccess {
+                PostService.delete(with: id) { isSuccess, error in
+                    completion(isSuccess, nil)
+                }
+            } else {
+                completion(isSuccess, error)
+            }
         }
     }
 }

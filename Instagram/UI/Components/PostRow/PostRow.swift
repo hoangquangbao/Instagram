@@ -12,6 +12,9 @@ struct PostRow: View {
     @State private var _imageSelectionIndex = 0
     @ObservedObject var vm: PostRowViewModel
     
+    @EnvironmentObject var userVm : UserViewModel
+    @EnvironmentObject var postVm : PostViewModel
+    
     init(post: Post) {
         self.vm = PostRowViewModel(post: post)
     }
@@ -48,10 +51,27 @@ struct PostRow: View {
                 label: {}
             )
         }
+        .alert(isPresented: $vm.isShowDeletePostAlert, content: {
+            Alert(title: Text("Delete this post?"),
+                  primaryButton: .destructive(Text("Delete"), action: {
+                vm.deletePost { isSuccess, error in
+                    if(isSuccess) {
+                        Task {
+                            await self.userVm.refresh()
+                            await self.postVm.refresh()
+                        }
+                    } else {
+                        print(error?.localizedDescription as Any)
+                    }
+                }
+            }),
+                  secondaryButton: .cancel())
+        })
     }
 }
 
 private extension PostRow {
+    
     var _header: some View {
         HStack {
             HStack(spacing: 9.0) {
@@ -74,6 +94,9 @@ private extension PostRow {
             Spacer()
             
             Image.icnMore
+                .contextMenu {
+                    PostOptionView(post: vm.post, isShowDeletePostAlert: $vm.isShowDeletePostAlert)
+                }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.bottom, 8)

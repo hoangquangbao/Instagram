@@ -9,9 +9,9 @@ import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     
-    @Published var isShowBottomSheet = false
-    @Published var isShowDetailOption = false
-    @Published var isShowEditProfile = false
+    @Published var isShowBottomSheet: Bool = false
+    @Published var isShowDetailOption: Bool = false
+    @Published var isShowEditProfile: Bool = false
     @Published var title: String = ""
     @Published var imageAttach: UIImage?
     

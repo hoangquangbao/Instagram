@@ -8,7 +8,7 @@ struct OptionsView: View {
     
     var body: some View {
             ScrollView(.vertical, showsIndicators:false) {
-                ForEach(SettingListData){ item in
+                ForEach(settingListData){ item in
                     VStack(alignment: .leading){
                         Button {
                             withAnimation {

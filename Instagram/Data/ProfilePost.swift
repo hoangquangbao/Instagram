@@ -13,7 +13,7 @@ struct ProfilePost: Identifiable {
     let type: String
 }
 
-var ProfilePostData: [ProfilePost] = [
+var profilePostData: [ProfilePost] = [
     ProfilePost(image: "img_post_1", type: "multiple"),
     ProfilePost(image: "img_post_2", type: "video"),
     ProfilePost(image: "img_post_3", type: "multiple"),

@@ -97,7 +97,7 @@ private extension EditProfileView {
     var _editProfile: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 20) {
-                ForEach(EditProfileData) { item in
+                ForEach(editProfileData) { item in
                     Button {
                         _selectedItem = item
                     } label: {

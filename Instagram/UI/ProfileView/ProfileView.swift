@@ -28,7 +28,7 @@ struct ProfileView: View {
                 ScrollView(.vertical, showsIndicators: false){
                     VStack(alignment: .center, spacing: 0) {
                         UserProfileView(user: user, postCount: postVm.getOwningPost(of: user).count, isShowEditProfile: $vm.isShowEditProfile)
-                        _highlightView(data: HighlightData)
+                        _highlightView(data: highlightData)
                         SegmentedPickerView(titles: vm.pickerImages,
                                             selectedIndex: $_selectedIndex)
                         if _selectedIndex == 0 {
@@ -81,7 +81,7 @@ struct ProfileView: View {
             GeometryReader { geometry in
                 BottomSheetView(
                     isOpen: self.$vm.isShowBottomSheet,
-                    maxHeight: geometry.size.height * 0.7
+                    maxHeight: geometry.size.height * 0.5
                 ) {
                     OptionsView(bottomSheetShow: $vm.isShowBottomSheet, isShowDetailOption: $vm.isShowDetailOption, title: $vm.title)
                 }
@@ -142,7 +142,7 @@ private extension ProfileView {
     
     func _settingsView() -> some View {
         ScrollView(.vertical, showsIndicators:false) {
-            ForEach(SettingListData){ item in
+            ForEach(settingListData){ item in
                 VStack(alignment: .leading){
                     HStack(alignment: .center, spacing: 15){
                         Image("\(item.image)")

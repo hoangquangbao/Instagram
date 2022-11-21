@@ -19,6 +19,7 @@ extension Image {
     static var icnCollapse: Image { return Image("icn_collapse") }
     static var icnComment: Image { return Image("icn_comment") }
     static var icnDiscoveryPeople: Image { return Image("icn_discovery_people") }
+    static var icnEdit: Image { return Image("icn_edit") }
     static var icnFacebook: Image { return Image("icn_facebook") }
     static var icnFacebookBlack: Image { return Image("icn_facebook_black") }
     static var icnGithub: Image { return Image("icn_github") }
@@ -51,6 +52,7 @@ extension Image {
     static var icnShare: Image { return Image("icn_share") }
     static var icnShop: Image { return Image("icn_shop") }
     static var icnStackOverflow: Image { return Image("icn_stackOverflow") }
+    static var icnTrash: Image { return Image("icn_trash") }
     static var icnTv: Image { return Image("icn_tv") }
     static var icnUnHeart: Image { return Image("icn_un_heart") }
     static var icnUnHome: Image { return Image("icn_un_home") }
