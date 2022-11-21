@@ -12,7 +12,7 @@ struct PostService: ServiceProtocol {
     static private let _postRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.POST_COLLECTION)
     
     static func get(by id: String) async throws -> Post? {
-        let post = try await _postRef.document(id).getDocument().data(as: Post.self)
+        let post = try? await _postRef.document(id).getDocument().data(as: Post.self)
         guard var post = post else { return nil }
         
         post.user = try await UserService.get(by: post.uid)
@@ -109,7 +109,25 @@ struct PostService: ServiceProtocol {
         }
     }
     
+    static func deleteComment(with id: String, comments: [Comment], completion: @escaping (Bool, Error?) -> Void) {
+        for comment in comments {
+            _postRef.document(id).collection(FirebaseConstants.COMMENT_COLLECTION).document(comment.id).delete { error in
+                guard let error = error else {
+                    completion(true, nil)
+                    return
+                }
+                completion(false, error)
+            }
+        }
+    }
+    
     static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
-        
+        _postRef.document(id).delete { error in
+            guard let error = error else {
+                completion(true, nil)
+                return
+            }
+            completion(false, error)
+        }
     }
 }

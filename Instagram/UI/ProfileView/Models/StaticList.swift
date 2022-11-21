@@ -14,3 +14,8 @@ var SettingListData: [StaticList] = [
     StaticList(image: Image.icnSaved, title: "Saved"),
     StaticList(image: Image.icnCloseFriend, title: "Close Friends"),
 ]
+
+var postOptionData: [StaticList] = [
+    StaticList(image: Image.icnEdit, title: "Edit"),
+    StaticList(image: Image.icnTrash, title: "Delete")
+]
