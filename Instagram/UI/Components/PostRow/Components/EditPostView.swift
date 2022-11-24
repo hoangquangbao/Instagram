@@ -6,9 +6,8 @@ struct EditPostView: View {
     
     @State private var _caption: String = ""
     @State private var _imagesUrl: [String] = []
-    @State private var _imageSelectionIndex = 0
-    @State private var _isUpdatingPost: Bool = false
     @State private var _fields: [String] = []
+    @State private var _imageSelectionIndex = 0
     
     @EnvironmentObject var userVm: UserViewModel
     @EnvironmentObject var postVm: PostViewModel
@@ -47,12 +46,24 @@ struct EditPostView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        vm.handleEditPost(_caption: _caption, _imagesUrl: _imagesUrl) { isSuccess, error in
+                            if isSuccess {
+                                Task {
+                                    await userVm.refresh()
+                                    await postVm.refresh()
+                                    dismiss()
+                                }
+                            } else {
+                                dismiss()
+                            }
+                        }
                     } label: {
                         Image(systemName: "checkmark")
                             .font(.system(size: 25, weight: .regular))
                             .foregroundColor(.blue)
                     }
+                    .disabled(_caption.isEmpty || _imagesUrl.isEmpty)
+                    .opacity((_caption.isEmpty || _imagesUrl.isEmpty) ? 0.3 : 1)
                 }
             }
         }
@@ -127,17 +138,5 @@ private extension EditPostView {
         if _imagesUrl.count > 0 {
             _imagesUrl.remove(at: index)
         }
-    }
-    
-    func _postEdited(completion: @escaping (Bool) -> Void) {
-        if _imagesUrl.count == vm.imageCount {
-            _fields.append("imagesUrl")
-        }
-        
-        if _caption == vm.post.caption {
-            _fields.append("caption")
-        }
-        
-        completion(_fields.isNotEmpty)
     }
 }

@@ -83,12 +83,11 @@ struct PostService: ServiceProtocol {
     
     static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
         _postRef.document(id).updateData([field: data]) { error in
-            guard error != nil else {
-                completion (false, error)
-                return
+            if let error = error {
+                completion(false, error)
+            } else {
+                completion(true, nil)
             }
-            
-            completion(true, nil)
         }
     }
     

@@ -148,8 +148,34 @@ class PostRowViewModel: ObservableObject {
         }
     }
     
-    func updatePost(fields: [String], data: Any, completion: @escaping (Bool, Error) -> Void) {
+    func handleEditPost(_caption: String, _imagesUrl: [String], completion: @escaping (Bool, Error?) -> Void) {
+        guard let postId = post.id else { return }
         
+        if _imagesUrl.count != imageCount {
+            updatePost(with: postId, field: "imagesUrl", data: _imagesUrl) { isSuccess, error in
+                if !isSuccess {
+                    completion(false, error)
+                    return
+                }
+            }
+        }
+        
+        if _caption != post.caption {
+            updatePost(with: postId, field: "caption", data: _caption) { isSuccess, error in
+                if !isSuccess {
+                    completion(false, error)
+                    return
+                }
+            }
+        }
+        completion(true, nil)
+    }
+    
+    func updatePost(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+        
+        PostService.update(with: id, field: field, data: data) { isSuccess, error in
+            completion(isSuccess, error)
+        }
     }
     
     func deletePost(completion: @escaping (Bool, Error?) -> Void) {
