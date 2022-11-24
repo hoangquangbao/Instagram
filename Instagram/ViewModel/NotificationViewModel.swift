@@ -39,6 +39,7 @@ import Firebase
         self.isFetching = true
         NotificationService.getAll { notifications in
             Task {
+                print(notifications)
                 self.notifications = notifications
                 self.isFetching = false
             }

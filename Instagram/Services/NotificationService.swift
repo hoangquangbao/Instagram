@@ -16,7 +16,7 @@ struct NotificationService {
         let ownRef = _notificationRef.document(uid).collection(FirebaseConstants.NOTIFICATION_COLLECTION)
         ownRef.order(by: "notifyAt", descending: true).addSnapshotListener { snapshot, error in
             Task {
-                guard let documents = snapshot?.documents else { return }
+                guard let documents = snapshot?.documents else { completion([]); return }
                 var notifications = documents.compactMap { try? $0.data(as: Notification.self) }
                 
                 for i in 0..<notifications.count {

@@ -35,8 +35,13 @@ struct NotificationView: View {
                                     .padding(.horizontal, AppStyle.defaultSpacing)
                                 Spacer()
                             } else {
-                                ForEach(vm.notifications) { notification in
-                                    NotificationInfo(notification: notification, isShowDialog: $isWaitingDialogDisplayed, vm: vm)
+                                if(vm.notifications.isNotEmpty) {
+                                    ForEach(vm.notifications) { notification in
+                                        NotificationInfo(notification: notification, isShowDialog: $isWaitingDialogDisplayed, vm: vm)
+                                    }
+                                } else {
+                                    Text("Don't have any notification yet")
+                                        .font(.system(.title))
                                 }
                             }
                         }
@@ -93,10 +98,12 @@ struct NotificationInfo: View {
                     
                     Spacer()
                     
-                    KFImage(URL(string: notification.post!.imagesUrl[0]))
-                        .resizable()
-                        .frame(width: 45, height: 45)
-                        .aspectRatio(contentMode: .fill)
+                    if let post = notification.post {
+                        KFImage(URL(string: post.imagesUrl[0]))
+                            .resizable()
+                            .frame(width: 45, height: 45)
+                            .aspectRatio(contentMode: .fill)
+                    }
                     
                 }
                 .padding(AppStyle.defaultSpacing)
@@ -114,7 +121,7 @@ struct NotificationInfo: View {
     @ViewBuilder
     func getDestination() -> some View {
         switch notification.type {
-        case .post: return PostDetailView(post: notification.post!)
+        case .post: return PostDetailView(post: notification.post)
         default: return PostDetailView(post: notification.post!)
         }
     }

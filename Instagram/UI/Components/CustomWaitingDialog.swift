@@ -17,7 +17,7 @@ struct CustomWaitingDialog: ViewModifier {
         ZStack {
             content
                 .disabled(isLoading)
-                .blur(radius: isLoading ? 7 : 0)
+                .blur(radius: isLoading ? 5 : 0)
             
             if(isLoading) {
                 HStack {
