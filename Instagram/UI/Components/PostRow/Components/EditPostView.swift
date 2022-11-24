@@ -8,11 +8,12 @@ struct EditPostView: View {
     @State private var _imagesUrl: [String] = []
     @State private var _imageSelectionIndex = 0
     @State private var _isUpdatingPost: Bool = false
+    @State private var _fields: [String] = []
     
     @EnvironmentObject var userVm: UserViewModel
     @EnvironmentObject var postVm: PostViewModel
     @Environment(\.dismiss) var dismiss
-
+    
     init(post: Post) {
         self.vm = PostRowViewModel(post: post)
     }
@@ -63,15 +64,15 @@ private extension EditPostView {
     var _header: some View {
         HStack {
             HStack(spacing: 9.0) {
-                    CircleAvatar(imageUrl: vm.post.user!.avatarUrl, radius: 40)
-                    VStack(alignment: .leading) {
-                        Text(vm.post.user!.fullName)
-                            .font(.subheadline)
-                            .fontWeight(.bold)
-                        Text("@\(vm.post.user!.username)")
-                            .font(.caption)
-                            .fontWeight(.light)
-                    }
+                CircleAvatar(imageUrl: vm.post.user!.avatarUrl, radius: 40)
+                VStack(alignment: .leading) {
+                    Text(vm.post.user!.fullName)
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                    Text("@\(vm.post.user!.username)")
+                        .font(.caption)
+                        .fontWeight(.light)
+                }
             }
             Spacer()
             _postTime
@@ -90,31 +91,53 @@ private extension EditPostView {
     
     var _postInfo: some View {
         VStack {
-            ZStack(alignment: .topLeading) {
-                SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
-
-                Button {
+            if _imagesUrl.isNotEmpty {
+                ZStack(alignment: .topLeading) {
+                    SquareImageTab(imagesUrl: _imagesUrl, currentStep: $_imageSelectionIndex)
                     
-                } label: {
-                    Image(systemName: "trash.fill")
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.secondary)
-                        .clipShape(Circle())
-                        .padding()
+                    Button {
+                        _deleteImage(at: _imageSelectionIndex)
+                    } label: {
+                        Image(systemName: "trash.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(.white)
+                            .padding(8)
+                            .background(Color.secondary)
+                            .clipShape(Circle())
+                            .padding()
+                    }
                 }
+                
+                if(vm.imageCount > 1) {
+                    ImageTabIndicator(tabCount: vm.imageCount, activeIndex: $_imageSelectionIndex)
+                        .padding(.leading, 60)
+                }
+                
+                TextField("", text: $_caption)
+                    .font(.footnote)
+                    .padding(.top, 8)
+                    .padding(.horizontal, AppStyle.defaultSpacing)
             }
-            
-            if(vm.imageCount > 1) {
-                ImageTabIndicator(tabCount: vm.imageCount, activeIndex: $_imageSelectionIndex)
-                    .padding(.leading, 60)
-            }
-            
-            TextField("", text: $_caption)
-                .font(.footnote)
-                .padding(.top, 8)
-                .padding(.horizontal, AppStyle.defaultSpacing)
         }
+    }
+}
+
+private extension EditPostView {
+    func _deleteImage(at index: Int) {
+        if _imagesUrl.count > 0 {
+            _imagesUrl.remove(at: index)
+        }
+    }
+    
+    func _postEdited(completion: @escaping (Bool) -> Void) {
+        if _imagesUrl.count == vm.imageCount {
+            _fields.append("imagesUrl")
+        }
+        
+        if _caption == vm.post.caption {
+            _fields.append("caption")
+        }
+        
+        completion(_fields.isNotEmpty)
     }
 }

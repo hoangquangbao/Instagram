@@ -148,7 +148,7 @@ class PostRowViewModel: ObservableObject {
         }
     }
     
-    func updatePost(field: [String], data: Any, completion: @escaping (Bool, Error) -> Void) {
+    func updatePost(fields: [String], data: Any, completion: @escaping (Bool, Error) -> Void) {
         
     }
     
@@ -175,11 +175,5 @@ class PostRowViewModel: ObservableObject {
                 completion(isSuccess, error)
             }
         }
-    }
-}
-
-extension Array where Element: Comparable {
-    func containsSame(as other: [Element]) -> Bool {
-        return (self.count == other.count) && (self.sorted() == other.sorted())
     }
 }
