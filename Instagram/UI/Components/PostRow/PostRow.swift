@@ -97,9 +97,11 @@ private extension PostRow {
             
             Image.icnMore
                 .contextMenu {
-                    PostOptionView(
-                        isShowEditPost: $vm.isShowEditPost,
-                        isShowDeletePostAlert: $vm.isShowDeletePostAlert)
+                    if vm.post.uid == FirebaseManager.shared.auth.currentUser?.uid {
+                        PostOptionView(
+                            isShowEditPost: $vm.isShowEditPost,
+                            isShowDeletePostAlert: $vm.isShowDeletePostAlert)
+                    }
                 }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
