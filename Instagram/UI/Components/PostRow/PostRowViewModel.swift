@@ -14,6 +14,7 @@ class PostRowViewModel: ObservableObject {
     @Published var isNavigateCommentView: Int? = nil
     @Published var commentText: String = ""
     @Published var isShowDeletePostAlert: Bool = false
+    @Published var isShowEditPost: Bool = false
     
     init(post: Post) {
         self.post = post
@@ -147,6 +148,10 @@ class PostRowViewModel: ObservableObject {
         }
     }
     
+    func updatePost(field: [String], data: Any, completion: @escaping (Bool, Error) -> Void) {
+        
+    }
+    
     func deletePost(completion: @escaping (Bool, Error?) -> Void) {
         guard let id = post.id else {
             return
@@ -170,5 +175,11 @@ class PostRowViewModel: ObservableObject {
                 completion(isSuccess, error)
             }
         }
+    }
+}
+
+extension Array where Element: Comparable {
+    func containsSame(as other: [Element]) -> Bool {
+        return (self.count == other.count) && (self.sorted() == other.sorted())
     }
 }

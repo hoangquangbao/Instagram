@@ -51,6 +51,9 @@ struct PostRow: View {
                 label: {}
             )
         }
+        .fullScreenCover(isPresented: $vm.isShowEditPost) {
+            EditPostView(post: vm.post)
+        }
         .alert(isPresented: $vm.isShowDeletePostAlert, content: {
             Alert(title: Text("Delete this post?"),
                   primaryButton: .destructive(Text("Delete"), action: {
@@ -88,14 +91,15 @@ private extension PostRow {
                             .fontWeight(.light)
                     }
                 }
-                
             }
             
             Spacer()
             
             Image.icnMore
                 .contextMenu {
-                    PostOptionView(post: vm.post, isShowDeletePostAlert: $vm.isShowDeletePostAlert)
+                    PostOptionView(
+                        isShowEditPost: $vm.isShowEditPost,
+                        isShowDeletePostAlert: $vm.isShowDeletePostAlert)
                 }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
