@@ -9,18 +9,12 @@ import SwiftUI
 
 struct ExploreView: View {
     let post: Post
-    @EnvironmentObject var postVm: PostViewModel
     
     var body: some View {
         ZStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
                     PostRow(post: post).padding(.bottom, 0.5)
-                    ForEach(postVm.getNotOwningPost()) { _post in
-                        if(_post.id != post.id) {
-                            PostRow(post: _post).padding(.bottom, 0.5)
-                        }
-                    }
                 }
             }
         }
