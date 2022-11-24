@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PostOptionView: View {
-    let post: Post
+    @Binding var isShowEditPost: Bool
     @Binding var isShowDeletePostAlert: Bool
     
     var body: some View {
@@ -10,8 +10,11 @@ struct PostOptionView: View {
                 VStack {
                     Button {
                         if item.title == "Edit" {
-                            print("Edit Post")
+                            print("Editting Post")
+                            isShowEditPost.toggle()
+                            
                         } else {
+                            print("Deleting Post")
                             isShowDeletePostAlert.toggle()
                         }
                     } label: {
