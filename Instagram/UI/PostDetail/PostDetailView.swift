@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    let post: Post
+    let post: Post?
     
     var body: some View {
-        ScrollView {
-            PostRow(post: post)
+        if let post = post {
+            ScrollView {
+                PostRow(post: post)
+            }
+        } else {
+            VStack {
+                Text("This post does not exist")
+                Text("or has been deleted by author.")
+            }
         }
     }
 }
