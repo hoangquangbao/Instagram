@@ -193,13 +193,7 @@ class PostRowViewModel: ObservableObject {
         }
         
         PostService.delete(with: id) { isSuccess, error in
-            if isSuccess {
-                PostService.delete(with: id) { isSuccess, error in
-                    completion(isSuccess, nil)
-                }
-            } else {
-                completion(isSuccess, error)
-            }
+            completion(isSuccess, error)
         }
     }
 }

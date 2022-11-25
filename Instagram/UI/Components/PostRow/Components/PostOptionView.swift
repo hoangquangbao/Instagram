@@ -5,21 +5,18 @@ struct PostOptionView: View {
     @Binding var isShowDeletePostAlert: Bool
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators:false) {
-            ForEach(postOptionData){ item in
-                VStack {
-                    Button {
-                        if item.title == "Edit" {
-                            print("Editting Post")
-                            isShowEditPost.toggle()
-                            
-                        } else {
-                            print("Deleting Post")
-                            isShowDeletePostAlert.toggle()
-                        }
-                    } label: {
-                        _lable(item: item)
+        ForEach(postOptionData){ item in
+            VStack {
+                Button {
+                    if item.title == "Edit" {
+                        print("Editting Post")
+                        isShowEditPost.toggle()
+                    } else {
+                        print("Deleting Post")
+                        isShowDeletePostAlert.toggle()
                     }
+                } label: {
+                    _lable(item: item)
                 }
             }
         }

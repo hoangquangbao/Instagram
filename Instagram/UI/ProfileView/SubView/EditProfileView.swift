@@ -29,12 +29,12 @@ struct EditProfileView: View {
                 vm._uploadAvatar { isSuccess, error in
                     if isSuccess {
                         Task {
-                            _isStoryUploading.toggle()
-                            dismiss()
                             await userVm.refresh()
                             await postVm.refresh()
                             await storyVm.refresh()
                             await sessionVm.refresh()
+                            _isStoryUploading.toggle()
+                            dismiss()
                         }
                     } else {
                         _isStoryUploading.toggle()
