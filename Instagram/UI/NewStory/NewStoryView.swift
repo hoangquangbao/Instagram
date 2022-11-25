@@ -83,11 +83,11 @@ private extension NewStoryView {
                     vm.uploadStory { isSuccess in
                         if(isSuccess) {
                             Task {
-                                vm.isStoryUploading.toggle()
                                 await userVm.refresh()
                                 await postVm.refresh()
                                 await storyVm.refresh()
                                 await sessionVm.refresh()
+                                vm.isStoryUploading.toggle()
                                 presentationMode.wrappedValue.dismiss()
                             }
                         } else {

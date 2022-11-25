@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icn_more.pdf",
+      "filename" : "icn_more 1.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "icn_more.png",
       "idiom" : "universal"
     }
   ],

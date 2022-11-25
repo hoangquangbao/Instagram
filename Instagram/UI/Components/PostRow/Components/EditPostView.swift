@@ -8,6 +8,7 @@ struct EditPostView: View {
     @State private var _imagesUrl: [String] = []
     @State private var _fields: [String] = []
     @State private var _imageSelectionIndex = 0
+    @State private var _isLoading: Bool = false
     
     @EnvironmentObject var userVm: UserViewModel
     @EnvironmentObject var postVm: PostViewModel
@@ -47,13 +48,16 @@ struct EditPostView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         vm.handleEditPost(_caption: _caption, _imagesUrl: _imagesUrl) { isSuccess, error in
+                            _isLoading.toggle()
                             if isSuccess {
                                 Task {
                                     await userVm.refresh()
                                     await postVm.refresh()
+                                    _isLoading.toggle()
                                     dismiss()
                                 }
                             } else {
+                                _isLoading.toggle()
                                 dismiss()
                             }
                         }
@@ -66,6 +70,7 @@ struct EditPostView: View {
                     .opacity((_caption.isEmpty || _imagesUrl.isEmpty) ? 0.3 : 1)
                 }
             }
+            .showWaitingDialog(title: "Uploading...", isLoading: $_isLoading)
         }
     }
 }
@@ -113,7 +118,7 @@ private extension EditPostView {
                             .font(.system(size: 20))
                             .foregroundColor(.white)
                             .padding(8)
-                            .background(Color.secondary)
+                            .background(Color.gray.opacity(0.4))
                             .clipShape(Circle())
                             .padding()
                     }

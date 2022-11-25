@@ -34,7 +34,7 @@ private extension UserProfileView {
     var _bio: some View {
         Text(user.description)
             .font(Font.system(size: 13, weight: .regular))
-            .foregroundColor(Color._262626)
+            .foregroundColor(.primary)
     }
     var _editProfileButton: some View {
         Button {

@@ -11,6 +11,7 @@ import Shimmer
 struct PostRow: View {
     @State private var _imageSelectionIndex = 0
     @ObservedObject var vm: PostRowViewModel
+    @State private var _isLoading: Bool = false
     
     @EnvironmentObject var userVm : UserViewModel
     @EnvironmentObject var postVm : PostViewModel
@@ -58,18 +59,22 @@ struct PostRow: View {
             Alert(title: Text("Delete this post?"),
                   primaryButton: .destructive(Text("Delete"), action: {
                 vm.deletePost { isSuccess, error in
+                    _isLoading.toggle()
                     if(isSuccess) {
                         Task {
                             await self.userVm.refresh()
                             await self.postVm.refresh()
+                            _isLoading.toggle()
                         }
                     } else {
+                        _isLoading.toggle()
                         print(error?.localizedDescription as Any)
                     }
                 }
             }),
                   secondaryButton: .cancel())
         })
+        .showWaitingDialog(title: "Uploading...", isLoading: $_isLoading)
     }
 }
 
@@ -94,15 +99,19 @@ private extension PostRow {
             }
             
             Spacer()
-            
-            Image.icnMore
-                .contextMenu {
-                    if vm.post.uid == FirebaseManager.shared.auth.currentUser?.uid {
-                        PostOptionView(
-                            isShowEditPost: $vm.isShowEditPost,
-                            isShowDeletePostAlert: $vm.isShowDeletePostAlert)
-                    }
+            Menu {
+                if vm.post.uid == FirebaseManager.shared.auth.currentUser?.uid {
+                    PostOptionView(
+                        isShowEditPost: $vm.isShowEditPost,
+                        isShowDeletePostAlert: $vm.isShowDeletePostAlert)
                 }
+            } label: {
+                Image.icnMore
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                    .rotationEffect(Angle(degrees: 90))
+            }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.bottom, 8)
@@ -111,6 +120,7 @@ private extension PostRow {
     var _content: some View {
         VStack {
             SquareImageTab(imagesUrl: vm.post.imagesUrl, currentStep: $_imageSelectionIndex)
+            
             HStack {
                 HStack(spacing: 10.0) {
                     Button {

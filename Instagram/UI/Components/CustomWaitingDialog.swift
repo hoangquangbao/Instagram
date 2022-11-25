@@ -22,20 +22,34 @@ struct CustomWaitingDialog: ViewModifier {
             if(isLoading) {
                 HStack {
                     Circle()
-                        .fill(AngularGradient(colors: [.yellow, .purple], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
-                        .frame(width: 20, height: 20)
-                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
+                        .foregroundColor(Color.seaBuckthorn700)
+                        .frame(width: 12, height: 12)
+                        .scaleEffect(shouldAnimate ? 0.6 : 0.3)
                         .animation(Animation.easeInOut(duration: 0.5).repeatForever(), value: shouldAnimate)
+                    
                     Circle()
-                        .fill(AngularGradient(colors: [.purple, .red], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
-                        .frame(width: 20, height: 20)
-                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
+                        .foregroundColor(Color.seaBuckthorn600)
+                        .frame(width: 12, height: 12)
+                        .scaleEffect(shouldAnimate ? 0.7 : 0.3)
+                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.1), value: shouldAnimate)
+                    
+                    Circle()
+                        .foregroundColor(Color.seaBuckthorn500)
+                        .frame(width: 12, height: 12)
+                        .scaleEffect(shouldAnimate ? 0.8 : 0.3)
+                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.2), value: shouldAnimate)
+                    
+                    Circle()
+                        .foregroundColor(Color.seaBuckthorn400)
+                        .frame(width: 12, height: 12)
+                        .scaleEffect(shouldAnimate ? 0.9 : 0.3)
                         .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.3), value: shouldAnimate)
+                    
                     Circle()
-                        .fill(AngularGradient(colors: [.red, .yellow], center: .bottomTrailing, startAngle: .degrees(180), endAngle: .degrees(270)))
-                        .frame(width: 20, height: 20)
-                        .scaleEffect(shouldAnimate ? 1.0 : 0.5)
-                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.6), value: shouldAnimate)
+                        .foregroundColor(Color.seaBuckthorn300)
+                        .frame(width: 12, height: 12)
+                        .scaleEffect(shouldAnimate ? 1.0 : 0.3)
+                        .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.4), value: shouldAnimate)
                 }
                 .onAppear {
                     self.shouldAnimate = true
