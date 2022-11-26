@@ -39,15 +39,16 @@ struct EditFieldView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
+                        _isStoryUploading.toggle()
                         vm._updateProfile(field: vm.getFieldName(key: _item.title), data: _fieldValue) { isSuccess, error in
                             if isSuccess {
                                 Task {
-                                    _isStoryUploading.toggle()
-                                    dismiss()
                                     await userVm.refresh()
                                     await postVm.refresh()
                                     await storyVm.refresh()
                                     await sessionVm.refresh()
+                                    _isStoryUploading.toggle()
+                                    dismiss()
                                 }
                             } else {
                                 _isStoryUploading.toggle()
