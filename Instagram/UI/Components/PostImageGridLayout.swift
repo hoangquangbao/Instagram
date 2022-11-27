@@ -11,15 +11,13 @@ import Kingfisher
 struct PostImageGridLayout: View {
     let posts: [Post]
     let columnCount: Int
-    let onImageTap: (() -> Void)?
     
     private let _spacing = 2.0
     private var _gridColumns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
-    init(posts: [Post], columnCount: Int = 3, onImageTap: (() -> Void)? = nil) {
+    init(posts: [Post], columnCount: Int = 3) {
         self.posts = posts
         self.columnCount = columnCount
-        self.onImageTap = onImageTap
         initializeGridColumn(columnCount)
     }
     
@@ -28,7 +26,7 @@ struct PostImageGridLayout: View {
             LazyVGrid(columns: _gridColumns, spacing: _spacing) {
                 ForEach(posts) { post in
                     NavigationLink {
-                        ExploreView(post: post)
+                        ExploreView(id: post.id!, posts: posts)
                     } label: {
                         _squareImage(with: post.imagesUrl[0], size: _imageSize)
                     }
@@ -58,7 +56,6 @@ private extension PostImageGridLayout {
                         Image(systemName: "arrow.down.to.line")
                     }
                 }
-                
             }
     }
     

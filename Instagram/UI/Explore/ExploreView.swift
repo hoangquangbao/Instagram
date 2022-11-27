@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ExploreView: View {
-    let post: Post
+    let id: String
+    let posts: [Post]
+    @EnvironmentObject var postVm: PostViewModel
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    PostRow(post: post).padding(.bottom, 0.5)
+        ScrollView {
+            ScrollViewReader { proxy in
+                LazyVStack {
+                    ForEach(posts) { _post in
+                        PostRow(post: _post).padding(.bottom, 0.5)
+                            .id(_post.id)
+                    }
                 }
+                .onAppear(perform: {
+                    proxy.scrollTo(id, anchor: .top)
+                })
             }
         }
     }
@@ -23,6 +31,6 @@ struct ExploreView: View {
 
 struct ExploreView_Previews: PreviewProvider {
     static var previews: some View {
-        ExploreView(post: MockData.posts[0])
+        ExploreView(id: MockData.posts[0].id!, posts: MockData.posts)
     }
 }
