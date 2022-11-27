@@ -10,13 +10,13 @@ struct UnderlineModifier: ViewModifier
         content
             .background(
                 Rectangle()
-                    .fill(Color.black)
+                    .fill(Color.appPrimary)
                     .frame(width: frames[selectedIndex].width, height: 2)
                     .offset(x: frames[selectedIndex].minX - frames[0].minX), alignment: .bottomLeading)
             .background(
                 Rectangle()
                     .fill(Color.gray)
-                    .frame(height: 1), alignment: .bottomLeading
+                    .frame(height: 0.5), alignment: .bottomLeading
             )
     }
 }

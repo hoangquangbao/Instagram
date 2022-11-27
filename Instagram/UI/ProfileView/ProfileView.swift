@@ -136,8 +136,17 @@ private extension ProfileView {
     }
     
     var _owningContact: some View {
-        Text("Owning contact")
-            .font(.system(size: 15, weight: .ultraLight))
+        VStack(spacing: 5) {
+            Text("Photos and videos of you")
+                .font(.system(size: 15, weight: .bold))
+                .foregroundColor(.appPrimary)
+            
+            Text("When people tag you in photos and videos, they'll appear here")
+                .font(.system(size: 12, weight: .regular))
+                .foregroundColor(.semiText)
+                .multilineTextAlignment(.center)
+        }
+        .padding(50)
     }
     
     func _settingsView() -> some View {

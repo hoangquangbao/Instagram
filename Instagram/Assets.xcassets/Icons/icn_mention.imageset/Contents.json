@@ -3,6 +3,16 @@
     {
       "filename" : "icn_mentions.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "icn_mention.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
