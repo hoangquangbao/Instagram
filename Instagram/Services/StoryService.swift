@@ -56,7 +56,12 @@ struct StoryService: ServiceProtocol {
     }
     
     static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
-        return
+        _storyRef.document(id).delete { error in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+            completion(true, nil)
+        }
     }
-    
 }
