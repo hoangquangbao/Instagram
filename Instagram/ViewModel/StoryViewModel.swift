@@ -19,7 +19,7 @@ import SwiftUI
         }
     }
     
-    @MainActor func refresh() async {
+    func refresh() async {
         do {
             self.stories = try await StoryService.getAll()
             deleteExpiredStory(stories: stories)
@@ -41,16 +41,17 @@ import SwiftUI
         for i in 0..<stories.count {
             if isOver24Hours(storie: stories[i]) {
                     if let id = stories[i].id {
+                        let uid = stories[i].uid
                         StoryService.delete(with: id) { isSuccess, _ in
                             if isSuccess {
-                                    if self.userStories(of: stories[i].uid).isEmpty {
-                                        UserService.update(with: stories[i].uid, field: "hasStory", data: false) { isSuccess, error in
+                                self.stories.remove(at: i)
+                                if self.userStories(of: uid).isEmpty {
+                                    UserService.update(with: uid, field: "hasStory", data: false) { isSuccess, error in
                                             if !isSuccess {
                                                 print(error?.localizedDescription as Any)
                                             }
                                         }
                                     }
-                                self.stories.remove(at: i)
                             }
                         }
                     }
