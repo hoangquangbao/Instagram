@@ -15,6 +15,7 @@ struct SignupAddView: View {
     @State private var _isShowImagePicker: Bool = false
     @State private var _isShowImagePickerOptions: Bool = false
     @State private var sourceType = UIImagePickerController.SourceType.photoLibrary
+    @State private var _isSignUpLoading: Bool = false
     
     @Binding var text: String
     @Binding var isNavigation: Bool
@@ -47,9 +48,6 @@ struct SignupAddView: View {
                 withAnimation(.spring(response: 0.5, dampingFraction: 4, blendDuration: 2)) {
                     addYourBirthdayView_Ext()
                 }
-                    
-//                    .transition(.move(edge: .bottom))
-//                    .animation(.easeInOut(duration: 0.5))
             } else if vm.type == .signup_account {
                 signupAccountView_Ext()
             } else if (vm.type == .find_friend || vm.type == .add_photo) {
@@ -68,6 +66,7 @@ struct SignupAddView: View {
             ImagePicker(image: $vmSignup.avatarImage,
                         sourceType: self.sourceType)
         }
+        .showWaitingDialog(title: "Uploading...", isLoading: $_isSignUpLoading)
     }
 }
 
@@ -382,10 +381,17 @@ extension SignupAddView {
             }
             
             Button {
+                _isSignUpLoading.toggle()
                 vmSignup.signupAccount { user in
                     self.sessionVm.userInfo = user
+                    print("Local storing userinfo...")
                     LocalStorage.store(with: user, forKey: StorageKey.USER_INFO)
-                    isNavigation = true
+                    
+                    UserDefaults.standard.setIsLoggedIn(value: true)
+                    withAnimation(.easeOut(duration: 0.1)) {
+                        self.isNavigation = true
+                    }
+                    _isSignUpLoading.toggle()
                 }
             } label: {
                 Text(vm.buttonLable)

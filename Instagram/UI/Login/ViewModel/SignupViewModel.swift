@@ -223,14 +223,7 @@ class SignupViewModel: ObservableObject {
                 self.alertMessage = error.localizedDescription
                 print(error.localizedDescription)
                 return
-            }
-            
-            //Show alert successfully created
-            self.isShowAlert = true
-            self.alertTitle = "Instagram account"
-            self.alertButtonTitle = "Got it!"
-            self.alertMessage = "Your account has been successfully cereated!"
-            
+            }            
             completion(user)
         }
     }

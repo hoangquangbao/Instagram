@@ -91,9 +91,9 @@ private extension NewPostView {
             vm.uploadPost { isSuccess in
                 if(isSuccess) {
                     Task {
-                        vm.isUploading.toggle()
                         await userVm.refresh()
                         await postVm.refresh()
+                        vm.isUploading.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
                 } else {
