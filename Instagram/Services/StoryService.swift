@@ -18,13 +18,17 @@ struct StoryService: ServiceProtocol {
     static func getAll(completion: @escaping ([Story]) -> Void) {
         _storyRef.order(by: "createAt", descending: true).addSnapshotListener { querySnapshot, error in
             Task {
-                if error != nil { return }
-                guard let querySnapshot = querySnapshot else { return }
+                guard let querySnapshot = querySnapshot else {
+                    print(error?.localizedDescription as Any)
+                    return
+                }
+                
                 var stories = querySnapshot.documents.compactMap{ try? $0.data(as: Story.self) }
                 
                 for i in 0..<stories.count {
                     stories[i].user = try await UserService.get(by: stories[i].uid)
                 }
+                
                 completion(stories)
             }
         }

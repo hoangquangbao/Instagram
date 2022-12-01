@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NewPostView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var userVm: UserViewModel
     
     @ObservedObject var vm: NewPostViewModel
     
@@ -89,11 +88,8 @@ private extension NewPostView {
         Button {
             vm.uploadPost { isSuccess in
                 if(isSuccess) {
-                    Task {
-                        await userVm.refresh()
-                        vm.isUploading.toggle()
-                        presentationMode.wrappedValue.dismiss()
-                    }
+                    vm.isUploading.toggle()
+                    presentationMode.wrappedValue.dismiss()
                 } else {
                     vm.isUploading.toggle()
                     vm.isErrorAlertDisplay.toggle()

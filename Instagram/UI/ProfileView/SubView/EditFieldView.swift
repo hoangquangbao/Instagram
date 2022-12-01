@@ -4,7 +4,6 @@ struct EditFieldView: View {
     let user: User
     
     @EnvironmentObject var vm: ProfileViewModel
-    @EnvironmentObject var userVm: UserViewModel
     @EnvironmentObject var sessionVm: SessionViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -41,7 +40,6 @@ struct EditFieldView: View {
                         vm._updateProfile(field: vm.getFieldName(key: _item.title), data: _fieldValue) { isSuccess, error in
                             if isSuccess {
                                 Task {
-                                    await userVm.refresh()
                                     await sessionVm.refresh()
                                     _isStoryUploading.toggle()
                                     dismiss()

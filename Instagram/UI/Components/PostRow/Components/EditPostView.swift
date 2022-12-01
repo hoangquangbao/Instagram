@@ -10,7 +10,6 @@ struct EditPostView: View {
     @State private var _imageSelectionIndex = 0
     @State private var _isLoading: Bool = false
     
-    @EnvironmentObject var userVm: UserViewModel
     @Environment(\.dismiss) var dismiss
     
     init(post: Post) {
@@ -50,7 +49,6 @@ struct EditPostView: View {
                             _isLoading.toggle()
                             if isSuccess {
                                 Task {
-                                    await userVm.refresh()
                                     _isLoading.toggle()
                                     dismiss()
                                 }

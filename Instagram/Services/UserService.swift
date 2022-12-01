@@ -9,8 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-//struct UserService: ServiceProtocol {
-struct UserService {
+struct UserService: ServiceProtocol {
     
     typealias ModelType = User
     static private let _userRef =  FirebaseManager.shared.firestore.collection(FirebaseConstants.USER_COLLECTION)
@@ -19,10 +18,17 @@ struct UserService {
         return try await _userRef.document(id).getDocument().data(as: User.self)
     }
     
-    static func getAll() async throws -> [User] {
-        let documents = try await _userRef.getDocuments().documents
-        
-        return documents.compactMap { try? $0.data(as: User.self) }
+    static func getAll(completion: @escaping ([User]) -> Void) {
+        _userRef.addSnapshotListener { querySnapshot, error in
+            guard let querySnapshot = querySnapshot else {
+                print(error?.localizedDescription as Any)
+                return
+            }
+            
+            var users = querySnapshot.documents.compactMap{ try? $0.data(as: User.self) }
+            
+            completion(users)
+        }
     }
     
     static func create(_ user: User, completion: @escaping (Bool, Error?) -> Void) {

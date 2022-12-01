@@ -12,7 +12,6 @@ struct NewStoryView: View {
     
     @FocusState var hasTextFieldFocus: Bool
     @StateObject var vm = NewStoryViewModel()
-    @EnvironmentObject var userVm: UserViewModel
     @EnvironmentObject var storyVm: StoryViewModel
     @EnvironmentObject var sessionVm: SessionViewModel
     @Environment(\.presentationMode) var presentationMode
@@ -82,8 +81,6 @@ private extension NewStoryView {
                     vm.uploadStory { isSuccess in
                         if(isSuccess) {
                             Task {
-                                await userVm.refresh()
-                                //                                await storyVm.refresh()
                                 await sessionVm.refresh()
                                 vm.isStoryUploading.toggle()
                                 presentationMode.wrappedValue.dismiss()

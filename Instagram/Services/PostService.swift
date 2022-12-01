@@ -32,8 +32,11 @@ struct PostService: ServiceProtocol {
     static func getAll(completion: @escaping ([Post]) -> Void) {
         _postRef.order(by: "createAt", descending: true).addSnapshotListener { querySnapshot, error in
             Task {
-                if error != nil { return }
-                guard let querySnapshot = querySnapshot else { return }
+                guard let querySnapshot = querySnapshot else {
+                    print(error?.localizedDescription as Any)
+                    return
+                }
+                
                 var posts = querySnapshot.documents.compactMap{ try? $0.data(as: Post.self)
                 }
                 
@@ -45,6 +48,7 @@ struct PostService: ServiceProtocol {
                         posts[i].latestUserLikePost = try await UserService.get(by: latestUid)
                     }
                 }
+                
                 completion(posts)
             }
         }

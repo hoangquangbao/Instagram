@@ -13,8 +13,6 @@ struct PostRow: View {
     @ObservedObject var vm: PostRowViewModel
     @State private var _isLoading: Bool = false
     
-    @EnvironmentObject var userVm : UserViewModel
-    
     init(post: Post) {
         self.vm = PostRowViewModel(post: post)
     }
@@ -60,10 +58,7 @@ struct PostRow: View {
                 vm.deletePost { isSuccess, error in
                     _isLoading.toggle()
                     if(isSuccess) {
-                        Task {
-                            await self.userVm.refresh()
-                            _isLoading.toggle()
-                        }
+                        _isLoading.toggle()
                     } else {
                         _isLoading.toggle()
                         print(error?.localizedDescription as Any)
