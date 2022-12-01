@@ -41,7 +41,7 @@ struct EditPostView: View {
                         dismiss()
                     } label: {
                         Image(systemName: "multiply")
-                            .font(.system(size: 25, weight: .regular))
+                            .font(.system(size: 20, weight: .regular))
                             .foregroundColor(.secondary)
                     }
                 }
@@ -62,9 +62,7 @@ struct EditPostView: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "checkmark")
-                            .font(.system(size: 25, weight: .regular))
-                            .foregroundColor(.blue)
+                        Text("Done")
                     }
                     .disabled(_caption.isEmpty || _imagesUrl.isEmpty)
                     .opacity((_caption.isEmpty || _imagesUrl.isEmpty) ? 0.3 : 1)
