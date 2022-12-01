@@ -29,23 +29,29 @@ struct PostService: ServiceProtocol {
     func get(for uid: String, completion: @escaping ([Post]) -> Void) {
     }
     
-    static func getAll() async throws -> [Post] {
-        let documents = try await _postRef.order(by: "createAt", descending: true).getDocuments().documents
-        
-        var posts: [Post] = documents.compactMap { document in
-            try? document.data(as: Post.self)
-        }
-        
-        for i in 0..<posts.count {
-            posts[i].user = try await UserService.get(by: posts[i].uid)
-            
-            if posts[i].likes.isNotEmpty {
-                let latestUid = posts[i].likes[posts[i].likeCount - 1]
-                posts[i].latestUserLikePost = try await UserService.get(by: latestUid)
+    static func getAll(completion: @escaping ([Post]) -> Void) {
+        _postRef.order(by: "createAt", descending: true).addSnapshotListener { querySnapshot, error in
+            Task {
+                guard let querySnapshot = querySnapshot else {
+                    print(error?.localizedDescription as Any)
+                    return
+                }
+                
+                var posts = querySnapshot.documents.compactMap{ try? $0.data(as: Post.self)
+                }
+                
+                for i in 0..<posts.count {
+                    posts[i].user = try await UserService.get(by: posts[i].uid)
+                    
+                    if posts[i].likes.isNotEmpty {
+                        let latestUid = posts[i].likes[posts[i].likeCount - 1]
+                        posts[i].latestUserLikePost = try await UserService.get(by: latestUid)
+                    }
+                }
+                
+                completion(posts)
             }
         }
-        
-        return posts
     }
     
     static func getComments(with id: String) async throws -> [Comment]? {

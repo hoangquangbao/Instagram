@@ -25,21 +25,10 @@ import Firebase
         }
     }
     
-//    func getAll() async {
-//        self.isFetching = true
-//        do {
-//            self.notifications = try await NotificationService.getAll()
-//            self.isFetching = false
-//        } catch {
-//            print(error)
-//            self.isFetching = false
-//        }
-//    }
     func getAll() {
         self.isFetching = true
         NotificationService.getAll { notifications in
             Task {
-                print(notifications)
                 self.notifications = notifications
                 self.isFetching = false
             }
@@ -56,12 +45,12 @@ import Firebase
         
         NotificationService.update(with: notification.id, field: "isRead", data: true) { isSuccess, _ in
             if !isSuccess { return }
-        
+            
             NotificationService.updateUnReadCount(of: uid, data: FieldValue.increment(-1.0)) { isSuccess, _ in
                 if !isSuccess { return }
                 completion()
             }
         }
-                
+        
     }
 }

@@ -3,9 +3,6 @@ import SwiftUI
 struct EditProfileView: View {
     let user: User
     @EnvironmentObject var vm: ProfileViewModel
-    @EnvironmentObject var userVm: UserViewModel
-    @EnvironmentObject var postVm: PostViewModel
-    @EnvironmentObject var storyVm: StoryViewModel
     @EnvironmentObject var sessionVm: SessionViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -29,9 +26,6 @@ struct EditProfileView: View {
                 vm._uploadAvatar { isSuccess, error in
                     if isSuccess {
                         Task {
-                            await userVm.refresh()
-                            await postVm.refresh()
-                            await storyVm.refresh()
                             await sessionVm.refresh()
                             _isStoryUploading.toggle()
                             dismiss()
