@@ -14,17 +14,14 @@ import SwiftUI
     
     
     init() {
-        Task {
-            await refresh()
-        }
+        getAll()
     }
     
-    func refresh() async {
-        do {
-            self.stories = try await StoryService.getAll()
-            deleteExpiredStory(stories: stories)
-        } catch {
-            print(error.localizedDescription)
+    func getAll() {
+        StoryService.getAll { stories in
+            Task {
+                self.stories = stories
+            }
         }
     }
     
@@ -40,21 +37,21 @@ import SwiftUI
     func deleteExpiredStory(stories: [Story]) {
         for i in 0..<stories.count {
             if isOver24Hours(storie: stories[i]) {
-                    if let id = stories[i].id {
-                        let uid = stories[i].uid
-                        StoryService.delete(with: id) { isSuccess, _ in
-                            if isSuccess {
-                                self.stories.remove(at: i)
-                                if self.userStories(of: uid).isEmpty {
-                                    UserService.update(with: uid, field: "hasStory", data: false) { isSuccess, error in
-                                            if !isSuccess {
-                                                print(error?.localizedDescription as Any)
-                                            }
-                                        }
+                if let id = stories[i].id {
+                    let uid = stories[i].uid
+                    StoryService.delete(with: id) { isSuccess, _ in
+                        if isSuccess {
+                            self.stories.remove(at: i)
+                            if self.userStories(of: uid).isEmpty {
+                                UserService.update(with: uid, field: "hasStory", data: false) { isSuccess, error in
+                                    if !isSuccess {
+                                        print(error?.localizedDescription as Any)
                                     }
+                                }
                             }
                         }
                     }
+                }
             }
         }
     }

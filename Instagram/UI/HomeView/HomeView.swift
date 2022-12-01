@@ -29,7 +29,6 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
-
             .confirmationDialog(
                 "choose option",
                 isPresented: $vm.isShowOptionForNavigateStoryView,
@@ -45,11 +44,6 @@ struct HomeView: View {
                 },
                 message: { Text("Please choose one option") }
             )
-        }
-        .onAppear {
-            Task {
-                await postVm.refresh()
-            }
         }
     }
 }

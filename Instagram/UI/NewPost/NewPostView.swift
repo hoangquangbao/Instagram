@@ -10,7 +10,6 @@ import SwiftUI
 struct NewPostView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userVm: UserViewModel
-    @EnvironmentObject var postVm: PostViewModel
     
     @ObservedObject var vm: NewPostViewModel
     
@@ -92,7 +91,6 @@ private extension NewPostView {
                 if(isSuccess) {
                     Task {
                         await userVm.refresh()
-                        await postVm.refresh()
                         vm.isUploading.toggle()
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -143,7 +141,7 @@ private extension NewPostView {
                     }
                 }
             }
-        } 
+        }
     }
     
     var _selectImageButton: some View {

@@ -14,7 +14,6 @@ struct PostRow: View {
     @State private var _isLoading: Bool = false
     
     @EnvironmentObject var userVm : UserViewModel
-    @EnvironmentObject var postVm : PostViewModel
     
     init(post: Post) {
         self.vm = PostRowViewModel(post: post)
@@ -63,7 +62,6 @@ struct PostRow: View {
                     if(isSuccess) {
                         Task {
                             await self.userVm.refresh()
-                            await self.postVm.refresh()
                             _isLoading.toggle()
                         }
                     } else {

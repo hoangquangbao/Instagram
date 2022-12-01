@@ -12,18 +12,16 @@ import Foundation
     @Published var posts: [Post] = []
     
     init() {
-        Task {
-            self.isFetching = true
-            await refresh()
-        }
+        self.isFetching = true
+        getAll()
     }
     
-    @MainActor func refresh() async {
-        do {
-            self.posts = try await PostService.getAll()
-            self.isFetching = false
-        } catch {
-            self.isFetching = false
+    func getAll() {
+        PostService.getAll { posts in
+            Task {
+                self.posts = posts
+                self.isFetching = false
+            }
         }
     }
     

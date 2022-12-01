@@ -15,15 +15,19 @@ struct StoryService: ServiceProtocol {
         return try? await _storyRef.document(id).getDocument().data(as: Story.self)
     }
     
-    static func getAll() async throws -> [Story] {
-        let documents = try await _storyRef.getDocuments().documents
-        var stories: [Story] = documents.compactMap { try? $0.data(as: Story.self) }
-        
-        for i in 0..<stories.count {
-            stories[i].user = try await UserService.get(by: stories[i].uid)
+    static func getAll(completion: @escaping ([Story]) -> Void) {
+        _storyRef.order(by: "createAt", descending: true).addSnapshotListener { querySnapshot, error in
+            Task {
+                if error != nil { return }
+                guard let querySnapshot = querySnapshot else { return }
+                var stories = querySnapshot.documents.compactMap{ try? $0.data(as: Story.self) }
+                
+                for i in 0..<stories.count {
+                    stories[i].user = try await UserService.get(by: stories[i].uid)
+                }
+                completion(stories)
+            }
         }
-        
-        return stories
     }
     
     static func create(_ story: Story, completion: @escaping (Bool, Error?) -> Void) {
@@ -41,7 +45,6 @@ struct StoryService: ServiceProtocol {
         } catch {
             completion(false, error)
         }
-        
     }
     
     static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
@@ -50,7 +53,6 @@ struct StoryService: ServiceProtocol {
                 completion (false, error)
                 return
             }
-            
             completion(true, nil)
         }
     }
