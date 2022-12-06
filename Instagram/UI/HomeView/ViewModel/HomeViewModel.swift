@@ -11,5 +11,6 @@ class HomeViewModel: ObservableObject {
     @Published var isShowNewPostView: Bool = false
     @Published var isShowNewStoryView: Bool = false
     @Published var isShowOptionForNavigateStoryView: Bool = false
+    @Published var isShowCallView = false
     
 }

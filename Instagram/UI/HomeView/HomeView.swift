@@ -29,6 +29,7 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
+            .fullScreenCover(isPresented: $vm.isShowCallView) { CallView() }
             .confirmationDialog(
                 "choose option",
                 isPresented: $vm.isShowOptionForNavigateStoryView,
@@ -82,7 +83,11 @@ private extension HomeView {
             
             _createNewPostButton
             
-            IconButton(imageIcon: Image.icnShare) { print("message") }
+            IconButton(imageIcon: Image.icnShare) {
+                print("message")
+                vm.isShowCallView.toggle()
+                
+            }
             
         }
         .padding(.horizontal, AppStyle.defaultSpacing)

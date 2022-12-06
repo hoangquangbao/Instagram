@@ -78,11 +78,14 @@
 		06F6ACC128D46818002095E5 /* UIColor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 06F6ACC028D46818002095E5 /* UIColor.stencil */; };
 		246EF3039CCB1C4170B0B595 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA1A4B3DD8121A80730CF7C /* libPods-Instagram.a */; };
 		6E0015A82926521400011DD1 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0015A72926521400011DD1 /* PostDetailView.swift */; };
+		6E273EBC293EF95800DB36C4 /* VideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E273EBB293EF95800DB36C4 /* VideoCallViewController.swift */; };
+		6E2E617B293DF7D40042678F /* TwilioVideo in Frameworks */ = {isa = PBXBuildFile; productRef = 6E2E617A293DF7D40042678F /* TwilioVideo */; };
 		6E332FEC292734650034D28D /* NotificationInfoShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E332FEB292734650034D28D /* NotificationInfoShimmer.swift */; };
 		6E353EE8291DE4D700373A5B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E353EE7291DE4D700373A5B /* Comment.swift */; };
 		6E60AE7D291557E700B816B5 /* StoryAvatarShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60AE7C291557E700B816B5 /* StoryAvatarShimmer.swift */; };
 		6E60AE7F29162A9900B816B5 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60AE7E29162A9900B816B5 /* StoryViewModel.swift */; };
 		6E60AE8229162AEA00B816B5 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E60AE8129162AEA00B816B5 /* StoryView.swift */; };
+		6E86B298293DA2F300E6314F /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E86B297293DA2F300E6314F /* CallView.swift */; };
 		6E8EB89A2914195C00B4761A /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8EB8992914195C00B4761A /* LocalStorage.swift */; };
 		6E8EB89C2914B9FA00B4761A /* StorageKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8EB89B2914B9FA00B4761A /* StorageKey.swift */; };
 		6E8EB89F2914BCF800B4761A /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 6E8EB89E2914BCF800B4761A /* Shimmer */; };
@@ -234,11 +237,13 @@
 		11CB14A04F81EE274AD43F24 /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		1EA1A4B3DD8121A80730CF7C /* libPods-Instagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E0015A72926521400011DD1 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		6E273EBB293EF95800DB36C4 /* VideoCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallViewController.swift; sourceTree = "<group>"; };
 		6E332FEB292734650034D28D /* NotificationInfoShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInfoShimmer.swift; sourceTree = "<group>"; };
 		6E353EE7291DE4D700373A5B /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		6E60AE7C291557E700B816B5 /* StoryAvatarShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAvatarShimmer.swift; sourceTree = "<group>"; };
 		6E60AE7E29162A9900B816B5 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
 		6E60AE8129162AEA00B816B5 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
+		6E86B297293DA2F300E6314F /* CallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallView.swift; sourceTree = "<group>"; };
 		6E8EB8992914195C00B4761A /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		6E8EB89B2914B9FA00B4761A /* StorageKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKey.swift; sourceTree = "<group>"; };
 		6E8EB8A02914C21A00B4761A /* PostRowShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowShimmer.swift; sourceTree = "<group>"; };
@@ -320,6 +325,7 @@
 				6E8EB89F2914BCF800B4761A /* Shimmer in Frameworks */,
 				06E9398D28D96CD30028F981 /* FirebaseAuth in Frameworks */,
 				06E9398F28D96CD30028F981 /* FirebaseStorage in Frameworks */,
+				6E2E617B293DF7D40042678F /* TwilioVideo in Frameworks */,
 				246EF3039CCB1C4170B0B595 /* libPods-Instagram.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +355,7 @@
 		064EE19B28DC2097002B83EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6E86B296293DA2E500E6314F /* Call */,
 				6E0015A5292651DC00011DD1 /* PostDetail */,
 				6EBBC86C2925EF6D00D693BD /* Notification */,
 				CD602441291CE35B0060F613 /* Comment */,
@@ -454,6 +461,7 @@
 		06F438AF28D334E7009EA3E1 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				6E273EBA293EF94400DB36C4 /* ViewController */,
 				6ED7D78D2921F26200928F80 /* InstagramRelease.entitlements */,
 				6EB4A9DB2918B44300F35002 /* ViewModel */,
 				CD2B3EF8290A86D3002E3A8F /* Protocols */,
@@ -548,12 +556,28 @@
 			path = PostDetail;
 			sourceTree = "<group>";
 		};
+		6E273EBA293EF94400DB36C4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6E273EBB293EF95800DB36C4 /* VideoCallViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		6E60AE8029162AD800B816B5 /* Story */ = {
 			isa = PBXGroup;
 			children = (
 				6E60AE8129162AEA00B816B5 /* StoryView.swift */,
 			);
 			path = Story;
+			sourceTree = "<group>";
+		};
+		6E86B296293DA2E500E6314F /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				6E86B297293DA2F300E6314F /* CallView.swift */,
+			);
+			path = Call;
 			sourceTree = "<group>";
 		};
 		6E8EB8A22914C46800B4761A /* Shimmer */ = {
@@ -891,6 +915,7 @@
 				06E9398E28D96CD30028F981 /* FirebaseStorage */,
 				CD75D9952910CEB5009BE082 /* Kingfisher */,
 				6E8EB89E2914BCF800B4761A /* Shimmer */,
+				6E2E617A293DF7D40042678F /* TwilioVideo */,
 			);
 			productName = Instagram;
 			productReference = 06F438AD28D334E7009EA3E1 /* Instagram.app */;
@@ -924,6 +949,7 @@
 				06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CD75D9942910CEB5009BE082 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				6E8EB89D2914BCF800B4761A /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+				6E2E6179293DF7D40042678F /* XCRemoteSwiftPackageReference "twilio-video-ios" */,
 			);
 			productRefGroup = 06F438AE28D334E7009EA3E1 /* Products */;
 			projectDirPath = "";
@@ -1150,8 +1176,10 @@
 				066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */,
 				06C02A4028FAF07B003E5E68 /* AddYourBirthdayView.swift in Sources */,
 				069D61F328FF97F3006F5618 /* ImagePicker.swift in Sources */,
+				6E86B298293DA2F300E6314F /* CallView.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 				6EB4A9DF291967ED00F35002 /* ButtonStyle+Utilities.swift in Sources */,
+				6E273EBC293EF95800DB36C4 /* VideoCallViewController.swift in Sources */,
 				6E8EB8A42914C4A000B4761A /* UserRowShimmer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1289,6 +1317,7 @@
 				INFOPLIST_FILE = Instagram/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "ImagePicker-Requires access to your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Video call - Requires access to your microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ImagePicker-Requires access to your photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1327,6 +1356,7 @@
 				INFOPLIST_FILE = Instagram/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "ImagePicker-Requires access to your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Video call - Requires access to your microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ImagePicker-Requires access to your photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1380,6 +1410,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		6E2E6179293DF7D40042678F /* XCRemoteSwiftPackageReference "twilio-video-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twilio/twilio-video-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		6E8EB89D2914BCF800B4761A /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
@@ -1408,6 +1446,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 06E9398B28D96CD30028F981 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		6E2E617A293DF7D40042678F /* TwilioVideo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E2E6179293DF7D40042678F /* XCRemoteSwiftPackageReference "twilio-video-ios" */;
+			productName = TwilioVideo;
 		};
 		6E8EB89E2914BCF800B4761A /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;

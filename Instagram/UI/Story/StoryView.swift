@@ -34,7 +34,7 @@ struct StoryView: View {
             }
         }
         .background(Color.black)
-        .onTapGesture(perform: storyVm.clear)
+        .onTapGesture { storyVm.clear() }
         .onReceive(timer) { _ in _increaseProgressValue() }
         .transition(.opacity)
     }
