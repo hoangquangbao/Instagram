@@ -11,19 +11,30 @@ struct CommentView: View {
     @StateObject var postRowVm: PostRowViewModel
     @ObservedObject var vm = CommentViewModel()
     @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var sessionVm: SessionViewModel
+    @EnvironmentObject var userVm: UserViewModel
     
     
     var body: some View {
         ZStack {
             VStack {
-                _comments
-                
+                GeometryReader { proxy in
+                    ScrollView {
+                        if postRowVm.commentState == .comment {
+                            _comments
+                        } else if postRowVm.commentState == .tag {
+                            _userListForTag
+                        }
+                    }
+                    .frame(height: proxy.size.height)
+                }
+                Text(postRowVm.commentState.rawValue)
                 _commentBar
             }
-            .navigationBarTitle("Comment", displayMode: .inline)
-            .padding(.top)
         }
+        .navigationBarTitle("Comment", displayMode: .inline)
+        .padding(.top)
         .showWaitingDialog(title: "Please wait...", isLoading: $vm.isShowWaitingDialog)
         .task {
             await postRowVm.loadComment()
@@ -34,15 +45,21 @@ struct CommentView: View {
 
 private extension CommentView {
     var _comments: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 30) {
-                if let comments = postRowVm.post.comments {
-                    ForEach(comments) { comment in
-                        CommentRow(comment: comment)
-                    }
-                } else {
-                    CommentRowShimmer()
+        LazyVStack(alignment: .leading) {
+            if let comments = postRowVm.post.comments {
+                ForEach(comments) { comment in
+                    CommentRow(comment: comment)
                 }
+            } else {
+                CommentRowShimmer()
+            }
+        }
+        .padding(.horizontal, AppStyle.defaultSpacing)
+    }
+    var _userListForTag: some View {
+        LazyVStack(alignment: .leading) {
+            ForEach(userVm.users) { user in
+                UserRow(user: user)
             }
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
@@ -60,11 +77,14 @@ private extension CommentView {
                 .padding(.vertical, 10)
                 .background(Color.background)
                 .clipShape(Capsule())
-                .overlay(
-                    Capsule().stroke(Color(.systemGray).opacity(0.8))
-                )
+                .overlay(Capsule().stroke(Color(.systemGray).opacity(0.8)))
+                .onChange(of: postRowVm.commentText) { newValue in
+                    postRowVm.onCommentTextChange(newValue)
+                    print("STATE: \(postRowVm.commentState)")
+                    print("COMPARE newValue with @: \(newValue.last == "@")")
+                }
             
-            Button(action: postComment) {
+            Button(action: _postComment) {
                 Image.icnShare
                     .renderingMode(.template)
                     .foregroundColor(Color.primary)
@@ -74,8 +94,10 @@ private extension CommentView {
         .padding(.horizontal, AppStyle.defaultSpacing)
         .padding(.bottom)
     }
-    
-    func postComment() {
+}
+
+private extension CommentView {
+    func _postComment() {
         vm.isShowWaitingDialog = true
         postRowVm.createComment()
         Task {
@@ -89,5 +111,6 @@ private extension CommentView {
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
         CommentView(postRowVm: PostRowViewModel(post: MockData.posts[0]))
+            .environmentObject(SessionViewModel())
     }
 }

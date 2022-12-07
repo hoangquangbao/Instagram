@@ -19,3 +19,9 @@ struct Comment: Identifiable, Decodable, Encodable {
     
     var user: User?
 }
+
+extension Comment {
+    func getTimeCommentAgo() -> String {
+        return TimestampHelper.getTimeAgo(timestamp: self.commentAt)
+    }
+}

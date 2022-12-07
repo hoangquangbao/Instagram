@@ -27,6 +27,6 @@ struct Post: Identifiable, Decodable, Encodable {
 
 extension Post {
     func getTimePostAgo() -> String {
-        return self.createAt.dateValue().timeAgoDisplay()
+        return TimestampHelper.getTimeAgo(timestamp: self.createAt)
     }
 }

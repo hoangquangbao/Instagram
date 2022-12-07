@@ -7,6 +7,10 @@
 import SwiftUI
 import Firebase
 
+enum CommentState: String {
+    case comment, tag
+}
+
 @MainActor
 class PostRowViewModel: ObservableObject {
     @Published var post: Post
@@ -17,6 +21,8 @@ class PostRowViewModel: ObservableObject {
     @Published var isShowEditPost: Bool = false
     @Published var isShowWaitingDialog: Bool = false
     @Published var isShowDeletePostAlert: Bool = false
+    @Published var commentState: CommentState = .comment
+    
     
     init(post: Post) {
         self.post = post
@@ -216,6 +222,24 @@ class PostRowViewModel: ObservableObject {
                 self.isShowWaitingDialog.toggle()
             }
             completion(true)
+        }
+    }
+    
+    func switchState(to state: CommentState) {
+        commentState = state
+    }
+    
+    func onCommentTextChange(_ text: String) {
+        if text.last == nil {
+            switchState(to: .comment)
+        }
+        
+        if (text.last == " " && commentState == .tag) {
+            switchState(to: .comment)
+        }
+        
+        if text.last == "@" {
+            switchState(to: .tag)
         }
     }
 }

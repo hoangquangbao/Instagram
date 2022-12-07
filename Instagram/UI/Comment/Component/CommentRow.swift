@@ -14,9 +14,14 @@ struct CommentRow: View {
         HStack(alignment: .top){
             CircleAvatar(imageUrl: comment.user!.avatarUrl, radius: 35)
             VStack(alignment: .leading) {
-                Text(comment.user!.username).font(.system(.subheadline)).bold()
-                Text(comment.comment)
+                Group {
+                    Text("\(comment.user!.username) ").font(.system(.subheadline)).bold() +
+                    Text(comment.comment).font(.system(.subheadline)).fontWeight(.light)
+                }
+                
+                Text(comment.getTimeCommentAgo())
                     .font(.system(.caption))
+                    .foregroundColor(Color.semiText)
             }
             Spacer()
             IconButton(imageIcon: Image.icnHeart, size: 15) {}
