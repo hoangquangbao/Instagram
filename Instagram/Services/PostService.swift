@@ -37,8 +37,7 @@ struct PostService: ServiceProtocol {
                     return
                 }
                 
-                var posts = querySnapshot.documents.compactMap{ try? $0.data(as: Post.self)
-                }
+                var posts = querySnapshot.documents.compactMap{ try? $0.data(as: Post.self) }
                 
                 for i in 0..<posts.count {
                     posts[i].user = try await UserService.get(by: posts[i].uid)

@@ -11,7 +11,7 @@ import Shimmer
 struct PostRow: View {
     @State private var _imageSelectionIndex = 0
     @ObservedObject var vm: PostRowViewModel
-    @State private var _isLoading: Bool = false
+    @EnvironmentObject var homeVm: HomeViewModel
     
     init(post: Post) {
         self.vm = PostRowViewModel(post: post)
@@ -56,18 +56,18 @@ struct PostRow: View {
             Alert(title: Text("Delete this post?"),
                   primaryButton: .destructive(Text("Delete"), action: {
                 vm.deletePost { isSuccess, error in
-                    _isLoading.toggle()
+                    vm.isShowWaitingDialog.toggle()
                     if(isSuccess) {
-                        _isLoading.toggle()
+                        vm.isShowWaitingDialog.toggle()
                     } else {
-                        _isLoading.toggle()
+                        vm.isShowWaitingDialog.toggle()
                         print(error?.localizedDescription as Any)
                     }
                 }
             }),
                   secondaryButton: .cancel())
         })
-        .showWaitingDialog(title: "Uploading...", isLoading: $_isLoading)
+        .showWaitingDialog(title: vm.waitingDialogTitle, isLoading: $vm.isShowWaitingDialog)
     }
 }
 
@@ -97,6 +97,28 @@ private extension PostRow {
                     PostOptionView(
                         isShowEditPost: $vm.isShowEditPost,
                         isShowDeletePostAlert: $vm.isShowDeletePostAlert)
+                } else {
+                    VStack {
+                        Button {
+                            vm.downloadImage(fromUrl: vm.post.imagesUrl[_imageSelectionIndex]) { isSuccess in
+                                if isSuccess {
+                                    withAnimation {
+                                        homeVm.isShowToast.toggle()
+                                    }
+                                }
+                            }
+                            
+                        } label: {
+                            HStack(alignment: .center, spacing: 15){
+                                Image(systemName: "arrow.down.to.line.compact")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 24, height: 24)
+                                Text("Save")
+                                    .font(.system(size: 17, weight: .regular))
+                            }
+                        }
+                    }
                 }
             } label: {
                 Image.icnMore
@@ -210,6 +232,18 @@ private extension PostRow {
             .foregroundColor(Color.semiText)
             .padding(.horizontal, AppStyle.defaultSpacing)
             .padding(.top, 5)
+    }
+}
+
+extension URL {
+    func saveImage(_ image: UIImage?) {
+        if let image = image {
+            if let data = image.jpegData(compressionQuality: 1.0) {
+                try? data.write(to: self)
+            }
+        } else {
+            try? FileManager.default.removeItem(at: self)
+        }
     }
 }
 

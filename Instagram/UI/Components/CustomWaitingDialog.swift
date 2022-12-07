@@ -19,7 +19,9 @@ struct CustomWaitingDialog: ViewModifier {
                 .disabled(isLoading)
                 .blur(radius: isLoading ? 5 : 0)
             
+            
             if(isLoading) {
+                Color.black.opacity(0.1).ignoresSafeArea()
                 HStack {
                     Circle()
                         .foregroundColor(Color.seaBuckthorn700)
@@ -56,12 +58,6 @@ struct CustomWaitingDialog: ViewModifier {
                 }
             }
         }
-    }
-}
-
-extension View {
-    func showWaitingDialog(title: String, isLoading: Binding<Bool>) -> some View {
-        modifier(CustomWaitingDialog(title: title, isLoading: isLoading))
     }
 }
 

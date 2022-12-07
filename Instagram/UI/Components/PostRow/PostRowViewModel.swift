@@ -13,8 +13,10 @@ class PostRowViewModel: ObservableObject {
     @Published var isNavigateProfileView: Int? = nil
     @Published var isNavigateCommentView: Int? = nil
     @Published var commentText: String = ""
-    @Published var isShowDeletePostAlert: Bool = false
+    @Published var waitingDialogTitle: String = "Uploading..."
     @Published var isShowEditPost: Bool = false
+    @Published var isShowWaitingDialog: Bool = false
+    @Published var isShowDeletePostAlert: Bool = false
     
     init(post: Post) {
         self.post = post
@@ -194,6 +196,26 @@ class PostRowViewModel: ObservableObject {
         
         PostService.delete(with: id) { isSuccess, error in
             completion(isSuccess, error)
+        }
+    }
+    
+    func downloadImage(fromUrl url: String, completion: @escaping(Bool) -> Void) {
+        waitingDialogTitle = "Downloading..."
+        isShowWaitingDialog.toggle()
+        
+        StorageService.download(with: url) { (isSuccess, error) in
+            if error != nil {
+                withAnimation {
+                    self.isShowWaitingDialog.toggle()
+                }
+                completion(false)
+                return
+            }
+            
+            withAnimation {
+                self.isShowWaitingDialog.toggle()
+            }
+            completion(true)
         }
     }
 }

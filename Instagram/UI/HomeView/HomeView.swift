@@ -16,35 +16,39 @@ struct HomeView: View {
     @EnvironmentObject var storyVm: StoryViewModel
     
     var body: some View {
-        NavigationView {
-            VStack() {
-                _topBar
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    _storyBarBuilder
+        ZStack {
+            NavigationView {
+                VStack() {
+                    _topBar
                     
-                    Divider()
-                    
-                    _postBuilder
-                }
-            }
-            .navigationBarHidden(true)
-            .confirmationDialog(
-                "choose option",
-                isPresented: $vm.isShowOptionForNavigateStoryView,
-                actions: {
-                    Button("Create story")  { vm.isShowNewStoryView.toggle() }
-                    Button("Show my story") {
-                        vm.isStoryDisplay.toggle()
-                        storyVm.activeStories = storyVm.userStories(of: sessionViewModel.uid)
-                        withAnimation(.default) {
-                            storyVm.isStoryDisplay.toggle()
-                        }
+                    ScrollView(.vertical, showsIndicators: false) {
+                        _storyBarBuilder
+                        
+                        Divider()
+                        
+                        _postBuilder
                     }
-                },
-                message: { Text("Please choose one option") }
-            )
+                }
+                .navigationBarHidden(true)
+                .confirmationDialog(
+                    "choose option",
+                    isPresented: $vm.isShowOptionForNavigateStoryView,
+                    actions: {
+                        Button("Create story")  { vm.isShowNewStoryView.toggle() }
+                        Button("Show my story") {
+                            vm.isStoryDisplay.toggle()
+                            storyVm.activeStories = storyVm.userStories(of: sessionViewModel.uid)
+                            withAnimation(.default) {
+                                storyVm.isStoryDisplay.toggle()
+                            }
+                        }
+                    },
+                    message: { Text("Please choose one option") }
+                )
+            }
         }
+        .showToast(toastOption: ToastOptions(title: "Saved"), isPresent: $vm.isShowToast)
+        .environmentObject(vm)
     }
 }
 
@@ -82,7 +86,12 @@ private extension HomeView {
             
             _createNewPostButton
             
-            IconButton(imageIcon: Image.icnShare) { print("message") }
+            IconButton(imageIcon: Image.icnShare) {
+                withAnimation {
+                    vm.isShowToast = true
+                    print("Show toast")
+                }
+            }
             
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
