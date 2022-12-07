@@ -25,7 +25,7 @@ struct UserService: ServiceProtocol {
                 return
             }
             
-            var users = querySnapshot.documents.compactMap{ try? $0.data(as: User.self) }
+            let users = querySnapshot.documents.compactMap{ try? $0.data(as: User.self) }
             
             completion(users)
         }

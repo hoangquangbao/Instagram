@@ -7,9 +7,9 @@
 
 import Foundation
 class HomeViewModel: ObservableObject {
+    @Published var isShowToast: Bool = false
     @Published var isStoryDisplay: Bool = false
     @Published var isShowNewPostView: Bool = false
     @Published var isShowNewStoryView: Bool = false
     @Published var isShowOptionForNavigateStoryView: Bool = false
-    
 }
