@@ -117,6 +117,8 @@
 		80B55EE328F006CF00BE341D /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE228F006CF00BE341D /* Highlight.swift */; };
 		80B55EE528F0076A00BE341D /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE428F0076A00BE341D /* ProfilePost.swift */; };
 		80B55EE828F008D200BE341D /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B55EE728F008D200BE341D /* BottomSheetView.swift */; };
+		CD060AD02941952100B55358 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD060ACF2941952100B55358 /* UserHelper.swift */; };
+		CD060AD22941964500B55358 /* UsersMentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD060AD12941964500B55358 /* UsersMentionView.swift */; };
 		CD2B3EF4290A20CA002E3A8F /* Shape+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF3290A20CA002E3A8F /* Shape+Utilities.swift */; };
 		CD2B3EF6290A8288002E3A8F /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF5290A8288002E3A8F /* PostService.swift */; };
 		CD2B3EFA290A86E5002E3A8F /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2B3EF9290A86E5002E3A8F /* ServiceProtocol.swift */; };
@@ -273,6 +275,8 @@
 		80B55EE428F0076A00BE341D /* ProfilePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
 		80B55EE728F008D200BE341D /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		B1B245955F4FAAADED2E6E62 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
+		CD060ACF2941952100B55358 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
+		CD060AD12941964500B55358 /* UsersMentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersMentionView.swift; sourceTree = "<group>"; };
 		CD2B3EF3290A20CA002E3A8F /* Shape+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape+Utilities.swift"; sourceTree = "<group>"; };
 		CD2B3EF5290A8288002E3A8F /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		CD2B3EF9290A86E5002E3A8F /* ServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
@@ -648,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				6ED7D79A292232B300928F80 /* CommentRow.swift */,
+				CD060AD12941964500B55358 /* UsersMentionView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD8B664294090320057C31B /* TimestampHelper.swift */,
+				CD060ACF2941952100B55358 /* UserHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1099,11 +1105,13 @@
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
 				0641FADF2920A88400C12816 /* EditProfile.swift in Sources */,
 				6ED7D79729222CA900928F80 /* LatestUserLikedRow.swift in Sources */,
+				CD060AD02941952100B55358 /* UserHelper.swift in Sources */,
 				CD41DB7C28ED3F7800870F55 /* SearchBar.swift in Sources */,
 				062CD04E28E9E4370092387D /* ResetPasswordView.swift in Sources */,
 				801A567128EFC7260025D9C8 /* HomeView.swift in Sources */,
 				066E58C728FC516800E02562 /* SignupAccountView.swift in Sources */,
 				CD75D9932910B1B7009BE082 /* FirebaseConstants.swift in Sources */,
+				CD060AD22941964500B55358 /* UsersMentionView.swift in Sources */,
 				06704FFD28FDC42400814F91 /* SharePhotoView.swift in Sources */,
 				6E60AE7D291557E700B816B5 /* StoryAvatarShimmer.swift in Sources */,
 				0615453928D84F65003A2E4B /* XCAssets+Generated.swift in Sources */,

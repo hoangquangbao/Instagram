@@ -31,7 +31,7 @@ extension Notification {
 }
 
 enum NotificationAction: String, Decodable, Encodable {
-    case like, comment, tag
+    case like, comment, mention
 }
 
 enum NotificationType: String, Decodable, Encodable {

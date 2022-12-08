@@ -23,8 +23,8 @@ struct CommentView: View {
                     ScrollView {
                         if postRowVm.commentState == .comment {
                             _comments
-                        } else if postRowVm.commentState == .tag {
-                            _userListForTag
+                        } else if postRowVm.commentState == .mention {
+                            UsersMentionView(postRowVm: postRowVm)
                         }
                     }
                     .frame(height: proxy.size.height)
@@ -56,14 +56,6 @@ private extension CommentView {
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
     }
-    var _userListForTag: some View {
-        LazyVStack(alignment: .leading) {
-            ForEach(userVm.users) { user in
-                UserRow(user: user)
-            }
-        }
-        .padding(.horizontal, AppStyle.defaultSpacing)
-    }
     
     var _commentBar: some View {
         HStack(spacing: 10) {
@@ -80,8 +72,6 @@ private extension CommentView {
                 .overlay(Capsule().stroke(Color(.systemGray).opacity(0.8)))
                 .onChange(of: postRowVm.commentText) { newValue in
                     postRowVm.onCommentTextChange(newValue)
-                    print("STATE: \(postRowVm.commentState)")
-                    print("COMPARE newValue with @: \(newValue.last == "@")")
                 }
             
             Button(action: _postComment) {
@@ -100,6 +90,7 @@ private extension CommentView {
     func _postComment() {
         vm.isShowWaitingDialog = true
         postRowVm.createComment()
+        postRowVm.notifyToMentionUsers(of: postRowVm.post, users: userVm.users)
         Task {
             await postRowVm.loadComment()
             postRowVm.commentText = ""

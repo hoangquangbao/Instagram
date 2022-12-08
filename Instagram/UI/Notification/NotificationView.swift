@@ -77,12 +77,13 @@ struct NotificationInfo: View {
                     
                     VStack(alignment: .leading) {
                         HStack {
-                            Group<Text>() {
+                            Group<Text> {
                                 Text("\(notification.userInteraction!.fullName) ").bold() +
                                 Text(notification.content)
                             }
                             .font(.system(.subheadline))
                             .multilineTextAlignment(.leading)
+                            .lineSpacing(0)
                             
                             if(!notification.isRead) {
                                 Spacer()

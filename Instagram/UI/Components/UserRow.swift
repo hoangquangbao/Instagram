@@ -10,12 +10,13 @@ import SwiftUI
 struct UserRow: View {
     let user: User
     let avatarSize: CGFloat = AppStyle.defaultAvatarSize
+    var isShowStoryBorder: Bool = false
     
     private let _avatarSize: CGFloat = 44.0
     
     var body: some View {
         HStack() {
-            UserAvatar(user: user)
+            UserAvatar(user: user, isShowStoryBorder: isShowStoryBorder)
             
             VStack(alignment: .leading) {
                 Text(user.username)
@@ -34,9 +35,10 @@ struct UserRow: View {
 struct UserAvatar: View {
     let user: User
     var radius: CGFloat = 44.0
+    var isShowStoryBorder: Bool = false
     
     var body: some View {
-        if(user.hasStory) {
+        if(user.hasStory && isShowStoryBorder) {
             CircleAvatar(imageUrl: user.avatarUrl, radius: radius)
                 .addGradientBorder(gradient: AppStyle.storyLinearGradient)
         } else {
