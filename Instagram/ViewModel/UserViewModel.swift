@@ -10,6 +10,7 @@ import SwiftUI
 @MainActor class UserViewModel: ObservableObject {
     var isFetching: Bool = false
     @Published var users: [User] = []
+    @Published var userHasStory: [User] = []
     
     init() {
         self.isFetching = true
@@ -20,12 +21,13 @@ import SwiftUI
         UserService.getAll { users in
             self.users = users
             self.isFetching = false
+            self.getUserHasStory()
         }
     }
     
-    var userHasStory: [User] {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return [] }
-        return users.filter { $0.hasStory == true && $0.id != uid}
+    func getUserHasStory() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        self.userHasStory = users.filter { $0.hasStory == true && $0.id != uid}
     }
     
     func searchableUser(_ text: String) -> [User] {

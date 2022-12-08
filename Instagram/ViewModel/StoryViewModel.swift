@@ -21,6 +21,7 @@ import SwiftUI
         StoryService.getAll { stories in
             Task {
                 self.stories = stories
+                self.deleteExpiredStory(stories: stories)
             }
         }
     }
@@ -41,7 +42,6 @@ import SwiftUI
                     let uid = stories[i].uid
                     StoryService.delete(with: id) { isSuccess, _ in
                         if isSuccess {
-                            self.stories.remove(at: i)
                             if self.userStories(of: uid).isEmpty {
                                 UserService.update(with: uid, field: "hasStory", data: false) { isSuccess, error in
                                     if !isSuccess {
