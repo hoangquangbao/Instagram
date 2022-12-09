@@ -37,4 +37,8 @@ struct MockData {
              user: users[2]
         ),
     ]
+    
+    static let notifications: [Notification] = [
+        Notification(uid: "7D49028F-46DB-4D0E-8579-FDD74DE4B10D", action: .comment, type: .post, referenceId: "rPWRHypiUUMYUB0WDIh6", userInteractionId: "rPWRHypiUUMYUB0WDIh6", content: "has commented on your post")
+    ]
 }

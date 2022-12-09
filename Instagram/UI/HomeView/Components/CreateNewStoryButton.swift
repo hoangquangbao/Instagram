@@ -15,12 +15,6 @@ struct CreateNewStoryButton: View {
     var body: some View {
         VStack {
             Button {
-//                guard let user = sessionVm.userInfo else { return }
-//                if user.hasStory {
-//                    homeVm.isShowOptionForNavigateStoryView.toggle()
-//                } else {
-//                    homeVm.isShowNewStoryView.toggle()
-//                }
                 guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
                 if let currentUser = userVm.users.first(where: { $0.id == uid }) {
                     if currentUser.hasStory {

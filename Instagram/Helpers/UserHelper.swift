@@ -14,8 +14,8 @@ struct UserHelper {
     ///     print(getLastMentionUsername(from: string))
     ///     // Prints "lhduc2205"
     ///
-    static func getLastMentionUsername(from text: String) -> String {
-        let separatorSplit = text.split(separator: "@")
+    static func getLastMentionUsername(from string: String) -> String {
+        let separatorSplit = string.split(separator: "@")
         let userSearchableText = String(separatorSplit[separatorSplit.count - 1])
         
         return userSearchableText
@@ -30,9 +30,9 @@ struct UserHelper {
     ///     print(replaceLatestMentionUser(from: string, by: username))
     ///     // Prints "Hi, @lhduc and @lhduc2205"
     ///
-    static func replaceLatestMentionUser(from text: String, by username: String) -> String {
-        let lastSeparatorIndex = text.lastIndex(of: "@") ?? text.endIndex
-        var subString = text[..<lastSeparatorIndex]
+    static func replaceLatestMentionUser(from string: String, by username: String) -> String {
+        let lastSeparatorIndex = string.lastIndex(of: "@") ?? string.endIndex
+        var subString = string[..<lastSeparatorIndex]
         subString += "@\(username)"
         
         return String(subString)
@@ -49,8 +49,8 @@ struct UserHelper {
     ///     print(getAllMentionUser(from: string, with: users))
     ///     // Prints ["lhduc", "lhduc2205"]
     ///
-    static func getAllMentionUser(from text: String, with users: [User]) -> [User] {
-        let separatorSplit = text.split(separator: " ")
+    static func getAllMentionUser(from string: String, with users: [User]) -> [User] {
+        let separatorSplit = string.split(separator: " ")
         var mentionUsers: [User] = []
 
         separatorSplit.forEach { element in
