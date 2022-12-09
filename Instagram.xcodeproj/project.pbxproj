@@ -165,6 +165,7 @@
 		CDD8B65D29407ECF0057C31B /* ToastOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8B65C29407ECF0057C31B /* ToastOptions.swift */; };
 		CDD8B65F2940805B0057C31B /* ViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8B65E2940805B0057C31B /* ViewExtention.swift */; };
 		CDD8B665294090320057C31B /* TimestampHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD8B664294090320057C31B /* TimestampHelper.swift */; };
+		CDDDA564294318FE000A0C9E /* ImageGridShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDA563294318FE000A0C9E /* ImageGridShimmer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -327,6 +328,7 @@
 		CDD8B65C29407ECF0057C31B /* ToastOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastOptions.swift; sourceTree = "<group>"; };
 		CDD8B65E2940805B0057C31B /* ViewExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtention.swift; sourceTree = "<group>"; };
 		CDD8B664294090320057C31B /* TimestampHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampHelper.swift; sourceTree = "<group>"; };
+		CDDDA563294318FE000A0C9E /* ImageGridShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGridShimmer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +369,7 @@
 		064EE19B28DC2097002B83EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CD41DB7A28ED3F4700870F55 /* Components */,
 				6E0015A5292651DC00011DD1 /* PostDetail */,
 				6EBBC86C2925EF6D00D693BD /* Notification */,
 				CD602441291CE35B0060F613 /* Comment */,
@@ -374,7 +377,6 @@
 				CD8331AB291121BA00E12E14 /* NewStory */,
 				CDAFADD428FD4E87003B48E5 /* NewPost */,
 				CDAFADB328F6A557003B48E5 /* Explore */,
-				CD41DB7A28ED3F4700870F55 /* Components */,
 				CD273B4828EC27F000E7B06F /* Search */,
 				6EB4A9DC29191D4300F35002 /* HomeView */,
 				80B55ED928F0035100BE341D /* ProfileView */,
@@ -584,6 +586,7 @@
 				6E60AE7C291557E700B816B5 /* StoryAvatarShimmer.swift */,
 				6ED7D78E2921FB5200928F80 /* CommentRowShimmer.swift */,
 				6E332FEB292734650034D28D /* NotificationInfoShimmer.swift */,
+				CDDDA563294318FE000A0C9E /* ImageGridShimmer.swift */,
 			);
 			path = Shimmer;
 			sourceTree = "<group>";
@@ -1159,6 +1162,7 @@
 				06469311290BEB6F00F846A4 /* ActionSheetCustom.swift in Sources */,
 				06B9561D292B2D0300BC5973 /* PostOptionView.swift in Sources */,
 				CD2B3EF4290A20CA002E3A8F /* Shape+Utilities.swift in Sources */,
+				CDDDA564294318FE000A0C9E /* ImageGridShimmer.swift in Sources */,
 				064FB6EC2912BB8100E57A0A /* UserDefaults.swift in Sources */,
 				CDAFADD328FD13AE003B48E5 /* IconButton.swift in Sources */,
 				CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */,
