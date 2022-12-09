@@ -85,7 +85,12 @@ private extension SearchView {
 //            _filteredBar
             
             ScrollView {
-                PostImageGridLayout(posts: postVm.getNotOwningPost()).padding(.top, 5)
+                if postVm.isFetching {
+                    ImageGridShimmer()
+                } else {
+                    PostImageGridLayout(posts: postVm.getNotOwningPost()).padding(.top, 5)
+                }
+                
             }
             
             Spacer()

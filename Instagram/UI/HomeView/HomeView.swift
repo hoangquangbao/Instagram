@@ -112,8 +112,10 @@ private extension HomeView {
     
     var _usersPost: some View {
         ForEach(postVm.posts) { post in
-            PostRow(post: post)
-                .padding(.top, 20)
+            LazyVStack {
+                PostRow(post: post)
+                    .padding(.top, 20)
+            }
         }
     }
     

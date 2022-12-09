@@ -30,7 +30,7 @@ class PostRowViewModel: ObservableObject {
     var likeCount   : Int   { return post.likeCount }
     var commentCount: Int   { return post.commentCount }
     var didLike: Bool {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return false}
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return false }
         return post.likes.contains(uid)
     }
     
