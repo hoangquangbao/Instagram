@@ -29,7 +29,7 @@ struct CommentView: View {
                     }
                     .frame(height: proxy.size.height)
                 }
-                Text(postRowVm.commentState.rawValue)
+                
                 _commentBar
             }
         }
