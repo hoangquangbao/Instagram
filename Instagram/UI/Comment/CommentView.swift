@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CommentView: View {
-    @StateObject var postRowVm: PostRowViewModel
-    @ObservedObject var vm = CommentViewModel()
+    
+    @ObservedObject var postRowVm: PostRowViewModel
+    @StateObject var vm = CommentViewModel()
+
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var sessionVm: SessionViewModel
     
-    
     var body: some View {
+        let _ = Self._printChanges()
         ZStack {
             VStack {
                 _comments
@@ -79,7 +81,7 @@ private extension CommentView {
         vm.isShowWaitingDialog = true
         postRowVm.createComment()
         Task {
-            await postRowVm.loadComment()
+//            await postRowVm.loadComment()
             postRowVm.commentText = ""
             vm.isShowWaitingDialog.toggle()
         }

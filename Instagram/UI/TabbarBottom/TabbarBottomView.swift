@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct TabbarBottomView: View {
-    @EnvironmentObject var vm: LoginViewModel
-    @EnvironmentObject var perform: BackLoginViewModel
-    @EnvironmentObject var storyVm: StoryViewModel
+    
+    @StateObject var userVm = UserViewModel()
+    @StateObject var storyVm = StoryViewModel()
+    @StateObject var postVm = PostViewModel()
+    @StateObject var notificationVm = NotificationViewModel()
+    
     @EnvironmentObject var sessionVm: SessionViewModel
-    @EnvironmentObject var notificationVm : NotificationViewModel
     
     @State private var selection = 0
     
@@ -20,9 +22,9 @@ struct TabbarBottomView: View {
         ZStack {
             VStack(spacing: 0.0) {
                 TabView(selection: $selection) {
-                    ForEach(TabbarBottomViewModel.allCases, id: \.rawValue) { item in
+                    ForEach(TabbarBottom.allCases, id: \.rawValue) { item in
                         if let user = sessionVm.userInfo {
-                            if item == TabbarBottomViewModel.notification {
+                            if item == TabbarBottom.notification {
                                 item.getView(user: user)
                                     .tag(item.rawValue)
                                     .tabItem {
@@ -52,13 +54,23 @@ struct TabbarBottomView: View {
                 StoryView()
             }
         }
+        .environmentObject(userVm)
+        .environmentObject(postVm)
+        .environmentObject(storyVm)
+        .environmentObject(notificationVm)
+//        .onAppear {
+//            postVm.getAll()
+//            userVm.getAll()
+//            storyVm.getAll()
+//            notificationVm.getAll()
+//        }
     }
 }
 
-struct TabbarBottomView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabbarBottomView()
-            .environmentObject(StoryViewModel())
-    }
-}
+//struct TabbarBottomView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TabbarBottomView()
+//            .environmentObject(StoryViewModel())
+//    }
+//}
 

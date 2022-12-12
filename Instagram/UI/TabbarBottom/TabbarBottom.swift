@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-enum TabbarBottomViewModel: Int, CaseIterable {
+enum TabbarBottom: Int, CaseIterable {
     case home, search, favorite, notification, profile
     
     func getView(user: User) -> AnyView {

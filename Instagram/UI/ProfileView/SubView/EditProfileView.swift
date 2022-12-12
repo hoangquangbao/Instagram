@@ -22,17 +22,19 @@ struct EditProfileView: View {
                 ActionSheetCustom(isShowImagePicker: $_isShowImagePicker, isShowImagePickerOptions: $_isShowImagePickerOptions, sourceType: $_sourceType)
             }
             .fullScreenCover(isPresented: $_isShowImagePicker, onDismiss: {
-                _isStoryUploading.toggle()
-                vm._uploadAvatar { isSuccess, error in
-                    if isSuccess {
-                        Task {
-                            await sessionVm.refresh()
+                if vm.imageAttach != nil {
+                    _isStoryUploading.toggle()
+                    vm._uploadAvatar { isSuccess, error in
+                        if isSuccess {
+                            Task {
+                                await sessionVm.refresh()
+                                _isStoryUploading.toggle()
+                                dismiss()
+                            }
+                        } else {
                             _isStoryUploading.toggle()
-                            dismiss()
+                            print(error?.localizedDescription as Any)
                         }
-                    } else {
-                        _isStoryUploading.toggle()
-                        print(error?.localizedDescription as Any)
                     }
                 }
             }, content: {
