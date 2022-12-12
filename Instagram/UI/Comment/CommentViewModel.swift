@@ -6,9 +6,8 @@
 //
 
 import Foundation
-
 class CommentViewModel: ObservableObject {
-    private let postService = PostService()
-    
     @Published var isShowWaitingDialog: Bool = false
+    
+    private let postService = PostService()
 }

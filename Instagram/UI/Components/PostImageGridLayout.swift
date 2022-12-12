@@ -48,7 +48,7 @@ private extension PostImageGridLayout {
             .transition(.opacity)
             .contextMenu {
                 Button {
-                    StorageService.download()
+                    
                 } label: {
                     HStack {
                         Text("Save")

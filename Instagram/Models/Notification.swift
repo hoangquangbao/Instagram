@@ -26,12 +26,12 @@ struct Notification: Identifiable, Encodable, Decodable {
 
 extension Notification {
     func getTimeNotifyAgo() -> String {
-        return self.notifyAt.dateValue().timeAgoDisplay()
+        return TimestampHelper.getTimeAgo(timestamp: self.notifyAt)
     }
 }
 
 enum NotificationAction: String, Decodable, Encodable {
-    case like, comment
+    case like, comment, mention
 }
 
 enum NotificationType: String, Decodable, Encodable {

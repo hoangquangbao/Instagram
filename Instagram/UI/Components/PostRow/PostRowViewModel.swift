@@ -13,8 +13,13 @@ class PostRowViewModel: ObservableObject {
     @Published var isNavigateProfileView: Int? = nil
     @Published var isNavigateCommentView: Int? = nil
     @Published var commentText: String = ""
-    @Published var isShowDeletePostAlert: Bool = false
+    @Published var mentionUserText: String = ""
+    @Published var waitingDialogTitle: String = "Uploading..."
     @Published var isShowEditPost: Bool = false
+    @Published var isShowWaitingDialog: Bool = false
+    @Published var isShowDeletePostAlert: Bool = false
+    @Published var commentState: CommentState = .comment
+    enum CommentState: String { case comment, mention }
     
     init(post: Post) {
         self.post = post
@@ -25,7 +30,7 @@ class PostRowViewModel: ObservableObject {
     var likeCount   : Int   { return post.likeCount }
     var commentCount: Int   { return post.commentCount }
     var didLike: Bool {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return false}
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return false }
         return post.likes.contains(uid)
     }
     
@@ -66,7 +71,7 @@ class PostRowViewModel: ObservableObject {
             await _updateLikePost(with: postId, likes: post.likes)
             if post.uid != uid {
                 
-                notifyToAuthor(of: post, action: .like)
+                _notifyToAuthor(of: post, action: .like)
             }
         }
     }
@@ -99,13 +104,12 @@ class PostRowViewModel: ObservableObject {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         guard let postId = post.id else { return }
         let comment = Comment(uid: uid, comment: commentText)
-        self.commentText = ""
         
         PostService.update(with: postId, comment: comment) { [self] isSuccess, error in
             if error != nil { return }
             
             if post.uid != uid {
-                notifyToAuthor(of: post, action: .comment)
+                _notifyToAuthor(of: post, action: .comment)
             }
             
             _increaseCommentCount(with: postId) {
@@ -116,7 +120,7 @@ class PostRowViewModel: ObservableObject {
         }
     }
     
-    func notifyToAuthor(of post: Post, action: NotificationAction) {
+    private func _notifyToAuthor(of post: Post, action: NotificationAction) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
         let content = action == NotificationAction.comment ? "has commented on your post" : "has liked your post"
@@ -129,7 +133,24 @@ class PostRowViewModel: ObservableObject {
         
     }
     
-    func _increaseCommentCount(with postId: String, completion: @escaping () -> Void) {
+    func notifyToMentionUsers(of post: Post, users: [User]) {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        let mentionUsers: [User] = UserHelper.getAllMentionUser(from: commentText, with: users)
+        
+        mentionUsers.forEach { user in
+            guard let notificationUid = user.id else { return }
+            let content = "has mentioned you in a comment"
+            
+            let notification = Notification(uid: notificationUid, action: .mention, type: .post, referenceId: post.id!, userInteractionId: uid, content: content)
+            
+            NotificationService.create(notification) { isSuccess, _ in
+                print(isSuccess)
+            }
+        }
+    }
+    
+    private func _increaseCommentCount(with postId: String, completion: @escaping () -> Void) {
         let data = FieldValue.increment(1.0)
         PostService.update( with: postId, field: "commentCount", data: data) { isSuccess, _ in
             if !isSuccess { return }
@@ -195,5 +216,59 @@ class PostRowViewModel: ObservableObject {
         PostService.delete(with: id) { isSuccess, error in
             completion(isSuccess, error)
         }
+    }
+    
+    func downloadImage(fromUrl url: String, completion: @escaping(Bool) -> Void) {
+        waitingDialogTitle = "Downloading..."
+        isShowWaitingDialog.toggle()
+        
+        StorageService.download(with: url) { (isSuccess, error) in
+            if error != nil {
+                withAnimation {
+                    self.isShowWaitingDialog.toggle()
+                }
+                completion(false)
+                return
+            }
+            
+            withAnimation {
+                self.isShowWaitingDialog.toggle()
+            }
+            completion(true)
+        }
+    }
+    
+    func switchState(to state: CommentState) {
+        commentState = state
+    }
+    
+    func onCommentTextChange(_ text: String) {
+        if text.last == nil {
+            switchState(to: .comment)
+            return
+        }
+        
+        if (text.last == " " && commentState == .mention) {
+            switchState(to: .comment)
+            return
+        }
+        
+        if text.last == "@" {
+            switchState(to: .mention)
+            mentionUserText = ""
+            return
+        }
+        
+        if commentState == .mention {
+            mentionUserText = UserHelper.getLastMentionUsername(from: commentText)
+        } else {
+            mentionUserText = ""
+        }
+    }
+    
+    func selectMentionUser(_ user: User) {
+        commentText = UserHelper.replaceLatestMentionUser(from: commentText, by: user.username) + " "
+        mentionUserText = ""
+        switchState(to: .comment)
     }
 }
