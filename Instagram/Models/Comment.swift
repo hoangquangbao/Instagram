@@ -11,7 +11,6 @@ import Firebase
 
 struct Comment: Identifiable, Decodable, Encodable {
     var id: String = UUID().uuidString
-    
     let uid: String
     let comment: String
     var likes: [String] = []

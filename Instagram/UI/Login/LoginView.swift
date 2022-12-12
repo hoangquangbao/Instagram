@@ -2,8 +2,9 @@ import SwiftUI
 import FirebaseFirestore
 
 struct LoginView: View {
+
+    @StateObject var vm = LoginViewModel()
     
-    @EnvironmentObject var vm: LoginViewModel
     @EnvironmentObject var perform: BackLoginViewModel
     @EnvironmentObject var sessionVm: SessionViewModel
     
@@ -69,6 +70,7 @@ struct LoginView: View {
                       message: Text(vm.alertMessage),
                       dismissButton: .default(Text(vm.alertButtonTitle)))
             })
+            .environmentObject(vm)
         }
     }
 }

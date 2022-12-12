@@ -32,9 +32,9 @@ struct PostRow: View {
             }
             
             _commentArea
-            
+                        
             _postTime
-            
+
             NavigationLink(
                 destination: CommentView(postRowVm: vm),
                 tag: 1,

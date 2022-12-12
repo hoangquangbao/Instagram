@@ -2,7 +2,10 @@ import SwiftUI
 
 struct SharePhotoView: View {
     
+    @EnvironmentObject var loginVm: LoginViewModel
+    @EnvironmentObject var perform: BackLoginViewModel
     @EnvironmentObject var vm: SignupViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     @State private var _isNavigation: Bool = false
     
     var body: some View {
