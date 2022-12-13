@@ -18,7 +18,9 @@ import Firebase
     }
     
     func getUnReadCount() {
-        NotificationService.getUnReadCount {[self] count in
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        NotificationService.getUnReadCount(of: uid) {[self] count in
             Task {
                 unReadCount = count
             }
@@ -43,12 +45,17 @@ import Firebase
             return
         }
         
-        NotificationService.update(of: uid, with: notification.id, field: "isRead", data: true) { isSuccess, _ in
-            if !isSuccess { return }
+        
+        NotificationService.getUnReadCount(of: uid) { unReadCount in
+            if unReadCount <= 0 { return }
             
-            NotificationService.updateUnReadCount(of: uid, data: FieldValue.increment(-1.0)) { isSuccess, _ in
+            NotificationService.update(of: uid, with: notification.id, field: "isRead", data: true) { isSuccess, _ in
                 if !isSuccess { return }
-                completion()
+                
+                NotificationService.updateUnReadCount(of: uid, data: FieldValue.increment(-1.0)) { isSuccess, _ in
+                    if !isSuccess { return }
+                    completion()
+                }
             }
         }
         

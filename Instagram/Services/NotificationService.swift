@@ -33,9 +33,7 @@ struct NotificationService {
         }
     }
     
-    static func getUnReadCount(completion: @escaping (Int) -> Void) {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        
+    static func getUnReadCount(of uid: String, completion: @escaping (Int) -> Void) {
         _notificationRef.document(uid).addSnapshotListener { snapshot, error in
             guard let document = snapshot?.data() else {
                 print("no notification")

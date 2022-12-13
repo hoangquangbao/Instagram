@@ -25,6 +25,7 @@ struct NotificationView: View {
                     if(vm.isFetching) {
                         NotificationInfoShimmer()
                             .padding(.horizontal, AppStyle.defaultSpacing)
+                        Spacer()
                     }
                     else {
                         if(vm.notifications.isNotEmpty) {
@@ -36,7 +37,7 @@ struct NotificationView: View {
                                 }
                             }
                         } else {
-                            EmptyNotificationView()
+                            NotificationEmptyView()
                         }
                     }
                     
@@ -53,5 +54,6 @@ struct NotificationView: View {
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
         NotificationView()
+            .environmentObject(NotificationViewModel())
     }
 }
