@@ -65,7 +65,9 @@ private extension SearchView {
             print("On change")
         }
         .focused($_searchIsFocused)
-        .onTapGesture { vm.switchMode(.searching) }
+        .onTapGesture {
+            vm.switchMode(.searching)
+        }
     }
     
     var _cancelButton: some View {
