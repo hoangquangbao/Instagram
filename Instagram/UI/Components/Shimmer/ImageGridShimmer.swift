@@ -16,7 +16,7 @@ struct ImageGridShimmer: View {
     var body: some View {
         LazyVGrid(columns: _gridColumns, spacing: _spacing) {
             ForEach(0..<3, id: \.self) { _ in
-                Rectangle().frame(width: size, height: size).shimmering()
+                Rectangle().frame(width: size, height: size).shimmeringStyle()
             }
         }
     }

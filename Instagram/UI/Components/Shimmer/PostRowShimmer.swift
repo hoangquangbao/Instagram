@@ -35,7 +35,6 @@ extension PostRowShimmer {
     
     var actionButtons: some View {
         HStack(spacing: 12) {
-//            RectangleShimmer(width: 25, height: 25)
             Image.icnHeart.shimmering()
             Image.icnComment.shimmering()
             Image.icnShare.shimmering()
@@ -74,7 +73,7 @@ struct RectangleShimmer: View {
     var body: some View {
         Rectangle()
             .frame(width: width, height: height)
-            .shimmering()
+            .shimmeringStyle()
     }
 }
 

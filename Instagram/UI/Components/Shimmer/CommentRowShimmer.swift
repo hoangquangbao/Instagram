@@ -13,13 +13,13 @@ struct CommentRowShimmer: View {
         HStack {
             UserRowShimmer().circleAvatar(radius: 50)
             VStack(alignment: .leading) {
-                Rectangle().frame(width: 70, height: 10).shimmering()
+                Rectangle().frame(width: 70, height: 10).shimmeringStyle()
                 GeometryReader { proxy in
-                    Rectangle().frame(width: proxy.size.width, height: 10).shimmering()
+                    Rectangle().frame(width: proxy.size.width, height: 10).shimmeringStyle()
                 }
                 
                 GeometryReader { proxy in
-                    Rectangle().frame(width: proxy.size.width, height: 10).shimmering()
+                    Rectangle().frame(width: proxy.size.width, height: 10).shimmeringStyle()
                 }
             }
         }
