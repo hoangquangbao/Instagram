@@ -54,6 +54,10 @@ struct TabbarBottomView: View {
                 StoryView()
             }
         }
+        .environmentObject(userVm)
+        .environmentObject(postVm)
+        .environmentObject(storyVm)
+        .environmentObject(notificationVm)
     }
 }
 

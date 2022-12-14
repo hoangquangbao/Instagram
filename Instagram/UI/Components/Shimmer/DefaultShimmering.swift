@@ -25,7 +25,7 @@ struct DefaultShimmering: ViewModifier {
                 .shimmering()
                 .background(Color.gray)
                 .foregroundColor(Color.white)
-                .clipShape(Rectangle())
+                .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 }
