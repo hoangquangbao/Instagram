@@ -11,11 +11,11 @@ enum TabbarBottom: Int, CaseIterable {
     
     func getView(user: User) -> AnyView {
         switch self {
-        case .home:         return AnyView(LazyView(HomeView()))
-        case .search:       return AnyView(LazyView(SearchView()))
+        case .home:         return AnyView(HomeView())
+        case .search:       return AnyView(SearchView())
         case .favorite:     return AnyView(Text("Favorite view"))
-        case .notification: return AnyView(LazyView(NotificationView()))
-        case .profile:      return AnyView(LazyView(ProfileView(user: user)))
+        case .notification: return AnyView(NotificationView())
+        case .profile:      return AnyView(ProfileView(user: user))
         }
     }
     

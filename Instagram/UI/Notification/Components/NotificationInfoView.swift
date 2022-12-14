@@ -90,7 +90,7 @@ private extension NotificationInfoView {
         switch action {
         case .like:     return UserRowImageOptions(systemName: "heart.fill", backgroundColor: Color(.systemRed))
         case .comment:  return UserRowImageOptions(systemName: "bubble.left.fill")
-        case .mention:  return UserRowImageOptions(systemName: "tag.fill", backgroundColor: Color(.systemBlue))
+        case .mention:  return UserRowImageOptions(systemName: "bubble.left.fill")
         }
     }
 }
