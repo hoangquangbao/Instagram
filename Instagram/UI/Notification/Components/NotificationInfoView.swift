@@ -18,7 +18,7 @@ struct NotificationInfoView: View {
     
     var body: some View {
         ZStack {
-            notification.isRead ? Color.clear : Color.semiText.opacity(0.1)
+            notification.isRead ? Color.clear : Color.blue.opacity(0.1)
             
             Button {
                 isShowDialog = true

@@ -235,18 +235,6 @@ private extension PostRow {
     }
 }
 
-extension URL {
-    func saveImage(_ image: UIImage?) {
-        if let image = image {
-            if let data = image.jpegData(compressionQuality: 1.0) {
-                try? data.write(to: self)
-            }
-        } else {
-            try? FileManager.default.removeItem(at: self)
-        }
-    }
-}
-
 
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {

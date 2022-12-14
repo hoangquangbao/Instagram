@@ -24,3 +24,9 @@ extension View {
         modifier(DefaultToast(toastOptions: toastOption, isPresent: isPresent))
     }
 }
+
+extension View {
+    func shimmeringStyle(shape: ShimmerShapeType = .rectangle) -> some View {
+        modifier(DefaultShimmering(shape: shape))
+    }
+}

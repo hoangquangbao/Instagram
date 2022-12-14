@@ -58,14 +58,9 @@ struct TabbarBottomView: View {
         .environmentObject(postVm)
         .environmentObject(storyVm)
         .environmentObject(notificationVm)
-//        .onAppear {
-//            postVm.getAll()
-//            userVm.getAll()
-//            storyVm.getAll()
-//            notificationVm.getAll()
-//        }
     }
 }
+
 
 //struct TabbarBottomView_Previews: PreviewProvider {
 //    static var previews: some View {

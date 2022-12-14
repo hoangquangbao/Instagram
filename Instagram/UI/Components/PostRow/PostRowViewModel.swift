@@ -70,7 +70,8 @@ class PostRowViewModel: ObservableObject {
             post.likes.append(uid)
             await _updateLikePost(with: postId, likes: post.likes)
             if post.uid != uid {
-                
+                print("POST UID: \(post.uid)")
+                print("CURRENT UID: \(uid)")
                 _notifyToAuthor(of: post, action: .like)
             }
         }
@@ -127,8 +128,15 @@ class PostRowViewModel: ObservableObject {
         
         let notification = Notification(uid: post.uid, action: action, type: .post, referenceId: post.id!, userInteractionId: uid, content: content)
         
+        if action == .like {
+            NotificationService.createIfExist(notification) { isSuccess, _ in
+                print("Like is \(isSuccess ? "success" : "fail")")
+            }
+            return
+        }
+        
         NotificationService.create(notification) { isSuccess, _ in
-            print(isSuccess)
+            print("\(action.rawValue) is \(isSuccess ? "success" : "fail")")
         }
         
     }

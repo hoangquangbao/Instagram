@@ -10,10 +10,10 @@ import SwiftUI
 struct UserRowShimmer: View {
     var body: some View {
         HStack {
-            Circle().frame(width: 40, height: 40).shimmering()
+            Circle().frame(width: 40, height: 40).shimmeringStyle(shape: .circle)
             VStack(alignment: .leading) {
-                Rectangle().frame(width: 100, height: 10).shimmering()
-                Rectangle().frame(width: 50, height: 10).shimmering()
+                Rectangle().frame(width: 100, height: 10).shimmeringStyle()
+                Rectangle().frame(width: 50, height: 10).shimmeringStyle()
             }
         }
     }
@@ -21,7 +21,7 @@ struct UserRowShimmer: View {
 
 extension UserRowShimmer {
     func circleAvatar(radius: CGFloat) -> some View {
-        Circle().frame(width: radius, height: radius).shimmering()
+        Circle().frame(width: radius, height: radius).shimmeringStyle(shape: .circle)
     }
 }
 
