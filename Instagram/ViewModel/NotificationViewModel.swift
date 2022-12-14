@@ -43,7 +43,7 @@ import Firebase
             return
         }
         
-        NotificationService.update(with: notification.id, field: "isRead", data: true) { isSuccess, _ in
+        NotificationService.update(of: uid, with: notification.id, field: "isRead", data: true) { isSuccess, _ in
             if !isSuccess { return }
             
             NotificationService.updateUnReadCount(of: uid, data: FieldValue.increment(-1.0)) { isSuccess, _ in

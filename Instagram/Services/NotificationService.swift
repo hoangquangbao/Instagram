@@ -19,6 +19,8 @@ struct NotificationService {
                 guard let documents = snapshot?.documents else { completion([]); return }
                 var notifications = documents.compactMap { try? $0.data(as: Notification.self) }
                 
+                print(notifications)
+                
                 for i in 0..<notifications.count {
                     notifications[i].user = try await UserService.get(by: notifications[i].uid)
                     notifications[i].userInteraction = try await UserService.get(by: notifications[i].userInteractionId)
@@ -40,7 +42,7 @@ struct NotificationService {
                 completion(0)
                 return
             }
-
+            
             completion(document["unReadCount"] as! Int)
         }
         
@@ -70,13 +72,54 @@ struct NotificationService {
                         completion(true, nil)
                     }
                 }
-        } catch {
+        }
+        catch {
             completion(false, error)
         }
     }
     
-    static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+    static func createIfExist(_ notification: Notification, completion: @escaping (Bool, Error?) -> Void) {
+        let ownDocument = _notificationRef.document(notification.uid)
+        let subNotifRef = ownDocument.collection(FirebaseConstants.NOTIFICATION_COLLECTION)
+        
+        NotificationService._getExistNotification(of: notification) { existNotif in
+            guard let existNotif = existNotif else {
+                do {
+                    try subNotifRef
+                        .document(notification.id)
+                        .setData(from: notification) { error in
+                            if let error = error {
+                                completion(false, error)
+                            }
+                            else {
+                                completion(true, nil)
+                            }
+                        }
+                } catch { completion(false, error) }
+                return
+            }
+            
+            NotificationService.update(of: existNotif.uid, with: existNotif.id, field: "isRead", data: false) { isSuccess, _ in
+                if isSuccess {
+                    NotificationService.update(of: existNotif.uid, with: existNotif.id, field: "notifyAt", data: Date()) { _, __ in
+                    }
+                }
+            }
+            
+            if existNotif.isRead {
+                NotificationService.updateUnReadCount(of: existNotif.uid, data: FieldValue.increment(1.0)) { isSuccess, error in
+                    if !isSuccess {
+                        ownDocument.setData(["unReadCount": 1]) { error in
+                            completion(false, error)
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    static func update(of uid: String, with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
         let subNotifRef =  _notificationRef.document(uid).collection(FirebaseConstants.NOTIFICATION_COLLECTION)
         
         subNotifRef.document(id).updateData([field: data]) { error in
@@ -98,6 +141,24 @@ struct NotificationService {
             
             completion(true, nil)
         }
+    }
+    
+    static private func _getExistNotification(of notification: Notification, completion: @escaping (Notification?) -> Void
+    ) {
+        
+        let subNotifRef =  _notificationRef.document(notification.uid).collection(FirebaseConstants.NOTIFICATION_COLLECTION)
+        subNotifRef
+            .whereField("referenceId", isEqualTo: notification.referenceId)
+            .whereField("userInteractionId", isEqualTo: notification.userInteractionId)
+            .whereField("action", isEqualTo: notification.action.rawValue)
+            .getDocuments { snapshot, _ in
+                guard let documents = snapshot?.documents else { return }
+                let notifications = documents.compactMap { try? $0.data(as: Notification.self) }
+                
+                print(notifications)
+                
+                completion(notifications.isNotEmpty ? notifications[0] : nil)
+            }
     }
     
     static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {

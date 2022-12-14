@@ -12,34 +12,35 @@ struct NotificationView: View {
     
     @State private var isWaitingDialogDisplayed: Bool = false
     
+    init() {
+        print("Init notification view")
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
-                VStack(alignment: .leading) {
-                    Text("Notifications")
-                        .font(.system(.title2))
-                        .bold()
-                        .padding(AppStyle.defaultSpacing)
+                VStack {
+                    NotificationHeaderView()
                     
-                    ScrollView {
-                        LazyVStack {
-                            if(vm.isFetching) {
-                                NotificationInfoShimmer()
-                                    .padding(.horizontal, AppStyle.defaultSpacing)
-                                Spacer()
-                            }
-                            else {
-                                if(vm.notifications.isNotEmpty) {
+                    if(vm.isFetching) {
+                        NotificationInfoShimmer()
+                            .padding(.horizontal, AppStyle.defaultSpacing)
+                    }
+                    else {
+                        if(vm.notifications.isNotEmpty) {
+                            ScrollView {
+                                LazyVStack {
                                     ForEach(vm.notifications) { notification in
                                         NotificationInfoView(notification: notification, isShowDialog: $isWaitingDialogDisplayed, vm: vm)
                                     }
-                                } else {
-                                    Text("Don't have any notification yet")
-                                        .font(.system(.title))
                                 }
                             }
+                        } else {
+                            EmptyNotificationView()
                         }
                     }
+                    
+                    
                 }
             }
             .navigationBarHidden(true)
