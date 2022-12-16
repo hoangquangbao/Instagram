@@ -7,16 +7,16 @@
 import SwiftUI
 
 class SearchViewModel: ObservableObject {
+    enum Mode { case postSuggestion, searching }
+    
     @Published var searchText: String = ""
     @Published var itemsSelectionState = [String: Bool]()
     @Published var isSearchingMode = false
-    
-    enum Mode { case postSuggestion, searching }
+    @Published var mode: Mode = .postSuggestion
     
     let users: [User] = MockData.users
     var posts: [Post] = MockData.posts
     let categoriesFiltered = SearchData.categoriesFilteredData
-    var mode: Mode = .postSuggestion
     
     init() {
         initializeFilteredSelectionState()
