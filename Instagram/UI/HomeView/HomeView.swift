@@ -15,6 +15,8 @@ struct HomeView: View {
     @EnvironmentObject var postVm : PostViewModel
     @EnvironmentObject var storyVm: StoryViewModel
     
+    @State private var tabBar: UITabBar! = nil
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -46,6 +48,9 @@ struct HomeView: View {
                     message: { Text("Please choose one option") }
                 )
             }
+            .background(TabBarAccessor { tabbar in
+                self.tabBar = tabbar
+            })
         }
         .showToast(toastOption: ToastOptions(title: "Saved"), isPresent: $vm.isShowToast)
         .environmentObject(vm)
@@ -86,15 +91,20 @@ private extension HomeView {
             
             _createNewPostButton
             
-            IconButton(imageIcon: Image.icnShare) {
-                withAnimation {
-                    vm.isShowToast = true
-                    print("Show toast")
-                }
+            NavigationLink {
+                MainChatView()
+                    .onAppear { self.tabBar.isHidden = true }
+                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarBackButtonHidden(true)
+            } label: {
+                Image.icnShare
             }
             
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
+        .onAppear {
+            self.tabBar.isHidden = false
+        }
     }
     
     var _storyBar: some View {
@@ -130,7 +140,6 @@ private extension HomeView {
         }
     }
 }
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

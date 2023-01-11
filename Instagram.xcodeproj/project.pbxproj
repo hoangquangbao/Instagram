@@ -103,6 +103,21 @@
 		6EBBC8672925DF2000D693BD /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBC8662925DF2000D693BD /* Notification.swift */; };
 		6EBBC86E2925EF8000D693BD /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBC86D2925EF8000D693BD /* NotificationView.swift */; };
 		6EBBC8702925F24D00D693BD /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBBC86F2925F24D00D693BD /* NotificationViewModel.swift */; };
+		6EC2E7AB296679EB00A75191 /* MainChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7AA296679EB00A75191 /* MainChatView.swift */; };
+		6EC2E7AD29667A6B00A75191 /* TabBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7AC29667A6B00A75191 /* TabBarAccessor.swift */; };
+		6EC2E7AF2966AB3700A75191 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7AE2966AB3700A75191 /* Message.swift */; };
+		6EC2E7B12966C30A00A75191 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7B02966C30A00A75191 /* Conversation.swift */; };
+		6EC2E7B32967B84C00A75191 /* ConversationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7B22967B84C00A75191 /* ConversationHelper.swift */; };
+		6EC2E7B52967BE5800A75191 /* ConversationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7B42967BE5800A75191 /* ConversationService.swift */; };
+		6EC2E7B72968041A00A75191 /* MessageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7B62968041A00A75191 /* MessageRowView.swift */; };
+		6EC2E7B9296828DC00A75191 /* MainChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7B8296828DC00A75191 /* MainChatViewModel.swift */; };
+		6EC2E7BD296D069600A75191 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7BC296D069600A75191 /* ConversationView.swift */; };
+		6EC2E7BF296D6B5A00A75191 /* MainChatBackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7BE296D6B5A00A75191 /* MainChatBackButtonView.swift */; };
+		6EC2E7C1296D6BCB00A75191 /* MainChatConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7C0296D6BCB00A75191 /* MainChatConversationsView.swift */; };
+		6EC2E7C6296E624C00A75191 /* MessageRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7C5296E624C00A75191 /* MessageRowViewModel.swift */; };
+		6EC2E7C8296E62EF00A75191 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7C7296E62EF00A75191 /* ConversationViewModel.swift */; };
+		6EC2E7CB296E655A00A75191 /* ConversationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7CA296E655A00A75191 /* ConversationHeaderView.swift */; };
+		6EC2E7CE296E678A00A75191 /* ListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2E7CD296E678A00A75191 /* ListTileView.swift */; };
 		6ED7D78F2921FB5200928F80 /* CommentRowShimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7D78E2921FB5200928F80 /* CommentRowShimmer.swift */; };
 		6ED7D7902922080E00928F80 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAFADAE28F4143A003B48E5 /* SearchData.swift */; };
 		6ED7D7912922084800928F80 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD5A1728DF2255007A5F3A /* BottomBarView.swift */; };
@@ -272,6 +287,21 @@
 		6EBBC8662925DF2000D693BD /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		6EBBC86D2925EF8000D693BD /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		6EBBC86F2925F24D00D693BD /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		6EC2E7AA296679EB00A75191 /* MainChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatView.swift; sourceTree = "<group>"; };
+		6EC2E7AC29667A6B00A75191 /* TabBarAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessor.swift; sourceTree = "<group>"; };
+		6EC2E7AE2966AB3700A75191 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		6EC2E7B02966C30A00A75191 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		6EC2E7B22967B84C00A75191 /* ConversationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationHelper.swift; sourceTree = "<group>"; };
+		6EC2E7B42967BE5800A75191 /* ConversationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationService.swift; sourceTree = "<group>"; };
+		6EC2E7B62968041A00A75191 /* MessageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowView.swift; sourceTree = "<group>"; };
+		6EC2E7B8296828DC00A75191 /* MainChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatViewModel.swift; sourceTree = "<group>"; };
+		6EC2E7BC296D069600A75191 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		6EC2E7BE296D6B5A00A75191 /* MainChatBackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatBackButtonView.swift; sourceTree = "<group>"; };
+		6EC2E7C0296D6BCB00A75191 /* MainChatConversationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainChatConversationsView.swift; sourceTree = "<group>"; };
+		6EC2E7C5296E624C00A75191 /* MessageRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRowViewModel.swift; sourceTree = "<group>"; };
+		6EC2E7C7296E62EF00A75191 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		6EC2E7CA296E655A00A75191 /* ConversationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationHeaderView.swift; sourceTree = "<group>"; };
+		6EC2E7CD296E678A00A75191 /* ListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTileView.swift; sourceTree = "<group>"; };
 		6ED7D78D2921F26200928F80 /* InstagramRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstagramRelease.entitlements; sourceTree = "<group>"; };
 		6ED7D78E2921FB5200928F80 /* CommentRowShimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowShimmer.swift; sourceTree = "<group>"; };
 		6ED7D79629222CA900928F80 /* LatestUserLikedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestUserLikedRow.swift; sourceTree = "<group>"; };
@@ -376,6 +406,8 @@
 		064EE19B28DC2097002B83EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6EC2E7BB296D068000A75191 /* Conversation */,
+				6EC2E7A9296679E100A75191 /* MainChat */,
 				CD41DB7A28ED3F4700870F55 /* Components */,
 				6E0015A5292651DC00011DD1 /* PostDetail */,
 				6EBBC86C2925EF6D00D693BD /* Notification */,
@@ -655,6 +687,69 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		6EC2E7A9296679E100A75191 /* MainChat */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7C3296D6CD900A75191 /* Model */,
+				6EC2E7C2296D6CD500A75191 /* View */,
+				6EC2E7BA296D043600A75191 /* Components */,
+			);
+			path = MainChat;
+			sourceTree = "<group>";
+		};
+		6EC2E7BA296D043600A75191 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7C4296E623800A75191 /* MessageRow */,
+				6EC2E7BE296D6B5A00A75191 /* MainChatBackButtonView.swift */,
+				6EC2E7C0296D6BCB00A75191 /* MainChatConversationsView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		6EC2E7BB296D068000A75191 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7C9296E650E00A75191 /* Components */,
+				6EC2E7BC296D069600A75191 /* ConversationView.swift */,
+				6EC2E7C7296E62EF00A75191 /* ConversationViewModel.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		6EC2E7C2296D6CD500A75191 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7AA296679EB00A75191 /* MainChatView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6EC2E7C3296D6CD900A75191 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7B8296828DC00A75191 /* MainChatViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6EC2E7C4296E623800A75191 /* MessageRow */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7B62968041A00A75191 /* MessageRowView.swift */,
+				6EC2E7C5296E624C00A75191 /* MessageRowViewModel.swift */,
+			);
+			path = MessageRow;
+			sourceTree = "<group>";
+		};
+		6EC2E7C9296E650E00A75191 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6EC2E7CA296E655A00A75191 /* ConversationHeaderView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		6ED7D79829222E7500928F80 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +897,8 @@
 				CD652AAB28FFF0940075A5F7 /* TextEditorWithPlaceholder.swift */,
 				CD652AAF29015CEC0075A5F7 /* Badge.swift */,
 				CD8331AE2912195B00E12E14 /* CustomWaitingDialog.swift */,
+				6EC2E7AC29667A6B00A75191 /* TabBarAccessor.swift */,
+				6EC2E7CD296E678A00A75191 /* ListTileView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -859,6 +956,7 @@
 				6E9B8634291285DF00FF9487 /* StoryService.swift */,
 				6E8EB8992914195C00B4761A /* LocalStorage.swift */,
 				6EBBC8642925DEB400D693BD /* NotificationService.swift */,
+				6EC2E7B42967BE5800A75191 /* ConversationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -891,6 +989,8 @@
 				6E9B86362912863000FF9487 /* Story.swift */,
 				6E353EE7291DE4D700373A5B /* Comment.swift */,
 				6EBBC8662925DF2000D693BD /* Notification.swift */,
+				6EC2E7AE2966AB3700A75191 /* Message.swift */,
+				6EC2E7B02966C30A00A75191 /* Conversation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -928,6 +1028,7 @@
 			children = (
 				CDD8B664294090320057C31B /* TimestampHelper.swift */,
 				CD060ACF2941952100B55358 /* UserHelper.swift */,
+				6EC2E7B22967B84C00A75191 /* ConversationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1107,6 +1208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EC2E7C8296E62EF00A75191 /* ConversationViewModel.swift in Sources */,
 				6ED7D795292208C200928F80 /* UIColor+Generated.swift in Sources */,
 				6ED7D794292208A400928F80 /* UIScreen+Utilities.swift in Sources */,
 				6ED7D7932922089A00928F80 /* String+Utilities.swift in Sources */,
@@ -1127,6 +1229,7 @@
 				CD51113128F01BD00090F2F4 /* PostImageGridLayout.swift in Sources */,
 				CDAFADB228F6A449003B48E5 /* StorageService.swift in Sources */,
 				6E8EB8A12914C21A00B4761A /* PostRowShimmer.swift in Sources */,
+				6EC2E7AD29667A6B00A75191 /* TabBarAccessor.swift in Sources */,
 				CDAFADD828FD4EB6003B48E5 /* NewPostViewModel.swift in Sources */,
 				CDD8B665294090320057C31B /* TimestampHelper.swift in Sources */,
 				6EBBC86E2925EF8000D693BD /* NotificationView.swift in Sources */,
@@ -1140,6 +1243,8 @@
 				064EE19D28DC20CE002B83EF /* LoginView.swift in Sources */,
 				CD8331AF2912195B00E12E14 /* CustomWaitingDialog.swift in Sources */,
 				CDAFADAC28F413EA003B48E5 /* SearchItemModel.swift in Sources */,
+				6EC2E7B72968041A00A75191 /* MessageRowView.swift in Sources */,
+				6EC2E7B9296828DC00A75191 /* MainChatViewModel.swift in Sources */,
 				0641FADF2920A88400C12816 /* EditProfile.swift in Sources */,
 				6ED7D79729222CA900928F80 /* LatestUserLikedRow.swift in Sources */,
 				CD060AD02941952100B55358 /* UserHelper.swift in Sources */,
@@ -1165,6 +1270,7 @@
 				6EBBC8652925DEB400D693BD /* NotificationService.swift in Sources */,
 				064EE19F28DC20E5002B83EF /* LoginViewModel.swift in Sources */,
 				803F61A1291261CC00AD0918 /* ProfileViewModel.swift in Sources */,
+				6EC2E7CE296E678A00A75191 /* ListTileView.swift in Sources */,
 				CDAFADBB28F7B681003B48E5 /* CircleAvatar.swift in Sources */,
 				CD652AB029015CEC0075A5F7 /* Badge.swift in Sources */,
 				CD2B3EFE290A88A7002E3A8F /* UserService.swift in Sources */,
@@ -1175,6 +1281,7 @@
 				CD2B3EF4290A20CA002E3A8F /* Shape+Utilities.swift in Sources */,
 				CDDDA564294318FE000A0C9E /* ImageGridShimmer.swift in Sources */,
 				064FB6EC2912BB8100E57A0A /* UserDefaults.swift in Sources */,
+				6EC2E7C1296D6BCB00A75191 /* MainChatConversationsView.swift in Sources */,
 				CDAFADD328FD13AE003B48E5 /* IconButton.swift in Sources */,
 				CDAFADC528F91C69003B48E5 /* Date+Utilities.swift in Sources */,
 				CDDDA56829482A2F000A0C9E /* NotificationHeaderView.swift in Sources */,
@@ -1196,22 +1303,29 @@
 				6E353EE8291DE4D700373A5B /* Comment.swift in Sources */,
 				06494716291FD2BE005557D4 /* Enum.swift in Sources */,
 				CD602443291CE4770060F613 /* CommentView.swift in Sources */,
+				6EC2E7C6296E624C00A75191 /* MessageRowViewModel.swift in Sources */,
 				6E332FEC292734650034D28D /* NotificationInfoShimmer.swift in Sources */,
 				06469313290BEB9400F846A4 /* ActionSheetItem.swift in Sources */,
 				6E9B8635291285DF00FF9487 /* StoryService.swift in Sources */,
 				0689E16C28EAD55F00AFBB92 /* SegmentedPickerView.swift in Sources */,
 				CD41DB7928ED380300870F55 /* AppStyle.swift in Sources */,
 				6E2DC09F29486F6700C3D66F /* DefaultShimmering.swift in Sources */,
+				6EC2E7B12966C30A00A75191 /* Conversation.swift in Sources */,
+				6EC2E7AB296679EB00A75191 /* MainChatView.swift in Sources */,
 				06A1BE4E28F9AC58002DD172 /* AddAPasswordView.swift in Sources */,
 				6E9B863329126F7F00FF9487 /* NewStoryViewModel.swift in Sources */,
 				CD51112B28EE79E00090F2F4 /* ChoiceChip.swift in Sources */,
 				CD2B3EFA290A86E5002E3A8F /* ServiceProtocol.swift in Sources */,
 				06BB2C0F28F70E12003855D5 /* CustomTextFieldStyle.swift in Sources */,
+				6EC2E7AF2966AB3700A75191 /* Message.swift in Sources */,
 				06494713291FB257005557D4 /* EditProfileView.swift in Sources */,
+				6EC2E7B32967B84C00A75191 /* ConversationHelper.swift in Sources */,
 				CD41DB6F28ED192E00870F55 /* SearchViewModel.swift in Sources */,
 				CDAFADBD28F7B6BE003B48E5 /* UserRow.swift in Sources */,
+				6EC2E7BD296D069600A75191 /* ConversationView.swift in Sources */,
 				064FB6EA2912399200E57A0A /* OptionsView.swift in Sources */,
 				CD41DB7628ED232F00870F55 /* Color+Utilities.swift in Sources */,
+				6EC2E7CB296E655A00A75191 /* ConversationHeaderView.swift in Sources */,
 				80B55EDB28F0036000BE341D /* ProfileView.swift in Sources */,
 				80B55EE528F0076A00BE341D /* ProfilePost.swift in Sources */,
 				0641FAE12920D1ED00C12816 /* EditFieldView.swift in Sources */,
@@ -1235,7 +1349,9 @@
 				6E9B862F2912613000FF9487 /* UserViewModel.swift in Sources */,
 				066E58C928FC554B00E02562 /* SignupViewModel.swift in Sources */,
 				06C02A4028FAF07B003E5E68 /* AddYourBirthdayView.swift in Sources */,
+				6EC2E7BF296D6B5A00A75191 /* MainChatBackButtonView.swift in Sources */,
 				069D61F328FF97F3006F5618 /* ImagePicker.swift in Sources */,
+				6EC2E7B52967BE5800A75191 /* ConversationService.swift in Sources */,
 				06B067CE28ED8DA90014FFB9 /* PhoneTextFieldView.swift in Sources */,
 				6EB4A9DF291967ED00F35002 /* ButtonStyle+Utilities.swift in Sources */,
 				6E8EB8A42914C4A000B4761A /* UserRowShimmer.swift in Sources */,
@@ -1375,7 +1491,6 @@
 				INFOPLIST_FILE = Instagram/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "ImagePicker-Requires access to your camera";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save image to your filtered photo.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your filtered photo";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ImagePicker-Requires access to your photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1415,7 +1530,6 @@
 				INFOPLIST_FILE = Instagram/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "ImagePicker-Requires access to your camera";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Save image to your filtered photo.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your filtered photo";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "ImagePicker-Requires access to your photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
