@@ -9,15 +9,17 @@ import Foundation
 
 class ConversationViewModel: ObservableObject {
     @Published var conversation: Conversation
-    var participant: User?
     
     init(_ conversation: Conversation) {
         self.conversation = conversation
         self.participant = getParticipant()
     }
     
+    @Published var participant: User?
+    @Published var messageText: String = ""
+    
     func getParticipant() -> User? {
-        guard let currentUid = FirebaseManager.shared.auth.currentUser?.uid else { return nil }
+        guard let currentUid = FirebaseManager.shared.auth.currentUser?.uid else { return MockData.users[1] }
         
         let participant = ConversationHelper.getParticipant(with: currentUid, in: conversation)
         

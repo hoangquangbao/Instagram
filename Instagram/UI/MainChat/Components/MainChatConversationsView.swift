@@ -11,24 +11,24 @@ struct MainChatConversationsView: View {
     @EnvironmentObject var mainChatVm: MainChatViewModel
     
     var body: some View {
-        Group {
-            Text("Messages")
-                .font(.headline).bold()
-                .padding(.top)
-            
-            ScrollView {
-                LazyVStack {
-                    ForEach(mainChatVm.conversations) { conversation in
-                        NavigationLink {
-                            ConversationView(conversation: conversation)
-                        } label: {
-                            MessageRowView(conversation: conversation)
-                        }
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                
+                Text("Messages")
+                    .font(.headline).bold()
+                    .padding(.top)
+                
+                ForEach(mainChatVm.conversations) { conversation in
+                    NavigationLink {
+                        ConversationView(conversation: conversation)
+                    } label: {
+                        MessageRowView(conversation: conversation)
                     }
                 }
             }
-            .padding(.top, 2)
         }
+        .padding(.top, 2)
+        
     }
 }
 

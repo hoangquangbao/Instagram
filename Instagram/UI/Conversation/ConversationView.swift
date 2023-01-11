@@ -15,20 +15,31 @@ struct ConversationView: View {
     }
     
     var body: some View {
-        if let participant = vm.participant {
-            VStack {
-                ConversationHeaderView(participant: participant)
+        ZStack {
+            if let participant = vm.participant {
+                VStack {
+                    
+                    ConversationHeaderView(participant: participant)
+                    
+                    Divider()
+                    
+                    ConversationMessageView(messages: vm.conversation.messages)
+                    
+                    ConversationMessageBar()
+                        .ignoresSafeArea()
                 
-                ScrollView {
-                    ForEach(vm.conversation.messages) { message in
-                        Text(message.text)
-                    }
                 }
+                .navigationBarBackButtonHidden(true)
+                .environmentObject(vm)
             }
-            .navigationBarBackButtonHidden(true)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        
     }
 }
+
 
 struct ConversationView_Previews: PreviewProvider {
     static var previews: some View {

@@ -66,12 +66,7 @@ private extension CommentView {
             }
             
             TextField("Enter comment here...", text: $postRowVm.commentText)
-                .font(.subheadline)
-                .padding(.horizontal, 15)
-                .padding(.vertical, 10)
-                .background(Color.background)
-                .clipShape(Capsule())
-                .overlay(Capsule().stroke(Color(.systemGray).opacity(0.8)))
+                .textFieldStyle(DefaultCapsuleBorder())
                 .onChange(of: postRowVm.commentText) { newValue in
                     postRowVm.onCommentTextChange(newValue)
                 }

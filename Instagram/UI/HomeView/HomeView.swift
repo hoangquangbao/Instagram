@@ -32,6 +32,7 @@ struct HomeView: View {
                     }
                 }
                 .navigationBarHidden(true)
+                .navigationBarTitle("", displayMode: .inline)
                 .confirmationDialog(
                     "choose option",
                     isPresented: $vm.isShowOptionForNavigateStoryView,
@@ -94,8 +95,7 @@ private extension HomeView {
             NavigationLink {
                 MainChatView()
                     .onAppear { self.tabBar.isHidden = true }
-                    .navigationBarTitle("", displayMode: .inline)
-                    .navigationBarBackButtonHidden(true)
+                
             } label: {
                 Image.icnShare
             }
@@ -103,7 +103,9 @@ private extension HomeView {
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
         .onAppear {
-            self.tabBar.isHidden = false
+            if self.tabBar != nil {
+                self.tabBar.isHidden = false
+            }
         }
     }
     
