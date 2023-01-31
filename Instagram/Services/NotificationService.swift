@@ -19,8 +19,6 @@ struct NotificationService {
                 guard let documents = snapshot?.documents else { completion([]); return }
                 var notifications = documents.compactMap { try? $0.data(as: Notification.self) }
                 
-                print(notifications)
-                
                 for i in 0..<notifications.count {
                     notifications[i].user = try await UserService.get(by: notifications[i].uid)
                     notifications[i].userInteraction = try await UserService.get(by: notifications[i].userInteractionId)
@@ -28,7 +26,6 @@ struct NotificationService {
                 }
                 
                 completion(notifications)
-                
             }
         }
     }

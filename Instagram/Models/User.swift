@@ -8,6 +8,7 @@ import FirebaseFirestoreSwift
 
 struct User: Identifiable, Decodable, Encodable {
     @DocumentID var id: String?
+    var uid: String = UUID().uuidString
     let email: String
     let username: String
     let fullName: String
@@ -17,5 +18,4 @@ struct User: Identifiable, Decodable, Encodable {
     var isOnline: Bool = false
     var followings: [User] = []
     var followers: [User] = []
-    
 }

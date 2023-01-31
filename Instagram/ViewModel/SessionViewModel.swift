@@ -14,13 +14,16 @@ enum SessionState {
 
 @MainActor class SessionViewModel: ObservableObject {
     @Published var userSession: SessionState = .loggedOut
-    @Published var userInfo: User?
+    @Published var userInfo: User!
     
     init() {
         if(UserDefaults.standard.isLoggedIn()) {
-            LocalStorage.retrieve(forKey: StorageKey.USER_INFO) { user in
-                self.userInfo = user
+            let currentUser: User? = LocalStorage.retrieve(forKey: StorageKey.USER_INFO)
+            guard let currentUser = currentUser else {
+                return
             }
+            
+            self.userInfo = currentUser
             
             Task {
                 await refresh()

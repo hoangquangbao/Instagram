@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 struct Message: Identifiable, Encodable, Decodable {
     @DocumentID var id: String?
-    let sender: User
+    let senderId: String
     let text: String
     var hasSeen: Bool = false
     var sendAt: Timestamp = Timestamp(date: Date())

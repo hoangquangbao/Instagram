@@ -10,13 +10,13 @@ class SearchViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var itemsSelectionState = [String: Bool]()
     @Published var isSearchingMode = false
+    @Published var mode: Mode = .postSuggestion
     
     enum Mode { case postSuggestion, searching }
     
     let users: [User] = MockData.users
     var posts: [Post] = MockData.posts
     let categoriesFiltered = SearchData.categoriesFilteredData
-    var mode: Mode = .postSuggestion
     
     init() {
         initializeFilteredSelectionState()

@@ -12,29 +12,19 @@ struct ConversationMessageView: View {
     private let columns = [GridItem(.flexible(minimum: 10))]
     
     @EnvironmentObject var sessionVm: SessionViewModel
+    @EnvironmentObject var vm: ConversationViewModel
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(messages) { message in
-                    let isReceive = message.sender.id != sessionVm.uid
-                    
-                    HStack {
-                        ZStack {
-                            Text(message.text)
-                                .padding(.horizontal)
-                                .padding(.vertical, 12)
-                                .background(isReceive ? Color.clear : Color.gray.opacity(0.3))
-                                .cornerRadius(25)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .stroke(isReceive ? Color.gray.opacity(0.3) : Color.clear, lineWidth: 1)
-                                )
-                        }
-                        .frame(width: UIScreen.screenWidth * 0.7, alignment: isReceive ? .leading : .trailing)
-                        .padding(.vertical, 5)
+                if vm.isMessagesLoading {
+                    ProgressView()
+                } else {
+                    ForEach(messages) { message in
+                        let isReceive = message.senderId != sessionVm.uid
+                        
+                        BubbleMessageView(message: message, isReceive: isReceive)
                     }
-                    .frame(maxWidth: .infinity, alignment: isReceive ? .leading : .trailing)
                 }
             }
             .padding(.horizontal, AppStyle.defaultSpacing)

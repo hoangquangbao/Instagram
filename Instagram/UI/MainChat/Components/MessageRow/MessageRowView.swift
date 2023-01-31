@@ -70,7 +70,7 @@ private extension MessageRowView {
     var _lastMessageText: some View {
         var message = vm.lastMessage?.text ?? ""
         
-        if vm.isSender(vm.lastMessage!) {
+        if vm.isSender(vm.lastMessage) {
             message = "You: \(message)"
         }
         
@@ -83,15 +83,18 @@ private extension MessageRowView {
 
 struct MessageRowView_Previews: PreviewProvider {
     static private let messages: [Message] = [
-        Message(sender: MockData.users[0], text: "Hello"),
-        Message(sender: MockData.users[1], text: "Hi adsadkmcmkmckskkdk akdkadkas kd k 1"),
-        Message(sender: MockData.users[0], text: "Hello"),
-        Message(sender: MockData.users[1], text: "Hi adsadkmcmkmckskkdk akdkadkas kd k 1"),
+        Message(senderId: MockData.users[0].id!, text: "Hello"),
+        Message(senderId: MockData.users[1].id!, text: "Hi adsadkmcmkmckskkdk akdkadkas kd k 1"),
+        Message(senderId: MockData.users[0].id!, text: "Hello"),
+        Message(senderId: MockData.users[1].id!, text: "Hi adsadkmcmkmckskkdk akdkadkas kd k 1"),
     ]
     
     static private let conversation: Conversation = Conversation(
-        user1: MockData.users[0],
-        user2: MockData.users[1],
+//        uid1: MockData.users[0].id!,
+//        uid2: MockData.users[1].id!,
+//        user1: MockData.users[0],
+//        user2: MockData.users[1],
+        participants: [MockData.users[0], MockData.users[1]],
         messages: messages)
     
     static var previews: some View {

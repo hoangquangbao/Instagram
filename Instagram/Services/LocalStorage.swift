@@ -8,13 +8,14 @@
 import FirebaseFirestore
 
 struct LocalStorage {
-    static func retrieve<ModelType>(forKey key: String, completion: @escaping (ModelType) -> Void) where ModelType: Decodable {
+    static func retrieve<ModelType>(forKey key: String) -> ModelType? where ModelType: Decodable {
         if let data = UserDefaults.standard.dictionary(forKey: key) {
             if let decoded = try? Firestore.Decoder().decode(ModelType.self, from: data) {
-                completion(decoded)
-                return
+                return decoded
             }
         }
+        
+        return nil
     }
     
     static func store<ModelType>(with data: ModelType, forKey: String) where ModelType: Encodable {

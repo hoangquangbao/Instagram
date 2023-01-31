@@ -21,11 +21,11 @@ struct ConversationHelper {
         return index
     }
     
-    static func getParticipant(with currentUid: String, in conversation: Conversation) -> User {
-        if currentUid == conversation.user1.id {
-            return conversation.user2
+    static func getParticipant(of currentUid: String, in conversation: Conversation) -> User? {
+        if currentUid == conversation.participants[0].uid {
+            return conversation.participants[1]
         }
         
-        return conversation.user1
+        return conversation.participants[0]
     }
 }

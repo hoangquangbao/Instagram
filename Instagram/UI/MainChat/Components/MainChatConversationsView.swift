@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainChatConversationsView: View {
-    @EnvironmentObject var mainChatVm: MainChatViewModel
+    @EnvironmentObject var vm: MainChatViewModel
     
     var body: some View {
         ScrollView {
@@ -18,7 +18,7 @@ struct MainChatConversationsView: View {
                     .font(.headline).bold()
                     .padding(.top)
                 
-                ForEach(mainChatVm.conversations) { conversation in
+                ForEach(vm.conversations) { conversation in
                     NavigationLink {
                         ConversationView(conversation: conversation)
                     } label: {
@@ -28,9 +28,10 @@ struct MainChatConversationsView: View {
             }
         }
         .padding(.top, 2)
-        
     }
 }
+
+
 
 struct MainChatConversationsView_Previews: PreviewProvider {
     static var previews: some View {

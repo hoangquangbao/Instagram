@@ -16,6 +16,7 @@ struct FirebaseConstants {
     static let COMMENT_COLLECTION = "comments"
     static let NOTIFICATION_COLLECTION = "notifications"
     static let CONVERSATION_COLLECTION = "conversations"
+    static let MESSAGE_COLLECTION = "messages"
     
     //Storage
     static let PROFILE_AVATAR_PATH = "/profile_avatar"

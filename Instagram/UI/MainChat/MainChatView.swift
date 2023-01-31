@@ -8,29 +8,41 @@
 import SwiftUI
 
 struct MainChatView: View {
-    private let vm = MainChatViewModel()
-    
-    @State var searchText: String = ""
+    @StateObject var vm = MainChatViewModel()
     
     var body: some View {
-                ZStack {
-                    VStack(alignment: .leading) {
-                        MainChatBackButtonView()
+        ZStack {
+            VStack(alignment: .leading) {
+                _backButton
+                
+                MainChatSearchBar()
+                
+                _bodyBuilder
+                
+            }
+            .padding(.horizontal, AppStyle.defaultSpacing)
+        }
+        .environmentObject(vm)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         
-                        SearchBar(searchText: $searchText) {
-        
-                        }
-        
-                        MainChatConversationsView()
-                            .environmentObject(vm)
-        
-                    }
-                    .padding(.horizontal, AppStyle.defaultSpacing)
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarHidden(true)
-                .navigationBarBackButtonHidden(true)
-        
+    }
+}
+
+private extension MainChatView {
+    @ViewBuilder var _backButton: some View {
+        if vm.mode == .normal {
+            MainChatBackButtonView()
+        }
+    }
+    
+    @ViewBuilder var _bodyBuilder: some View {
+        if vm.mode == .normal {
+            MainChatConversationsView()
+        } else {
+            MainChatUserSearchResultView()
+        }
     }
 }
 

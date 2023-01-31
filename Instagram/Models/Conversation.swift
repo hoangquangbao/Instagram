@@ -7,11 +7,16 @@
 
 import Foundation
 import FirebaseFirestoreSwift
+import Firebase
 
 struct Conversation: Identifiable, Encodable, Decodable {
     @DocumentID var id: String?
-    let user1: User
-    let user2: User
+//    let uid1: String
+//    let uid2: String
     
-    let messages: [Message]
+//    let user1: User
+//    let user2: User
+    let participants: [User]
+    var lastMessageTimestamp = Timestamp(date: Date())
+    var messages: [Message]?
 }

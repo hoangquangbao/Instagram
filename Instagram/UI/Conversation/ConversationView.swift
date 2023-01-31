@@ -8,30 +8,32 @@
 import SwiftUI
 
 struct ConversationView: View {
-    @ObservedObject var vm: ConversationViewModel
+    let conversation: Conversation
+        
+    @StateObject var vm: ConversationViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     
     init(conversation: Conversation) {
-        vm = ConversationViewModel(conversation)
+        self.conversation = conversation
+        _vm = StateObject(wrappedValue: ConversationViewModel(conversation))
     }
     
     var body: some View {
         ZStack {
-            if let participant = vm.participant {
-                VStack {
-                    
+            VStack {
+                if let participant = getParticipant(in: conversation) {
                     ConversationHeaderView(participant: participant)
-                    
-                    Divider()
-                    
-                    ConversationMessageView(messages: vm.conversation.messages)
-                    
-                    ConversationMessageBar()
-                        .ignoresSafeArea()
-                
                 }
-                .navigationBarBackButtonHidden(true)
-                .environmentObject(vm)
+                
+                Divider()
+                
+                ConversationMessageView(messages: conversation.messages ?? [])
+
+                ConversationMessageBar()
+            
             }
+            .navigationBarBackButtonHidden(true)
+            .environmentObject(vm)
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
@@ -40,9 +42,15 @@ struct ConversationView: View {
     }
 }
 
-
-struct ConversationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ConversationView(conversation: MockData.conversations[0])
+private extension ConversationView {
+    func getParticipant(in conversation: Conversation) -> User? {
+        return vm.getParticipant(of: sessionVm.userInfo, in: conversation)
     }
 }
+
+
+//struct ConversationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ConversationView(currentUser: MockData.users[0] ,participant: MockData.users[1])
+//    }
+//}

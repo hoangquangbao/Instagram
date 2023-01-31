@@ -6,50 +6,103 @@
 //
 
 import Foundation
+import Firebase
 
 class ConversationService {
-//    typealias ModelType = Conversation
-    
     static let shared = ConversationService()
-    
-    let _conversationRef = FirebaseManager.shared.firestore.collection(FirebaseConstants.CONVERSATION_COLLECTION)
+    private let db = FirebaseManager.shared.firestore
     
     func getAll(uid: String, completion: @escaping ([Conversation]) -> Void) {
-        _conversationRef.addSnapshotListener { querySnapshot, error in
-            guard let querySnapshot = querySnapshot else {
-                print(error?.localizedDescription as Any)
-                return
+        let conversationsRef = db.collection(FirebaseConstants.CONVERSATION_COLLECTION)
+        conversationsRef
+            .order(by: "lastMessageTimestamp", descending: true)
+            .addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print("Error fetching conversations: \(error.localizedDescription)")
+                    completion([])
+                    return
+                }
+                
+                guard let querySnapshot = querySnapshot else {
+                    completion([])
+                    return
+                }
+                
+                var conversations = querySnapshot.documents
+                    .compactMap { try? $0.data(as: Conversation.self) }
+                    .filter { $0.participants.contains { $0.uid == uid} }
+                
+                for i in 0..<conversations.count {
+                    MessageService.shared.getAll(conversationId: conversations[i].id!) { messages in
+                        
+                        conversations[i].messages = messages
+                        conversations[i].lastMessageTimestamp = messages.last?.sendAt ?? Timestamp(date: Date())
+                        
+                        completion(conversations)
+                    }
+                }
             }
-            
-            let conversations = querySnapshot.documents.compactMap{ try? $0.data(as: Conversation.self) }
-            let myConversations = conversations.filter{ $0.user1.id == uid || $0.user2.id == uid }
-            
-            completion(myConversations)
+    }
+    
+    func get(by id: String) async throws -> Conversation? {
+        let result = try? await db
+            .collection(FirebaseConstants.CONVERSATION_COLLECTION)
+            .document(id)
+            .getDocument()
+            .data(as: Conversation.self)
+        
+        return result
+    }
+    
+    func create(_ conversation: Conversation, completion: @escaping (Bool, Error?) -> Void) {
+        let uid1 = conversation.participants[0].uid
+        let uid2 = conversation.participants[1].uid
+        let conversationId = ConversationHelper.getId(uid1, uid2)
+        do {
+            try db
+                .collection(FirebaseConstants.CONVERSATION_COLLECTION)
+                .document(conversationId)
+                .setData(from: conversation) { error in
+                    if let error = error {
+                        completion(false, error)
+                    }
+                    else {
+                        completion(true, nil)
+                    }
+                }
+        } catch {
+            completion(false, error)
         }
     }
     
-//    static func get(by id: String) async throws -> Conversation? {
-//
-//    }
-//
-//    static func getAll(completion: @escaping ([Conversation]) -> Void) {
-//
-//    }
-//
-//    static func create(_: Conversation, completion: @escaping (Bool, Error?) -> Void) {
-//
-//    }
-//
-//
-//    static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
-//
-//    }
-//
-//    static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
-//
-//    }
+    //
+    //
+    //    static func update(with id: String, field: String, data: Any, completion: @escaping (Bool, Error?) -> Void) {
+    //
+    //    }
+    //
+    //    static func delete(with id: String, completion: @escaping (Bool, Error?) -> Void) {
+    //
+    //    }
     
-    
-    
-    
+    func sendMessage(_ message: Message, in conversation: Conversation, completion: @escaping (Bool, Error?) -> Void) {
+        guard let conversationId = conversation.id else { return }
+        do {
+            try db
+                .collection(FirebaseConstants.CONVERSATION_COLLECTION)
+                .document(conversationId)
+                .collection(FirebaseConstants.MESSAGE_COLLECTION)
+                .document()
+                .setData(from: message) { error in
+                    if let error = error {
+                        completion(false, error)
+                    }
+                    else {
+                        completion(true, nil)
+                    }
+                }
+        } catch {
+            completion(false, error)
+        }
+    }  
 }

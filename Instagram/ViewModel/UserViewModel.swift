@@ -31,10 +31,19 @@ import SwiftUI
     }
     
     func searchableUser(_ text: String) -> [User] {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return [] }
+        let text = text.lowercased()
+        let users = self.users.filter { $0.id != uid }
         if(text.isEmpty) { return users }
         
-        return users.filter { user in
-            user.username.contains(text) || user.fullName.contains(text)
+        let result = users.filter { user in
+            user.id != uid &&
+            (
+                user.username.lowercased().contains(text) ||
+                user.fullName.lowercased().contains(text)
+            )
         }
+        
+        return result
     }
 }

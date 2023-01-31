@@ -10,11 +10,11 @@ import Shimmer
 
 struct PostRow: View {
     @State private var _imageSelectionIndex = 0
-    @ObservedObject var vm: PostRowViewModel
+    @StateObject var vm: PostRowViewModel
     @EnvironmentObject var homeVm: HomeViewModel
     
     init(post: Post) {
-        self.vm = PostRowViewModel(post: post)
+        _vm = StateObject(wrappedValue: PostRowViewModel(post: post))
     }
     
     var body: some View {

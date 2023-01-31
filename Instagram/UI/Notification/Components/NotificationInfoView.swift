@@ -12,7 +12,7 @@ import Kingfisher
 struct NotificationInfoView: View {
     let notification: Notification
     @Binding var isShowDialog: Bool
-    @StateObject var vm: NotificationViewModel
+    @EnvironmentObject var vm: NotificationViewModel
     
     @State private var selection: Int? = nil
     
@@ -98,8 +98,10 @@ private extension NotificationInfoView {
 
 struct NotificationInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationInfoView(notification: MockData.notifications[0],
-                             isShowDialog: .constant(false),
-                             vm: NotificationViewModel())
+        NotificationInfoView(
+            notification: MockData.notifications[0],
+            isShowDialog: .constant(false)
+        )
+        .environmentObject(NotificationViewModel())
     }
 }

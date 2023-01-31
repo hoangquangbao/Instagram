@@ -32,7 +32,7 @@ struct NotificationView: View {
                             ScrollView {
                                 LazyVStack {
                                     ForEach(vm.notifications) { notification in
-                                        NotificationInfoView(notification: notification, isShowDialog: $isWaitingDialogDisplayed, vm: vm)
+                                        NotificationInfoView(notification: notification, isShowDialog: $isWaitingDialogDisplayed)
                                     }
                                 }
                             }

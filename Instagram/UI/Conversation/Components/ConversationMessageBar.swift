@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ConversationMessageBar: View {
     @EnvironmentObject var vm: ConversationViewModel
+    @EnvironmentObject var sessionVm: SessionViewModel
     
     var body: some View {
         HStack(spacing: 10) {
@@ -17,7 +18,7 @@ struct ConversationMessageBar: View {
                 .textFieldStyle(DefaultCapsuleBorder())
             
             Button {
-                
+                vm.sendMessage(by: sessionVm.userInfo, to: vm.participant)
             } label: {
                 Image.icnShare
                     .renderingMode(.template)
@@ -26,12 +27,12 @@ struct ConversationMessageBar: View {
             .disabled(vm.messageText.isEmpty)
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
-        .padding(.bottom)
     }
 }
 
 struct ConversationMessageBar_Previews: PreviewProvider {
     static var previews: some View {
         ConversationMessageBar()
+            .environmentObject(SessionViewModel())
     }
 }
