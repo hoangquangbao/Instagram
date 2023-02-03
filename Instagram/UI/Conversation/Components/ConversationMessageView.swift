@@ -13,21 +13,18 @@ struct ConversationMessageView: View {
     
     @EnvironmentObject var sessionVm: SessionViewModel
     @EnvironmentObject var vm: ConversationViewModel
-    @EnvironmentObject var mainChatVm: MainChatViewModel
     
     var body: some View {
         ScrollView {
             ScrollViewReader { scrollReader in
                 messageView
-                    .onChange(of: vm.conversation.messages?.count) { _ in
-                        print("On Change: \(vm.conversation.messages?.last?.id)")
-                        if let messageId = vm.conversation.messages?.last?.id {
+                    .onChange(of: messages.count) { _ in
+                        if let messageId = messages.last?.id {
                             scrollTo(messageId: messageId, shouldAnimate: true, scrollReader: scrollReader)
                         }
                     }
                     .onAppear {
                         if let messageId = messages.last?.id {
-                            print("On appear: \(vm.conversation.messages?.last?.id)")
                             scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
                         }
                     }

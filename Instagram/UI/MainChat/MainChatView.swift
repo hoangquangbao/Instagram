@@ -40,7 +40,6 @@ private extension MainChatView {
     @ViewBuilder var _bodyBuilder: some View {
         if vm.mode == .normal {
             MainChatConversationsView()
-                .environmentObject(vm)
         } else {
             MainChatUserSearchResultView()
         }

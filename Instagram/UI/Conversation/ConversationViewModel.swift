@@ -65,7 +65,9 @@ class ConversationViewModel: ObservableObject {
         }
         
         ConversationService.shared.sendMessage(message, in: conversation!) { success, _ in
+
         }
+        
     }
     
     private func createConversation(participants: [User], message: Message) -> Conversation {

@@ -39,7 +39,6 @@ struct ConversationView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        
     }
 }
 

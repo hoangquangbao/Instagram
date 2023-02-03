@@ -86,11 +86,22 @@ class ConversationService {
     //    }
     
     func sendMessage(_ message: Message, in conversation: Conversation, completion: @escaping (Bool, Error?) -> Void) {
-        guard let conversationId = conversation.id else { return }
+        
+        var conversationId = conversation.id
+        
+        if conversationId == nil {
+            create(conversation) { success, _ in
+                if !success {
+                    return
+                }
+            }
+            conversationId = ConversationHelper.getId(conversation.participants[0].uid, conversation.participants[1].uid)
+        }
+        
         do {
             try db
                 .collection(FirebaseConstants.CONVERSATION_COLLECTION)
-                .document(conversationId)
+                .document(conversationId!)
                 .collection(FirebaseConstants.MESSAGE_COLLECTION)
                 .document()
                 .setData(from: message) { error in
