@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ConversationHelper {
     static func getId(_ firstUserId: String, _ secondUserId: String) -> String {

@@ -13,21 +13,53 @@ struct ConversationMessageView: View {
     
     @EnvironmentObject var sessionVm: SessionViewModel
     @EnvironmentObject var vm: ConversationViewModel
+    @EnvironmentObject var mainChatVm: MainChatViewModel
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 0) {
-                if vm.isMessagesLoading {
-                    ProgressView()
-                } else {
-                    ForEach(messages) { message in
-                        let isReceive = message.senderId != sessionVm.uid
-                        
-                        BubbleMessageView(message: message, isReceive: isReceive)
+            ScrollViewReader { scrollReader in
+                messageView
+                    .onChange(of: vm.conversation.messages?.count) { _ in
+                        print("On Change: \(vm.conversation.messages?.last?.id)")
+                        if let messageId = vm.conversation.messages?.last?.id {
+                            scrollTo(messageId: messageId, shouldAnimate: true, scrollReader: scrollReader)
+                        }
                     }
+                    .onAppear {
+                        if let messageId = messages.last?.id {
+                            print("On appear: \(vm.conversation.messages?.last?.id)")
+                            scrollTo(messageId: messageId, anchor: .bottom, shouldAnimate: false, scrollReader: scrollReader)
+                        }
+                    }
+            }
+        }
+    }
+}
+
+
+private extension ConversationMessageView {
+    var messageView: some View {
+        LazyVGrid(columns: columns, spacing: 0) {
+            if vm.isMessagesLoading {
+                ProgressView()
+            } else {
+                ForEach(messages) { message in
+                    let isReceive = message.senderId != sessionVm.uid
+                    BubbleMessageView(message: message, isReceive: isReceive)
+                        
                 }
             }
-            .padding(.horizontal, AppStyle.defaultSpacing)
+        }
+        .padding(.horizontal, AppStyle.defaultSpacing)
+    }
+}
+
+private extension ConversationMessageView {
+    func scrollTo(messageId: String, anchor: UnitPoint? = nil, shouldAnimate: Bool, scrollReader: ScrollViewProxy) {
+        DispatchQueue.main.async {
+            withAnimation(shouldAnimate ? Animation.easeIn : nil) {
+                scrollReader.scrollTo(messageId, anchor: anchor)
+            }
         }
     }
 }

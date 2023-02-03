@@ -29,6 +29,7 @@ struct BubbleMessageView: View {
             .padding(.vertical, 5)
         }
         .frame(maxWidth: .infinity, alignment: isReceive ? .leading : .trailing)
+        .id(message.id)
     }
 }
 

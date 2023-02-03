@@ -12,6 +12,7 @@ struct ConversationView: View {
         
     @StateObject var vm: ConversationViewModel
     @EnvironmentObject var sessionVm: SessionViewModel
+    @EnvironmentObject var mainChatVm: MainChatViewModel
     
     init(conversation: Conversation) {
         self.conversation = conversation

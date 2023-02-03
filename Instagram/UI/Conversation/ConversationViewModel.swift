@@ -13,11 +13,8 @@ class ConversationViewModel: ObservableObject {
     @Published var participant: User!
     @Published var messageText: String = ""
     @Published var isMessagesLoading: Bool = false
+    @Published var messageIdToScroll: String?
     
-//    init(_ currentUser: User ,_ participant: User) {
-//        self.currentUser = currentUser
-//        self.participant = participant
-//    }
     
     init(_ conversation: Conversation) {
         self.conversation = conversation
@@ -57,14 +54,17 @@ class ConversationViewModel: ObservableObject {
 
     func sendMessage(by sender: User, to receiver: User) {
         guard let senderId = sender.id else { return }
-        let message = Message(senderId: senderId, text: self.messageText)
+        let messageText = self.messageText
+        
+        self.clearMessageText()
+        
+        let message = Message(senderId: senderId, text: messageText)
         if self.conversation == nil {
             self.conversation = createConversation(participants: [sender, receiver], message: message)
             
         }
         
         ConversationService.shared.sendMessage(message, in: conversation!) { success, _ in
-            self.messageText = ""
         }
     }
     
@@ -74,5 +74,9 @@ class ConversationViewModel: ObservableObject {
         let conversation = Conversation(id: id, participants: participants)
         ConversationService.shared.create(conversation) { _, _ in }
         return conversation
+    }
+    
+    private func clearMessageText() {
+        self.messageText = ""
     }
 }

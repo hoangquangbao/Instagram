@@ -17,14 +17,25 @@ struct ConversationMessageBar: View {
             TextField("Message...", text: $vm.messageText)
                 .textFieldStyle(DefaultCapsuleBorder())
             
+//            Button {
+//                vm.sendMessage(by: sessionVm.userInfo, to: vm.participant)
+//            } label: {
+//                Image.icnShare
+//                    .renderingMode(.template)
+//                    .foregroundColor(vm.messageText.isEmpty ? Color.semiText : Color.primary)
+//            }
+//            .disabled(vm.messageText.isEmpty)
+            
             Button {
-                vm.sendMessage(by: sessionVm.userInfo, to: vm.participant)
+                DispatchQueue.main.async {
+                    vm.sendMessage(by: sessionVm.userInfo, to: vm.participant)
+                    print(vm.conversation.messages?.last?.text)
+                }
             } label: {
                 Image.icnShare
                     .renderingMode(.template)
-                    .foregroundColor(Color.primary)
+                    .foregroundColor(vm.messageText.isEmpty ? Color.semiText : Color.primary)
             }
-            .disabled(vm.messageText.isEmpty)
         }
         .padding(.horizontal, AppStyle.defaultSpacing)
     }
